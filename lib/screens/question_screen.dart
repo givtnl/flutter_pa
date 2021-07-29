@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/blue_button.dart';
 
 class QuestionScreen extends StatelessWidget {
-
   static const String routeName = '/question';
 
   @override
@@ -25,7 +25,15 @@ class QuestionScreen extends StatelessWidget {
               ),
             ),
           ),
-
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: BlueButton(
+              label: "Naar de keuzewijzer!",
+              tapped: () {
+                print("Tapped");
+              },
+            ),
+          ),
         ],
       ),
     );
