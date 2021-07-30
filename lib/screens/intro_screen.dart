@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/question_screen.dart';
+import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -13,19 +14,7 @@ class IntroScreen extends StatelessWidget {
       body: Stack(
         children: [
           Center(
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(50),
-              child: Text(
-                "Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit.",
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(36, 106, 177, 1),
-                  fontSize: 25,
-                ),
-              ),
-            ),
+            child: BigText("Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit."),
           ),
           Align(
             alignment: Alignment.bottomCenter,
