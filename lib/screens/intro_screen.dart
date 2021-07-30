@@ -11,21 +11,23 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(229, 229, 229, 1),
-      body: Stack(
-        children: [
-          Center(
-            child: BigText("Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit."),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: BlueButton(
-              label: "Naar de keuzewijzer!",
-              tapped: () {
-                Navigator.of(context).pushNamed(QuestionScreen.routeName);
-              },
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Center(
+              child: BigText("Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit."),
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: BlueButton(
+                label: "Naar de keuzewijzer!",
+                tapped: () {
+                  Navigator.of(context).pushNamed(QuestionScreen.routeName);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
