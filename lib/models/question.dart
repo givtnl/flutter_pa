@@ -4,5 +4,5 @@ class Question {
   bool isSkipped = false;
   bool isAnswered = false;
 
-  Question(this.question)
+  Question(this.question);
 }
