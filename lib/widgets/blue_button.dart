@@ -22,7 +22,7 @@ class _BlueButtonState extends State<BlueButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(50),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
