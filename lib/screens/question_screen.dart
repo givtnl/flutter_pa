@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/questions_provider.dart';
+import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:provider/provider.dart';
 
 class QuestionScreen extends StatefulWidget {
   static const String routeName = '/question';
@@ -20,6 +23,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<QuestionsProvider>(context);
+    var questionId = ModalRoute.of(context)!.settings.arguments as int;
+
+    var question = provider.getQuestionById(questionId);
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(229, 229, 229, 1),
       body: SafeArea(
@@ -34,7 +42,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   children: [
                     FractionallySizedBox(
                       heightFactor: 1,
-                      widthFactor: 0.8,
+                      widthFactor: 1.0 - ((provider.unansweredQuestions.length - 1) / provider.questions.length),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(36, 106, 177, 1),
@@ -47,7 +55,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: Container(),
               ),
-              BigText("Een goed doel met keurmerk geeft mij meer vertrouwen in een juiste besteding van mijn donatie."),
+              BigText(question.question),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
                 child: SliderTheme(
@@ -126,7 +134,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
               BlueButton(
                 label: "Volgende",
                 tapped: () {
-                  Navigator.of(context).pushNamed(QuestionScreen.routeName);
+                  provider.answerQuestion(questionId, _sliderValue.round());
+
+                  var nextQuestion = provider.nextQuestion;
+                  if (nextQuestion == null)
+                    Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                  else
+                    Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
                 },
               ),
             ],
