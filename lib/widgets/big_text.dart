@@ -7,10 +7,7 @@ class BigText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(50),
-      child: Text(
+    return Text(
         text,
         style: TextStyle(
           fontFamily: 'Inter',
@@ -18,7 +15,6 @@ class BigText extends StatelessWidget {
           color: Color.fromRGBO(36, 106, 177, 1),
           fontSize: 25,
         ),
-      ),
-    );
+      );
   }
 }

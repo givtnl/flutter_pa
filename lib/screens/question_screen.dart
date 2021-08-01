@@ -29,7 +29,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     var question = provider.getQuestionById(questionId);
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(229, 229, 229, 1),
+      backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
         child: Align(
           alignment: Alignment.bottomCenter,
