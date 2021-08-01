@@ -55,7 +55,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
               Expanded(
                 child: Container(),
               ),
-              BigText(question.question),
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: BigText(question.question),
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
                 child: SliderTheme(

@@ -1,13 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/organisation.dart';
+import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_proposal_widget.dart';
+import 'package:provider/provider.dart';
 
 class SuggestionsScreen extends StatelessWidget {
   static const routeName = "/suggestion";
 
   @override
   Widget build(BuildContext context) {
+
+    var orgProvider = Provider.of<OrganisationProvider>(context);
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
@@ -33,10 +39,8 @@ class SuggestionsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Column(
-                children: [
-                  OrganisationProposal("ORGANISATIE A", "Een woordje uitleg over wat organisatie A precies doet.", 77),
-                  OrganisationProposal("ORGANISATIE B", "Een woordje uitleg over wat organisatie B precies doet.", 57),
-                ],
+                children:
+                  orgProvider.organisations.map((e) => OrganisationProposal(e.name, e.explanation, 57)).toList()
               ),
             ),
           ],

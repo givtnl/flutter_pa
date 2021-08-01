@@ -20,7 +20,10 @@ class IntroScreen extends StatelessWidget {
         child: Stack(
           children: [
             Center(
-              child: BigText("Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit."),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: BigText("Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit."),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
