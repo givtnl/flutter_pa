@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
+import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:provider/provider.dart';
@@ -145,7 +145,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
                   var nextQuestion = provider.nextQuestion;
                   if (nextQuestion == null) {
-                    Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                    Navigator.of(context).pushNamed(CategoriesScreen.routeName);
                   } else {
                     Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
                   }
