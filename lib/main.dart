@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
+import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
@@ -23,6 +25,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => OrganisationProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => CategoryProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -35,6 +40,7 @@ class MyApp extends StatelessWidget {
           QuestionScreen.routeName: (ctx) => QuestionScreen(),
           SuggestionsScreen.routeName: (ctx) => SuggestionsScreen(),
           OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
+          CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
         },
       ),
     );
