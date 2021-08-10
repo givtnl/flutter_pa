@@ -138,18 +138,21 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                 ),
               ),
-              BlueButton(
-                label: "Volgende",
-                tapped: () {
-                  provider.answerQuestion(questionId, _sliderValue.round());
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: BlueButton(
+                  label: "Volgende",
+                  tapped: () {
+                    provider.answerQuestion(questionId, _sliderValue.round());
 
-                  var nextQuestion = provider.nextQuestion;
-                  if (nextQuestion == null) {
-                    Navigator.of(context).pushNamed(CategoriesScreen.routeName);
-                  } else {
-                    Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
-                  }
-                },
+                    var nextQuestion = provider.nextQuestion;
+                    if (nextQuestion == null) {
+                      Navigator.of(context).pushNamed(CategoriesScreen.routeName);
+                    } else {
+                      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
+                    }
+                  },
+                ),
               ),
             ],
           ),

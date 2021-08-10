@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
-import 'package:flutter_app/widgets/category_switchable_card.dart';
+import 'package:flutter_app/widgets/category_card.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -32,9 +32,13 @@ class CategoriesScreen extends StatelessWidget {
                   }).toList(),
                 ),
               ),
-              BlueButton(
-                label: 'volgende',
-                tapped: () {},
+              Expanded(child: Container()),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: BlueButton(
+                  label: 'volgende',
+                  tapped: () {},
+                ),
               )
             ],
           ),
