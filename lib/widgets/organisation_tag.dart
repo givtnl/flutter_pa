@@ -14,12 +14,12 @@ class OrganisationTag extends StatelessWidget {
         decoration: enabled
             ? BoxDecoration(
                 color: Theme.of(context).primaryColor,
-                border: Border.all(color: Theme.of(context).primaryColor, width: 2),
+                border: Border.all(color: Theme.of(context).primaryColor),
                 borderRadius: BorderRadius.circular(25),
               )
             : BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: Theme.of(context).primaryColor, width: 2),
+                border: Border.all(color: Theme.of(context).primaryColor),
                 borderRadius: BorderRadius.circular(25),
               ),
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
