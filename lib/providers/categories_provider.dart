@@ -12,4 +12,11 @@ class CategoryProvider with ChangeNotifier {
   List<Category> getAllCategories() {
     return [..._categories];
   }
+
+  Category getCategoryById(int id) => _categories.firstWhere((element) => element.id == id);
+
+  void setCategorySelected(int id) {
+    var category = getCategoryById(id);
+    category.isClicked = true;
+  }
 }

@@ -11,8 +11,9 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final categories =
-        Provider.of<CategoryProvider>(context).getAllCategories();
+    final provider = Provider.of<CategoryProvider>(context);
+    final categories = provider.getAllCategories();
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
@@ -37,7 +38,12 @@ class CategoriesScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: BlueButton(
                   label: 'volgende',
-                  tapped: () {},
+                  tapped: () {
+                    for (var category in categories) {
+                      if (category.isClicked)
+                        provider.setCategorySelected(category.id);
+                    }
+                  },
                 ),
               )
             ],
