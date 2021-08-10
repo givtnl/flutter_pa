@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
+import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           IntroScreen.routeName: (ctx) => IntroScreen(),
           QuestionScreen.routeName: (ctx) => QuestionScreen(),
           SuggestionsScreen.routeName: (ctx) => SuggestionsScreen(),
+          OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
         },
       ),
     );

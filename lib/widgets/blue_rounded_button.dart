@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 class BlueRoundedButton extends StatelessWidget {
 
   final String buttonText;
+  final VoidCallback clickListener;
 
-  BlueRoundedButton(this.buttonText);
+  BlueRoundedButton(this.buttonText, this.clickListener);
 
   @override
   Widget build(BuildContext context) {
     return FlatButton(
       padding: EdgeInsets.zero,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      onPressed: () {},
+      onPressed: clickListener,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

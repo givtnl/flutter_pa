@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/organisation_screen.dart';
 import 'big_text.dart';
 import 'blue_rounded_button.dart';
 
@@ -38,7 +39,9 @@ class OrganisationProposal extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                BlueRoundedButton("Ontdek meer"),
+                BlueRoundedButton("Ontdek meer", () {
+                  Navigator.of(context).pushNamed(OrganisationScreen.routeName);
+                }),
                 Expanded(child: Container()),
                 BigText("$match%"),
                 Padding(
