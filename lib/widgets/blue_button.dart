@@ -15,11 +15,7 @@ class _BlueButtonState extends State<BlueButton> {
   late String label;
 
   _BlueButtonState(String label, VoidCallback function) {
-<<<<<<< HEAD
-    tapped = function;
-=======
     this.tapped = function;
->>>>>>> 453a1966c9acff5393363df64bcafbf88a00e218
     this.label = label;
   }
 
