@@ -15,8 +15,8 @@ class _BlueButtonState extends State<BlueButton> {
   late String label;
 
   _BlueButtonState(String label, VoidCallback function) {
-    tapped = function;
-    label = label;
+    this.tapped = function;
+    this.label = label;
   }
 
   @override

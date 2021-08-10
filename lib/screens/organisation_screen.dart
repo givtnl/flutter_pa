@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
+import 'package:provider/provider.dart';
 
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
@@ -12,8 +14,13 @@ class OrganisationScreen extends StatelessWidget {
     "religie en levensbeschouwing": true,
   };
 
+  final matchingPercentage = 20;
+
+  OrganisationScreen();
+
   @override
   Widget build(BuildContext context) {
+    var org = Provider.of<OrganisationProvider>(context, listen: false).currentSelectedProposal;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
@@ -30,7 +37,7 @@ class OrganisationScreen extends StatelessWidget {
                         flex: 2,
                         child: Align(
                           alignment: Alignment.topLeft,
-                          child: BigText("Organsiatie A"),
+                          child: BigText(org.name),
                         ),
                       ),
                       Flexible(
@@ -40,7 +47,7 @@ class OrganisationScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                "87%",
+                                "$matchingPercentage%",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 22,
@@ -81,7 +88,7 @@ class OrganisationScreen extends StatelessWidget {
                   height: 30,
                 ),
                 Text(
-                  "Hier komt informatie over organsatie A. Phasellus rhoncus ligula nec venenatis sollicitudin. Morbi egestas lacinia felis, sed posuere mi facilisis at. Donec in egestas nunc. ",
+                  org.explanation,
                   style: TextStyle(color: Theme.of(context).primaryColor),
                 ),
                 SizedBox(
@@ -90,7 +97,7 @@ class OrganisationScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "www.organisatieA.nl",
+                    org.orgWebsite,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w700,
@@ -114,7 +121,7 @@ class OrganisationScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyText1,
                           children: <TextSpan>[
                             TextSpan(text: 'Missie: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextSpan(text: 'hier komt -in het kort- de missie van organsatie A.!'),
+                            TextSpan(text: org.orgMission),
                           ],
                         ),
                       ),
@@ -138,7 +145,7 @@ class OrganisationScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyText1,
                           children: <TextSpan>[
                             TextSpan(text: 'Visie: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextSpan(text: 'hier komt -in het kort- de visie van organsatie A.!'),
+                            TextSpan(text: org.orgVision),
                           ],
                         ),
                       ),
@@ -162,7 +169,7 @@ class OrganisationScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyText1,
                           children: <TextSpan>[
                             TextSpan(text: 'Kernwaarden: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextSpan(text: 'hier komen -in het kort- de kernwaarden van organsatie A.!'),
+                            TextSpan(text: org.orgKeyValues),
                           ],
                         ),
                       ),
