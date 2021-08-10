@@ -6,7 +6,6 @@ frontend:
         'flutter build web'
       ]
   artifacts:
-    # IMPORTANT - Please verify your build output directory
     baseDirectory: /
     files:
       - '**/*'
