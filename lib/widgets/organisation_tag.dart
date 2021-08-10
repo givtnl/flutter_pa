@@ -14,6 +14,7 @@ class OrganisationTag extends StatelessWidget {
         decoration: enabled
             ? BoxDecoration(
                 color: Theme.of(context).primaryColor,
+                border: Border.all(color: Theme.of(context).primaryColor, width: 2),
                 borderRadius: BorderRadius.circular(25),
               )
             : BoxDecoration(

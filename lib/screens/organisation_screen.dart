@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 
@@ -7,8 +8,8 @@ class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
 
   final Map<String, bool> _tags = {
-    "Internationale hulp en mensenrechten": true,
-    "religie en levensbeschouwing": false,
+    "Internationale hulp en mensenrechten": false,
+    "religie en levensbeschouwing": true,
   };
 
   @override
@@ -20,7 +21,42 @@ class OrganisationScreen extends StatelessWidget {
             padding: const EdgeInsets.all(50.0),
             child: Column(
               children: [
-                BigText("Organsiatie A"),
+                Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: BigText("Organsiatie A"),
+                        ),
+                      ),
+                      Flexible(
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text("87%", style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 22,
+                                color: Theme.of(context).primaryColor,
+                              ),),
+                              Text("match", style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Theme.of(context).primaryColor,
+                              ),),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 ListView.separated(
                   itemBuilder: (ctx, idx) {
                     return OrganisationTag(_tags.entries.elementAt(idx).key, _tags.entries.elementAt(idx).value);
