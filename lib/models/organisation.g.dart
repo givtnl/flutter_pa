@@ -8,9 +8,13 @@ part of 'organisation.dart';
 
 Organisation _$OrganisationFromJson(Map<String, dynamic> json) {
   return Organisation(
-    json['matchingPercentage'] as int,
-    json['orgName'] as String,
-    json['orgDescription'] as String,
+    id: json['id'] as int,
+    name: json['orgName'] as String,
+    explanation: json['orgDescription'] as String,
+    orgKeyValues: json['orgKeyValues'] as String,
+    orgMission: json['orgMission'] as String,
+    orgVision: json['orgVision'] as String,
+    orgWebsite: json['orgWebsite'] as String,
   );
 }
 
@@ -18,5 +22,9 @@ Map<String, dynamic> _$OrganisationToJson(Organisation instance) =>
     <String, dynamic>{
       'orgName': instance.name,
       'orgDescription': instance.explanation,
-      'matchingPercentage': instance.id,
+      'id': instance.id,
+      'orgKeyValues': instance.orgKeyValues,
+      'orgMission': instance.orgMission,
+      'orgVision': instance.orgVision,
+      'orgWebsite': instance.orgWebsite,
     };

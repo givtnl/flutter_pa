@@ -41,33 +41,35 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
-        child: _loading ? Center(child: CircularProgressIndicator(),) : Column(
-          children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(50),
-              child: BigText("Jouw persoonlijke voorstellen"),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0),
-              child: Text(
-                "Dit zijn de organisaties die qua identiteit het beste bij jou passen.",
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(36, 106, 177, 1),
-                  fontSize: 14,
+        child: _loading ? Center(child: CircularProgressIndicator(),) : SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(50),
+                child: BigText("Jouw persoonlijke voorstellen"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: Text(
+                  "Dit zijn de organisaties die qua identiteit het beste bij jou passen.",
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(36, 106, 177, 1),
+                    fontSize: 14,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Column(
-                  children:
-                  _organisations.map((e) => OrganisationProposal(e.name, e.explanation, 57)).toList()
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Column(
+                    children:
+                    _organisations.map((e) => OrganisationProposal(e.name, e.explanation, 57)).toList()
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
