@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class BlueButton extends StatefulWidget {
-  final Function tapped;
+  final VoidCallback tapped;
   final String label;
 
   BlueButton({required this.label, required this.tapped});
@@ -11,12 +11,12 @@ class BlueButton extends StatefulWidget {
 }
 
 class _BlueButtonState extends State<BlueButton> {
-  late Function tapped;
+  late VoidCallback tapped;
   late String label;
 
-  _BlueButtonState(String label, Function function) {
+  _BlueButtonState(String label, VoidCallback function) {
     tapped = function;
-    this.label = label;
+    label = label;
   }
 
   @override
@@ -26,9 +26,7 @@ class _BlueButtonState extends State<BlueButton> {
       children: <Widget>[
         Expanded(
             child: GestureDetector(
-              onTap: () {
-                tapped.call();
-              },
+              onTap: tapped,
               child: Container(
                   height: 40,
                   decoration: BoxDecoration(

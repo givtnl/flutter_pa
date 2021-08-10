@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/categories_provider.dart';
+import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/category_card.dart';
@@ -43,6 +44,7 @@ class CategoriesScreen extends StatelessWidget {
                       if (category.isClicked)
                         provider.setCategorySelected(category.id);
                     }
+                    Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
                   },
                 ),
               )

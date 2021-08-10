@@ -33,6 +33,13 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primaryColor: Color.fromRGBO(36, 106, 177, 1),
+          backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          textTheme: TextTheme(
+            bodyText1:TextStyle(
+              fontFamily: 'Inter',
+              color: Color.fromRGBO(36, 106, 177, 1),
+            )
+          )
         ),
         routes: {
           '/': (ctx) => IntroScreen(),
