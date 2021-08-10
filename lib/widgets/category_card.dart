@@ -54,15 +54,10 @@ class _CategoryCardState extends State<CategoryCard> {
           });
         },
         child: Container(
-          decoration: selected
-              ? BoxDecoration(
-                  color: Color.fromRGBO(239, 244, 249, 1),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 1, color: Color.fromRGBO(36, 106, 177, 1)))
-              : BoxDecoration(
-                  color: Color.fromRGBO(239, 244, 249, 1),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(width: 1, color: Color.fromRGBO(36, 106, 177, 0))),
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(239, 244, 249, 1),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(width: 1, color: Color.fromRGBO(36, 106, 177, selected ? 1 : 0))),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Row(
