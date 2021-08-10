@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_app/models/organisation.dart';
+import 'package:http/http.dart' as http;
 
 class OrganisationProvider with ChangeNotifier {
   List<Organisation> _organisations = [
@@ -7,7 +10,9 @@ class OrganisationProvider with ChangeNotifier {
     Organisation(2, "Organisatie B", "Een woordje uitleg over wat organisatie B precies doet."),
   ];
 
-  List<Organisation> get organisations => [..._organisations];
+  Future<List<Organisation>> getAllOrganisations() async {
+    return [..._organisations];
+  }
 
   Organisation getOrganisationById(int id) => _organisations.firstWhere((element) => element.id == id);
 }

@@ -26,12 +26,16 @@ class _QuestionScreenState extends State<QuestionScreen> {
     var provider = Provider.of<QuestionsProvider>(context);
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
 
+    var _loading = false;
+
     var question = provider.getQuestionById(questionId);
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
-        child: Align(
+        child:
+          _loading ? Center(child: CircularProgressIndicator(),) :
+          Align(
           alignment: Alignment.bottomCenter,
           child: Column(
             children: [
@@ -140,10 +144,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   provider.answerQuestion(questionId, _sliderValue.round());
 
                   var nextQuestion = provider.nextQuestion;
-                  if (nextQuestion == null)
+                  if (nextQuestion == null) {
                     Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                  else
+                  } else {
                     Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
+                  }
                 },
               ),
             ],

@@ -6,18 +6,42 @@ import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_proposal_widget.dart';
 import 'package:provider/provider.dart';
 
-class SuggestionsScreen extends StatelessWidget {
+class SuggestionsScreen extends StatefulWidget {
   static const routeName = "/suggestion";
 
   @override
+  _SuggestionsScreenState createState() => _SuggestionsScreenState();
+}
+
+class _SuggestionsScreenState extends State<SuggestionsScreen> {
+
+  late List<Organisation> _organisations;
+
+  var _loading = false;
+  var _init = true;
+
+  @override
+  void didChangeDependencies() {
+    _loading = true;
+    if (_init) {
+      _init = false;
+      var orgProvider = Provider.of<OrganisationProvider>(context);
+      orgProvider.getAllOrganisations().then((value) {
+        setState(() {
+          _organisations = value;
+          _loading = false;
+        });
+      });
+    }
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-
-    var orgProvider = Provider.of<OrganisationProvider>(context);
-
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
-        child: Column(
+        child: _loading ? Center(child: CircularProgressIndicator(),) : Column(
           children: [
             Container(
               width: double.infinity,
@@ -39,8 +63,8 @@ class SuggestionsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Column(
-                children:
-                  orgProvider.organisations.map((e) => OrganisationProposal(e.name, e.explanation, 57)).toList()
+                  children:
+                  _organisations.map((e) => OrganisationProposal(e.name, e.explanation, 57)).toList()
               ),
             ),
           ],
