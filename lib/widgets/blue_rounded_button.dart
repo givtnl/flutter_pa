@@ -15,7 +15,7 @@ class BlueRoundedButton extends StatelessWidget {
       onPressed: clickListener,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           color: Color.fromRGBO(36, 106, 177, 1),
         ),
         child: Padding(

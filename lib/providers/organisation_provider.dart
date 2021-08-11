@@ -29,6 +29,7 @@ class OrganisationProvider with ChangeNotifier {
       orgVision: "hier komt -in het kort- de visie van organsatie C.",
       orgKeyValues: "hier komt -in het kort- de kernwaarden van organsatie C.",
       orgWebsite: "www.organisatieC.nl",
+      donationLink: "https://www.givtapp.net/download?code=NjFmN2VkMDE0ZTRjMTAxN2EwMDAuYzAwMDAwMDAwMDAx"
     ),
   ];
 

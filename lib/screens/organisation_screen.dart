@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
+import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
@@ -110,10 +112,7 @@ class OrganisationScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)
-                    ),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
                       child: RichText(
@@ -134,10 +133,7 @@ class OrganisationScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)
-                    ),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
                       child: RichText(
@@ -158,10 +154,7 @@ class OrganisationScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)
-                    ),
+                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
                       child: RichText(
@@ -176,6 +169,19 @@ class OrganisationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (org.donationLink != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: BlueButton(
+                        label: "Steun ${org.name}",
+                        tapped: () async {
+                          var url = org.donationLink!;
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            throw "Could not launch $url";
+                        }),
+                  )
               ],
             ),
           ),

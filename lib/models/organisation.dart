@@ -16,8 +16,9 @@ class Organisation {
   String orgMission;
   String orgVision;
   String orgWebsite;
+  String? donationLink;
 
-  Organisation({required this.id, required this.name, required this.explanation, required this.orgKeyValues, required this.orgMission, required this.orgVision, required this.orgWebsite});
+  Organisation({required this.id, required this.name, required this.explanation, required this.orgKeyValues, required this.orgMission, required this.orgVision, required this.orgWebsite, this.donationLink});
 
   factory Organisation.fromJson(Map<String, dynamic> json) => _$OrganisationFromJson(json);
 
