@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show ChangeNotifier;
 import 'package:flutter_app/models/category.dart';
+import 'package:collection/collection.dart';
 
 class CategoryProvider with ChangeNotifier {
   List<Category> _categories = [
@@ -9,14 +10,12 @@ class CategoryProvider with ChangeNotifier {
     Category(4,'kunst','kunst'),
   ];
 
-  List<Category> getAllCategories() {
-    return [..._categories];
-  }
+  List<Category> get categories => [..._categories];
 
-  Category getCategoryById(int id) => _categories.firstWhere((element) => element.id == id);
+  Category getCategoryById(int id) => [..._categories].firstWhere((element) => element.id == id);
 
-  void setCategorySelected(int id) {
-    var category = getCategoryById(id);
-    category.isClicked = true;
+  void switchSelected(int id) {
+    var category = _categories.firstWhere((element) => element.id == id);
+    category.isClicked = !category.isClicked;
   }
 }

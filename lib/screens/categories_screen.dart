@@ -14,7 +14,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CategoryProvider>(context);
-    final categories = provider.getAllCategories();
+    final categories = provider.categories;
 
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
 
@@ -33,7 +33,7 @@ class CategoriesScreen extends StatelessWidget {
                 height: 350,
                 child: ListView(
                   children: categories.map((category) {
-                    return CategoryCard(category.category, category.icon);
+                    return CategoryCard(category.id, category.category, category.icon );
                   }).toList(),
                 ),
               ),
@@ -43,11 +43,6 @@ class CategoriesScreen extends StatelessWidget {
                 child: BlueButton(
                   label: 'volgende',
                   tapped: () {
-                    for (var category in categories) {
-                      if (category.isClicked)
-                        provider.setCategorySelected(category.id);
-                    }
-
                     print(questionId);
                     if (questionId == 7) {
                       Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
