@@ -82,11 +82,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: Column(
-                          children: _organisations
-                              .map((e) => OrganisationProposal(
-                                  e.name, e.explanation, 57))
-                              .toList()),
+                      child: Column(children: _organisations.map((e) => OrganisationProposal(e.id, e.name, e.explanation, 57)).toList()),
                     ),
                   ],
                 ),

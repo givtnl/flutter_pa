@@ -36,8 +36,14 @@ class OrganisationProvider with ChangeNotifier {
     return [..._organisations];
   }
 
+  late Organisation _currentSelectedProposal;
+
   Organisation get currentSelectedProposal {
-    return _organisations[0];
+    return _currentSelectedProposal;
+  }
+
+  set currentSelectedProposal(id) {
+    _currentSelectedProposal = _organisations.firstWhere((element) => element.id == id);
   }
 
   Organisation getOrganisationById(int id) => _organisations.firstWhere((element) => element.id == id);
