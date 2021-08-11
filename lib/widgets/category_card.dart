@@ -47,59 +47,62 @@ class _CategoryCardState extends State<CategoryCard> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
-          onTap: () {
-            setState(() {
-              selected = !selected;
-            });
-          },
+        onTap: () {
+          setState(() {
+            selected = !selected;
+          });
+        },
+        child: Transform.scale(
+          scale: selected ? 1.08 : 1.0,
           child: Container(
-              decoration: BoxDecoration(
-              color: Color.fromRGBO(239, 244, 249, 1),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-              width: 1,
-              color: Color.fromRGBO(36, 106, 177, selected ? 1 : 0)),
-          boxShadow: selected
-          ? [
-          BoxShadow(
-            color: Color.fromRGBO(36, 106, 177, 1),
-            spreadRadius: .2,
-            blurRadius: 3,
-            offset: Offset(0, 1),
-          )
-          ]
-              : []),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: Color.fromRGBO(36, 106, 177, 1),
-              size: 30,
-              semanticLabel: this.widget.iconText,
-            ),
-            Container(
-              width: 200,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Text(
-                  widget.categoryText,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(239, 244, 249, 1),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                    width: 1,
+                    color: Color.fromRGBO(36, 106, 177, selected ? 1 : 0)),
+                boxShadow: selected
+                    ? [
+                        BoxShadow(
+                          color: Color.fromRGBO(36, 106, 177, 1),
+                          spreadRadius: .2,
+                          blurRadius: 3,
+                          offset: Offset(0, 1),
+                        )
+                      ]
+                    : []),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Icon(
+                    icon,
                     color: Color.fromRGBO(36, 106, 177, 1),
-                    fontSize: 16,
+                    size: 30,
+                    semanticLabel: this.widget.iconText,
                   ),
-                  maxLines: 2,
-                ),
+                  Container(
+                    width: 200,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Text(
+                        widget.categoryText,
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          color: Color.fromRGBO(36, 106, 177, 1),
+                          fontSize: 16,
+                        ),
+                        maxLines: 2,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
-    ),)
-    ,
     );
   }
 }
