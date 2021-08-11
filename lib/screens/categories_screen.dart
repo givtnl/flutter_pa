@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/categories_provider.dart';
+import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
@@ -14,6 +15,8 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<CategoryProvider>(context);
     final categories = provider.getAllCategories();
+
+    var questionId = ModalRoute.of(context)!.settings.arguments as int;
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
@@ -44,7 +47,13 @@ class CategoriesScreen extends StatelessWidget {
                       if (category.isClicked)
                         provider.setCategorySelected(category.id);
                     }
-                    Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+
+                    print(questionId);
+                    if (questionId == 7) {
+                      Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                    } else {
+                      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: questionId);
+                    }
                   },
                 ),
               )
