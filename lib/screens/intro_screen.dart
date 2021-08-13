@@ -27,15 +27,18 @@ class IntroScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: BlueButton(
-                label: "Naar de keuzewijzer!",
-                tapped: () {
-                  var question = provider.nextQuestion;
-                  if (question != null)
-                    Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: question.id);
-                  else
-                    Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                },
+              child: Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: BlueButton(
+                  label: "Naar de keuzewijzer!",
+                  tapped: () {
+                    var question = provider.nextQuestion;
+                    if (question != null)
+                      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: question.id);
+                    else
+                      Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                  },
+                ),
               ),
             ),
           ],

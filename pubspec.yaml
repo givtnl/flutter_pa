@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.3
   json_annotation: ^4.0.1
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,9 @@ flutter:
         - asset: assets/fonts/Inter-Regular.ttf
         - asset: assets/fonts/Inter-Bold.ttf
           weight: 700
+    - family: PAIcons
+      fonts:
+        - asset: assets/fonts/PAIcons.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
+import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
@@ -19,7 +20,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     return _valueTexts[_sliderValue.round()];
   }
 
-  double _sliderValue = 0;
+  double _sliderValue = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -138,18 +139,24 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                 ),
               ),
-              BlueButton(
-                label: "Volgende",
-                tapped: () {
-                  provider.answerQuestion(questionId, _sliderValue.round());
+              Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: BlueButton(
+                  label: "Volgende",
+                  tapped: () {
+                    provider.answerQuestion(questionId, _sliderValue.round());
 
-                  var nextQuestion = provider.nextQuestion;
-                  if (nextQuestion == null) {
-                    Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                  } else {
-                    Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
-                  }
-                },
+                    var nextQuestion = provider.nextQuestion;
+                    print(nextQuestion?.id);
+                    if (nextQuestion == null) {
+                      Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                    } else if (nextQuestion.id % 5 == 0) {
+                      Navigator.of(context).pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
+                    } else {
+                      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
+                    }
+                  },
+                ),
               ),
             ],
           ),

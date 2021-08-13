@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
+import 'package:provider/provider.dart';
 import 'big_text.dart';
 import 'blue_rounded_button.dart';
 
@@ -8,8 +10,9 @@ class OrganisationProposal extends StatelessWidget {
   final String title;
   final String explanation;
   final int match;
+  final int orgId;
 
-  OrganisationProposal(this.title, this.explanation, this.match);
+  OrganisationProposal(this.orgId, this.title, this.explanation, this.match);
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,7 @@ class OrganisationProposal extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 BlueRoundedButton("Ontdek meer", () {
+                  Provider.of<OrganisationProvider>(context, listen: false).currentSelectedProposal = orgId;
                   Navigator.of(context).pushNamed(OrganisationScreen.routeName);
                 }),
                 Expanded(child: Container()),

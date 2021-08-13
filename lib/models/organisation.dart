@@ -10,10 +10,15 @@ class Organisation {
   String name;
   @JsonKey(name: "orgDescription")
   String explanation;
-  @JsonKey(name: "matchingPercentage")
+  @JsonKey(name: "id")
   int id;
+  String orgKeyValues;
+  String orgMission;
+  String orgVision;
+  String orgWebsite;
+  String? donationLink;
 
-  Organisation(this.id, this.name, this.explanation);
+  Organisation({required this.id, required this.name, required this.explanation, required this.orgKeyValues, required this.orgMission, required this.orgVision, required this.orgWebsite, this.donationLink});
 
   factory Organisation.fromJson(Map<String, dynamic> json) => _$OrganisationFromJson(json);
 
