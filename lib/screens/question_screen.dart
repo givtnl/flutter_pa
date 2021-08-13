@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -24,6 +25,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MixpanelManager.mixpanel.track("Question screen showing");
+
     var provider = Provider.of<QuestionsProvider>(context);
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
 

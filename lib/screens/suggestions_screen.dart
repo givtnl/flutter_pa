@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/models/organisation.dart';
 import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
@@ -53,6 +54,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MixpanelManager.mixpanel.track("Suggestion screen showing");
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(

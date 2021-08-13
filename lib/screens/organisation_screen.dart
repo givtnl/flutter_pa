@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
@@ -22,6 +23,7 @@ class OrganisationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MixpanelManager.mixpanel.track("Organisation screen showing");
     var org = Provider.of<OrganisationProvider>(context, listen: false).currentSelectedProposal;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,

@@ -9,12 +9,29 @@ import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'analytics/mixpanel_manager.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  MixpanelManager.mixpanel.flushEvents();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void dispose() {
+    MixpanelManager.mixpanel.flushEvents();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
