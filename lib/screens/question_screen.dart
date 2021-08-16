@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/question.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -22,7 +23,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
   }
 
   double _sliderValue = 2;
-
+  void determineNextStep(BuildContext context, Question? nextQuestion) {
+    if (nextQuestion == null) {
+      Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+    } else if (nextQuestion.id % 5 == 0) {
+      Navigator.of(context).pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
+    } else {
+      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionsProvider>(context);
@@ -129,7 +138,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
-                              Navigator.of(context).pushNamed(QuestionScreen.routeName);
+                              provider.answerQuestion(questionId, -1);
+                              var nextQuestion = provider.nextQuestion;
+                              determineNextStep(context, nextQuestion);
                             },
                             child: Text(
                               "overslaan",
@@ -150,16 +161,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           label: "Volgende",
                           tapped: () {
                             provider.answerQuestion(questionId, _sliderValue.round());
-
                             var nextQuestion = provider.nextQuestion;
-                            print(nextQuestion?.id);
-                            if (nextQuestion == null) {
-                              Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                            } else if (nextQuestion.id % 5 == 0) {
-                              Navigator.of(context).pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
-                            } else {
-                              Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
-                            }
+                            determineNextStep(context, nextQuestion);
                           },
                         ),
                       ),
