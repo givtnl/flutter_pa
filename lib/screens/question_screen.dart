@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -28,6 +29,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     MixpanelManager.mixpanel.track("Question screen showing");
 
     var provider = Provider.of<QuestionsProvider>(context);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
 
     var _loading = false;
@@ -50,7 +52,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   children: [
                     FractionallySizedBox(
                       heightFactor: 1,
-                      widthFactor: 1.0 - ((provider.unansweredQuestions.length - 1) / provider.questions.length),
+                      widthFactor: questionnaireProvider.currentProgress,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(36, 106, 177, 1),
@@ -150,14 +152,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     provider.answerQuestion(questionId, _sliderValue.round());
 
                     var nextQuestion = provider.nextQuestion;
-                    print(nextQuestion?.id);
                     if (nextQuestion == null) {
                       Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                    } else if (nextQuestion.id % 5 == 0) {
+                    } else if (questionnaireProvider.isNextScreenACategoriesScreen) {
                       Navigator.of(context).pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
                     } else {
                       Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
                     }
+                    questionnaireProvider.incrementScreenNumber();
                   },
                 ),
               ),

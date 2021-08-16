@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/categories_provider.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
@@ -16,6 +17,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MixpanelManager.mixpanel.track("Category screen showing");
     final provider = Provider.of<CategoryProvider>(context);
+    final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     final categories = provider.categories;
 
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
@@ -27,6 +29,23 @@ class CategoriesScreen extends StatelessWidget {
           padding: const EdgeInsets.all(30.0),
           child: Column(
             children: [
+              Container(
+                width: double.infinity,
+                height: 10,
+                child: Stack(
+                  children: [
+                    FractionallySizedBox(
+                      heightFactor: 1,
+                      widthFactor: 1.0 - questionnaireProvider.currentProgress,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(36, 106, 177, 1),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: BigText('Welke van deze thema’s vind jij belangrijk?'),
@@ -46,11 +65,12 @@ class CategoriesScreen extends StatelessWidget {
                   label: 'volgende',
                   tapped: () {
                     print(questionId);
-                    if (questionId == 7) {
+                    if (questionnaireProvider.screenNumber >= questionnaireProvider.totalNumberOfScreens) {
                       Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
                     } else {
                       Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: questionId);
                     }
+                    questionnaireProvider.incrementScreenNumber();
                   },
                 ),
               )
