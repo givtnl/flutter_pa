@@ -15,6 +15,7 @@ Organisation _$OrganisationFromJson(Map<String, dynamic> json) {
     orgMission: json['orgMission'] as String,
     orgVision: json['orgVision'] as String,
     orgWebsite: json['orgWebsite'] as String,
+    donationLink: json['donationLink'] as String?,
   );
 }
 
@@ -27,4 +28,5 @@ Map<String, dynamic> _$OrganisationToJson(Organisation instance) =>
       'orgMission': instance.orgMission,
       'orgVision': instance.orgVision,
       'orgWebsite': instance.orgWebsite,
+      'donationLink': instance.donationLink,
     };
