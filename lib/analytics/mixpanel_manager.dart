@@ -1,25 +1,23 @@
 import 'dart:convert';
-
-import 'package:flutter_app/analytics/event_store.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
-
 import 'Import_result.dart';
+import 'database_access/event.dart' as DbEvent;
 import 'event.dart';
 
 class MixpanelManager {
 
   String _mixpanelUri = "https://api.mixpanel.com";
   String? _identity;
-  late EventStore _store;
+  late DbEvent.EventDatabase _store;
   String _mixpanelApiBasic = "Zmx1dHRlci1zZXJ2aWNlLWFjY291bnQuNTIzZGEyLm1wLXNlcnZpY2UtYWNjb3VudDp0QTRrczNpcUU5VEhIRmV0Q1dIcXpKamd5MFRZU1p1VQ==";
   static MixpanelManager _mixpanelManager = MixpanelManager._();
 
   static MixpanelManager get mixpanel => _mixpanelManager;
 
   MixpanelManager._() {
-    this._store = EventStore();
+    this._store = DbEvent.constructDb();
     Future.delayed(Duration(seconds: 60), _timedFlushEvents);
   }
 
@@ -30,14 +28,14 @@ class MixpanelManager {
   }
 
   flushEvents() async {
-    var events = await _store.getAllEvents();
+    var events = await _store.allEvents;
     if (events.length <= 0) {
       print("no events found for exporting");
       return;
     }
     try {
-      await _exportEvents(events);
-      await _store.flushAllEvents();
+      await _exportEvents(events.map((e) => Event(event: e.event, distinctId: e.distinctId, timeStamp: e.trackingTime)).toList());
+      await _store.deleteAllEvents();
 
     } catch (exception) {
       // only flush when all goes well;
