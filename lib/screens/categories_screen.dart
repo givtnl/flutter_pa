@@ -18,15 +18,15 @@ class CategoriesScreen extends StatelessWidget {
     MixpanelManager.mixpanel.track("Category screen showing");
     final provider = Provider.of<CategoryProvider>(context);
     final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    final categories = provider.categories;
+    final categories = provider.nextFourCategories(questionnaireProvider.screenNumber, questionnaireProvider.numberOfQuestionScreensPerCategoryScreen);
 
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
 
     return Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
+        child: Align(
+          alignment: Alignment.bottomCenter,
           child: Column(
             children: [
               Container(
@@ -36,7 +36,7 @@ class CategoriesScreen extends StatelessWidget {
                   children: [
                     FractionallySizedBox(
                       heightFactor: 1,
-                      widthFactor: 1.0 - questionnaireProvider.currentProgress,
+                      widthFactor: questionnaireProvider.currentProgress,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(36, 106, 177, 1),
@@ -46,37 +46,44 @@ class CategoriesScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              Expanded(
+                child: Container(),
+              ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(50.0),
                 child: BigText('Welke van deze thema’s vind jij belangrijk?'),
               ),
               Container(
-                height: 350,
-                child: ListView(
-                  children: categories.map((category) {
-                    return CategoryCard(category.id, category.category, category.icon );
-                  }).toList(),
+                  height: 350,
+                  child: ListView(
+                    children: categories.map((category) {
+                      return CategoryCard(
+                          category.id, category.category, category.icon);
+                    }).toList(),
+                  ),
                 ),
-              ),
               Expanded(child: Container()),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(50.0),
                 child: BlueButton(
                   label: 'volgende',
                   tapped: () {
                     print(questionId);
-                    if (questionnaireProvider.screenNumber >= questionnaireProvider.totalNumberOfScreens) {
-                      Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                    } else {
-                      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: questionId);
-                    }
                     questionnaireProvider.incrementScreenNumber();
+                    if (questionnaireProvider.screenNumber >=
+                        questionnaireProvider.totalNumberOfScreens) {
+                      Navigator.of(context)
+                          .pushNamed(SuggestionsScreen.routeName);
+                    } else {
+                      Navigator.of(context).pushNamed(QuestionScreen.routeName,
+                          arguments: questionId);
+                    }
                   },
                 ),
               )
             ],
           ),
-        ),
+        )
       ),
     );
   }

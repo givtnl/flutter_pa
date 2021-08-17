@@ -7,7 +7,7 @@ class QuestionnaireProvider with ChangeNotifier {
     final totalNumberOfQuestionScreens = QuestionsProvider().questions.length;
     final totalNumberOFCategoryScreens = (CategoryProvider().categories.length / 4).ceil();
 
-    var _screenNumber = 1;
+    var _screenNumber = 2; //because used the second time the next button is clicked
     var numberOfQuestionScreensPerCategoryScreen = 0;
     var totalNumberOfScreens = 0;
 
