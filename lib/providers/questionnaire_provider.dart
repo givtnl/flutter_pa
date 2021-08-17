@@ -5,15 +5,15 @@ import 'package:flutter_app/providers/categories_provider.dart';
 
 class QuestionnaireProvider with ChangeNotifier {
     final totalNumberOfQuestionScreens = QuestionsProvider().questions.length;
-    final totalNumberOFCategoryScreens = (CategoryProvider().categories.length / 4).ceil();
+    final totalNumberOfCategoryScreens = (CategoryProvider().categories.length / 4).ceil();
 
     var _screenNumber = 0;
     var numberOfQuestionScreensPerCategoryScreen = 0;
     var totalNumberOfScreens = 0;
 
     QuestionnaireProvider() {
-        totalNumberOfScreens = totalNumberOfQuestionScreens + totalNumberOFCategoryScreens;
-        numberOfQuestionScreensPerCategoryScreen = (totalNumberOfScreens / (totalNumberOFCategoryScreens + 1)).ceil(); //show x numberOfQuestionScreens
+        totalNumberOfScreens = totalNumberOfQuestionScreens + totalNumberOfCategoryScreens;
+        numberOfQuestionScreensPerCategoryScreen = (totalNumberOfScreens / (totalNumberOfCategoryScreens + 1)).ceil();
     }
 
     int get screenNumber {
