@@ -176,7 +176,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             provider.answerQuestion(
                                 questionId, _sliderValue.round());
                             var nextQuestion = provider.nextQuestion;
-                            if (questionnaireProvider.isNextScreenACategoriesScreen && questionnaireProvider.screenNumber <= questionnaireProvider.totalNumberOfScreens) {
+                            if (questionnaireProvider.isNextScreenACategoriesScreen && questionnaireProvider.screenNumber < questionnaireProvider.totalNumberOfScreens) {
                               Navigator.of(context).pushNamed(
                                   CategoriesScreen.routeName,
                                   arguments: nextQuestion != null ? nextQuestion.id : questionnaireProvider.screenNumber);
