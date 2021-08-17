@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/models/question.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -34,13 +32,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<QuestionsProvider>(context);
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    var questionId = ModalRoute.of(context)!.settings.arguments as int;
-
+    var provider = Provider.of<QuestionsProvider>(context, listen: false);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var _loading = false;
-
-    var question = provider.getQuestionById(questionId);
+    var question = provider.nextQuestion!;
 
     return TrackedScreen(
       screenName: 'QuestionScreen',
@@ -142,7 +137,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
-                              provider.skipQuestion(questionId);
+                              provider.skipQuestion(question.id);
                               var nextQuestion = provider.nextQuestion;
                               questionnaireProvider.incrementScreenNumber();
                               if (nextQuestion == null) {
@@ -173,22 +168,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BlueButton(
                           label: "Volgende",
                           tapped: () {
-                            provider.answerQuestion(
-                                questionId, _sliderValue.round());
-                            var nextQuestion = provider.nextQuestion;
-                            if (questionnaireProvider.isNextScreenACategoriesScreen && questionnaireProvider.screenNumber < questionnaireProvider.totalNumberOfScreens) {
-                              Navigator.of(context).pushNamed(
-                                  CategoriesScreen.routeName,
-                                  arguments: nextQuestion != null ? nextQuestion.id : questionnaireProvider.screenNumber);
-                            } else if (nextQuestion == null) {
-                              Navigator.of(context)
-                                  .pushNamed(SuggestionsScreen.routeName);
-                            } else {
-                              Navigator.of(context).pushNamed(
-                                  QuestionScreen.routeName,
-                                  arguments: nextQuestion.id);
-                            }
-                            questionnaireProvider.incrementScreenNumber();
+                            provider.answerQuestion(question.id, _sliderValue.round());
+                            questionnaireProvider.showNextScreen(context);
                           },
                         ),
                       ),

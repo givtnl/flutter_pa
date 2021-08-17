@@ -16,8 +16,7 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MixpanelManager.mixpanel.track("Intro screen showing");
-    var provider = Provider.of<QuestionsProvider>(context);
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     return TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
@@ -38,12 +37,7 @@ class IntroScreen extends StatelessWidget {
                   child: BlueButton(
                     label: "Naar de keuzewijzer!",
                     tapped: () {
-                      var question = provider.nextQuestion;
-                      questionnaireProvider.incrementScreenNumber();
-                      if (question != null)
-                        Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: question.id);
-                      else
-                        Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                      questionnaireProvider.showNextScreen(context);
                     },
                   ),
                 ),
