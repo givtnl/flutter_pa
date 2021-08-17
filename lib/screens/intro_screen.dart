@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -9,12 +8,10 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
 class IntroScreen extends StatelessWidget {
-
   static const String routeName = '/intro';
 
   @override
   Widget build(BuildContext context) {
-    MixpanelManager.mixpanel.track("Intro screen showing");
     var provider = Provider.of<QuestionsProvider>(context);
     return TrackedScreen(
       screenName: 'IntroScreen',
