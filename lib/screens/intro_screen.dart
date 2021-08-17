@@ -6,7 +6,7 @@ import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_app/generated/l10n.dart';
 
 class IntroScreen extends StatelessWidget {
   static const String routeName = '/intro';
@@ -24,7 +24,7 @@ class IntroScreen extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                  child: BigText(AppLocalizations.of(context)!.introText),
+                  child: BigText(S.of(context).introText),
                 ),
               ),
               Align(
@@ -32,7 +32,7 @@ class IntroScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(50.0),
                   child: BlueButton(
-                    label: AppLocalizations.of(context)!.introButton,
+                    label: S.of(context).introButton,
                     tapped: () {
                       var question = provider.nextQuestion;
                       if (question != null)
