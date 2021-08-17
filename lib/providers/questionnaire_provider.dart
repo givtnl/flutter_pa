@@ -7,15 +7,13 @@ class QuestionnaireProvider with ChangeNotifier {
     final totalNumberOfQuestionScreens = QuestionsProvider().questions.length;
     final totalNumberOFCategoryScreens = (CategoryProvider().categories.length / 4).ceil();
 
-    var _screenNumber = 2; //because used the second time the next button is clicked
+    var _screenNumber = 0;
     var numberOfQuestionScreensPerCategoryScreen = 0;
     var totalNumberOfScreens = 0;
 
     QuestionnaireProvider() {
         totalNumberOfScreens = totalNumberOfQuestionScreens + totalNumberOFCategoryScreens;
         numberOfQuestionScreensPerCategoryScreen = (totalNumberOfScreens / (totalNumberOFCategoryScreens + 1)).ceil(); //show x numberOfQuestionScreens
-        print('totalNumberOfScreens: ' + totalNumberOfScreens.toString());
-        print('numberOfQuestionScreensPerCategoryScreen: ' + numberOfQuestionScreensPerCategoryScreen.toString());
     }
 
     int get screenNumber {
@@ -23,8 +21,6 @@ class QuestionnaireProvider with ChangeNotifier {
     }
 
     bool get isNextScreenACategoriesScreen {
-        print('screenNumber: ' + _screenNumber.toString());
-        print(_screenNumber % numberOfQuestionScreensPerCategoryScreen == 0);
         return _screenNumber % numberOfQuestionScreensPerCategoryScreen == 0;
     }
 

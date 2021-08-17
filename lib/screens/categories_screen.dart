@@ -71,8 +71,6 @@ class CategoriesScreen extends StatelessWidget {
                 child: BlueButton(
                   label: 'volgende',
                   tapped: () {
-                    print(questionId);
-                    questionnaireProvider.incrementScreenNumber();
                     if (questionnaireProvider.screenNumber >=
                         questionnaireProvider.totalNumberOfScreens) {
                       Navigator.of(context)
@@ -81,6 +79,7 @@ class CategoriesScreen extends StatelessWidget {
                       Navigator.of(context).pushNamed(QuestionScreen.routeName,
                           arguments: questionId);
                     }
+                    questionnaireProvider.incrementScreenNumber();
                   },
                 ),)
               ],

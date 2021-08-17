@@ -175,20 +175,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           tapped: () {
                             provider.answerQuestion(
                                 questionId, _sliderValue.round());
-                            questionnaireProvider.incrementScreenNumber();
                             var nextQuestion = provider.nextQuestion;
-                            if (nextQuestion == null) {
-                              Navigator.of(context)
-                                  .pushNamed(SuggestionsScreen.routeName);
-                            } else if (questionnaireProvider.isNextScreenACategoriesScreen) {
+                            if (questionnaireProvider.isNextScreenACategoriesScreen) {
                               Navigator.of(context).pushNamed(
                                   CategoriesScreen.routeName,
-                                  arguments: nextQuestion.id);
+                                  arguments: nextQuestion != null ? nextQuestion.id : questionnaireProvider.screenNumber);
+                            } else if (nextQuestion == null) {
+                              Navigator.of(context)
+                                  .pushNamed(SuggestionsScreen.routeName);
                             } else {
                               Navigator.of(context).pushNamed(
                                   QuestionScreen.routeName,
                                   arguments: nextQuestion.id);
                             }
+                            questionnaireProvider.incrementScreenNumber();
                           },
                         ),
                       ),

@@ -23,7 +23,6 @@ class CategoryProvider with ChangeNotifier {
   Category getCategoryById(int id) => [..._categories].firstWhere((element) => element.id == id);
 
   List<Category> nextFourCategories(int screenNumber, int numberOfQuestionScreensPerCategoryScreen) {
-    print('IN NEXT 4: parameters: ' + screenNumber.toString() +' and ' + numberOfQuestionScreensPerCategoryScreen.toString());
     var categoryScreenNumber = (screenNumber / (numberOfQuestionScreensPerCategoryScreen)).floor() -1;
     return  _categories.sublist(categoryScreenNumber*4, min(_categories.length, (categoryScreenNumber*4)+4));
   }

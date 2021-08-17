@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -16,6 +17,7 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MixpanelManager.mixpanel.track("Intro screen showing");
     var provider = Provider.of<QuestionsProvider>(context);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     return TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
@@ -37,6 +39,7 @@ class IntroScreen extends StatelessWidget {
                     label: "Naar de keuzewijzer!",
                     tapped: () {
                       var question = provider.nextQuestion;
+                      questionnaireProvider.incrementScreenNumber();
                       if (question != null)
                         Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: question.id);
                       else
