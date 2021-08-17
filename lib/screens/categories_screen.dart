@@ -8,6 +8,7 @@ import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/category_card.dart';
+import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -22,7 +23,9 @@ class CategoriesScreen extends StatelessWidget {
 
     var questionId = ModalRoute.of(context)!.settings.arguments as int;
 
-    return Scaffold(
+    return TrackedScreen(
+    screenName: 'Categories',
+    child: Scaffold(
       backgroundColor: Color.fromRGBO(222, 233, 243, 1),
       body: SafeArea(
         child: Align(
@@ -79,9 +82,9 @@ class CategoriesScreen extends StatelessWidget {
                           arguments: questionId);
                     }
                   },
-                ),
-              )
-            ],
+                ),)
+              ],
+            ),
           ),
         )
       ),

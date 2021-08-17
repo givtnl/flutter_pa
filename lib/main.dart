@@ -8,10 +8,11 @@ import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'analytics/mixpanel_manager.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MixpanelManager.mixpanel.flushEvents();
@@ -52,6 +53,17 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+        supportedLocales: [
+          Locale('en', ''),
+          Locale('nl', ''),
+          Locale('de', '')
+        ],
         theme: ThemeData(
           primaryColor: Color.fromRGBO(36, 106, 177, 1),
           backgroundColor: Color.fromRGBO(222, 233, 243, 1),
