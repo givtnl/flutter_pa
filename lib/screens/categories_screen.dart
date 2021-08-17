@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -15,7 +14,6 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MixpanelManager.mixpanel.track("Category screen showing");
     final provider = Provider.of<CategoryProvider>(context);
     final categories = provider.categories;
 

@@ -10,7 +10,7 @@ class TrackedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MixpanelManager.mixpanel.track("LOADED_$screenName");
+    MixpanelManager.mixpanel.track("LOADED", properties: {"SCREEN_NAME" : screenName});
     return Container(child: child,);
   }
 }

@@ -7,26 +7,30 @@ part of 'event.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class Event extends DataClass implements Insertable<Event> {
+class DbEvent extends DataClass implements Insertable<DbEvent> {
   final int id;
   final String event;
   final String distinctId;
+  final String? properties;
   final DateTime trackingTime;
-  Event(
+  DbEvent(
       {required this.id,
       required this.event,
       required this.distinctId,
+      this.properties,
       required this.trackingTime});
-  factory Event.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  factory DbEvent.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
     final effectivePrefix = prefix ?? '';
-    return Event(
+    return DbEvent(
       id: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
       event: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}event'])!,
       distinctId: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}distinct_id'])!,
+      properties: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}properties']),
       trackingTime: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}tracking_time'])!,
     );
@@ -37,26 +41,33 @@ class Event extends DataClass implements Insertable<Event> {
     map['id'] = Variable<int>(id);
     map['event'] = Variable<String>(event);
     map['distinct_id'] = Variable<String>(distinctId);
+    if (!nullToAbsent || properties != null) {
+      map['properties'] = Variable<String?>(properties);
+    }
     map['tracking_time'] = Variable<DateTime>(trackingTime);
     return map;
   }
 
-  EventsCompanion toCompanion(bool nullToAbsent) {
-    return EventsCompanion(
+  DbEventsCompanion toCompanion(bool nullToAbsent) {
+    return DbEventsCompanion(
       id: Value(id),
       event: Value(event),
       distinctId: Value(distinctId),
+      properties: properties == null && nullToAbsent
+          ? const Value.absent()
+          : Value(properties),
       trackingTime: Value(trackingTime),
     );
   }
 
-  factory Event.fromJson(Map<String, dynamic> json,
+  factory DbEvent.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return Event(
+    return DbEvent(
       id: serializer.fromJson<int>(json['id']),
       event: serializer.fromJson<String>(json['event']),
       distinctId: serializer.fromJson<String>(json['distinctId']),
+      properties: serializer.fromJson<String?>(json['properties']),
       trackingTime: serializer.fromJson<DateTime>(json['trackingTime']),
     );
   }
@@ -67,27 +78,31 @@ class Event extends DataClass implements Insertable<Event> {
       'id': serializer.toJson<int>(id),
       'event': serializer.toJson<String>(event),
       'distinctId': serializer.toJson<String>(distinctId),
+      'properties': serializer.toJson<String?>(properties),
       'trackingTime': serializer.toJson<DateTime>(trackingTime),
     };
   }
 
-  Event copyWith(
+  DbEvent copyWith(
           {int? id,
           String? event,
           String? distinctId,
+          String? properties,
           DateTime? trackingTime}) =>
-      Event(
+      DbEvent(
         id: id ?? this.id,
         event: event ?? this.event,
         distinctId: distinctId ?? this.distinctId,
+        properties: properties ?? this.properties,
         trackingTime: trackingTime ?? this.trackingTime,
       );
   @override
   String toString() {
-    return (StringBuffer('Event(')
+    return (StringBuffer('DbEvent(')
           ..write('id: $id, ')
           ..write('event: $event, ')
           ..write('distinctId: $distinctId, ')
+          ..write('properties: $properties, ')
           ..write('trackingTime: $trackingTime')
           ..write(')'))
         .toString();
@@ -97,59 +112,69 @@ class Event extends DataClass implements Insertable<Event> {
   int get hashCode => $mrjf($mrjc(
       id.hashCode,
       $mrjc(
-          event.hashCode, $mrjc(distinctId.hashCode, trackingTime.hashCode))));
+          event.hashCode,
+          $mrjc(distinctId.hashCode,
+              $mrjc(properties.hashCode, trackingTime.hashCode)))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Event &&
+      (other is DbEvent &&
           other.id == this.id &&
           other.event == this.event &&
           other.distinctId == this.distinctId &&
+          other.properties == this.properties &&
           other.trackingTime == this.trackingTime);
 }
 
-class EventsCompanion extends UpdateCompanion<Event> {
+class DbEventsCompanion extends UpdateCompanion<DbEvent> {
   final Value<int> id;
   final Value<String> event;
   final Value<String> distinctId;
+  final Value<String?> properties;
   final Value<DateTime> trackingTime;
-  const EventsCompanion({
+  const DbEventsCompanion({
     this.id = const Value.absent(),
     this.event = const Value.absent(),
     this.distinctId = const Value.absent(),
+    this.properties = const Value.absent(),
     this.trackingTime = const Value.absent(),
   });
-  EventsCompanion.insert({
+  DbEventsCompanion.insert({
     this.id = const Value.absent(),
     required String event,
     required String distinctId,
+    this.properties = const Value.absent(),
     required DateTime trackingTime,
   })  : event = Value(event),
         distinctId = Value(distinctId),
         trackingTime = Value(trackingTime);
-  static Insertable<Event> custom({
+  static Insertable<DbEvent> custom({
     Expression<int>? id,
     Expression<String>? event,
     Expression<String>? distinctId,
+    Expression<String?>? properties,
     Expression<DateTime>? trackingTime,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (event != null) 'event': event,
       if (distinctId != null) 'distinct_id': distinctId,
+      if (properties != null) 'properties': properties,
       if (trackingTime != null) 'tracking_time': trackingTime,
     });
   }
 
-  EventsCompanion copyWith(
+  DbEventsCompanion copyWith(
       {Value<int>? id,
       Value<String>? event,
       Value<String>? distinctId,
+      Value<String?>? properties,
       Value<DateTime>? trackingTime}) {
-    return EventsCompanion(
+    return DbEventsCompanion(
       id: id ?? this.id,
       event: event ?? this.event,
       distinctId: distinctId ?? this.distinctId,
+      properties: properties ?? this.properties,
       trackingTime: trackingTime ?? this.trackingTime,
     );
   }
@@ -166,6 +191,9 @@ class EventsCompanion extends UpdateCompanion<Event> {
     if (distinctId.present) {
       map['distinct_id'] = Variable<String>(distinctId.value);
     }
+    if (properties.present) {
+      map['properties'] = Variable<String?>(properties.value);
+    }
     if (trackingTime.present) {
       map['tracking_time'] = Variable<DateTime>(trackingTime.value);
     }
@@ -174,20 +202,21 @@ class EventsCompanion extends UpdateCompanion<Event> {
 
   @override
   String toString() {
-    return (StringBuffer('EventsCompanion(')
+    return (StringBuffer('DbEventsCompanion(')
           ..write('id: $id, ')
           ..write('event: $event, ')
           ..write('distinctId: $distinctId, ')
+          ..write('properties: $properties, ')
           ..write('trackingTime: $trackingTime')
           ..write(')'))
         .toString();
   }
 }
 
-class $EventsTable extends DbEvents with TableInfo<$EventsTable, Event> {
+class $DbEventsTable extends DbEvents with TableInfo<$DbEventsTable, DbEvent> {
   final GeneratedDatabase _db;
   final String? _alias;
-  $EventsTable(this._db, [this._alias]);
+  $DbEventsTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
       'id', aliasedName, false,
@@ -208,19 +237,24 @@ class $EventsTable extends DbEvents with TableInfo<$EventsTable, Event> {
           GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 100),
       typeName: 'TEXT',
       requiredDuringInsert: true);
+  final VerificationMeta _propertiesMeta = const VerificationMeta('properties');
+  late final GeneratedColumn<String?> properties = GeneratedColumn<String?>(
+      'properties', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   final VerificationMeta _trackingTimeMeta =
       const VerificationMeta('trackingTime');
   late final GeneratedColumn<DateTime?> trackingTime =
       GeneratedColumn<DateTime?>('tracking_time', aliasedName, false,
           typeName: 'INTEGER', requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [id, event, distinctId, trackingTime];
+  List<GeneratedColumn> get $columns =>
+      [id, event, distinctId, properties, trackingTime];
   @override
-  String get aliasedName => _alias ?? 'events';
+  String get aliasedName => _alias ?? 'db_events';
   @override
-  String get actualTableName => 'events';
+  String get actualTableName => 'db_events';
   @override
-  VerificationContext validateIntegrity(Insertable<Event> instance,
+  VerificationContext validateIntegrity(Insertable<DbEvent> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -241,6 +275,12 @@ class $EventsTable extends DbEvents with TableInfo<$EventsTable, Event> {
     } else if (isInserting) {
       context.missing(_distinctIdMeta);
     }
+    if (data.containsKey('properties')) {
+      context.handle(
+          _propertiesMeta,
+          properties.isAcceptableOrUnknown(
+              data['properties']!, _propertiesMeta));
+    }
     if (data.containsKey('tracking_time')) {
       context.handle(
           _trackingTimeMeta,
@@ -255,22 +295,22 @@ class $EventsTable extends DbEvents with TableInfo<$EventsTable, Event> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Event map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Event.fromData(data, _db,
+  DbEvent map(Map<String, dynamic> data, {String? tablePrefix}) {
+    return DbEvent.fromData(data, _db,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override
-  $EventsTable createAlias(String alias) {
-    return $EventsTable(_db, alias);
+  $DbEventsTable createAlias(String alias) {
+    return $DbEventsTable(_db, alias);
   }
 }
 
 abstract class _$EventDatabase extends GeneratedDatabase {
   _$EventDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
-  late final $EventsTable events = $EventsTable(this);
+  late final $DbEventsTable dbEvents = $DbEventsTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [events];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [dbEvents];
 }
