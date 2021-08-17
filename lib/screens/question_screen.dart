@@ -142,7 +142,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
-                              provider.answerQuestion(questionId, -1);
+                              provider.skipQuestion(questionId);
                               var nextQuestion = provider.nextQuestion;
                               questionnaireProvider.incrementScreenNumber();
                               if (nextQuestion == null) {

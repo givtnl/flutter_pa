@@ -9,10 +9,10 @@ class QuestionsProvider with ChangeNotifier {
     Question(3, "Voordat ik geef, controleer ik of mijn donatie belastingaftrekbaar is."),
     Question(4, "Ik wil geven aan doelen die een effect hebben in mijn directe omgeving."),
     Question(5, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
-    Question(6, "Religieuze overtuiging mag geen rol spelen in de hulpverlening die een organisatie biedt."),
+    /*Question(6, "Religieuze overtuiging mag geen rol spelen in de hulpverlening die een organisatie biedt."),
     Question(7, "Ik geef niet aan doelen zonder keurmerk."),
     Question(8, "Ik geef niet aan doelen zonder keurmerk2."),
-    Question(9, "Ik geef niet aan doelen zonder keurmerk3."),
+    Question(9, "Ik geef niet aan doelen zonder keurmerk3."),*/
   ];
 
   List<Question> get questions => [..._questions];
