@@ -6,6 +6,7 @@ import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
+import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
 class QuestionnaireScreen {
@@ -31,18 +32,25 @@ class QuestionnaireProvider with ChangeNotifier {
   List<QuestionnaireScreen> questionnaireScreens = [];
 
   QuestionnaireProvider() {
-    totalNumberOfScreens =
-        totalNumberOfCategoryScreens + totalNumberOfQuestionScreens;
-    numberOfQuestionScreensPerCategoryScreen =
-        (totalNumberOfScreens / (totalNumberOfCategoryScreens)).ceil();
-    for (var i = 1; i < totalNumberOfScreens + 1; i++) {
-      if (i % numberOfQuestionScreensPerCategoryScreen == 0) {
-        questionnaireScreens
-            .add(QuestionnaireScreen(QuestionnaireScreenType.Category));
-      } else {
-        questionnaireScreens
-            .add(QuestionnaireScreen(QuestionnaireScreenType.Question));
-      }
+    final questionsApiInstance = QuestionsApi();
+    try {
+      final result = questionsApiInstance.getQuestionsList();
+      result.then((question) => question.result.forEach((element) {
+        switch (element.type) {
+          case QuestionType.number0:
+            var question = Question(element.id, element.translations.values.first);
+            questionnaireScreens.add(QuestionnaireScreen(QuestionnaireScreenType.Question, question: question));
+            break;
+          case QuestionType.number1:
+            var categories = [Category(element.id, element.translations.values.first, element.translations.values.first)];
+            questionnaireScreens.add(QuestionnaireScreen(QuestionnaireScreenType.Category, categories: categories));
+            break;
+          default:
+            break;
+        }
+      }));
+    } catch (e) {
+      print('Exception when calling QuestionsApi->getQuestionsList: $e\n');
     }
   }
 

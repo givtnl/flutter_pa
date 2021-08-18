@@ -4,7 +4,7 @@ import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCard extends StatefulWidget {
-  final int categoryId;
+  final String categoryId;
   final String categoryText;
   final String iconText;
 

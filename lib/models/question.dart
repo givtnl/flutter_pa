@@ -1,5 +1,5 @@
 class Question {
-  int id;
+  String id;
   String question;
   int answer = 0;
   bool isSkipped = false;

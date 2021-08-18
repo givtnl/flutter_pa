@@ -1,5 +1,5 @@
 class Category {
-  final int id;
+  final String id;
   final String category;
   final String icon;
   bool isClicked = false;
