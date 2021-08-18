@@ -21,8 +21,6 @@ class CategoriesScreen extends StatelessWidget {
     final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     final categories = provider.nextFourCategories(questionnaireProvider.screenNumber, questionnaireProvider.numberOfQuestionScreensPerCategoryScreen);
 
-    var questionId = ModalRoute.of(context)!.settings.arguments as int;
-
     return TrackedScreen(
     screenName: 'Categories',
     child: Scaffold(
@@ -71,15 +69,7 @@ class CategoriesScreen extends StatelessWidget {
                 child: BlueButton(
                   label: 'volgende',
                   tapped: () {
-                    if (questionnaireProvider.screenNumber >=
-                        questionnaireProvider.totalNumberOfScreens) {
-                      Navigator.of(context)
-                          .pushNamed(SuggestionsScreen.routeName);
-                    } else {
-                      Navigator.of(context).pushNamed(QuestionScreen.routeName,
-                          arguments: questionId);
-                    }
-                    questionnaireProvider.incrementScreenNumber();
+                    questionnaireProvider.showNextScreen(context);
                   },
                 ),)
               ],
