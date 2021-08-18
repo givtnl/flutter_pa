@@ -15,7 +15,7 @@ class IntroScreen extends StatelessWidget {
     return TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(229, 229, 229, 1),
+        backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: Stack(
             children: [
