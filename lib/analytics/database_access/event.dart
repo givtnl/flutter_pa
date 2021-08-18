@@ -26,7 +26,7 @@ class EventDatabase extends _$EventDatabase {
   Future<List<DbEvent>> get allEvents => select(dbEvents).get();
 
   Future deleteAllEvents() async {
-    delete(dbEvents);
+    await delete(dbEvents).go();
   }
 
   // you should bump this number whenever you change or add a table definition. Migrations
