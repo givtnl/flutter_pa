@@ -143,17 +143,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             onPressed: () {
                               MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "SKIP"});
                               provider.skipQuestion(question.id);
-                              var nextQuestion = provider.nextQuestion;
-                              questionnaireProvider.incrementScreenNumber();
-                              if (nextQuestion == null) {
-                                Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                              } else if (questionnaireProvider.isNextScreenACategoriesScreen) {
-                                Navigator.of(context)
-                                    .pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
-                              } else {
-                                Navigator.of(context)
-                                    .pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
-                              }
+                              questionnaireProvider.showNextScreen(context);
                             },
                             child: Text(
                               "overslaan",
