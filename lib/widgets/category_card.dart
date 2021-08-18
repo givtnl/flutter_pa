@@ -48,7 +48,7 @@ class _CategoryCardState extends State<CategoryCard> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 30),
       child: GestureDetector(
         onTap: () {
           setState(() {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
-import 'package:flutter_app/screens/question_screen.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -13,6 +13,8 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MixpanelManager.mixpanel.track("Intro screen showing");
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var provider = Provider.of<QuestionsProvider>(context);
     return TrackedScreen(
       screenName: 'IntroScreen',
@@ -34,11 +36,7 @@ class IntroScreen extends StatelessWidget {
                   child: BlueButton(
                     label: S.of(context).introButton,
                     tapped: () {
-                      var question = provider.nextQuestion;
-                      if (question != null)
-                        Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: question.id);
-                      else
-                        Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                      questionnaireProvider.showNextScreen(context);
                     },
                   ),
                 ),

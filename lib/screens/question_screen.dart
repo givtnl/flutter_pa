@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/question.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -16,30 +16,26 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final _valueTexts = ["Helemaal niet akkoord", "Niet akkoord", "Neutraal", "Akkoord", "Helemaal akkoord"];
+  final _valueTexts = [
+    "Helemaal niet akkoord",
+    "Niet akkoord",
+    "Neutraal",
+    "Akkoord",
+    "Helemaal akkoord"
+  ];
 
   String get valueText {
     return _valueTexts[_sliderValue.round()];
   }
 
   double _sliderValue = 2;
-  void determineNextStep(BuildContext context, Question? nextQuestion) {
-    if (nextQuestion == null) {
-      Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-    } else if (nextQuestion.id % 5 == 0) {
-      Navigator.of(context).pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
-    } else {
-      Navigator.of(context).pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<QuestionsProvider>(context);
-    var questionId = ModalRoute.of(context)!.settings.arguments as int;
-
+    var provider = Provider.of<QuestionsProvider>(context, listen: false);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var _loading = false;
-
-    var question = provider.getQuestionById(questionId);
+    var question = provider.nextQuestion!;
 
     return TrackedScreen(
       screenName: 'QuestionScreen',
@@ -61,13 +57,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           children: [
                             FractionallySizedBox(
                               heightFactor: 1,
-                              widthFactor: 1.0 - ((provider.unansweredQuestions.length - 1) / provider.questions.length),
+                              widthFactor:
+                                  questionnaireProvider.currentProgress,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Color.fromRGBO(36, 106, 177, 1),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -79,7 +76,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BigText(question.question),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
+                        padding: const EdgeInsets.only(
+                            bottom: 20, left: 25, right: 25),
                         child: SliderTheme(
                           data: SliderThemeData(
                             trackHeight: 3,
@@ -101,7 +99,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 50, left: 50, right: 50),
+                        padding: const EdgeInsets.only(
+                            bottom: 50, left: 50, right: 50),
                         child: Row(
                           children: [
                             Flexible(
@@ -138,9 +137,18 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
-                              provider.answerQuestion(questionId, -1);
+                              provider.skipQuestion(question.id);
                               var nextQuestion = provider.nextQuestion;
-                              determineNextStep(context, nextQuestion);
+                              questionnaireProvider.incrementScreenNumber();
+                              if (nextQuestion == null) {
+                                Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                              } else if (questionnaireProvider.isNextScreenACategoriesScreen) {
+                                Navigator.of(context)
+                                    .pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
+                              } else {
+                                Navigator.of(context)
+                                    .pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
+                              }
                             },
                             child: Text(
                               "overslaan",
@@ -160,9 +168,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BlueButton(
                           label: "Volgende",
                           tapped: () {
-                            provider.answerQuestion(questionId, _sliderValue.round());
-                            var nextQuestion = provider.nextQuestion;
-                            determineNextStep(context, nextQuestion);
+                            provider.answerQuestion(question.id, _sliderValue.round());
+                            questionnaireProvider.showNextScreen(context);
                           },
                         ),
                       ),
