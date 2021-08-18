@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
@@ -178,6 +179,7 @@ class OrganisationScreen extends StatelessWidget {
                       child: BlueButton(
                           label: "Steun ${org.name}",
                           tapped: () async {
+                            MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "SUPPORT_ORGANISATION"});
                             var url = org.donationLink!;
                             if (await canLaunch(url))
                               await launch(url);

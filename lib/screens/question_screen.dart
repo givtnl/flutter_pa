@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
@@ -95,6 +96,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 _sliderValue = value;
                               });
                             },
+                            onChangeEnd: (_) {
+                              MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID":"${question.id}","VALUE":"${_sliderValue.toStringAsFixed(0)}"});
+                            },
                           ),
                         ),
                       ),
@@ -137,6 +141,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
+                              MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "SKIP"});
                               provider.skipQuestion(question.id);
                               var nextQuestion = provider.nextQuestion;
                               questionnaireProvider.incrementScreenNumber();
@@ -168,6 +173,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BlueButton(
                           label: "Volgende",
                           tapped: () {
+                            MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "NEXT"});
                             provider.answerQuestion(question.id, _sliderValue.round());
                             questionnaireProvider.showNextScreen(context);
                           },
