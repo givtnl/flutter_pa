@@ -36,7 +36,7 @@ class MixpanelManager {
     try {
       await _exportEvents(events.map((e) {
         var props = new Map<String,dynamic>();
-        if (e.properties != null) {
+        if (e.properties != null && e.properties != "null") {
           props = jsonDecode(e.properties!) as Map<String, dynamic>;
         }
         return Event(event: e.event, distinctId: e.distinctId, timeStamp: e.trackingTime, properties: props);
