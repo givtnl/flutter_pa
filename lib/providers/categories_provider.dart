@@ -13,9 +13,9 @@ class CategoryProvider with ChangeNotifier {
     Category(5,'kunst1','kunst'),
     Category(6,'kunst2','kunst'),
     Category(7,'kunst3','kunst'),
-    /*Category(8,'kunst4','kunst'),
+    Category(8,'kunst4','kunst'),
     Category(9,'kunst5','kunst'),
-    Category(10,'kunst6','kunst'),*/
+    Category(10,'kunst6','kunst'),
   ];
 
   List<Category> get categories => [..._categories];
@@ -23,7 +23,7 @@ class CategoryProvider with ChangeNotifier {
   Category getCategoryById(int id) => [..._categories].firstWhere((element) => element.id == id);
 
   List<Category> nextFourCategories(int screenNumber, int numberOfQuestionScreensPerCategoryScreen) {
-    var categoryScreenNumber = (screenNumber / (numberOfQuestionScreensPerCategoryScreen)).floor() -1;
+    var categoryScreenNumber = (screenNumber / (numberOfQuestionScreensPerCategoryScreen)).floor()-1;
     return  _categories.sublist(categoryScreenNumber*4, min(_categories.length, (categoryScreenNumber*4)+4));
   }
 

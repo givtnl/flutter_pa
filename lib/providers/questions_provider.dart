@@ -9,6 +9,22 @@ class QuestionsProvider with ChangeNotifier {
     Question(3, "Voordat ik geef, controleer ik of mijn donatie belastingaftrekbaar is."),
     Question(4, "Ik wil geven aan doelen die een effect hebben in mijn directe omgeving."),
     Question(5, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(6, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(7, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(8, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(9, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(10, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(11, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(12, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(13, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(14, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(15, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(16, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(17, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(18, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(19, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(20, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
+    Question(21, "Als goede doelen op vrijwilligers draaien, worden donaties het best besteed."),
   ];
 
   List<Question> get questions => [..._questions];

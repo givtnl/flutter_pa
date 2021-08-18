@@ -34,7 +34,7 @@ class QuestionnaireProvider with ChangeNotifier {
     totalNumberOfScreens =
         totalNumberOfCategoryScreens + totalNumberOfQuestionScreens;
     numberOfQuestionScreensPerCategoryScreen =
-        (totalNumberOfScreens / (totalNumberOfCategoryScreens + 1)).ceil();
+        (totalNumberOfScreens / (totalNumberOfCategoryScreens)).ceil();
     for (var i = 1; i < totalNumberOfScreens + 1; i++) {
       if (i % numberOfQuestionScreensPerCategoryScreen == 0) {
         questionnaireScreens
