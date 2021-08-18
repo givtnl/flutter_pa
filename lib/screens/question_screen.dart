@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/questions_provider.dart';
-import 'package:flutter_app/screens/categories_screen.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -17,13 +15,7 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final _valueTexts = [
-    "Helemaal niet akkoord",
-    "Niet akkoord",
-    "Neutraal",
-    "Akkoord",
-    "Helemaal akkoord"
-  ];
+  final _valueTexts = ["Helemaal niet akkoord", "Niet akkoord", "Neutraal", "Akkoord", "Helemaal akkoord"];
 
   String get valueText {
     return _valueTexts[_sliderValue.round()];
@@ -58,8 +50,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           children: [
                             FractionallySizedBox(
                               heightFactor: 1,
-                              widthFactor:
-                                  questionnaireProvider.currentProgress,
+                              widthFactor: questionnaireProvider.currentProgress,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Color.fromRGBO(36, 106, 177, 1),
@@ -77,8 +68,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BigText(question.question),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 20, left: 25, right: 25),
+                        padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
                         child: SliderTheme(
                           data: SliderThemeData(
                             trackHeight: 3,
@@ -97,14 +87,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               });
                             },
                             onChangeEnd: (_) {
-                              MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID":"${question.id}","VALUE":"${_sliderValue.toStringAsFixed(0)}"});
+                              MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID": "${question.id}", "VALUE": "${_sliderValue.toStringAsFixed(0)}"});
                             },
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 50, left: 50, right: 50),
+                        padding: const EdgeInsets.only(bottom: 50, left: 50, right: 50),
                         child: Row(
                           children: [
                             Flexible(
@@ -141,7 +130,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
-                              MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "SKIP"});
+                              MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
                               provider.skipQuestion(question.id);
                               questionnaireProvider.showNextScreen(context);
                             },
@@ -163,7 +152,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BlueButton(
                           label: "Volgende",
                           tapped: () {
-                            MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "NEXT"});
+                            MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
                             provider.answerQuestion(question.id, _sliderValue.round());
                             questionnaireProvider.showNextScreen(context);
                           },

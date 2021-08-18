@@ -3,11 +3,11 @@ import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:provider/provider.dart';
+
 import 'big_text.dart';
 import 'blue_rounded_button.dart';
 
 class OrganisationProposal extends StatelessWidget {
-
   final String title;
   final String explanation;
   final int match;
@@ -44,7 +44,7 @@ class OrganisationProposal extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 BlueRoundedButton("Ontdek meer", () {
-                  MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME" : "DISCOVER_MORE"});
+                  MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "DISCOVER_MORE"});
                   Provider.of<OrganisationProvider>(context, listen: false).currentSelectedProposal = orgId;
                   Navigator.of(context).pushNamed(OrganisationScreen.routeName);
                 }),
