@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
@@ -112,72 +114,22 @@ class OrganisationScreen extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                        child: RichText(
-                          text: TextSpan(
-                            style: Theme.of(context).textTheme.bodyText1,
-                            children: <TextSpan>[
-                              TextSpan(text: 'Missie: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                              TextSpan(text: org.orgMission),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  OrganisationExtra('Missie', org.orgMission),
                   SizedBox(
                     height: 10,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                        child: RichText(
-                          text: TextSpan(
-                            style: Theme.of(context).textTheme.bodyText1,
-                            children: <TextSpan>[
-                              TextSpan(text: 'Visie: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                              TextSpan(text: org.orgVision),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  OrganisationExtra('Visie', org.orgVision),
                   SizedBox(
                     height: 10,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-                        child: RichText(
-                          text: TextSpan(
-                            style: Theme.of(context).textTheme.bodyText1,
-                            children: <TextSpan>[
-                              TextSpan(text: 'Kernwaarden: ', style: TextStyle(fontWeight: FontWeight.bold)),
-                              TextSpan(text: org.orgKeyValues),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  OrganisationExtra('Kernwaarden', org.orgKeyValues),
                   if (org.donationLink != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: BlueButton(
                           label: "Steun ${org.name}",
                           tapped: () async {
+                            MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
                             var url = org.donationLink!;
                             if (await canLaunch(url))
                               await launch(url);

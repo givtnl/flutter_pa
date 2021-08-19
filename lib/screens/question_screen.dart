@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/providers/questions_provider.dart';
-import 'package:flutter_app/screens/categories_screen.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -16,13 +14,7 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final _valueTexts = [
-    "Helemaal niet akkoord",
-    "Niet akkoord",
-    "Neutraal",
-    "Akkoord",
-    "Helemaal akkoord"
-  ];
+  final _valueTexts = ["Helemaal niet akkoord", "Niet akkoord", "Neutraal", "Akkoord", "Helemaal akkoord"];
 
   String get valueText {
     return _valueTexts[_sliderValue.round()];
@@ -32,17 +24,15 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<QuestionsProvider>(context, listen: false);
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
-    var _loading = false;
-    var question = provider.nextQuestion!;
+    var provider = Provider.of<QuestionnaireProvider>(context, listen: false);
+    var question = provider.getCurrentQuestion;
 
     return TrackedScreen(
       screenName: 'QuestionScreen',
       child: Scaffold(
         backgroundColor: Color.fromRGBO(222, 233, 243, 1),
         body: SafeArea(
-          child: _loading
+          child: false
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -57,8 +47,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           children: [
                             FractionallySizedBox(
                               heightFactor: 1,
-                              widthFactor:
-                                  questionnaireProvider.currentProgress,
+                              widthFactor: provider.currentProgress/100,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Color.fromRGBO(36, 106, 177, 1),
@@ -73,11 +62,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(50.0),
-                        child: BigText(question.question),
+                        child: BigText(provider.getCurrentQuestionTranslation),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 20, left: 25, right: 25),
+                        padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
                         child: SliderTheme(
                           data: SliderThemeData(
                             trackHeight: 3,
@@ -95,12 +83,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 _sliderValue = value;
                               });
                             },
+                            onChangeEnd: (_) {
+                              MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID": "${question!.id}", "VALUE": "${_sliderValue.toStringAsFixed(0)}"});
+                            },
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 50, left: 50, right: 50),
+                        padding: const EdgeInsets.only(bottom: 50, left: 50, right: 50),
                         child: Row(
                           children: [
                             Flexible(
@@ -137,18 +127,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               alignment: AlignmentDirectional.centerStart,
                             ),
                             onPressed: () {
-                              provider.skipQuestion(question.id);
-                              var nextQuestion = provider.nextQuestion;
-                              questionnaireProvider.incrementScreenNumber();
-                              if (nextQuestion == null) {
-                                Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
-                              } else if (questionnaireProvider.isNextScreenACategoriesScreen) {
-                                Navigator.of(context)
-                                    .pushNamed(CategoriesScreen.routeName, arguments: nextQuestion.id);
-                              } else {
-                                Navigator.of(context)
-                                    .pushNamed(QuestionScreen.routeName, arguments: nextQuestion.id);
-                              }
+                              MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
+                              //provider.skipQuestion(question.id);
+                              provider.skipCurrentQuestion();
+                              provider.showNextScreen(context);
                             },
                             child: Text(
                               "overslaan",
@@ -168,8 +150,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         child: BlueButton(
                           label: "Volgende",
                           tapped: () {
-                            provider.answerQuestion(question.id, _sliderValue.round());
-                            questionnaireProvider.showNextScreen(context);
+                            MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
+                            provider.answerQuestion(question!.id, _sliderValue.round());
+                            provider.showNextScreen(context);
                           },
                         ),
                       ),

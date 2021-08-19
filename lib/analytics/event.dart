@@ -17,6 +17,11 @@ class Event {
       },
     };
 
+    var props = (map["properties"] as Map<String, dynamic>);
+    this.properties?.forEach((key, value) {
+      props[key] = value;
+    });
+
     return map;
   }
 

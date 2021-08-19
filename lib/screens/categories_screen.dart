@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/screens/question_screen.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
-import 'package:flutter_app/widgets/category_card.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -15,9 +11,7 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<CategoryProvider>(context);
     final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    final categories = provider.nextFourCategories(questionnaireProvider.screenNumber, questionnaireProvider.numberOfQuestionScreensPerCategoryScreen);
 
     return TrackedScreen(
     screenName: 'Categories',
@@ -35,7 +29,7 @@ class CategoriesScreen extends StatelessWidget {
                   children: [
                     FractionallySizedBox(
                       heightFactor: 1,
-                      widthFactor: questionnaireProvider.currentProgress,
+                      widthFactor: questionnaireProvider.currentProgress/100,
                       child: Container(
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(36, 106, 177, 1),
@@ -54,12 +48,12 @@ class CategoriesScreen extends StatelessWidget {
               ),
               Container(
                   height: 350,
-                  child: ListView(
+                  child: Container()/*ListView(
                     children: categories.map((category) {
                       return CategoryCard(
                           category.id, category.category, category.icon);
                     }).toList(),
-                  ),
+                  ),*/
                 ),
               Expanded(child: Container()),
               Padding(
@@ -67,6 +61,7 @@ class CategoriesScreen extends StatelessWidget {
                 child: BlueButton(
                   label: 'volgende',
                   tapped: () {
+                    
                     questionnaireProvider.showNextScreen(context);
                   },
                 ),)

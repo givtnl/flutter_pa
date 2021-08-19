@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
@@ -42,13 +40,7 @@ class _MyAppState extends State<MyApp> {
           create: (_) => QuestionnaireProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => QuestionsProvider(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => OrganisationProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => CategoryProvider(),
         ),
       ],
       child: MaterialApp(
