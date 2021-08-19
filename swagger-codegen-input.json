@@ -388,6 +388,21 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "categoryOptions": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/QuestionCategoryOptionModel"
+            }
+          },
+          "statementOptions": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/QuestionStatementModel"
+              }
+            ]
           }
         }
       },
@@ -402,6 +417,45 @@
           0,
           1
         ]
+      },
+      "QuestionCategoryOptionModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "translations": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "tagScores": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "QuestionStatementModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tagScores": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
       },
       "GetQuestionsListRequest": {
         "type": "object",
@@ -424,8 +478,55 @@
               "type": "string"
             }
           },
+          "categoryOptions": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/CreateQuestionCategoryRequestOptions"
+            }
+          },
+          "statementOptions": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CreateQuestionStatementRequestOptions"
+              }
+            ]
+          }
+        }
+      },
+      "CreateQuestionCategoryRequestOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "displayOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "translations": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "tagScores": {
             "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "CreateQuestionStatementRequestOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tagScores": {
+            "type": "object",
+            "nullable": true,
             "additionalProperties": {
               "type": "integer",
               "format": "int32"

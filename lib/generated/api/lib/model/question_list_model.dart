@@ -16,6 +16,8 @@ class QuestionListModel {
     this.displayOrder,
     this.type,
     this.translations,
+    this.categoryOptions,
+    this.statementOptions,
   });
 
   String id;
@@ -26,22 +28,30 @@ class QuestionListModel {
 
   Map<String, String> translations;
 
+  List<QuestionCategoryOptionModel> categoryOptions;
+
+  QuestionStatementModel statementOptions;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is QuestionListModel &&
      other.id == id &&
      other.displayOrder == displayOrder &&
      other.type == type &&
-     other.translations == translations;
+     other.translations == translations &&
+     other.categoryOptions == categoryOptions &&
+     other.statementOptions == statementOptions;
 
   @override
   int get hashCode =>
     (id == null ? 0 : id.hashCode) +
     (displayOrder == null ? 0 : displayOrder.hashCode) +
     (type == null ? 0 : type.hashCode) +
-    (translations == null ? 0 : translations.hashCode);
+    (translations == null ? 0 : translations.hashCode) +
+    (categoryOptions == null ? 0 : categoryOptions.hashCode) +
+    (statementOptions == null ? 0 : statementOptions.hashCode);
 
   @override
-  String toString() => 'QuestionListModel[id=$id, displayOrder=$displayOrder, type=$type, translations=$translations]';
+  String toString() => 'QuestionListModel[id=$id, displayOrder=$displayOrder, type=$type, translations=$translations, categoryOptions=$categoryOptions, statementOptions=$statementOptions]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -57,6 +67,12 @@ class QuestionListModel {
     if (translations != null) {
       json[r'translations'] = translations;
     }
+    if (categoryOptions != null) {
+      json[r'categoryOptions'] = categoryOptions;
+    }
+    if (statementOptions != null) {
+      json[r'statementOptions'] = statementOptions;
+    }
     return json;
   }
 
@@ -71,6 +87,8 @@ class QuestionListModel {
         translations: json[r'translations'] == null ?
           null :
           (json[r'translations'] as Map).cast<String, String>(),
+        categoryOptions: QuestionCategoryOptionModel.listFromJson(json[r'categoryOptions']),
+        statementOptions: QuestionStatementModel.fromJson(json[r'statementOptions']),
     );
 
   static List<QuestionListModel> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

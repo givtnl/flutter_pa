@@ -196,18 +196,26 @@ class ApiClient {
           return CreateOrganisationRequest.fromJson(value);
         case 'CreateOrganisationResponse':
           return CreateOrganisationResponse.fromJson(value);
+        case 'CreateQuestionCategoryRequestOptions':
+          return CreateQuestionCategoryRequestOptions.fromJson(value);
         case 'CreateQuestionRequest':
           return CreateQuestionRequest.fromJson(value);
         case 'CreateQuestionResponse':
           return CreateQuestionResponse.fromJson(value);
+        case 'CreateQuestionStatementRequestOptions':
+          return CreateQuestionStatementRequestOptions.fromJson(value);
         case 'GetMatchesListResponse':
           return GetMatchesListResponse.fromJson(value);
         case 'GetQuestionsListResponse':
           return GetQuestionsListResponse.fromJson(value);
         case 'OrganisationDetailModel':
           return OrganisationDetailModel.fromJson(value);
+        case 'QuestionCategoryOptionModel':
+          return QuestionCategoryOptionModel.fromJson(value);
         case 'QuestionListModel':
           return QuestionListModel.fromJson(value);
+        case 'QuestionStatementModel':
+          return QuestionStatementModel.fromJson(value);
         case 'QuestionType':
           return QuestionTypeTypeTransformer().decode(value);
           

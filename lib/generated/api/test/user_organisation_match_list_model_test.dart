@@ -20,7 +20,7 @@ void main() {
       // TODO
     });
 
-    // OneOfOrganisationDetailModel organisation
+    // OrganisationDetailModel organisation
     test('to test the property `organisation`', () async {
       // TODO
     });
