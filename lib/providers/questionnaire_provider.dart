@@ -1,101 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/category.dart';
-import 'package:flutter_app/models/question.dart';
-import 'package:flutter_app/providers/questions_provider.dart';
-import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:openapi/api.dart';
-import 'package:provider/provider.dart';
-
-class QuestionnaireScreen {
-  Question? question;
-  List<Category>? categories;
-  QuestionnaireScreenType type;
-  bool done = false;
-
-  QuestionnaireScreen(this.type, {this.question, this.categories});
-}
-
-enum QuestionnaireScreenType { Question, Category }
 
 class QuestionnaireProvider with ChangeNotifier {
-  final totalNumberOfQuestionScreens = QuestionsProvider().questions.length;
-  final totalNumberOfCategoryScreens =
-      (CategoryProvider().categories.length / 4).ceil();
-
   var _screenNumber = 0;
-  var numberOfQuestionScreensPerCategoryScreen = 0;
-  var totalNumberOfScreens = 0;
 
-  List<QuestionnaireScreen> questionnaireScreens = [];
+  List<QuestionListModel> _questions = [];
+  List<QuestionListModel> completedQuestions = [];
+  List<QuestionListModel> skippedQuestions = [];
 
-  QuestionnaireProvider() {
+  QuestionnaireProvider();
+
+  void loadQuestions() {
     final questionsApiInstance = QuestionsApi();
     try {
       final result = questionsApiInstance.getQuestionsList();
-      result.then((question) => question.result.forEach((element) {
-        switch (element.type) {
-          case QuestionType.number0:
-            var question = Question(element.id, element.translations.values.first);
-            questionnaireScreens.add(QuestionnaireScreen(QuestionnaireScreenType.Question, question: question));
-            break;
-          case QuestionType.number1:
-            var categories = [Category(element.id, element.translations.values.first, element.translations.values.first)];
-            questionnaireScreens.add(QuestionnaireScreen(QuestionnaireScreenType.Category, categories: categories));
-            break;
-          default:
-            break;
-        }
-      }));
+      result.then((response) {
+        _questions = response.result;
+        _questions.sort((a,b) => a.displayOrder - b.displayOrder);
+      });
     } catch (e) {
       print('Exception when calling QuestionsApi->getQuestionsList: $e\n');
     }
   }
 
   void showNextScreen(ctx) {
-    if (_screenNumber != 0) setPreviousScreenDone(ctx);
     incrementScreenNumber();
-    var nextScreen = questionnaireScreens.firstWhereOrNull((element) => !element.done);
-    if (nextScreen == null) {
+    if (screenNumber!=0)setPreviousScreenDone();
+
+    if (this.isCompleted) {
       Navigator.pushNamed(ctx, SuggestionsScreen.routeName);
     } else {
-      switch (nextScreen.type) {
-        case QuestionnaireScreenType.Category:
-          nextScreen.categories =
-              Provider.of<CategoryProvider>(ctx, listen: false)
-                  .nextFourCategories(
-                      screenNumber, numberOfQuestionScreensPerCategoryScreen);
-          Navigator.pushNamed(ctx, CategoriesScreen.routeName);
-          break;
-        case QuestionnaireScreenType.Question:
-          nextScreen.question =
-              Provider.of<QuestionsProvider>(ctx, listen: false).nextQuestion;
-          Navigator.pushNamed(ctx, QuestionScreen.routeName);
-          break;
-      }
+      Navigator.pushNamed(ctx, getNextRouteName);
     }
   }
 
-  void setPreviousScreenDone(ctx) {
-    questionnaireScreens[_screenNumber-1].done = true;
+  List<QuestionListModel> get questions {
+    return _questions;
+  }
+
+  void setPreviousScreenDone() {
+    QuestionListModel? qlm = questions.elementAt(_screenNumber -1);
+    completedQuestions.add(qlm);
+  }
+
+  QuestionListModel? getNextQuestion() {
+    return questions.elementAt(_screenNumber);
+  }
+
+  bool get isCompleted {
+    return questions.length ==
+        (completedQuestions.length + skippedQuestions.length);
+  }
+
+  String get getNextRouteName {
+    return getCurrentQuestion!.type == QuestionType.number0 ? QuestionScreen
+        .routeName : CategoriesScreen.routeName;
+  }
+
+  QuestionListModel? get getCurrentQuestion {
+    return questions[screenNumber];
+  }
+
+  String get getCurrentQuestionTranslation {
+    var currentLang = 'en';
+    if (getCurrentQuestion == null) {
+      return '';
+    }
+    if (getCurrentQuestion!.translations != null &&
+        getCurrentQuestion!.translations.containsKey(currentLang)) {
+      return getCurrentQuestion!.translations[currentLang]!;
+    }
+    return 'to translate';
+  }
+
+  double get currentProgress {
+    return ((completedQuestions.length + skippedQuestions.length) /
+        questions.length) * 100;
   }
 
   int get screenNumber {
     return _screenNumber;
   }
 
-  bool get isNextScreenACategoriesScreen {
-    return _screenNumber % numberOfQuestionScreensPerCategoryScreen == 0;
-  }
-
-  double get currentProgress {
-    return _screenNumber / totalNumberOfScreens;
-  }
-
   void incrementScreenNumber() {
     _screenNumber++;
+  }
+
+  void skipCurrentQuestion() {
+    skippedQuestions.add(getCurrentQuestion!);
+  }
+
+  void answerQuestion(String id, int score) {
+    final answerApi = AnswersApi();
+    answerApi.createAnswer(id, CreateAnswerRequest(questionId: id)).then((value) => print(value));
   }
 }
 

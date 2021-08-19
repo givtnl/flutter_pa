@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
-import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCard extends StatefulWidget {
@@ -54,7 +53,6 @@ class _CategoryCardState extends State<CategoryCard> {
           setState(() {
             selected = !selected;
           });
-          Provider.of<CategoryProvider>(context, listen: false).switchSelected(widget.categoryId);
         },
         child: Transform.scale(
           scale: selected ? 1.08 : 1.0,

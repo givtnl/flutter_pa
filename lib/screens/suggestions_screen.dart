@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/organisation.dart';
-import 'package:flutter_app/providers/categories_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
-import 'package:flutter_app/providers/questions_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_proposal_widget.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -34,20 +32,6 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
           _loading = false;
         });
       });
-    }
-    var categoryProvider = Provider.of<CategoryProvider>(context);
-    var questionsProvider = Provider.of<QuestionsProvider>(context);
-    var categories = categoryProvider.categories;
-    var questions = questionsProvider.questions;
-    for (var cat in categories) {
-      print(cat.category + ' is clicked is: ' + cat.isClicked.toString());
-    }
-    for (var ques in questions) {
-      if (ques.isSkipped) {
-        print(ques.id.toString() + ': ' + ques.question + '  is skipped');
-      } else {
-        print(ques.id.toString() + ': ' + ques.question + 'has answer: ' + ques.answer.toString());
-      }
     }
     super.didChangeDependencies();
   }
