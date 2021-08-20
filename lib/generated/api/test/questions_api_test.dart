@@ -29,7 +29,7 @@ void main() {
     //
     // Returns a list of question to build a profile for the user by answering them
     //
-    //Future<GetQuestionsListResponse> getQuestionsList({ Object request }) async
+    //Future<GetQuestionsListResponse> getQuestionsList({ OneOfobject request }) async
     test('test getQuestionsList', () async {
       // TODO
     });

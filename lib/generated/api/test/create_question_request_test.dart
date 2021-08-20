@@ -30,8 +30,13 @@ void main() {
       // TODO
     });
 
-    // Map<String, int> tagScores (default value: const {})
-    test('to test the property `tagScores`', () async {
+    // List<CreateQuestionCategoryRequestOptions> categoryOptions (default value: const [])
+    test('to test the property `categoryOptions`', () async {
+      // TODO
+    });
+
+    // OneOfCreateQuestionStatementRequestOptions statementOptions
+    test('to test the property `statementOptions`', () async {
       // TODO
     });
 

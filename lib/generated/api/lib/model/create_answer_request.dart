@@ -14,29 +14,29 @@ class CreateAnswerRequest {
   CreateAnswerRequest({
     this.userId,
     this.questionId,
-    this.answer,
+    this.answers = const [],
   });
 
   String userId;
 
   String questionId;
 
-  String answer;
+  List<CreateAnswerDetailRequest> answers;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateAnswerRequest &&
      other.userId == userId &&
      other.questionId == questionId &&
-     other.answer == answer;
+     other.answers == answers;
 
   @override
   int get hashCode =>
     (userId == null ? 0 : userId.hashCode) +
     (questionId == null ? 0 : questionId.hashCode) +
-    (answer == null ? 0 : answer.hashCode);
+    (answers == null ? 0 : answers.hashCode);
 
   @override
-  String toString() => 'CreateAnswerRequest[userId=$userId, questionId=$questionId, answer=$answer]';
+  String toString() => 'CreateAnswerRequest[userId=$userId, questionId=$questionId, answers=$answers]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -46,8 +46,8 @@ class CreateAnswerRequest {
     if (questionId != null) {
       json[r'questionId'] = questionId;
     }
-    if (answer != null) {
-      json[r'answer'] = answer;
+    if (answers != null) {
+      json[r'answers'] = answers;
     }
     return json;
   }
@@ -59,7 +59,7 @@ class CreateAnswerRequest {
     : CreateAnswerRequest(
         userId: json[r'userId'],
         questionId: json[r'questionId'],
-        answer: json[r'answer'],
+        answers: CreateAnswerDetailRequest.listFromJson(json[r'answers']),
     );
 
   static List<CreateAnswerRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

@@ -25,8 +25,8 @@ void main() {
       // TODO
     });
 
-    // String answer
-    test('to test the property `answer`', () async {
+    // List<CreateAnswerDetailRequest> answers (default value: const [])
+    test('to test the property `answers`', () async {
       // TODO
     });
 

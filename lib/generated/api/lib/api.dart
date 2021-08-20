@@ -31,6 +31,7 @@ part 'api/matches_api.dart';
 part 'api/organisations_api.dart';
 part 'api/questions_api.dart';
 
+part 'model/create_answer_detail_request.dart';
 part 'model/create_answer_request.dart';
 part 'model/create_organisation_request.dart';
 part 'model/create_organisation_response.dart';
