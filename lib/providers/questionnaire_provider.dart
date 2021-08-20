@@ -118,7 +118,7 @@ class QuestionnaireProvider with ChangeNotifier {
 
   void saveQuestion(int score) {
     double scoreDouble = score/4;
-    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Michiel', answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: scoreDouble)])).then((value) => print(value));
+    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Verkest', answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: scoreDouble)])).then((value) => print(value));
   }
 
   void addCategoryAnswer(int selectedCategoryIndex){
@@ -132,7 +132,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   void saveCategories() {
-    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Michiel', answers: currentSelectedCategories)).then((value) => print(value));
+    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Verkest', answers: currentSelectedCategories)).then((value) => print(value));
   }
 }
 
