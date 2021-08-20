@@ -68,6 +68,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [CreateAnswerDetailRequest](doc//CreateAnswerDetailRequest.md)
  - [CreateAnswerRequest](doc//CreateAnswerRequest.md)
  - [CreateOrganisationRequest](doc//CreateOrganisationRequest.md)
  - [CreateOrganisationResponse](doc//CreateOrganisationResponse.md)
