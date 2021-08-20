@@ -50,5 +50,9 @@ pubspec.lock
 event.g.dart
 organisation.g.dart
 
+<<<<<<< HEAD
 # Test data
 /json/*
+=======
+/lib/generated/api/*
+>>>>>>> 905b5389f78f08856e38914eb05fc7c42c7e832e

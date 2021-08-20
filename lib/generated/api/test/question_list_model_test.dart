@@ -35,6 +35,16 @@ void main() {
       // TODO
     });
 
+    // List<QuestionCategoryOptionModel> categoryOptions (default value: const [])
+    test('to test the property `categoryOptions`', () async {
+      // TODO
+    });
+
+    // OneOfQuestionStatementModel statementOptions
+    test('to test the property `statementOptions`', () async {
+      // TODO
+    });
+
 
   });
 
