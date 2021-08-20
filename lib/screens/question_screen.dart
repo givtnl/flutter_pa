@@ -151,7 +151,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           label: "Volgende",
                           tapped: () {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
-                            provider.answerQuestion(question!.id, _sliderValue.round());
+                            provider.saveQuestion(_sliderValue.round());
                             provider.showNextScreen(context);
                           },
                         ),

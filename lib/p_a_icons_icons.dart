@@ -12,10 +12,6 @@
 ///       - asset: fonts/PAIcons.ttf
 ///
 /// 
-/// * Material Design Icons, Copyright (C) Google, Inc
-///         Author:    Google
-///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
-///         Homepage:  https://design.google.com/icons/
 ///
 import 'package:flutter/widgets.dart';
 
@@ -25,9 +21,12 @@ class PAIcons {
   static const _kFontFam = 'PAIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData kunst = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData gezondheid = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData dieren = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hulp = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData add_circle_outline = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData natuur = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData onderwijs = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData religie = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData welzijn = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData dieren = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData hulp = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData gezondheid = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData kunst = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

@@ -55,7 +55,6 @@ lib/model/question_type.dart
 lib/model/user_organisation_match_list_model.dart
 pubspec.yaml
 test/answers_api_test.dart
-test/create_answer_detail_request_test.dart
 test/create_answer_request_test.dart
 test/create_organisation_request_test.dart
 test/create_organisation_response_test.dart
