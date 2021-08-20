@@ -190,6 +190,8 @@ class ApiClient {
           break;
         case 'double':
           return value is double ? value : double.parse('$value');
+        case 'CreateAnswerDetailRequest':
+          return CreateAnswerDetailRequest.fromJson(value);
         case 'CreateAnswerRequest':
           return CreateAnswerRequest.fromJson(value);
         case 'CreateOrganisationRequest':

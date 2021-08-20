@@ -4,6 +4,7 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_app/widgets/category_card.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -12,6 +13,9 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
+    final categories = questionnaireProvider.getCurrentCategoriesTranslation;
+
+    List<CategoryCard> cards = categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
 
     return TrackedScreen(
     screenName: 'Categories',
@@ -48,20 +52,20 @@ class CategoriesScreen extends StatelessWidget {
               ),
               Container(
                   height: 350,
-                  child: Container()/*ListView(
-                    children: categories.map((category) {
-                      return CategoryCard(
-                          category.id, category.category, category.icon);
-                    }).toList(),
-                  ),*/
-                ),
+                  child: ListView(
+                      children: cards
+                    )
+                  ),
               Expanded(child: Container()),
               Padding(
                 padding: const EdgeInsets.all(50.0),
                 child: BlueButton(
                   label: 'volgende',
                   tapped: () {
-                    
+                    cards.where((element) => element.selected).forEach((element) {
+                      questionnaireProvider.addCategoryAnswer(cards.indexOf(element));
+                    });
+                    questionnaireProvider.saveCategories();
                     questionnaireProvider.showNextScreen(context);
                   },
                 ),)

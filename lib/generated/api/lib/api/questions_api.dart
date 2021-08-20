@@ -84,7 +84,7 @@ class QuestionsApi {
   ///
   /// Parameters:
   ///
-  /// * [Object] request:
+  /// * [object] request:
   Future<Response> getQuestionsListWithHttpInfo({ Object request }) async {
     // Verify required params are set.
 
@@ -123,7 +123,7 @@ class QuestionsApi {
   ///
   /// Parameters:
   ///
-  /// * [Object] request:
+  /// * [object] request:
   Future<GetQuestionsListResponse> getQuestionsList({ Object request }) async {
     final response = await getQuestionsListWithHttpInfo( request: request );
     if (response.statusCode >= HttpStatus.badRequest) {

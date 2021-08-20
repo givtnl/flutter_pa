@@ -3,6 +3,7 @@
 README.md
 analysis_options.yaml
 doc/AnswersApi.md
+doc/CreateAnswerDetailRequest.md
 doc/CreateAnswerRequest.md
 doc/CreateOrganisationRequest.md
 doc/CreateOrganisationResponse.md
@@ -35,6 +36,7 @@ lib/auth/authentication.dart
 lib/auth/http_basic_auth.dart
 lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
+lib/model/create_answer_detail_request.dart
 lib/model/create_answer_request.dart
 lib/model/create_organisation_request.dart
 lib/model/create_organisation_response.dart

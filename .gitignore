@@ -49,3 +49,6 @@ pubspec.lock
 .packages
 event.g.dart
 organisation.g.dart
+
+# Test data
+/json/*

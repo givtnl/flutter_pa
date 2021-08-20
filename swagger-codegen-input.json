@@ -225,8 +225,24 @@
           "questionId": {
             "type": "string"
           },
-          "answer": {
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateAnswerDetailRequest"
+            }
+          }
+        }
+      },
+      "CreateAnswerDetailRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tag": {
             "type": "string"
+          },
+          "score": {
+            "type": "number",
+            "format": "decimal"
           }
         }
       },

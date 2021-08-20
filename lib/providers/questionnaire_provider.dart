@@ -7,9 +7,13 @@ import 'package:openapi/api.dart';
 class QuestionnaireProvider with ChangeNotifier {
   var _screenNumber = 0;
 
+  final answerApi = AnswersApi();
+
   List<QuestionListModel> _questions = [];
   List<QuestionListModel> completedQuestions = [];
   List<QuestionListModel> skippedQuestions = [];
+  List<CreateAnswerDetailRequest> currentSelectedCategories = [];
+
 
   QuestionnaireProvider();
 
@@ -35,6 +39,7 @@ class QuestionnaireProvider with ChangeNotifier {
     } else {
       Navigator.pushNamed(ctx, getNextRouteName);
     }
+    this.currentSelectedCategories.clear();
   }
 
   List<QuestionListModel> get questions {
@@ -42,12 +47,14 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   void setPreviousScreenDone() {
-    QuestionListModel? qlm = questions.elementAt(_screenNumber -1);
-    completedQuestions.add(qlm);
+    if (!questions.isEmpty){
+      QuestionListModel? qlm = questions.elementAt(_screenNumber -1);
+      completedQuestions.add(qlm);
+    }
   }
 
   QuestionListModel? getNextQuestion() {
-    return questions.elementAt(_screenNumber);
+    return !isCompleted? questions.elementAt(_screenNumber) : null;
   }
 
   bool get isCompleted {
@@ -65,7 +72,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   String get getCurrentQuestionTranslation {
-    var currentLang = 'en';
+    var currentLang = 'nl';
     if (getCurrentQuestion == null) {
       return '';
     }
@@ -75,6 +82,22 @@ class QuestionnaireProvider with ChangeNotifier {
     }
     return 'to translate';
   }
+
+  List<String> get getCurrentCategoriesTranslation {
+    var currentLang = 'nl';
+    if (getCurrentQuestion == null) {
+      return List.empty();
+    }
+    List<String> list = [];
+    if (getCurrentQuestion!.categoryOptions.isNotEmpty) {
+      for (var i=0; i < 4; i++) {
+        if (getCurrentQuestion!.categoryOptions![i].translations.containsKey(currentLang)) {
+          list.add(getCurrentQuestion!.categoryOptions![i].translations![currentLang]!);
+        }
+      }
+    }
+    return list;
+}
 
   double get currentProgress {
     return ((completedQuestions.length + skippedQuestions.length) /
@@ -93,9 +116,23 @@ class QuestionnaireProvider with ChangeNotifier {
     skippedQuestions.add(getCurrentQuestion!);
   }
 
-  void answerQuestion(String id, int score) {
-    final answerApi = AnswersApi();
-    answerApi.createAnswer(id, CreateAnswerRequest(questionId: id)).then((value) => print(value));
+  void saveQuestion(int score) {
+    double scoreDouble = score/4;
+    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Michiel', answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: scoreDouble)])).then((value) => print(value));
+  }
+
+  void addCategoryAnswer(int selectedCategoryIndex){
+    // find the category option in the current question
+    // todo check if its a category question
+    var toSelectCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
+    //todo, check if the category isn't already selected somehow
+    toSelectCategory.tagScores.forEach((key, value) {
+      this.currentSelectedCategories.add(CreateAnswerDetailRequest(tag: key,score:1));
+    });
+  }
+
+  void saveCategories() {
+    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Michiel', answers: currentSelectedCategories)).then((value) => print(value));
   }
 }
 
