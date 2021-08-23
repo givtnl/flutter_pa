@@ -15,8 +15,6 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-
-
 Installation instructions Flutter on Windhoos (Assuming you have already installed Android Studio)
 
 // Install flutter
@@ -50,6 +48,13 @@ Installation instructions Flutter on Windhoos (Assuming you have already install
                         - Enable Dart for the project's modules
                 - Select Flutter
                         - Enter the Flutter SDK location: C:\Users\<your-user-name>\Documents\flutter
+
+
+// ** BUILD OPEN API MODELS **//
+
+Make sure you have the docker image for open api:
+
+docker pull openapitools/openapi-generator-cli:latest
 
 
 Happy Developing!
