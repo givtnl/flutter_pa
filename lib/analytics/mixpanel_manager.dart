@@ -76,6 +76,6 @@ class MixpanelManager {
   }
 
   void track(String event, {Map<String, String>? properties}) async {
-    //await _store.insertEvent(event, await _getIdentity(), DateTime.now(), properties: properties);
+    await _store.insertEvent(event, await _getIdentity(), DateTime.now(), properties: properties);
   }
 }

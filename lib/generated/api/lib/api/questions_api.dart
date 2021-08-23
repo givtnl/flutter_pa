@@ -85,7 +85,7 @@ class QuestionsApi {
   /// Parameters:
   ///
   /// * [object] request:
-  Future<Response> getQuestionsListWithHttpInfo({ object request }) async {
+  Future<Response> getQuestionsListWithHttpInfo({ Object request }) async {
     // Verify required params are set.
 
     final path = r'/Questions';
@@ -124,7 +124,7 @@ class QuestionsApi {
   /// Parameters:
   ///
   /// * [object] request:
-  Future<GetQuestionsListResponse> getQuestionsList({ object request }) async {
+  Future<GetQuestionsListResponse> getQuestionsList({ Object request }) async {
     final response = await getQuestionsListWithHttpInfo( request: request );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
