@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/user_provider.dart';
+import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,7 @@ class LoginScreen extends StatelessWidget {
                   label: "Start",
                   tapped: () {
                     print(userProvider.userName);
+                    Navigator.of(context).pushNamed(IntroScreen.routeName);
                   },
                 ),
               ),
