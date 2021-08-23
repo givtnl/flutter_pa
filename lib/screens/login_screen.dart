@@ -31,7 +31,6 @@ class LoginScreen extends StatelessWidget {
                 child: BlueButton(
                   label: "Start",
                   tapped: () {
-                    print(userProvider.userName);
                     Navigator.of(context).pushNamed(IntroScreen.routeName);
                   },
                 ),
