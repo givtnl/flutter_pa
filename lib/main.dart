@@ -3,6 +3,7 @@ import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
+import 'package:flutter_app/screens/login_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         routes: {
-          '/': (ctx) => IntroScreen(),
+          '/': (ctx) => LoginScreen(),
           IntroScreen.routeName: (ctx) => IntroScreen(),
           QuestionScreen.routeName: (ctx) => QuestionScreen(),
           SuggestionsScreen.routeName: (ctx) => SuggestionsScreen(),
