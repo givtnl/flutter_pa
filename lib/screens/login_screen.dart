@@ -3,11 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
-import 'package:flutter_app/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final myTextFieldController = TextEditingController();
+  @override
+  void dispose() {
+    myTextFieldController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +32,16 @@ class LoginScreen extends StatelessWidget {
             Center(
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: MyTextFieldForm()
+                  child: TextField(
+                      controller: myTextFieldController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter username or email'
+                      ),
+                      onChanged: (text) {
+                        userProvider.userName = text;
+                      }
+                  )
               ),
             ),
             Align(
