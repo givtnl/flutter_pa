@@ -71,7 +71,7 @@ class CategoriesScreen extends StatelessWidget {
 
                         questionnaireProvider.saveCategories();
                         //hide ze spinner
-                        questionnaireProvider.showNextScreen();
+                        questionnaireProvider.prepareNextScreen();
                         Navigator.of(context)
                             .pushNamed(questionnaireProvider.getNextRouteName);
                       },

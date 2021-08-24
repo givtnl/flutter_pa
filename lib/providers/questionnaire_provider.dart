@@ -22,7 +22,7 @@ class QuestionnaireProvider with ChangeNotifier {
     this.answerApi = AnswersApi();
   }
 
-  QuestionnaireProvider.withQuestionsAndAnswersApis(QuestionsApi questionsApi, AnswersApi answersApi) {
+  QuestionnaireProvider.withDependencies(QuestionsApi questionsApi, AnswersApi answersApi) {
     this.questionsApi = questionsApi;
     this.answerApi = answersApi;
   }
@@ -35,10 +35,10 @@ class QuestionnaireProvider with ChangeNotifier {
       });
     }
 
-  void showNextScreen() {
-    incrementScreenNumber();
+  void prepareNextScreen() {
+    _incrementScreenNumber();
     if (screenNumber != 0)
-      setPreviousScreenDone();
+      _setPreviousScreenDone();
     this.currentSelectedCategories.clear();
   }
 
@@ -46,7 +46,7 @@ class QuestionnaireProvider with ChangeNotifier {
     return _questions;
   }
 
-  void setPreviousScreenDone() {
+  void _setPreviousScreenDone() {
     if (questions.isNotEmpty) {
       QuestionListModel? qlm = questions.elementAt(_screenNumber - 1);
       completedQuestions.add(qlm);
@@ -116,7 +116,7 @@ class QuestionnaireProvider with ChangeNotifier {
     return _screenNumber;
   }
 
-  void incrementScreenNumber() {
+  void _incrementScreenNumber() {
     _screenNumber++;
   }
 
@@ -124,9 +124,9 @@ class QuestionnaireProvider with ChangeNotifier {
     skippedQuestions.add(getCurrentQuestion!);
   }
 
-  void saveQuestion(int score) {
+  Future<void> saveQuestion(int score) async {
     double scoreDouble = score / 4;
-    answerApi
+    return await answerApi
         .createAnswer(
             getCurrentQuestion!.id,
             CreateAnswerRequest(
@@ -158,8 +158,8 @@ class QuestionnaireProvider with ChangeNotifier {
     });
   }
 
-  void saveCategories() {
-    answerApi
+  Future<void> saveCategories() async {
+    return await answerApi
         .createAnswer(
             getCurrentQuestion!.id,
             CreateAnswerRequest(
