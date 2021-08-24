@@ -33,7 +33,7 @@ class IntroScreen extends StatelessWidget {
                   child: BlueButton(
                     label: S.of(context).introButton,
                     tapped: () {
-                      questionnaireProvider.showNextScreen(context);
+                      questionnaireProvider.showNextScreen();
                     },
                   ),
                 ),

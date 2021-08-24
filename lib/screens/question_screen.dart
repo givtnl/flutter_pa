@@ -130,7 +130,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
                               //provider.skipQuestion(question.id);
                               provider.skipCurrentQuestion();
-                              provider.showNextScreen(context);
+                              provider.showNextScreen();
+                              Navigator.of(context).pushNamed(provider.getNextRouteName);
                             },
                             child: Text(
                               "overslaan",
@@ -152,7 +153,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           tapped: () {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
                             provider.saveQuestion(_sliderValue.round());
-                            provider.showNextScreen(context);
+                            provider.showNextScreen();
+                            Navigator.of(context).pushNamed(provider.getNextRouteName);
                           },
                         ),
                       ),

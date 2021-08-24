@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
@@ -8,31 +10,30 @@ class QuestionnaireProvider with ChangeNotifier {
   var _screenNumber = 0;
 
   late QuestionsApi questionsApi;
-  final answerApi = AnswersApi();
+  late AnswersApi answerApi;
 
   List<QuestionListModel> _questions = [];
   List<QuestionListModel> completedQuestions = [];
   List<QuestionListModel> skippedQuestions = [];
   List<CreateAnswerDetailRequest> currentSelectedCategories = [];
 
-  QuestionnaireProvider.withQuestionsApi(QuestionsApi questionsApi) {
-    this.questionsApi = questionsApi;
-  }
-
   QuestionnaireProvider() {
     this.questionsApi = QuestionsApi();
+    this.answerApi = AnswersApi();
+  }
+
+  QuestionnaireProvider.withQuestionsAndAnswersApis(QuestionsApi questionsApi, AnswersApi answersApi) {
+    this.questionsApi = questionsApi;
+    this.answerApi = answersApi;
   }
 
   Future<void> loadQuestions() async {
-    return this
-        .questionsApi
-        .getQuestionsList()
-        .catchError((error) => Future.error(error))
-        .then((response) {
-      _questions = response.result;
-      _questions.sort((a, b) => a.displayOrder - b.displayOrder);
-    });
-  }
+      return await this.questionsApi.getQuestionsList().catchError((error) => Future.error(error))
+      .then((response) {
+        _questions = response.result;
+        _questions.sort((a, b) => a.displayOrder - b.displayOrder);
+      });
+    }
 
   void showNextScreen() {
     incrementScreenNumber();
@@ -46,7 +47,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   void setPreviousScreenDone() {
-    if (!questions.isEmpty) {
+    if (questions.isNotEmpty) {
       QuestionListModel? qlm = questions.elementAt(_screenNumber - 1);
       completedQuestions.add(qlm);
     }

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:openapi/api.dart';
-import 'widget_test.mocks.dart';
+import 'questionnaire_provider_test.mocks.dart';
 
 @GenerateMocks([QuestionsApi, AnswersApi, Navigator])
 void main() {
@@ -80,6 +80,8 @@ void main() {
 
   group('QuestionnaireProvider tests', () {
     final questionsApi = MockQuestionsApi();
+    final answersApi = MockAnswersApi();
+    final navigatorMock = MockNavigator();
     //manier zoeken om de pushnamed te mocken
     //manier zoeken om uit te vinden als een bepaalde methode op een mock is uitgevoerd
 
@@ -100,20 +102,20 @@ void main() {
         .thenAnswer((_) => Future.value(response));
 
     test('Ensure Questions Are Assigned When Executing Http Call', () async {
-      var provider = QuestionnaireProvider.withQuestionsApi(questionsApi);
+      var provider = QuestionnaireProvider.withQuestionsAndAnswersApis(questionsApi, answersApi);
       await provider.loadQuestions();
       expect(response.result.length, equals(provider.questions.length));
     });
 
     test('Ensure Questions Are Sorted On DisplayOrder', () async {
-      var provider = QuestionnaireProvider.withQuestionsApi(questionsApi);
+      var provider = QuestionnaireProvider.withQuestionsAndAnswersApis(questionsApi, answersApi);
       await provider.loadQuestions();
       expect(response.result[0].displayOrder, equals(1));
       expect(response.result[4].displayOrder, equals(5));
     });
 
     test('Ensure Next Question Has Correct DisplayOrder', () async {
-      var provider = QuestionnaireProvider.withQuestionsApi(questionsApi);
+      var provider = QuestionnaireProvider.withQuestionsAndAnswersApis(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.incrementScreenNumber();
       expect(provider.getNextQuestion()!.displayOrder, equals(2));
