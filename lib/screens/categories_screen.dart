@@ -15,65 +15,72 @@ class CategoriesScreen extends StatelessWidget {
     final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     final categories = questionnaireProvider.getCurrentCategoriesTranslation;
 
-    List<CategoryCard> cards = categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
+    List<CategoryCard> cards =
+        categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
 
     return TrackedScreen(
-    screenName: 'Categories',
-    child: Scaffold(
-      backgroundColor: Color.fromRGBO(222, 233, 243, 1),
-      body: SafeArea(
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 10,
-                child: Stack(
-                  children: [
-                    FractionallySizedBox(
-                      heightFactor: 1,
-                      widthFactor: questionnaireProvider.currentProgress/100,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(36, 106, 177, 1),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Container(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: BigText('Welke van deze thema’s vind jij belangrijk?'),
-              ),
-              Container(
-                  height: 350,
-                  child: ListView(
-                      children: cards
-                    )
+      screenName: 'Categories',
+      child: Scaffold(
+          backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          body: SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 10,
+                    child: Stack(
+                      children: [
+                        FractionallySizedBox(
+                          heightFactor: 1,
+                          widthFactor:
+                              questionnaireProvider.currentProgress / 100,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(36, 106, 177, 1),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-              Expanded(child: Container()),
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: BlueButton(
-                  label: 'volgende',
-                  tapped: () {
-                    cards.where((element) => element.selected).forEach((element) {
-                      questionnaireProvider.addCategoryAnswer(cards.indexOf(element));
-                    });
-                    questionnaireProvider.saveCategories();
-                    questionnaireProvider.showNextScreen(context);
-                  },
-                ),)
-              ],
+                  Expanded(
+                    child: Container(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child:
+                        BigText('Welke van deze thema’s vind jij belangrijk?'),
+                  ),
+                  Container(height: 350, child: ListView(children: cards)),
+                  Expanded(child: Container()),
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: BlueButton(
+                      label: 'volgende',
+                      tapped: ()  {
+
+                        cards
+                            .where((element) => element.selected)
+                            .forEach((element)  {
+                          questionnaireProvider
+                              .addCategoryAnswer(cards.indexOf(element));
+                        });
+                        //api call do      // show ze ,
+
+                        questionnaireProvider.saveCategories();
+                        //hide ze spinner
+                        questionnaireProvider.showNextScreen();
+                        Navigator.of(context)
+                            .pushNamed(questionnaireProvider.getNextRouteName);
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        )
-      ),
+          )),
     );
   }
 }

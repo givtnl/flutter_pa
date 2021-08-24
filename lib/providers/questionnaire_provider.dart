@@ -7,6 +7,7 @@ import 'package:openapi/api.dart';
 class QuestionnaireProvider with ChangeNotifier {
   var _screenNumber = 0;
 
+  late QuestionsApi questionsApi;
   final answerApi = AnswersApi();
 
   List<QuestionListModel> _questions = [];
@@ -14,31 +15,29 @@ class QuestionnaireProvider with ChangeNotifier {
   List<QuestionListModel> skippedQuestions = [];
   List<CreateAnswerDetailRequest> currentSelectedCategories = [];
 
-
-  QuestionnaireProvider();
-
-  void loadQuestions() {
-    final questionsApiInstance = QuestionsApi();
-    try {
-      final result = questionsApiInstance.getQuestionsList();
-      result.then((response) {
-        _questions = response.result;
-        _questions.sort((a,b) => a.displayOrder - b.displayOrder);
-      });
-    } catch (e) {
-      print('Exception when calling QuestionsApi->getQuestionsList: $e\n');
-    }
+  QuestionnaireProvider.withQuestionsApi(QuestionsApi questionsApi) {
+    this.questionsApi = questionsApi;
   }
 
-  void showNextScreen(ctx) {
-    incrementScreenNumber();
-    if (screenNumber!=0)setPreviousScreenDone();
+  QuestionnaireProvider() {
+    this.questionsApi = QuestionsApi();
+  }
 
-    if (this.isCompleted) {
-      Navigator.pushNamed(ctx, SuggestionsScreen.routeName);
-    } else {
-      Navigator.pushNamed(ctx, getNextRouteName);
-    }
+  Future<void> loadQuestions() async {
+    return this
+        .questionsApi
+        .getQuestionsList()
+        .catchError((error) => Future.error(error))
+        .then((response) {
+      _questions = response.result;
+      _questions.sort((a, b) => a.displayOrder - b.displayOrder);
+    });
+  }
+
+  void showNextScreen() {
+    incrementScreenNumber();
+    if (screenNumber != 0)
+      setPreviousScreenDone();
     this.currentSelectedCategories.clear();
   }
 
@@ -47,14 +46,14 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   void setPreviousScreenDone() {
-    if (!questions.isEmpty){
-      QuestionListModel? qlm = questions.elementAt(_screenNumber -1);
+    if (!questions.isEmpty) {
+      QuestionListModel? qlm = questions.elementAt(_screenNumber - 1);
       completedQuestions.add(qlm);
     }
   }
 
   QuestionListModel? getNextQuestion() {
-    return !isCompleted? questions.elementAt(_screenNumber) : null;
+    return !isCompleted ? questions.elementAt(_screenNumber) : null;
   }
 
   bool get isCompleted {
@@ -63,8 +62,13 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   String get getNextRouteName {
-    return getCurrentQuestion!.type == QuestionType.number0 ? QuestionScreen
-        .routeName : CategoriesScreen.routeName;
+    if (this.isCompleted) {
+      return SuggestionsScreen.routeName;
+    } else {
+      return getCurrentQuestion!.type == QuestionType.number0
+          ? QuestionScreen.routeName
+          : CategoriesScreen.routeName;
+    }
   }
 
   QuestionListModel? get getCurrentQuestion {
@@ -90,18 +94,21 @@ class QuestionnaireProvider with ChangeNotifier {
     }
     List<String> list = [];
     if (getCurrentQuestion!.categoryOptions.isNotEmpty) {
-      for (var i=0; i < 4; i++) {
-        if (getCurrentQuestion!.categoryOptions![i].translations.containsKey(currentLang)) {
-          list.add(getCurrentQuestion!.categoryOptions![i].translations![currentLang]!);
+      for (var i = 0; i < 4; i++) {
+        if (getCurrentQuestion!.categoryOptions![i].translations
+            .containsKey(currentLang)) {
+          list.add(getCurrentQuestion!
+              .categoryOptions![i].translations![currentLang]!);
         }
       }
     }
     return list;
-}
+  }
 
   double get currentProgress {
     return ((completedQuestions.length + skippedQuestions.length) /
-        questions.length) * 100;
+            questions.length) *
+        100;
   }
 
   int get screenNumber {
@@ -117,30 +124,47 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   void saveQuestion(int score) {
-    double scoreDouble = score/4;
-    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Verkest', answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: scoreDouble)])).then((value) => print(value));
+    double scoreDouble = score / 4;
+    answerApi
+        .createAnswer(
+            getCurrentQuestion!.id,
+            CreateAnswerRequest(
+                questionId: getCurrentQuestion!.id,
+                userId: 'Verkest',
+                answers: [
+                  CreateAnswerDetailRequest(
+                      tag: this
+                          .getCurrentQuestion!
+                          .statementOptions
+                          .tagScores
+                          .keys
+                          .first,
+                      score: scoreDouble)
+                ]))
+        .then((value) => print(value));
   }
 
-  void addCategoryAnswer(int selectedCategoryIndex){
+  void addCategoryAnswer(int selectedCategoryIndex) {
     // find the category option in the current question
     // todo check if its a category question
-    var toSelectCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
+    var toSelectCategory =
+        getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
     //todo, check if the category isn't already selected somehow
     toSelectCategory.tagScores.forEach((key, value) {
-      this.currentSelectedCategories.add(CreateAnswerDetailRequest(tag: key,score:1));
+      this
+          .currentSelectedCategories
+          .add(CreateAnswerDetailRequest(tag: key, score: 1));
     });
   }
 
   void saveCategories() {
-    answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: 'Verkest', answers: currentSelectedCategories)).then((value) => print(value));
-  }
-}
-
-extension IterableExtension<T> on Iterable<T> {
-  T? firstWhereOrNull(bool Function(T element) test) {
-    for (var element in this) {
-      if (test(element)) return element;
-    }
-    return null;
+    answerApi
+        .createAnswer(
+            getCurrentQuestion!.id,
+            CreateAnswerRequest(
+                questionId: getCurrentQuestion!.id,
+                userId: 'Verkest',
+                answers: currentSelectedCategories))
+        .then((value) => print(value));
   }
 }
