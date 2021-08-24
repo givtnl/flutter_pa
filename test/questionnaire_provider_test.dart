@@ -85,33 +85,15 @@ void main() {
             QuestionStatementModel(tagScores: {"Tax relief": 100})),
       ]);
 
-  CreateAnswerRequest createAnswerRequestStatement = CreateAnswerRequest(
-      answers: [CreateAnswerDetailRequest(tag: 'Tax relief', score: 0.0)],
-      questionId: 'b8e58fbe-a5a9-4685-9256-29a402b01139',
-      userId: 'Verkest');
-  CreateQuestionResponse createQuestionResponse = CreateQuestionResponse(id: 'b8e58fbe-a5a9-4685-9256-29a402b01139');
-
-  CreateAnswerRequest createAnswerRequestCategory = CreateAnswerRequest(
-      answers: [CreateAnswerDetailRequest(score: 1,tag: 'International aid and human rights'), CreateAnswerDetailRequest(tag: 'Animals', score: 1)],
-      questionId: 'ea63b0bb-38bb-443a-9c75-dfd3cd65356f',
-      userId: 'Verkest');
-  CreateQuestionResponse createCategoryResponse = CreateQuestionResponse(id: 'ea63b0bb-38bb-443a-9c75-dfd3cd65356f');
-
   group('QuestionnaireProvider tests', () {
     final questionsApi = MockQuestionsApi();
     final answersApi = MockAnswersApi();
     final mockObserver = MockNavigatorObserver();
 
-    //manier zoeken om uit te vinden als een bepaalde methode op een mock is uitgevoerd
-    // er voor zorgen dat de currentselectedcategories leeg zijn na uitvoeren flow
-    // ervoor zorgen dat addcategory answer de item toevoegt in de lijst (tagscores)
+    // manier zoeken om uit te vinden als een bepaalde methode op een mock is uitgevoerd @tony why?
 
     when(questionsApi.getQuestionsList())
         .thenAnswer((_) => Future.value(questionListResponse));
-    when(answersApi.createAnswer('b8e58fbe-a5a9-4685-9256-29a402b01139', createAnswerRequestStatement))
-        .thenAnswer((_) => Future.value(createQuestionResponse));
-    when(answersApi.createAnswer('ea63b0bb-38bb-443a-9c75-dfd3cd65356f', createAnswerRequestCategory))
-        .thenAnswer((_) => Future.value(createCategoryResponse));
 
     test('Ensure Questions Are Assigned When Executing Http Call', () async {
       var provider = QuestionnaireProvider
@@ -220,8 +202,6 @@ void main() {
       provider.prepareNextScreen();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
-      provider.addCategoryAnswer(0);
-      provider.addCategoryAnswer(2);
       provider.prepareNextScreen();
       expect(provider.completedQuestions.where((element) => element.type == QuestionType.number1), questionListResponse.result.where((element) => element.type == QuestionType.number1));
     });
