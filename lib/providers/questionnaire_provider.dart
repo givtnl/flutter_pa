@@ -126,7 +126,7 @@ class QuestionnaireProvider with ChangeNotifier {
 
   Future<void> saveQuestion(int score) async {
     double scoreDouble = score / 4;
-    return await answerApi
+    return await this.answerApi
         .createAnswer(
             getCurrentQuestion!.id,
             CreateAnswerRequest(
@@ -142,20 +142,23 @@ class QuestionnaireProvider with ChangeNotifier {
                           .first,
                       score: scoreDouble)
                 ]))
-        .then((value) => print(value));
+        .catchError((error) => Future(error))
+        .then((value) => null/*THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
   }
 
   void addCategoryAnswer(int selectedCategoryIndex) {
-    // find the category option in the current question
-    // todo check if its a category question
-    var toSelectCategory =
-        getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
-    //todo, check if the category isn't already selected somehow
-    toSelectCategory.tagScores.forEach((key, value) {
-      this
-          .currentSelectedCategories
-          .add(CreateAnswerDetailRequest(tag: key, score: 1));
-    });
+    QuestionListModel? question = getCurrentQuestion;
+    if (question != null && question.type == QuestionType.number1) {
+      var toSelectCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
+      toSelectCategory.tagScores.forEach((key, value) {
+        CreateAnswerDetailRequest createAnswerDetailRequest = CreateAnswerDetailRequest(tag: key, score: 1);
+        if (!currentSelectedCategories.contains(createAnswerDetailRequest)) {
+          this.currentSelectedCategories.add(createAnswerDetailRequest);
+        }
+      });
+    } else {
+      return;
+    }
   }
 
   Future<void> saveCategories() async {

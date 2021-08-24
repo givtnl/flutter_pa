@@ -34,6 +34,7 @@ class IntroScreen extends StatelessWidget {
                     label: S.of(context).introButton,
                     tapped: () {
                       questionnaireProvider.prepareNextScreen();
+                      Navigator.of(context).pushNamed(questionnaireProvider.getNextRouteName);
                     },
                   ),
                 ),

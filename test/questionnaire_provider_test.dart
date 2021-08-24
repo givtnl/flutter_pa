@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/question_screen.dart';
@@ -85,11 +84,18 @@ void main() {
             statementOptions:
             QuestionStatementModel(tagScores: {"Tax relief": 100})),
       ]);
-  CreateAnswerRequest createAnswerRequest = CreateAnswerRequest(
+
+  CreateAnswerRequest createAnswerRequestStatement = CreateAnswerRequest(
       answers: [CreateAnswerDetailRequest(tag: 'Tax relief', score: 0.0)],
       questionId: 'b8e58fbe-a5a9-4685-9256-29a402b01139',
       userId: 'Verkest');
   CreateQuestionResponse createQuestionResponse = CreateQuestionResponse(id: 'b8e58fbe-a5a9-4685-9256-29a402b01139');
+
+  CreateAnswerRequest createAnswerRequestCategory = CreateAnswerRequest(
+      answers: [CreateAnswerDetailRequest(score: 1,tag: 'International aid and human rights'), CreateAnswerDetailRequest(tag: 'Animals', score: 1)],
+      questionId: 'ea63b0bb-38bb-443a-9c75-dfd3cd65356f',
+      userId: 'Verkest');
+  CreateQuestionResponse createCategoryResponse = CreateQuestionResponse(id: 'ea63b0bb-38bb-443a-9c75-dfd3cd65356f');
 
   group('QuestionnaireProvider tests', () {
     final questionsApi = MockQuestionsApi();
@@ -97,15 +103,15 @@ void main() {
     final mockObserver = MockNavigatorObserver();
 
     //manier zoeken om uit te vinden als een bepaalde methode op een mock is uitgevoerd
-
     // er voor zorgen dat de currentselectedcategories leeg zijn na uitvoeren flow
-
     // ervoor zorgen dat addcategory answer de item toevoegt in de lijst (tagscores)
 
     when(questionsApi.getQuestionsList())
         .thenAnswer((_) => Future.value(questionListResponse));
-    when(answersApi.createAnswer('b8e58fbe-a5a9-4685-9256-29a402b01139', createAnswerRequest))
+    when(answersApi.createAnswer('b8e58fbe-a5a9-4685-9256-29a402b01139', createAnswerRequestStatement))
         .thenAnswer((_) => Future.value(createQuestionResponse));
+    when(answersApi.createAnswer('ea63b0bb-38bb-443a-9c75-dfd3cd65356f', createAnswerRequestCategory))
+        .thenAnswer((_) => Future.value(createCategoryResponse));
 
     test('Ensure Questions Are Assigned When Executing Http Call', () async {
       var provider = QuestionnaireProvider
@@ -167,16 +173,58 @@ void main() {
       expect(provider.getNextRouteName, equals(SuggestionsScreen.routeName));
     });
 
-    test('', ()  async {
+    test('Ensure that skipping a question adds it to the skipped questions array', ()  async {
       var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
-      provider.addCategoryAnswer(0);
-      provider.addCategoryAnswer(1);
-      expect
+      provider.skipCurrentQuestion();
       provider.prepareNextScreen();
-      expect();
+      provider.skipCurrentQuestion();
+      provider.prepareNextScreen();
+      provider.skipCurrentQuestion();
+      provider.prepareNextScreen();
+      provider.skipCurrentQuestion();
+      provider.prepareNextScreen();
+      provider.skipCurrentQuestion();
+      provider.prepareNextScreen();
+      expect(provider.skippedQuestions.length, equals(5));
     });
 
+    test('Ensure that a category is added correctly to the currentSelectedCategories list', ()  async {
+      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      await provider.loadQuestions();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.addCategoryAnswer(0);
+      provider.addCategoryAnswer(2);
+      expect(provider.currentSelectedCategories.length, equals(2));
+
+    });
+
+    test('Ensure that preparing the next question on a category screen clears the currentSelectedCategories list', ()  async {
+      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      await provider.loadQuestions();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.addCategoryAnswer(0);
+      provider.addCategoryAnswer(2);
+      provider.prepareNextScreen();
+      expect(provider.currentSelectedCategories.length, equals(0));
+    });
+
+
+    test('Ensure answered Category gets added to completed questions', () async {
+      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      await provider.loadQuestions();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.addCategoryAnswer(0);
+      provider.addCategoryAnswer(2);
+      provider.prepareNextScreen();
+      expect(provider.completedQuestions.where((element) => element.type == QuestionType.number1), questionListResponse.result.where((element) => element.type == QuestionType.number1));
+    });
 
   });
 }
