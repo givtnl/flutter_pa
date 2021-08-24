@@ -22,7 +22,6 @@ class MixpanelManager {
   }
 
   _timedFlushEvents() async {
-    print("Doing timed flush events");
     await flushEvents();
     Future.delayed(Duration(seconds: 60), _timedFlushEvents);
   }
