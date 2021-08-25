@@ -180,7 +180,6 @@ void main() {
       provider.addCategoryAnswer(0);
       provider.addCategoryAnswer(2);
       expect(provider.currentSelectedCategories.length, equals(2));
-
     });
 
     test('Ensure that preparing the next question on a category screen clears the currentSelectedCategories list', ()  async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -25,6 +26,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionnaireProvider>(context, listen: false);
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
     var question = provider.getCurrentQuestion;
 
     return TrackedScreen(
@@ -152,7 +154,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           label: "Volgende",
                           tapped: () {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
-                            provider.saveQuestion(_sliderValue.round());
+                            provider.saveQuestion(_sliderValue.round(), userProvider.userName);
                             provider.prepareNextScreen();
                             Navigator.of(context).pushNamed(provider.getNextRouteName);
                           },

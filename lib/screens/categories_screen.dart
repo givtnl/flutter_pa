@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -12,8 +13,9 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    final categories = questionnaireProvider.getCurrentCategoriesTranslation;
+    final provider = Provider.of<QuestionnaireProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
+    final categories = provider.getCurrentCategoriesTranslation;
 
     List<CategoryCard> cards =
         categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
@@ -35,7 +37,7 @@ class CategoriesScreen extends StatelessWidget {
                         FractionallySizedBox(
                           heightFactor: 1,
                           widthFactor:
-                              questionnaireProvider.currentProgress / 100,
+                              provider.currentProgress / 100,
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(36, 106, 177, 1),
@@ -60,20 +62,18 @@ class CategoriesScreen extends StatelessWidget {
                     child: BlueButton(
                       label: 'volgende',
                       tapped: ()  {
-
                         cards
                             .where((element) => element.selected)
                             .forEach((element)  {
-                          questionnaireProvider
+                          provider
                               .addCategoryAnswer(cards.indexOf(element));
                         });
-                        //api call do      // show ze ,
-
-                        questionnaireProvider.saveCategories();
+                        // show ze spinner,
+                        provider.saveCategories(userProvider.userName);
                         //hide ze spinner
-                        questionnaireProvider.prepareNextScreen();
+                        provider.prepareNextScreen();
                         Navigator.of(context)
-                            .pushNamed(questionnaireProvider.getNextRouteName);
+                            .pushNamed(provider.getNextRouteName);
                       },
                     ),
                   )

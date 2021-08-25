@@ -124,14 +124,14 @@ class QuestionnaireProvider with ChangeNotifier {
     skippedQuestions.add(getCurrentQuestion!);
   }
 
-  Future<void> saveQuestion(int score) async {
+  Future<void> saveQuestion(int score, String user) async {
     double scoreDouble = score / 4;
     return await this.answerApi
         .createAnswer(
             getCurrentQuestion!.id,
             CreateAnswerRequest(
                 questionId: getCurrentQuestion!.id,
-                userId: 'Verkest',
+                userId: user,
                 answers: [
                   CreateAnswerDetailRequest(
                       tag: this
@@ -143,7 +143,7 @@ class QuestionnaireProvider with ChangeNotifier {
                       score: scoreDouble)
                 ]))
         .catchError((error) => Future(error))
-        .then((value) => null/*THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+        .then((value) => null/* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
   }
 
   void addCategoryAnswer(int selectedCategoryIndex) {
@@ -161,14 +161,14 @@ class QuestionnaireProvider with ChangeNotifier {
     }
   }
 
-  Future<void> saveCategories() async {
+  Future<void> saveCategories(String user) async {
     return await answerApi
         .createAnswer(
             getCurrentQuestion!.id,
             CreateAnswerRequest(
                 questionId: getCurrentQuestion!.id,
-                userId: 'Verkest',
+                userId: user,
                 answers: currentSelectedCategories))
-        .then((value) => print(value));
+        .then((value) => null/* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
   }
 }
