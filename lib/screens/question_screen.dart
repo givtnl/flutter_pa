@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/models/appRouting.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
-import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
 import 'categories_screen.dart';
@@ -160,7 +159,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
                             provider.saveQuestion(_sliderValue.round(), userProvider.userName);
                             provider.prepareNextScreen();
-                            Navigator.of(context).push(_createRoute(provider.isCompleted, provider.getCurrentQuestion!.type));
+                            Navigator.of(context).push(AppRouting.getNextScreen(provider.isCompleted, provider.getCurrentQuestion!.type));
                           },
                         ),
                       ),
@@ -171,13 +170,4 @@ class _QuestionScreenState extends State<QuestionScreen> {
       ),
     );
   }
-}
-
-Route _createRoute(isCompleted, questionType) {
-  Widget nextScreen = isCompleted ? SuggestionsScreen() : questionType == QuestionType.number0 ? QuestionScreen() : CategoriesScreen();
-  return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => nextScreen,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-          FadeTransition(opacity: animation, child: child),
-      transitionDuration: Duration(milliseconds: 500));
 }
