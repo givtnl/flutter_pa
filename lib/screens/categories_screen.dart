@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
+import 'package:flutter_app/screens/question_screen.dart';
+import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_app/widgets/category_card.dart';
+import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -73,7 +76,7 @@ class CategoriesScreen extends StatelessWidget {
                         //hide ze spinner
                         provider.prepareNextScreen();
                         Navigator.of(context)
-                            .pushNamed(provider.getNextRouteName);
+                            .push(_createRoute(provider.isCompleted, provider.getCurrentQuestion!.type));
                       },
                     ),
                   )
@@ -83,4 +86,13 @@ class CategoriesScreen extends StatelessWidget {
           )),
     );
   }
+}
+
+Route _createRoute(isCompleted, questionType) {
+  Widget nextScreen = isCompleted ? SuggestionsScreen() : questionType == QuestionType.number0 ? QuestionScreen() : CategoriesScreen();
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => nextScreen,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child),
+      transitionDuration: Duration(milliseconds: 500));
 }
