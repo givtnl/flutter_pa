@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/loadingScreen.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
@@ -63,26 +64,6 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
         ),
       ),
     );
-
-    return new FutureBuilder(
-        future: provider.loadMatches(userProvider.userName),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            print(snapshot.error);
-          }
-
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              return screen;
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return CircularProgressIndicator();
-            case ConnectionState.none:
-              print("none");
-              return Container();
-              break;
-          }
-        }
-      );
+    return LoadingScreen.awaitingFuture(provider.loadMatches(userProvider.userName), screen);
   }
 }

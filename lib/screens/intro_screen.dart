@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
+import 'package:flutter_app/models/loadingScreen.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
@@ -13,7 +14,7 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     questionnaireProvider.loadQuestions();
-    return TrackedScreen(
+    var screen = TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
@@ -44,5 +45,6 @@ class IntroScreen extends StatelessWidget {
         ),
       ),
     );
+    return LoadingScreen.awaitingFuture(questionnaireProvider.loadQuestions(), screen);
   }
 }
