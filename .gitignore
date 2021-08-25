@@ -52,7 +52,3 @@ organisation.g.dart
 
 # Test data
 /json/*
-
-
-/lib/generated/api/*
-lib/generated/api
