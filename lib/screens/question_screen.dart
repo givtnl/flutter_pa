@@ -8,8 +8,6 @@ import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'categories_screen.dart';
-
 class QuestionScreen extends StatefulWidget {
   static const String routeName = '/question';
 
