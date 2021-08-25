@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/models/appRouting.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'categories_screen.dart';
 
 class QuestionScreen extends StatefulWidget {
   static const String routeName = '/question';
@@ -156,7 +159,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
                             provider.saveQuestion(_sliderValue.round(), userProvider.userName);
                             provider.prepareNextScreen();
-                            Navigator.of(context).pushNamed(provider.getNextRouteName);
+                            Navigator.of(context).push(AppRouting.getNextScreen(provider.isCompleted, provider.getCurrentQuestion!.type));
                           },
                         ),
                       ),

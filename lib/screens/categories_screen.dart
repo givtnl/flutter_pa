@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/appRouting.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
@@ -72,8 +73,7 @@ class CategoriesScreen extends StatelessWidget {
                         provider.saveCategories(userProvider.userName);
                         //hide ze spinner
                         provider.prepareNextScreen();
-                        Navigator.of(context)
-                            .pushNamed(provider.getNextRouteName);
+                        Navigator.of(context).push(AppRouting.getNextScreen(provider.isCompleted, provider.getCurrentQuestion!.type));
                       },
                     ),
                   )
