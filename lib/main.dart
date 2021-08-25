@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
@@ -46,6 +47,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => UserProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MatchesProvider(),
         ),
       ],
       child: MaterialApp(
