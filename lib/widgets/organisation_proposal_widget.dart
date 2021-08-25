@@ -11,7 +11,7 @@ class OrganisationProposal extends StatelessWidget {
   final String title;
   final String explanation;
   final int match;
-  final int orgId;
+  final String orgId;
 
   OrganisationProposal(this.orgId, this.title, this.explanation, this.match);
 
