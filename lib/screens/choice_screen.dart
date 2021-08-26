@@ -1,18 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:flutter_app/widgets/categories_container.dart';
+import 'package:flutter_app/widgets/givt_slider.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
 class ChoiceScreen extends StatefulWidget {
   static const String routeName = '/choice';
+  ChoiceScreenType screenType = ChoiceScreenType.statement;
 
   _ChoiceScreenState createState() => _ChoiceScreenState();
 }
 
 class _ChoiceScreenState extends State<ChoiceScreen> {
+
+  var statement = GivtSlider();
+  var categories = CategoriesContainer();
+
   @override
   Widget build(BuildContext context) {
     var questioinnaireProvider = Provider.of<QuestionnaireProvider>(context);
@@ -47,33 +53,17 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                 Expanded(
                   child: Container(),
                 ),
+                questioinnaireProvider.currentScreenType == ChoiceScreenType.statement ?
+                    statement : categories,
                 Padding(
                   padding: const EdgeInsets.all(50.0),
-                  child: questioinnaireProvider.isCompleted
-                      ? BigText("Completed")
-                      : questioinnaireProvider.isFoo == true
-                          ? BigText("Foo")
-                          : BigText("Bar"),
-                ),
-                Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: questioinnaireProvider.isCompleted
-                        ? BlueButton(
-                            label: "Completed",
-                            tapped: () async {
-                              print("Completed");
-                            })
-                        : questioinnaireProvider.isFoo == true
-                            ? BlueButton(
-                                label: "Foo",
-                                tapped: () async {
-                                  print("Foo");
-                                })
-                            : BlueButton(
-                                label: "Bar",
-                                tapped: () async {
-                                  print("Bar");
-                                }))
+                  child: BlueButton(
+                    label: 'volgende',
+                    tapped: () async {
+
+                    },
+                  ),
+                )
               ],
             ),
           ),

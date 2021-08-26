@@ -1,16 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/categories_screen.dart';
-import 'package:flutter_app/screens/question_screen.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:openapi/api.dart';
+
+enum ChoiceScreenType { statement, category }
 
 class QuestionnaireProvider with ChangeNotifier {
   var _screenNumber = 0;
 
   late QuestionsApi questionsApi;
   late AnswersApi answerApi;
+
   // for test purpose
   var isFoo = false;
 
@@ -24,23 +23,26 @@ class QuestionnaireProvider with ChangeNotifier {
     this.answerApi = AnswersApi();
   }
 
-  QuestionnaireProvider.withDependencies(QuestionsApi questionsApi, AnswersApi answersApi) {
+  QuestionnaireProvider.withDependencies(
+      QuestionsApi questionsApi, AnswersApi answersApi) {
     this.questionsApi = questionsApi;
     this.answerApi = answersApi;
   }
 
   Future<void> loadQuestions() async {
-      return await this.questionsApi.getQuestionsList().catchError((error) => Future.error(error))
-      .then((response) {
-        _questions = response.result;
-        _questions.sort((a, b) => a.displayOrder - b.displayOrder);
-      });
-    }
+    return await this
+        .questionsApi
+        .getQuestionsList()
+        .catchError((error) => Future.error(error))
+        .then((response) {
+      _questions = response.result;
+      _questions.sort((a, b) => a.displayOrder - b.displayOrder);
+    });
+  }
 
   void prepareNextScreen() {
     _incrementScreenNumber();
-    if (screenNumber != 0)
-      _setPreviousScreenDone();
+    if (screenNumber != 0) _setPreviousScreenDone();
     this.currentSelectedCategories.clear();
     notifyListeners();
   }
@@ -65,14 +67,16 @@ class QuestionnaireProvider with ChangeNotifier {
         (completedQuestions.length + skippedQuestions.length);
   }
 
-  String get getNextRouteName {
-    if (this.isCompleted) {
-      return SuggestionsScreen.routeName;
-    } else {
-      return getCurrentQuestion!.type == QuestionType.number0
-          ? QuestionScreen.routeName
-          : CategoriesScreen.routeName;
-    }
+  ChoiceScreenType get determineNextScreen {
+    return getCurrentQuestion!.type == QuestionType.number0
+        ? ChoiceScreenType.statement
+        : ChoiceScreenType.category;
+  }
+
+  ChoiceScreenType get currentScreenType {
+    return getCurrentQuestion!.type == QuestionType.number0
+        ? ChoiceScreenType.statement
+        : ChoiceScreenType.category;
   }
 
   QuestionListModel? get getCurrentQuestion {
@@ -129,7 +133,8 @@ class QuestionnaireProvider with ChangeNotifier {
 
   Future<void> saveQuestion(int score, String user) async {
     double scoreDouble = score / 4;
-    return await this.answerApi
+    return await this
+        .answerApi
         .createAnswer(
             getCurrentQuestion!.id,
             CreateAnswerRequest(
@@ -146,15 +151,18 @@ class QuestionnaireProvider with ChangeNotifier {
                       score: scoreDouble)
                 ]))
         .catchError((error) => Future(error))
-        .then((value) => null/* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+        .then(
+            (value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
   }
 
   void addCategoryAnswer(int selectedCategoryIndex) {
     QuestionListModel? question = getCurrentQuestion;
     if (question != null && question.type == QuestionType.number1) {
-      var toSelectCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
+      var toSelectCategory =
+          getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
       toSelectCategory.tagScores.forEach((key, value) {
-        CreateAnswerDetailRequest createAnswerDetailRequest = CreateAnswerDetailRequest(tag: key, score: 1);
+        CreateAnswerDetailRequest createAnswerDetailRequest =
+            CreateAnswerDetailRequest(tag: key, score: 1);
         if (!currentSelectedCategories.contains(createAnswerDetailRequest)) {
           this.currentSelectedCategories.add(createAnswerDetailRequest);
         }
@@ -172,6 +180,7 @@ class QuestionnaireProvider with ChangeNotifier {
                 questionId: getCurrentQuestion!.id,
                 userId: user,
                 answers: currentSelectedCategories))
-        .then((value) => null/* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+        .then(
+            (value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
   }
 }

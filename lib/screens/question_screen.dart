@@ -109,13 +109,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(50.0),
-                    child:
-                    BigText('Welke van deze thema’s vind jij belangrijk?'),
-                  ),
-                  Container(height: 350, child: ListView(children: cards)),
-                  Expanded(child: Container()),
-                  Padding(
-                    padding: const EdgeInsets.all(50.0),
                     child: BlueButton(
                       label: 'volgende',
                       tapped: () async {
@@ -148,6 +141,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
     List<CategoryCard> cards =
     categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
 
-    return provider.getNextRouteName == QuestionScreen.routeName ? questionScreen(provider, userProvider) : categoryScreen(provider, userProvider, cards);
+    return provider.determineNextScreen == ChoiceScreenType.statement ? questionScreen(provider, userProvider) : categoryScreen(provider, userProvider, cards);
   }
 }

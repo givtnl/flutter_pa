@@ -99,7 +99,6 @@ class _GivtSliderState extends State<GivtSlider> {
                 //provider.skipQuestion(question.id);
                 provider.skipCurrentQuestion();
                 provider.prepareNextScreen();
-                Navigator.of(context).pushNamed(provider.getNextRouteName);
               },
               child: Text(
                 "overslaan",
