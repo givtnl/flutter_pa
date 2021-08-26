@@ -10,6 +10,10 @@ class MatchesProvider with ChangeNotifier {
     this.matchesApi = MatchesApi();
   }
 
+  MatchesProvider.withDependencies(MatchesApi matchesApi) {
+    this.matchesApi = matchesApi;
+  }
+
   Future<void> loadMatches(String userId) async {
     return await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80).then((response) {
       organisations = response.result;
