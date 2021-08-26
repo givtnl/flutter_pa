@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/categories_container.dart';
 import 'package:flutter_app/widgets/givt_slider.dart';
@@ -53,14 +54,16 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                 Expanded(
                   child: Container(),
                 ),
-                questioinnaireProvider.currentScreenType == ChoiceScreenType.statement ?
+                if (!questioinnaireProvider.isCompleted) questioinnaireProvider.currentScreenType == ChoiceScreenType.statement ?
                     statement : categories,
                 Padding(
                   padding: const EdgeInsets.all(50.0),
                   child: BlueButton(
                     label: 'volgende',
                     tapped: () {
-                      questioinnaireProvider.prepareNextScreen();
+                      questioinnaireProvider.isCompleted ?
+                      Navigator.of(context).pushNamed(SuggestionsScreen.routeName)
+                      : questioinnaireProvider.prepareNextScreen();
                     },
                   ),
                 )
