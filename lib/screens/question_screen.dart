@@ -95,6 +95,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 50, left: 50, right: 50),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Flexible(
                               child: Text(
@@ -106,7 +107,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 ),
                               ),
                             ),
-                            Flexible(child: Container()),
+                            Flexible(child: Container()), //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
                             Flexible(
                               child: Text(
                                 "Helemaal akkoord",
