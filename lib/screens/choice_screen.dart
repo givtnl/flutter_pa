@@ -59,8 +59,8 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   padding: const EdgeInsets.all(50.0),
                   child: BlueButton(
                     label: 'volgende',
-                    tapped: () async {
-
+                    tapped: () {
+                      questioinnaireProvider.prepareNextScreen();
                     },
                   ),
                 )

@@ -6,25 +6,21 @@ import 'package:provider/provider.dart';
 import 'big_text.dart';
 import 'category_card.dart';
 
-class CategoriesContainer extends StatefulWidget {
-  const CategoriesContainer({Key? key}) : super(key: key);
-
-  @override
-  _CategoriesContainerState createState() => _CategoriesContainerState();
-}
-
-class _CategoriesContainerState extends State<CategoriesContainer> {
+class CategoriesContainer extends StatelessWidget {
 
   Widget categoryContainer(cards) {
-    return Column(children: [
-      Padding(
-        padding: const EdgeInsets.all(50.0),
-        child:
-        BigText('Welke van deze thema’s vind jij belangrijk?'),
-      ),
-      Container(height: 350, child: ListView(children: cards)),
-      Expanded(child: Container()),
-    ]);
+    return Container(
+      height: 550,
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.all(50.0),
+          child:
+          BigText('Welke van deze thema’s vind jij belangrijk?'),
+        ),
+        Container(height: 350, child: ListView(children: cards)),
+        Expanded(child: Container()),
+      ]),
+    );
   }
 
   @override
