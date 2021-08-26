@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/models/appRouting.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
@@ -94,6 +95,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 50, left: 50, right: 50),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Flexible(
                               child: Text(
@@ -105,7 +107,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                                 ),
                               ),
                             ),
-                            Flexible(child: Container()),
+                            Flexible(child: Container()), //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
                             Flexible(
                               child: Text(
                                 "Helemaal akkoord",
@@ -156,7 +158,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
                             provider.saveQuestion(_sliderValue.round(), userProvider.userName);
                             provider.prepareNextScreen();
-                            Navigator.of(context).pushNamed(provider.getNextRouteName);
+                            Navigator.of(context).push(AppRouting.getNextScreen(provider.isCompleted, provider.getCurrentQuestion!.type));
                           },
                         ),
                       ),
