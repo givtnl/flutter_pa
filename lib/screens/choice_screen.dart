@@ -33,7 +33,8 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     children: [
                       FractionallySizedBox(
                         heightFactor: 1,
-                        widthFactor: questioinnaireProvider.currentProgress/100,
+                        widthFactor:
+                            questioinnaireProvider.currentProgress / 100,
                         child: Container(
                           decoration: BoxDecoration(
                             color: Color.fromRGBO(36, 106, 177, 1),
@@ -47,21 +48,32 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   child: Container(),
                 ),
                 Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: questioinnaireProvider.isCompleted ? BigText("Completed") : questioinnaireProvider.isFoo ? BigText("Foo") : BigText("Bar"),
+                  padding: const EdgeInsets.all(50.0),
+                  child: questioinnaireProvider.isCompleted
+                      ? BigText("Completed")
+                      : questioinnaireProvider.isFoo == true
+                          ? BigText("Foo")
+                          : BigText("Bar"),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: BlueButton(
-                    label: "yeet",
-                    tapped: () async {
-                      // MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
-                      // await provider.saveQuestion(_sliderValue.round(), userProvider.userName);
-                      // provider.prepareNextScreen();
-                      //Navigator.of(context).push(AppRouting.getNextScreen(provider.isCompleted, provider.isCompleted ? QuestionType.number0 : provider.getCurrentQuestion!.type));
-                    },
-                  ),
-                ),
+                    padding: const EdgeInsets.all(50.0),
+                    child: questioinnaireProvider.isCompleted
+                        ? BlueButton(
+                            label: "Completed",
+                            tapped: () async {
+                              print("Completed");
+                            })
+                        : questioinnaireProvider.isFoo == true
+                            ? BlueButton(
+                                label: "Foo",
+                                tapped: () async {
+                                  print("Foo");
+                                })
+                            : BlueButton(
+                                label: "Bar",
+                                tapped: () async {
+                                  print("Bar");
+                                }))
               ],
             ),
           ),
@@ -70,4 +82,3 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
     );
   }
 }
-
