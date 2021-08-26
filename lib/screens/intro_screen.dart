@@ -34,8 +34,8 @@ class IntroScreen extends StatelessWidget {
                   child: BlueButton(
                     label: S.of(context).introButton,
                     tapped: () {
-                      questionnaireProvider.prepareNextScreen();
-                      Navigator.of(context).pushNamed(questionnaireProvider.getNextRouteName);
+                      // questionnaireProvider.prepareNextScreen();
+                      Navigator.of(context).pushNamed("/choice");
                     },
                   ),
                 ),
