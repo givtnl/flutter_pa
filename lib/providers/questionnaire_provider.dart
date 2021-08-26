@@ -40,6 +40,7 @@ class QuestionnaireProvider with ChangeNotifier {
     if (screenNumber != 0)
       _setPreviousScreenDone();
     this.currentSelectedCategories.clear();
+    notifyListeners();
   }
 
   List<QuestionListModel> get questions {

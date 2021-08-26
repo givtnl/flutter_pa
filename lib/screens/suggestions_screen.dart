@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/loadingScreen.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
@@ -9,20 +8,11 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
-class SuggestionsScreen extends StatefulWidget {
+class SuggestionsScreen extends StatelessWidget {
   static const routeName = "/suggestion";
 
-  @override
-  _SuggestionsScreenState createState() => _SuggestionsScreenState();
-}
-
-class _SuggestionsScreenState extends State<SuggestionsScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final MatchesProvider provider = Provider.of<MatchesProvider>(context);
-    final UserProvider userProvider = Provider.of<UserProvider>(context);
-
-    var screen = TrackedScreen(
+  Widget buildWidget(GetMatchesListResponse matches) {
+    return TrackedScreen(
       screenName: 'SuggestionScreen',
       child: Scaffold(
         backgroundColor: Color.fromRGBO(222, 233, 243, 1),
@@ -50,12 +40,13 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Column(
-                      children: provider.organisations
+                      children: matches.result
                           .map((e) => OrganisationProposal(
-                              e.organisation.id,
-                              e.organisation.name,
-                              e.organisation.description,
-                              e.score))
+                          e.organisation.id,
+                          e.organisation.name,
+                          e.organisation.description,
+                          e.score))
+                          .take(5)
                           .toList()),
                 ),
               ],
@@ -64,6 +55,21 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
         ),
       ),
     );
-    return LoadingScreen.awaitingFuture(provider.loadMatches(userProvider.userName), screen);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final MatchesProvider provider = Provider.of<MatchesProvider>(context);
+    final UserProvider userProvider = Provider.of<UserProvider>(context);
+
+    return new FutureBuilder(
+        future: provider.loadMatches(userProvider.userName),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return buildWidget(snapshot.data as GetMatchesListResponse);
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
   }
 }

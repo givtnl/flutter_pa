@@ -14,10 +14,11 @@ class MatchesProvider with ChangeNotifier {
     this.matchesApi = matchesApi;
   }
 
-  Future<void> loadMatches(String userId) async {
-    return await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80).then((response) {
-      organisations = response.result;
-      organisations.sort((a, b) => b.score - a.score);
-    });
+  Future<GetMatchesListResponse> loadMatches(String userId) async {
+    var response =
+        await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80);
+    organisations = response.result;
+    organisations.sort((a, b) => b.score - a.score);
+    return response;
   }
 }
