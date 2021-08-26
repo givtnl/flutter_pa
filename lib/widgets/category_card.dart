@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
 
@@ -75,7 +76,7 @@ class _CategoryCardState extends State<CategoryCard> {
           });
         },
         child: Transform.scale(
-          scale: this.widget.selected ? 1.08 : 1.0,
+          scale: this.widget.selected ? (!kIsWeb ? 1.08 : 1.02) : 1.0,
           child: Container(
             decoration: BoxDecoration(
                 color: Color.fromRGBO(239, 244, 249, 1),
