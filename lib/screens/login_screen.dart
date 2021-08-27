@@ -6,39 +6,72 @@ import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-  static const String routeName = '/login';
-
   @override
   Widget build(BuildContext context) {
-    var userProvider = Provider.of<UserProvider>(context);
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+    var provider = Provider.of<UserProvider>(context);
+    var color = Theme
+        .of(context)
+        .backgroundColor;
+
+    var errorWidget = Container(
+      child: Text(
+        'Identificatie is verplicht',
+        style: const TextStyle(
+          color: Color.fromRGBO(36, 106, 177, 1),),
+      ),
+    );
+
+    Widget loginScreen = Scaffold(
+      backgroundColor: Theme
+          .of(context)
+          .backgroundColor,
       body: SafeArea(
           child: Stack(children: [
-        Center(
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Enter username or email'),
-                  onChanged: (text) {
-                    userProvider.userName = text;
-                  })),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: BlueButton(
-              label: "Start",
-              tapped: () {
-                Navigator.of(context).pushNamed(IntroScreen.routeName);
-              },
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      child: Container(
+                        color: provider.inputEmpty && !provider.initialEmpty
+                            ? Colors.deepOrange
+                            : color,
+                        child: TextField(
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Enter username or email'),
+                            onChanged: (text) {
+                              provider.userName = text;
+                              provider.inputEmpty = text == '';
+                              provider.setInitialEmptyFalse();
+                            }),
+                      )),
+                  provider.inputEmpty && !provider.initialEmpty ? errorWidget : Container(),
+                ],
+              ),
             ),
-          ),
-        )
-      ])),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: BlueButton(
+                  label: "Start",
+                  tapped: () {
+                    if (provider.initialEmpty) {
+                      provider.setInitialEmptyFalse();
+                    }
+                    if (!provider.inputEmpty) {
+                      Navigator.of(context).pushNamed(IntroScreen.routeName);
+                    }
+                  },
+                ),
+              ),
+            )
+          ])
+      ),
     );
+
+    return loginScreen;
   }
 }
