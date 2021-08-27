@@ -55,7 +55,15 @@ class IntroScreen extends StatelessWidget {
               return screen;
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return CircularProgressIndicator();
+            return Container(
+              color: Theme.of(context).backgroundColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
+                child: CircularProgressIndicator(
+                  color: Color.fromRGBO(36, 106, 177, 1),
+                ),
+              ),
+            );
             case ConnectionState.none:
               print("none");
               return Container();

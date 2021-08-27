@@ -68,7 +68,15 @@ class SuggestionsScreen extends StatelessWidget {
           if (snapshot.hasData) {
             return buildWidget(snapshot.data as GetMatchesListResponse);
           } else {
-            return CircularProgressIndicator();
+            return Container(
+              color: Theme.of(context).backgroundColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
+                child: CircularProgressIndicator(
+                  color: Color.fromRGBO(36, 106, 177, 1),
+                ),
+              ),
+            );
           }
         });
   }
