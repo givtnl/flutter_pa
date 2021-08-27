@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
+import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';

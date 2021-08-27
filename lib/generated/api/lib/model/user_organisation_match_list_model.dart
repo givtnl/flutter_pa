@@ -19,7 +19,7 @@ class UserOrganisationMatchListModel {
 
   String tag;
 
-  String organisation;
+  OrganisationDetailModel organisation;
 
   int score;
 
@@ -58,7 +58,7 @@ class UserOrganisationMatchListModel {
     ? null
     : UserOrganisationMatchListModel(
         tag: json[r'tag'],
-        organisation: String.fromJson(json[r'organisation']),
+        organisation: OrganisationDetailModel.fromJson(json[r'organisation']),
         score: json[r'score'],
     );
 

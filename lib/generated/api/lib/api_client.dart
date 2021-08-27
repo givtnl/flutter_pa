@@ -211,7 +211,7 @@ class ApiClient {
         case 'GetQuestionsListResponse':
           return GetQuestionsListResponse.fromJson(value);
         case 'OrganisationDetailModel':
-          return String.fromJson(value);
+          return OrganisationDetailModel.fromJson(value);
         case 'QuestionCategoryOptionModel':
           return QuestionCategoryOptionModel.fromJson(value);
         case 'QuestionListModel':
