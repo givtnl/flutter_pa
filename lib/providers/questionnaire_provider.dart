@@ -44,6 +44,18 @@ class QuestionnaireProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<bool> preparePreviousScreen() {
+    var onFirstQuestion = screenNumber == 0;
+    if (!onFirstQuestion) {
+      _decrementScreenNumber();
+      this.currentSelectedCategories.clear();
+      completedQuestions.removeWhere((element) => element.id == getCurrentQuestion!.id);
+      skippedQuestions.removeWhere((element) => element.id == getCurrentQuestion!.id);
+      notifyListeners();
+    }
+    return Future.value(onFirstQuestion);
+  }
+
   List<QuestionListModel> get questions {
     return _questions;
   }
@@ -116,6 +128,10 @@ class QuestionnaireProvider with ChangeNotifier {
 
   void _incrementScreenNumber() {
     _screenNumber++;
+  }
+
+  void _decrementScreenNumber() {
+    _screenNumber--;
   }
 
   void skipCurrentQuestion() {
