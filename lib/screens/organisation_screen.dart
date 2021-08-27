@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
-import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
@@ -25,7 +23,7 @@ class OrganisationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var org = Provider.of<OrganisationProvider>(context, listen: false).currentSelectedProposal;
+    var org = Provider.of<MatchesProvider>(context).getOrganisationById(Provider.of<OrganisationProvider>(context).currentSelectedProposal);
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
@@ -95,7 +93,7 @@ class OrganisationScreen extends StatelessWidget {
                     height: 30,
                   ),
                   Text(
-                    org.explanation,
+                    org.description,
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
                   SizedBox(
@@ -104,7 +102,7 @@ class OrganisationScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      org.orgWebsite,
+                      org.websiteUrl,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w700,
@@ -114,16 +112,12 @@ class OrganisationScreen extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  OrganisationExtra('Missie', org.orgMission),
+                  OrganisationExtra('Missie', org.mission),
                   SizedBox(
                     height: 10,
                   ),
-                  OrganisationExtra('Visie', org.orgVision),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  OrganisationExtra('Kernwaarden', org.orgKeyValues),
-                  if (org.donationLink != null)
+                  OrganisationExtra('Visie', org.vision),
+                  /*if (org.donationLink != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: BlueButton(
@@ -136,7 +130,7 @@ class OrganisationScreen extends StatelessWidget {
                             else
                               throw "Could not launch $url";
                           }),
-                    )
+                    )*/
                 ],
               ),
             ),

@@ -12,7 +12,7 @@ void main() {
         UserOrganisationMatchListModel(
             tag: 'Certification mark',
             score: 70,
-            organisation: OrganisationDetailModel(
+            organisation: String(
                 id: '1b4ff54c-6d35-4c04-8ceb-2b18bdcd3573',
                 name: 'Hartstichting',
             )
@@ -20,7 +20,7 @@ void main() {
         UserOrganisationMatchListModel(
             tag: 'Animals',
             score: 80,
-            organisation: OrganisationDetailModel(
+            organisation: String(
               id: '31a50347-4c25-45a4-bd68-04dcf964563f',
               name: 'Kinderboerderij Driebergen',
             )
@@ -28,7 +28,7 @@ void main() {
         UserOrganisationMatchListModel(
             tag: 'Health',
             score: 90,
-            organisation: OrganisationDetailModel(
+            organisation: String(
               id: '333d864a-8bde-423a-902e-f45f14f9ea49',
               name: 'Brandwonden Stichting',
             )

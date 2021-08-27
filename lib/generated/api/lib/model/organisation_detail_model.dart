@@ -9,9 +9,9 @@
 
 part of openapi.api;
 
-class OrganisationDetailModel {
-  /// Returns a new [OrganisationDetailModel] instance.
-  OrganisationDetailModel({
+class String {
+  /// Returns a new [String] instance.
+  String({
     this.id,
     this.name,
     this.description,
@@ -39,7 +39,7 @@ class OrganisationDetailModel {
   Map<String, String> metaTags;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is OrganisationDetailModel &&
+  bool operator ==(Object other) => identical(this, other) || other is String &&
      other.id == id &&
      other.name == name &&
      other.description == description &&
@@ -92,11 +92,11 @@ class OrganisationDetailModel {
     return json;
   }
 
-  /// Returns a new [OrganisationDetailModel] instance and imports its values from
+  /// Returns a new [String] instance and imports its values from
   /// [json] if it's non-null, null if [json] is null.
-  static OrganisationDetailModel fromJson(Map<String, dynamic> json) => json == null
+  static String fromJson(Map<String, dynamic> json) => json == null
     ? null
-    : OrganisationDetailModel(
+    : String(
         id: json[r'id'],
         name: json[r'name'],
         description: json[r'description'],
@@ -109,25 +109,25 @@ class OrganisationDetailModel {
           (json[r'metaTags'] as Map).cast<String, String>(),
     );
 
-  static List<OrganisationDetailModel> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
+  static List<String> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>
     json == null || json.isEmpty
-      ? true == emptyIsNull ? null : <OrganisationDetailModel>[]
-      : json.map((dynamic value) => OrganisationDetailModel.fromJson(value)).toList(growable: true == growable);
+      ? true == emptyIsNull ? null : <String>[]
+      : json.map((dynamic value) => String.fromJson(value)).toList(growable: true == growable);
 
-  static Map<String, OrganisationDetailModel> mapFromJson(Map<String, dynamic> json) {
-    final map = <String, OrganisationDetailModel>{};
+  static Map<String, String> mapFromJson(Map<String, dynamic> json) {
+    final map = <String, String>{};
     if (json?.isNotEmpty == true) {
-      json.forEach((key, value) => map[key] = OrganisationDetailModel.fromJson(value));
+      json.forEach((key, value) => map[key] = String.fromJson(value));
     }
     return map;
   }
 
   // maps a json object with a list of OrganisationDetailModel-objects as value to a dart map
-  static Map<String, List<OrganisationDetailModel>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
-    final map = <String, List<OrganisationDetailModel>>{};
+  static Map<String, List<String>> mapListFromJson(Map<String, dynamic> json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<String>>{};
     if (json?.isNotEmpty == true) {
       json.forEach((key, value) {
-        map[key] = OrganisationDetailModel.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
+        map[key] = String.listFromJson(value, emptyIsNull: emptyIsNull, growable: growable,);
       });
     }
     return map;

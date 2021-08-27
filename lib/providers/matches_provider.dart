@@ -21,4 +21,8 @@ class MatchesProvider with ChangeNotifier {
     organisations.sort((a, b) => b.score - a.score);
     return response;
   }
+
+  OrganisationDetailModel getOrganisationById(String id) {
+    return organisations.firstWhere((element) => element.organisation.id == id).organisation;
+  }
 }
