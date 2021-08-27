@@ -10,9 +10,6 @@ class QuestionnaireProvider with ChangeNotifier {
   late QuestionsApi questionsApi;
   late AnswersApi answerApi;
 
-  // for test purpose
-  var isFoo = false;
-
   List<QuestionListModel> _questions = [];
   List<QuestionListModel> completedQuestions = [];
   List<QuestionListModel> skippedQuestions = [];
@@ -65,12 +62,6 @@ class QuestionnaireProvider with ChangeNotifier {
   bool get isCompleted {
     return questions.length ==
         (completedQuestions.length + skippedQuestions.length);
-  }
-
-  ChoiceScreenType get determineNextScreen {
-    return getCurrentQuestion!.type == QuestionType.number0
-        ? ChoiceScreenType.statement
-        : ChoiceScreenType.category;
   }
 
   ChoiceScreenType get currentScreenType {
