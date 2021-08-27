@@ -6,13 +6,13 @@ import 'package:provider/provider.dart';
 
 import 'big_text.dart';
 
-class GivtSlider extends StatefulWidget {
+class StatementContainer extends StatefulWidget {
   @override
-  _GivtSliderState createState() => _GivtSliderState();
+  _StatementContainerState createState() => _StatementContainerState();
 }
 
 
-class _GivtSliderState extends State<GivtSlider> {
+class _StatementContainerState extends State<StatementContainer> {
   final _valueTexts = ["Helemaal oneens", "Niet akkoord", "Neutraal", "Akkoord", "Helemaal eens"];
 
   String get valueText {
