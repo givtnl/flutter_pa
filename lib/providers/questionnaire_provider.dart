@@ -80,7 +80,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   QuestionListModel? get getCurrentQuestion {
-    return questions[screenNumber];
+    return questions.length -1 >= screenNumber ? questions[screenNumber] : null;
   }
 
   String get getCurrentQuestionTranslation {
