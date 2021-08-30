@@ -10,7 +10,6 @@ class QuestionnaireProvider with ChangeNotifier {
   late QuestionsApi questionsApi;
   late AnswersApi answerApi;
 
-  bool _questionsLoaded = false;
   List<QuestionListModel> _questions = [];
   List<QuestionListModel> completedQuestions = [];
   List<QuestionListModel> skippedQuestions = [];
@@ -37,7 +36,6 @@ class QuestionnaireProvider with ChangeNotifier {
         .then((response) {
       _questions = response.result;
       _questions.sort((a, b) => a.displayOrder - b.displayOrder);
-      _questionsLoaded = true;
     });
   }
 
@@ -64,11 +62,6 @@ void setCurrentStatementValue(double score) {
     }
     return Future.value(onFirstQuestion);
   }
-
-  bool get questionsLoaded {
-    return _questionsLoaded;
-  }
-
   List<QuestionListModel> get questions {
     return _questions;
   }
