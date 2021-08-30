@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 
 // tests for OrganisationDetailModel
 void main() {
-  final instance = OrganisationDetailModel();
+  final instance = String();
 
   group('test OrganisationDetailModel', () {
     // String id

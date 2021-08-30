@@ -3,11 +3,10 @@ import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
-import 'package:flutter_app/screens/categories_screen.dart';
+import 'package:flutter_app/screens/choice_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/login_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
-import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -79,10 +78,9 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/': (ctx) => LoginScreen(),
           IntroScreen.routeName: (ctx) => IntroScreen(),
-          QuestionScreen.routeName: (ctx) => QuestionScreen(),
           SuggestionsScreen.routeName: (ctx) => SuggestionsScreen(),
           OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
-          CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
+          ChoiceScreen.routeName: (ctx) => ChoiceScreen()
         },
       ),
     );

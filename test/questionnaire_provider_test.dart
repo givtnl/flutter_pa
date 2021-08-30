@@ -1,6 +1,4 @@
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/screens/categories_screen.dart';
-import 'package:flutter_app/screens/question_screen.dart';
 import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -131,7 +129,7 @@ void main() {
       var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
-      expect(provider.getNextRouteName, equals(QuestionScreen.routeName));
+      expect(provider.currentScreenType, equals(ChoiceScreenType.statement));
     });
 
     test('Ensure next route name is /category', ()  async {
@@ -140,7 +138,7 @@ void main() {
       provider.prepareNextScreen();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
-      expect(provider.getNextRouteName, equals(CategoriesScreen.routeName));
+      expect(provider.currentScreenType, equals(ChoiceScreenType.category));
     });
 
 
@@ -152,7 +150,7 @@ void main() {
       provider.prepareNextScreen();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
-      expect(provider.getNextRouteName, equals(SuggestionsScreen.routeName));
+      expect(provider.isCompleted, true);
     });
 
     test('Ensure that skipping a question adds it to the skipped questions array', ()  async {
