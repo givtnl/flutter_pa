@@ -8,17 +8,15 @@ import 'category_card.dart';
 
 class CategoriesContainer extends StatelessWidget {
 
-  Widget categoryContainer(cards) {
+  Widget categoryContainer(cards, context) {
     return Container(
-      height: 550,
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 35),
           child:
           BigText('Welke van deze thema’s vind jij belangrijk?'),
         ),
-        Container(height: 350, child: ListView(children: cards)),
-        Expanded(child: Container()),
+        Container(height: MediaQuery.of(context).size.height * .5, child: Column(children: cards)),
       ]),
     );
   }
@@ -30,6 +28,6 @@ class CategoriesContainer extends StatelessWidget {
 
     List<CategoryCard> cards =
     categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
-    return categoryContainer(cards);
+    return categoryContainer(cards, context);
   }
 }

@@ -61,7 +61,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   ),
                   body,
                   Padding(
-                    padding: const EdgeInsets.all(50.0),
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height * .04),
                     child: BlueButton(
                       label: 'volgende',
                       tapped: () {

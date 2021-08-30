@@ -68,7 +68,7 @@ class _CategoryCardState extends State<CategoryCard> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 30),
       child: GestureDetector(
         onTap: () {
           setState(() {
@@ -95,7 +95,7 @@ class _CategoryCardState extends State<CategoryCard> {
                       ]
                     : []),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: MediaQuery.of(context).size.height * .015),
               child: Row(
                 children: [
                   Icon(
@@ -105,7 +105,7 @@ class _CategoryCardState extends State<CategoryCard> {
                     semanticLabel: this.widget.iconText,
                   ),
                   Container(
-                    width: 200,
+                    width: MediaQuery.of(context).size.width * .6,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Text(
