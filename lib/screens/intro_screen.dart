@@ -13,7 +13,7 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
      var screen = TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
@@ -46,7 +46,7 @@ class IntroScreen extends StatelessWidget {
       ),
     );
     return new FutureBuilder(
-        future: questionnaireProvider.questionsLoaded ? Future.delayed(Duration.zero) :  questionnaireProvider.loadQuestions(),
+        future:  questionnaireProvider.loadQuestions(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
