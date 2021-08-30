@@ -28,7 +28,7 @@ class _BlueButtonState extends State<BlueButton> {
             child: GestureDetector(
               onTap: tapped,
               child: Container(
-                  height: 40,
+                  height: MediaQuery.of(context).size.height * .05,
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(36, 106, 177, 1),
                     borderRadius: BorderRadius.circular(6),

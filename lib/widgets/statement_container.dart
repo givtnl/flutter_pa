@@ -28,11 +28,11 @@ class _StatementContainerState extends State<StatementContainer> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height * .05),
           child: BigText(provider.getCurrentQuestionTranslation),
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 20, left: 25, right: 25),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .005, left: 25, right: 25),
           child: SliderTheme(
             data: SliderThemeData(
               trackHeight: 3,
@@ -57,7 +57,7 @@ class _StatementContainerState extends State<StatementContainer> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 50, left: 50, right: 50),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .05, left: 50, right: 50),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -87,7 +87,7 @@ class _StatementContainerState extends State<StatementContainer> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
+          padding: EdgeInsets.symmetric(horizontal: 40),
           child: Container(
             width: double.infinity,
             child: TextButton(
