@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
@@ -12,8 +14,7 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    questionnaireProvider.loadQuestions();
-    var screen = TrackedScreen(
+     var screen = TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
@@ -45,7 +46,7 @@ class IntroScreen extends StatelessWidget {
       ),
     );
     return new FutureBuilder(
-        future: questionnaireProvider.loadQuestions(),
+        future: questionnaireProvider.questionsLoaded ? Future.delayed(Duration.zero) :  questionnaireProvider.loadQuestions(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);

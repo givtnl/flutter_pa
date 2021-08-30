@@ -10,10 +10,13 @@ class QuestionnaireProvider with ChangeNotifier {
   late QuestionsApi questionsApi;
   late AnswersApi answerApi;
 
+  bool _questionsLoaded = false;
   List<QuestionListModel> _questions = [];
   List<QuestionListModel> completedQuestions = [];
   List<QuestionListModel> skippedQuestions = [];
   List<CreateAnswerDetailRequest> currentSelectedCategories = [];
+  double currentSelectedStatementAnswer = 2;
+
 
   QuestionnaireProvider() {
     this.questionsApi = QuestionsApi();
@@ -34,13 +37,19 @@ class QuestionnaireProvider with ChangeNotifier {
         .then((response) {
       _questions = response.result;
       _questions.sort((a, b) => a.displayOrder - b.displayOrder);
+      _questionsLoaded = true;
     });
   }
 
+
+void setCurrentStatementValue(double score) {
+    this.currentSelectedStatementAnswer = score;
+}
   void prepareNextScreen() {
     _incrementScreenNumber();
     if (screenNumber != 0) _setPreviousScreenDone();
     this.currentSelectedCategories.clear();
+    this.currentSelectedStatementAnswer = 2;
     notifyListeners();
   }
 
@@ -54,6 +63,10 @@ class QuestionnaireProvider with ChangeNotifier {
       notifyListeners();
     }
     return Future.value(onFirstQuestion);
+  }
+
+  bool get questionsLoaded {
+    return _questionsLoaded;
   }
 
   List<QuestionListModel> get questions {
@@ -138,28 +151,40 @@ class QuestionnaireProvider with ChangeNotifier {
     skippedQuestions.add(getCurrentQuestion!);
   }
 
-  Future<void> saveQuestion(int score, String user) async {
-    double scoreDouble = score / 4;
-    return await this
-        .answerApi
-        .createAnswer(
-            getCurrentQuestion!.id,
-            CreateAnswerRequest(
-                questionId: getCurrentQuestion!.id,
-                userId: user,
-                answers: [
-                  CreateAnswerDetailRequest(
-                      tag: this
-                          .getCurrentQuestion!
-                          .statementOptions
-                          .tagScores
-                          .keys
-                          .first,
-                      score: scoreDouble)
-                ]))
-        .catchError((error) => Future(error))
-        .then(
-            (value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+  Future<dynamic> saveQuestion(String user) async {
+
+    if (getCurrentQuestion!.type == QuestionType.number0){
+      return await this
+          .answerApi
+          .createAnswer(
+          getCurrentQuestion!.id,
+          CreateAnswerRequest(
+              questionId: getCurrentQuestion!.id,
+              userId: user,
+              answers: [
+                CreateAnswerDetailRequest(
+                    tag: this
+                        .getCurrentQuestion!
+                        .statementOptions
+                        .tagScores
+                        .keys
+                        .first,
+                    score: this.currentSelectedStatementAnswer / 4)
+              ]))
+          .catchError((error) => Future(error));
+    }else {
+      return await answerApi
+          .createAnswer(
+          getCurrentQuestion!.id,
+          CreateAnswerRequest(
+              questionId: getCurrentQuestion!.id,
+              userId: user,
+              answers: currentSelectedCategories))
+          .then(
+              (value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+    }
+
+
   }
 
   void addCategoryAnswer(int selectedCategoryIndex) {
@@ -180,14 +205,6 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   Future<void> saveCategories(String user) async {
-    return await answerApi
-        .createAnswer(
-            getCurrentQuestion!.id,
-            CreateAnswerRequest(
-                questionId: getCurrentQuestion!.id,
-                userId: user,
-                answers: currentSelectedCategories))
-        .then(
-            (value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+
   }
 }

@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'big_text.dart';
 
 class StatementContainer extends StatefulWidget {
+
+
   @override
   _StatementContainerState createState() => _StatementContainerState();
 }
@@ -15,16 +18,14 @@ class StatementContainer extends StatefulWidget {
 class _StatementContainerState extends State<StatementContainer> {
   final _valueTexts = ["Helemaal oneens", "Niet akkoord", "Neutraal", "Akkoord", "Helemaal eens"];
 
-  String get valueText {
-    return _valueTexts[_sliderValue.round()];
-  }
 
-  double _sliderValue = 2;
+
+
+
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionnaireProvider>(context);
-
     return Column(
       children: [
         Padding(
@@ -40,18 +41,19 @@ class _StatementContainerState extends State<StatementContainer> {
             child: Slider(
               inactiveColor: Color.fromRGBO(36, 106, 177, 1),
               activeColor: Color.fromRGBO(36, 106, 177, 1),
-              value: _sliderValue,
+              value: provider.currentSelectedStatementAnswer,
               min: 0,
               max: 4,
               divisions: 4,
-              label: valueText,
+              label: _valueTexts[provider.currentSelectedStatementAnswer.toInt()],
               onChanged: (double value) {
                 setState(() {
-                  _sliderValue = value;
+               //   _sliderValue = value;
+                  provider.setCurrentStatementValue(value);
                 });
-              },
+                  },
               onChangeEnd: (_) {
-                MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID": "${provider.getCurrentQuestion!.id}", "VALUE": "${_sliderValue.toStringAsFixed(0)}"});
+              //  MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID": "${provider.getCurrentQuestion!.id}", "VALUE": "${_sliderValue.toStringAsFixed(0)}"});
               },
             ),
           ),
@@ -94,7 +96,7 @@ class _StatementContainerState extends State<StatementContainer> {
               style: ButtonStyle(
                 alignment: AlignmentDirectional.centerStart,
               ),
-              onPressed: () {
+              onPressed: ()  {
                 MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
                 //provider.skipQuestion(question.id);
                 provider.skipCurrentQuestion();
