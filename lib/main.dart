@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/organisation_provider.dart';
@@ -76,7 +77,7 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         routes: {
-          '/': (ctx) => LoginScreen(),
+          '/': (ctx) => kReleaseMode ? IntroScreen() : LoginScreen(),
           IntroScreen.routeName: (ctx) => IntroScreen(),
           SuggestionsScreen.routeName: (ctx) => SuggestionsScreen(),
           OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
