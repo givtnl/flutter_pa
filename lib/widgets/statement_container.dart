@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -16,15 +17,10 @@ class StatementContainer extends StatefulWidget {
 
 
 class _StatementContainerState extends State<StatementContainer> {
-  final _valueTexts = ["Helemaal oneens", "Niet akkoord", "Neutraal", "Akkoord", "Helemaal eens"];
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
+    final _valueTexts = [ S.of(context).choiceScreen_totallyDisagree, S.of(context).choiceScreen_disagree, S.of(context).choiceScreen_neutral, S.of(context).choiceScreen_agree, S.of(context).choiceScreen_totallyAgree];
     var provider = Provider.of<QuestionnaireProvider>(context);
     return Column(
       children: [
@@ -65,7 +61,7 @@ class _StatementContainerState extends State<StatementContainer> {
             children: [
               Flexible(
                 child: Text(
-                  "Helemaal mee oneens",
+                  S.of(context).choiceScreen_totallyDisagree,
                   style: TextStyle(
                     fontFamily: 'Inter',
                     color: Color.fromRGBO(36, 106, 177, 1),
@@ -76,7 +72,7 @@ class _StatementContainerState extends State<StatementContainer> {
               Flexible(child: Container()), //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
               Flexible(
                 child: Text(
-                  "Helemaal mee eens",
+                  S.of(context).choiceScreen_totallyAgree,
                   style: TextStyle(
                     fontFamily: 'Inter',
                     color: Color.fromRGBO(36, 106, 177, 1),
@@ -103,7 +99,7 @@ class _StatementContainerState extends State<StatementContainer> {
                 provider.prepareNextScreen();
               },
               child: Text(
-                "overslaan",
+                S.of(context).choiceScreen_skip,
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w700,
