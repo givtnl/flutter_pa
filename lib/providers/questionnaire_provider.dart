@@ -16,33 +16,27 @@ class QuestionnaireProvider with ChangeNotifier {
   List<CreateAnswerDetailRequest> currentSelectedCategories = [];
   double currentSelectedStatementAnswer = 2;
 
-
   QuestionnaireProvider() {
     this.questionsApi = QuestionsApi();
     this.answerApi = AnswersApi();
   }
 
-  QuestionnaireProvider.withDependencies(
-      QuestionsApi questionsApi, AnswersApi answersApi) {
+  QuestionnaireProvider.withDependencies(QuestionsApi questionsApi, AnswersApi answersApi) {
     this.questionsApi = questionsApi;
     this.answerApi = answersApi;
   }
 
   Future<void> loadQuestions() async {
-    return await this
-        .questionsApi
-        .getQuestionsList()
-        .catchError((error) => Future.error(error))
-        .then((response) {
+    return await this.questionsApi.getQuestionsList().catchError((error) => Future.error(error)).then((response) {
       _questions = response.result;
       _questions.sort((a, b) => a.displayOrder - b.displayOrder);
     });
   }
 
-
-void setCurrentStatementValue(double score) {
+  void setCurrentStatementValue(double score) {
     this.currentSelectedStatementAnswer = score;
-}
+  }
+
   void prepareNextScreen() {
     _incrementScreenNumber();
     if (screenNumber != 0) _setPreviousScreenDone();
@@ -62,6 +56,7 @@ void setCurrentStatementValue(double score) {
     }
     return Future.value(onFirstQuestion);
   }
+
   List<QuestionListModel> get questions {
     return _questions;
   }
@@ -78,18 +73,15 @@ void setCurrentStatementValue(double score) {
   }
 
   bool get isCompleted {
-    return questions.length ==
-        (completedQuestions.length + skippedQuestions.length);
+    return questions.length == (completedQuestions.length + skippedQuestions.length);
   }
 
   ChoiceScreenType get currentScreenType {
-    return getCurrentQuestion!.type == QuestionType.number0
-        ? ChoiceScreenType.statement
-        : ChoiceScreenType.category;
+    return getCurrentQuestion!.type == QuestionType.number0 ? ChoiceScreenType.statement : ChoiceScreenType.category;
   }
 
   QuestionListModel? get getCurrentQuestion {
-    return questions.length -1 >= screenNumber ? questions[screenNumber] : null;
+    return questions.length-1 >= screenNumber ? questions[screenNumber] : null;
   }
 
   String get getCurrentQuestionTranslation {
@@ -97,8 +89,7 @@ void setCurrentStatementValue(double score) {
     if (getCurrentQuestion == null) {
       return '';
     }
-    if (getCurrentQuestion!.translations != null &&
-        getCurrentQuestion!.translations.containsKey(currentLang)) {
+    if (getCurrentQuestion!.translations != null && getCurrentQuestion!.translations.containsKey(currentLang)) {
       return getCurrentQuestion!.translations[currentLang]!;
     }
     return 'to translate';
@@ -112,10 +103,8 @@ void setCurrentStatementValue(double score) {
     List<String> list = [];
     if (getCurrentQuestion!.categoryOptions.isNotEmpty) {
       for (var i = 0; i < 4; i++) {
-        if (getCurrentQuestion!.categoryOptions![i].translations
-            .containsKey(currentLang)) {
-          list.add(getCurrentQuestion!
-              .categoryOptions![i].translations![currentLang]!);
+        if (getCurrentQuestion!.categoryOptions![i].translations.containsKey(currentLang)) {
+          list.add(getCurrentQuestion!.categoryOptions![i].translations![currentLang]!);
         }
       }
     }
@@ -123,9 +112,7 @@ void setCurrentStatementValue(double score) {
   }
 
   double get currentProgress {
-    return ((completedQuestions.length + skippedQuestions.length) /
-            questions.length) *
-        100;
+    return ((completedQuestions.length + skippedQuestions.length) / questions.length) * 100;
   }
 
   int get screenNumber {
@@ -145,59 +132,35 @@ void setCurrentStatementValue(double score) {
   }
 
   Future<dynamic> saveQuestion(String user) async {
-
-    if (getCurrentQuestion!.type == QuestionType.number0){
+    if (getCurrentQuestion!.type == QuestionType.number0) {
       return await this
           .answerApi
           .createAnswer(
-          getCurrentQuestion!.id,
-          CreateAnswerRequest(
-              questionId: getCurrentQuestion!.id,
-              userId: user,
-              answers: [
-                CreateAnswerDetailRequest(
-                    tag: this
-                        .getCurrentQuestion!
-                        .statementOptions
-                        .tagScores
-                        .keys
-                        .first,
-                    score: this.currentSelectedStatementAnswer / 4)
-              ]))
+              getCurrentQuestion!.id,
+              CreateAnswerRequest(
+                  questionId: getCurrentQuestion!.id,
+                  userId: user,
+                  answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: this.currentSelectedStatementAnswer / 4)]))
           .catchError((error) => Future(error));
-    }else {
+    } else {
       return await answerApi
-          .createAnswer(
-          getCurrentQuestion!.id,
-          CreateAnswerRequest(
-              questionId: getCurrentQuestion!.id,
-              userId: user,
-              answers: currentSelectedCategories))
-          .then(
-              (value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+          .createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: user, answers: currentSelectedCategories))
+          .then((value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
     }
-
-
   }
 
-  void addCategoryAnswer(int selectedCategoryIndex) {
+  void toggleCategoryAnswer(bool selected, int selectedCategoryIndex) {
     QuestionListModel? question = getCurrentQuestion;
     if (question != null && question.type == QuestionType.number1) {
-      var toSelectCategory =
-          getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
-      toSelectCategory.tagScores.forEach((key, value) {
-        CreateAnswerDetailRequest createAnswerDetailRequest =
-            CreateAnswerDetailRequest(tag: key, score: 1);
-        if (!currentSelectedCategories.contains(createAnswerDetailRequest)) {
-          this.currentSelectedCategories.add(createAnswerDetailRequest);
+      var toToggleCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
+      toToggleCategory.tagScores.forEach((key, value) {
+        CreateAnswerDetailRequest createAnswerDetailRequest = CreateAnswerDetailRequest(tag: key, score: 1);
+        if (!currentSelectedCategories.contains(createAnswerDetailRequest) && selected) {
+          currentSelectedCategories.add(createAnswerDetailRequest);
+        } else if (currentSelectedCategories.contains(createAnswerDetailRequest) && !selected) {
+          currentSelectedCategories.remove(createAnswerDetailRequest);
         }
       });
-    } else {
-      return;
     }
-  }
-
-  Future<void> saveCategories(String user) async {
-
   }
 }

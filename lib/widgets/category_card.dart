@@ -1,15 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryCard extends StatefulWidget {
   final String categoryId;
   final String categoryText;
   final String iconText;
+  final int index;
   var selected = false;
 
 
-  CategoryCard(this.categoryId, this.categoryText, this.iconText);
+  CategoryCard(this.categoryId, this.categoryText, this.iconText, this.index);
 
   @override
   _CategoryCardState createState() => _CategoryCardState();
@@ -19,6 +22,8 @@ class _CategoryCardState extends State<CategoryCard> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<QuestionnaireProvider>(context);
+
     final icon;
     switch (this.widget.iconText) {
       case 'dieren':
@@ -73,6 +78,7 @@ class _CategoryCardState extends State<CategoryCard> {
         onTap: () {
           setState(() {
             this.widget.selected = !this.widget.selected;
+            provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
           });
         },
         child: Transform.scale(
