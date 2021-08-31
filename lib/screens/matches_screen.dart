@@ -5,7 +5,6 @@ import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_proposal_widget.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
-import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
 class MatchesScreen extends StatefulWidget {
@@ -19,40 +18,46 @@ class _MatchesScreen extends State<MatchesScreen> {
     var provider = Provider.of<MatchesProvider>(context);
     var matches = provider.organisationMatches;
 
-    return TrackedScreen(
-      screenName: 'MatchesScreen',
-      child: Scaffold(
-        backgroundColor: Color.fromRGBO(222, 233, 243, 1),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(50),
-                  child: BigText("Jouw persoonlijke voorstellen"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                  child: Text(
-                    "Dit zijn de organisaties die qua identiteit het beste bij jou passen.",
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(36, 106, 177, 1),
-                      fontSize: 14,
+    return WillPopScope(
+      onWillPop: () async {
+        // this prevents the user of going back in the flow to the questionnaire
+        return false;
+      },
+      child: TrackedScreen(
+        screenName: 'MatchesScreen',
+        child: Scaffold(
+          backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(50),
+                    child: BigText("Jouw persoonlijke voorstellen"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                    child: Text(
+                      "Dit zijn de organisaties die qua identiteit het beste bij jou passen.",
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromRGBO(36, 106, 177, 1),
+                        fontSize: 14,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: Column(
-                      children: matches
-                          .map((e) => OrganisationProposal(e))
-                          .take(5)
-                          .toList()),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Column(
+                        children: matches
+                            .map((e) => OrganisationProposal(e))
+                            .take(5)
+                            .toList()),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
