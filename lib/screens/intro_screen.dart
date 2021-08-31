@@ -1,11 +1,12 @@
-import 'dart:async';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -14,6 +15,7 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
      var screen = TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
@@ -34,7 +36,13 @@ class IntroScreen extends StatelessWidget {
                   child: BlueButton(
                     label: S.of(context).introButton,
                     tapped: () {
-                      // questionnaireProvider.prepareNextScreen();
+                      if (kReleaseMode) {
+                        final DateTime now = DateTime.now();
+                        final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
+                        final String formatted = formatter.format(now);
+                        userProvider.userName = formatted;
+                        print(userProvider.userName);
+                      }
                       Navigator.of(context).pushNamed("/choice");
                     },
                   ),
