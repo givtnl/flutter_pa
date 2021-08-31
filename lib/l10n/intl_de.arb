@@ -6,5 +6,6 @@
     "choiceScreen_agree": "zugestimmt",
     "choiceScreen_skip": "überspringen",
     "choiceScreen_totallyDisagree": "völlig anderer Meinung",
-    "choiceScreen_totallyAgree": "völlig einverstanden"
+    "choiceScreen_totallyAgree": "völlig einverstanden",
+    "choiceScreen_neutral": "Neutral"
 }
