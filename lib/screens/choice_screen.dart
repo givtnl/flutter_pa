@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
@@ -64,7 +65,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height * .04),
                     child: BlueButton(
-                      label: 'volgende',
+                      label: S.of(context).nextButton,
                       tapped: () async {
                         await questionnaireProvider.saveQuestion(userProvider.userName);
                         questionnaireProvider.prepareNextScreen();

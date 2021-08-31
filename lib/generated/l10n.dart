@@ -69,6 +69,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Next`
+  String get nextButton {
+    return Intl.message(
+      'Next',
+      name: 'nextButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introButton":
             MessageLookupByLibrary.simpleMessage("Naar de keuzewijzer!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit.")
+            "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
+        "nextButton": MessageLookupByLibrary.simpleMessage("Volgende")
       };
 }
