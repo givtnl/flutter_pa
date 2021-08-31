@@ -1,16 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
-import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
-import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
@@ -20,13 +16,13 @@ class OrganisationScreen extends StatelessWidget {
     "religie en levensbeschouwing": true,
   };
 
-  final matchingPercentage = 20;
-
   OrganisationScreen();
 
   @override
   Widget build(BuildContext context) {
-    var org = Provider.of<MatchesProvider>(context).getOrganisationById(Provider.of<OrganisationProvider>(context).currentSelectedProposal);
+    var provider = Provider.of<MatchesProvider>(context);
+    var currentMatch = provider.selectedOrganisationMatch;
+    var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
@@ -45,7 +41,7 @@ class OrganisationScreen extends StatelessWidget {
                           flex: 2,
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: BigText(org.name),
+                            child: BigText(currentOrganisation.name),
                           ),
                         ),
                         Flexible(
@@ -55,7 +51,7 @@ class OrganisationScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "$matchingPercentage%",
+                                  currentMatch.score.toString() + '%',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 22,
@@ -96,7 +92,7 @@ class OrganisationScreen extends StatelessWidget {
                     height: 30,
                   ),
                   Text(
-                    org.description,
+                    currentOrganisation.description,
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
                   SizedBox(
@@ -105,7 +101,7 @@ class OrganisationScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      org.websiteUrl,
+                      currentOrganisation.websiteUrl,
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w700,
@@ -115,11 +111,11 @@ class OrganisationScreen extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  OrganisationExtra('Missie', org.mission),
+                  OrganisationExtra('Missie', currentOrganisation.mission),
                   SizedBox(
                     height: 10,
                   ),
-                  OrganisationExtra('Visie', org.vision),
+                  OrganisationExtra('Visie', currentOrganisation.vision),
                   /*if (org.donationLink != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),

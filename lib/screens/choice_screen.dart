@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
+import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/categories_container.dart';
 import 'package:flutter_app/widgets/statement_container.dart';
@@ -26,8 +26,6 @@ var userProvider =Provider.of<UserProvider>(context);
           ChoiceScreenType.statement)
           ? StatementContainer()
           : CategoriesContainer();
-
-
     }
 
     return TrackedScreen(
@@ -72,7 +70,7 @@ var userProvider =Provider.of<UserProvider>(context);
                         questionnaireProvider.prepareNextScreen();
 
                         if (questionnaireProvider.isCompleted) {
-                          Navigator.of(context).pushNamed(SuggestionsScreen.routeName);
+                          Navigator.of(context).pushNamed(MatchesScreen.routeName);
                         }
                       },
                     ),

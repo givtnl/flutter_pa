@@ -1,13 +1,8 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:openapi/api.dart';
-import 'MockNavigatorObserver.dart';
 import 'questionnaire_provider_test.mocks.dart';
 
 @GenerateMocks([QuestionsApi, AnswersApi])
@@ -51,7 +46,6 @@ void main() {
   group('QuestionnaireProvider tests', () {
     final questionsApi = MockQuestionsApi();
     final answersApi = MockAnswersApi();
-    final mockObserver = MockNavigatorObserver();
 
     // manier zoeken om uit te vinden als een bepaalde methode op een mock is uitgevoerd @tony why?
 
@@ -160,6 +154,14 @@ void main() {
       expect(provider.completedQuestions.where((element) => element.type == QuestionType.number1), questionListResponse.result.where((element) => element.type == QuestionType.number1));
     });
 
+    test('Ensure toggle categories on statement does not add it to currentSelectedCategories', () async {
+      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      await provider.loadQuestions();
+      provider.prepareNextScreen();
+      provider.toggleCategoryAnswer(true, 1);
+      expect(provider.currentSelectedCategories.length, 0);
+    });
+
     test('Ensure toggle categories adds and removes the categories correctly', () async {
       var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
@@ -174,6 +176,16 @@ void main() {
       provider.toggleCategoryAnswer(false, 0);
       expect(provider.currentSelectedCategories.length, 1);
       provider.toggleCategoryAnswer(false, 1);
+      expect(provider.currentSelectedCategories.length, 0);
+    });
+
+    test('Ensure toggle categories does not throw exception with wrong index', () async {
+      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      await provider.loadQuestions();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.prepareNextScreen();
+      provider.toggleCategoryAnswer(false, 10);
       expect(provider.currentSelectedCategories.length, 0);
     });
   });

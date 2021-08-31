@@ -131,9 +131,9 @@ class QuestionnaireProvider with ChangeNotifier {
     skippedQuestions.add(getCurrentQuestion!);
   }
 
-  Future<dynamic> saveQuestion(String user) async {
+  Future<void> saveQuestion(String user) async {
     if (getCurrentQuestion!.type == QuestionType.number0) {
-      return await this
+      await this
           .answerApi
           .createAnswer(
               getCurrentQuestion!.id,
@@ -143,7 +143,7 @@ class QuestionnaireProvider with ChangeNotifier {
                   answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: this.currentSelectedStatementAnswer / 4)]))
           .catchError((error) => Future(error));
     } else {
-      return await answerApi
+      await answerApi
           .createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: user, answers: currentSelectedCategories))
           .then((value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
     }
@@ -151,7 +151,7 @@ class QuestionnaireProvider with ChangeNotifier {
 
   void toggleCategoryAnswer(bool selected, int selectedCategoryIndex) {
     QuestionListModel? question = getCurrentQuestion;
-    if (question != null && question.type == QuestionType.number1) {
+    if (question != null && question.type == QuestionType.number1 && getCurrentQuestion!.categoryOptions!.length >= selectedCategoryIndex && selectedCategoryIndex >=0) {
       var toToggleCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
       toToggleCategory.tagScores.forEach((key, value) {
         CreateAnswerDetailRequest createAnswerDetailRequest = CreateAnswerDetailRequest(tag: key, score: 1);

@@ -4,7 +4,9 @@ import 'package:openapi/api.dart';
 class MatchesProvider with ChangeNotifier {
   late MatchesApi matchesApi;
 
-  List<UserOrganisationMatchListModel> organisations = [];
+  List<UserOrganisationMatchListModel> organisationMatches = [];
+
+  late UserOrganisationMatchListModel selectedOrganisationMatch;
 
   MatchesProvider() {
     this.matchesApi = MatchesApi();
@@ -14,15 +16,14 @@ class MatchesProvider with ChangeNotifier {
     this.matchesApi = matchesApi;
   }
 
-  Future<GetMatchesListResponse> loadMatches(String userId) async {
-    var response =
-        await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80);
-    organisations = response.result;
-    organisations.sort((a, b) => b.score - a.score);
-    return response;
+  Future<void> loadMatches(String userId) async {
+    var response = await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80);
+    organisationMatches = response.result;
+    organisationMatches.sort((a, b) => b.score - a.score);
+    notifyListeners();
   }
 
-  OrganisationDetailModel getOrganisationById(String id) {
-    return organisations.firstWhere((element) => element.organisation.id == id).organisation;
+  selectOrganisationMatch(UserOrganisationMatchListModel model){
+  this.selectedOrganisationMatch = model;
   }
 }
