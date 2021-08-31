@@ -47,9 +47,8 @@ void main() {
     final questionsApi = MockQuestionsApi();
     final answersApi = MockAnswersApi();
 
-    // manier zoeken om uit te vinden als een bepaalde methode op een mock is uitgevoerd @tony why?
-
     when(questionsApi.getQuestionsList()).thenAnswer((_) => Future.value(questionListResponse));
+    when(answersApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a",any)).thenAnswer((_) => Future.value(CreateQuestionResponse(id: "38390a35-6ce2-4778-bf73-be39dbfb323a")));
 
     test('Ensure Questions Are Assigned When Executing Http Call', () async {
       var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
@@ -74,6 +73,7 @@ void main() {
     test('Ensure answered question gets added to completed questions', () async {
       var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
+      provider.prepareNextScreen();
       provider.prepareNextScreen();
       expect(provider.completedQuestions.first, questionListResponse.result.first);
     });
@@ -187,6 +187,15 @@ void main() {
       provider.prepareNextScreen();
       provider.toggleCategoryAnswer(false, 10);
       expect(provider.currentSelectedCategories.length, 0);
+    });
+
+    test('Ensure http call is executed when question is saved', () async {
+      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      await provider.loadQuestions();
+      provider.prepareNextScreen();
+      provider.setCurrentStatementValue(3);
+      provider.saveQuestion("Michiel");
+      verify(provider.answerApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a",any)).called(1);
     });
   });
 }

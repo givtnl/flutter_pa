@@ -11,10 +11,10 @@ class QuestionnaireProvider with ChangeNotifier {
   late AnswersApi answerApi;
 
   List<QuestionListModel> _questions = [];
-  List<QuestionListModel> completedQuestions = [];
-  List<QuestionListModel> skippedQuestions = [];
-  List<CreateAnswerDetailRequest> currentSelectedCategories = [];
-  double currentSelectedStatementAnswer = 2;
+  List<QuestionListModel> _completedQuestions = [];
+  List<QuestionListModel> _skippedQuestions = [];
+  List<CreateAnswerDetailRequest> _currentSelectedCategories = [];
+  double _currentSelectedStatementAnswer = 2;
 
   QuestionnaireProvider() {
     this.questionsApi = QuestionsApi();
@@ -27,21 +27,41 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   Future<void> loadQuestions() async {
-    return await this.questionsApi.getQuestionsList().catchError((error) => Future.error(error)).then((response) {
+    return await this.questionsApi.getQuestionsList().then((response) {
       _questions = response.result;
       _questions.sort((a, b) => a.displayOrder - b.displayOrder);
-    });
+    }).catchError((error) => Future.error(error));
+  }
+
+  List<QuestionListModel> get questions {
+    return [..._questions];
+  }
+
+  List<QuestionListModel> get skippedQuestions {
+    return [..._skippedQuestions];
+  }
+
+  List<QuestionListModel> get completedQuestions {
+    return [..._completedQuestions];
+  }
+
+  List<CreateAnswerDetailRequest> get currentSelectedCategories {
+    return [..._currentSelectedCategories];
+  }
+
+  double get currentSelectedStatementAnswer {
+    return _currentSelectedStatementAnswer;
   }
 
   void setCurrentStatementValue(double score) {
-    this.currentSelectedStatementAnswer = score;
+    this._currentSelectedStatementAnswer = score;
   }
 
   void prepareNextScreen() {
     _incrementScreenNumber();
     if (screenNumber != 0) _setPreviousScreenDone();
-    this.currentSelectedCategories.clear();
-    this.currentSelectedStatementAnswer = 2;
+    this._currentSelectedCategories.clear();
+    this._currentSelectedStatementAnswer = 2;
     notifyListeners();
   }
 
@@ -49,22 +69,20 @@ class QuestionnaireProvider with ChangeNotifier {
     var onFirstQuestion = screenNumber == 0;
     if (!onFirstQuestion) {
       _decrementScreenNumber();
-      this.currentSelectedCategories.clear();
-      completedQuestions.removeWhere((element) => element.id == getCurrentQuestion!.id);
-      skippedQuestions.removeWhere((element) => element.id == getCurrentQuestion!.id);
+      this._currentSelectedCategories.clear();
+      _completedQuestions.removeWhere((element) => element.id == getCurrentQuestion!.id);
+      _skippedQuestions.removeWhere((element) => element.id == getCurrentQuestion!.id);
       notifyListeners();
     }
     return Future.value(onFirstQuestion);
   }
 
-  List<QuestionListModel> get questions {
-    return _questions;
-  }
+
 
   void _setPreviousScreenDone() {
     if (questions.isNotEmpty) {
       QuestionListModel? qlm = questions.elementAt(_screenNumber - 1);
-      completedQuestions.add(qlm);
+      _completedQuestions.add(qlm);
     }
   }
 
@@ -128,7 +146,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   void skipCurrentQuestion() {
-    skippedQuestions.add(getCurrentQuestion!);
+    _skippedQuestions.add(getCurrentQuestion!);
   }
 
   Future<void> saveQuestion(String user) async {
@@ -156,9 +174,9 @@ class QuestionnaireProvider with ChangeNotifier {
       toToggleCategory.tagScores.forEach((key, value) {
         CreateAnswerDetailRequest createAnswerDetailRequest = CreateAnswerDetailRequest(tag: key, score: 1);
         if (!currentSelectedCategories.contains(createAnswerDetailRequest) && selected) {
-          currentSelectedCategories.add(createAnswerDetailRequest);
+          _currentSelectedCategories.add(createAnswerDetailRequest);
         } else if (currentSelectedCategories.contains(createAnswerDetailRequest) && !selected) {
-          currentSelectedCategories.remove(createAnswerDetailRequest);
+          _currentSelectedCategories.remove(createAnswerDetailRequest);
         }
       });
     }
