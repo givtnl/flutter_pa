@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introButton":
             MessageLookupByLibrary.simpleMessage("To the selection guide!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Find out with charities match your values, standards and identity.")
+            "Find out with charities match your values, standards and identity."),
+        "nextButton": MessageLookupByLibrary.simpleMessage("Next")
       };
 }

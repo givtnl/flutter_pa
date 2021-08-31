@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introButton":
             MessageLookupByLibrary.simpleMessage("Zur Auswahlhilfe!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen.")
+            "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
+        "nextButton": MessageLookupByLibrary.simpleMessage("Nächste")
       };
 }

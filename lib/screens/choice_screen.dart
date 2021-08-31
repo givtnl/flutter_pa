@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
@@ -11,6 +12,7 @@ import 'package:provider/provider.dart';
 
 class ChoiceScreen extends StatefulWidget {
   static const String routeName = '/choice';
+
   _ChoiceScreenState createState() => _ChoiceScreenState();
 }
 
@@ -20,18 +22,18 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-var userProvider =Provider.of<UserProvider>(context);
+    var userProvider = Provider.of<UserProvider>(context);
     if (!questionnaireProvider.isCompleted) {
-      body = (questionnaireProvider.currentScreenType ==
-          ChoiceScreenType.statement)
-          ? StatementContainer()
-          : CategoriesContainer();
+      body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
     }
 
     return TrackedScreen(
       screenName: 'ChoiceScreen',
       child: WillPopScope(
-        onWillPop: () {return questionnaireProvider.preparePreviousScreen();},
+        onWillPop: () async {
+          // do not allow the user to go back to prevent shit from happening
+          return false;
+        },
         child: Scaffold(
           backgroundColor: Color.fromRGBO(222, 233, 243, 1),
           body: SafeArea(
@@ -46,8 +48,7 @@ var userProvider =Provider.of<UserProvider>(context);
                       children: [
                         FractionallySizedBox(
                           heightFactor: 1,
-                          widthFactor:
-                              questionnaireProvider.currentProgress / 100,
+                          widthFactor: questionnaireProvider.currentProgress / 100,
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(36, 106, 177, 1),
@@ -64,9 +65,9 @@ var userProvider =Provider.of<UserProvider>(context);
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height * .04),
                     child: BlueButton(
-                      label: 'volgende',
+                      label: S.of(context).nextButton,
                       tapped: () async {
-                        await  questionnaireProvider.saveQuestion(userProvider.userName);
+                        await questionnaireProvider.saveQuestion(userProvider.userName);
                         questionnaireProvider.prepareNextScreen();
 
                         if (questionnaireProvider.isCompleted) {

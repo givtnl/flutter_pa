@@ -1,4 +1,11 @@
 {
     "introText": "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen.",
-    "introButton": "Zur Auswahlhilfe!"
+    "introButton": "Zur Auswahlhilfe!",
+    "nextButton": "Nächste",
+    "choiceScreen_disagree": "anderer Meinung",
+    "choiceScreen_agree": "zugestimmt",
+    "choiceScreen_skip": "überspringen",
+    "choiceScreen_totallyDisagree": "völlig anderer Meinung",
+    "choiceScreen_totallyAgree": "völlig einverstanden",
+    "choiceScreen_neutral": "Neutral"
 }

@@ -1,4 +1,11 @@
 {
     "introText": "Find out with charities match your values, standards and identity.",
-    "introButton": "To the selection guide!"
+    "introButton": "To the selection guide!",
+    "nextButton": "Next",
+    "choiceScreen_disagree": "Disagree",
+    "choiceScreen_agree": "Agree",
+    "choiceScreen_skip": "Skip",
+    "choiceScreen_totallyDisagree": "Totally disagree",
+    "choiceScreen_totallyAgree": "Totally agree",
+    "choiceScreen_neutral": "Neutral"
 }

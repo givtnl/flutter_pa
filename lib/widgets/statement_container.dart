@@ -65,7 +65,7 @@ class _StatementContainerState extends State<StatementContainer> {
             children: [
               Flexible(
                 child: Text(
-                  "Helemaal niet akkoord",
+                  "Helemaal mee oneens",
                   style: TextStyle(
                     fontFamily: 'Inter',
                     color: Color.fromRGBO(36, 106, 177, 1),
@@ -76,7 +76,7 @@ class _StatementContainerState extends State<StatementContainer> {
               Flexible(child: Container()), //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
               Flexible(
                 child: Text(
-                  "Helemaal akkoord",
+                  "Helemaal mee eens",
                   style: TextStyle(
                     fontFamily: 'Inter',
                     color: Color.fromRGBO(36, 106, 177, 1),
