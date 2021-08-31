@@ -6,5 +6,6 @@
     "choiceScreen_agree": "Eens",
     "choiceScreen_skip": "Overslaan",
     "choiceScreen_totallyDisagree": "Helemaal oneens",
-    "choiceScreen_totallyAgree": "Helemaal eens"
+    "choiceScreen_totallyAgree": "Helemaal eens",
+    "choiceScreen_neutral": "Neutraal"
 }
