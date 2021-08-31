@@ -6,5 +6,6 @@
     "choiceScreen_agree": "Agree",
     "choiceScreen_skip": "Skip",
     "choiceScreen_totallyDisagree": "Totally disagree",
-    "choiceScreen_totallyAgree": "Totally agree"
+    "choiceScreen_totallyAgree": "Totally agree",
+    "choiceScreen_neutral": "Neutral"
 }
