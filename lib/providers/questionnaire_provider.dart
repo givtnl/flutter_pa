@@ -163,7 +163,7 @@ class QuestionnaireProvider with ChangeNotifier {
     } else {
       await answerApi
           .createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: user, answers: currentSelectedCategories))
-          .then((value) => null /* todo THIS IS THE PLACE FOR MIXPANEL LOGGIGNG?*/);
+          .then((value) => null);
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:provider/provider.dart';
@@ -79,6 +80,9 @@ class _CategoryCardState extends State<CategoryCard> {
           setState(() {
             this.widget.selected = !this.widget.selected;
             provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
+            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
+              "CATEGORY_ID": "${this.widget.categoryId}"
+            });
           });
         },
         child: Transform.scale(
