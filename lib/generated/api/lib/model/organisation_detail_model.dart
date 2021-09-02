@@ -19,6 +19,7 @@ class OrganisationDetailModel {
     this.imageUrl,
     this.mission,
     this.vision,
+    this.givtIdentifier,
     this.metaTags,
   });
 
@@ -36,6 +37,8 @@ class OrganisationDetailModel {
 
   String vision;
 
+  String givtIdentifier;
+
   Map<String, String> metaTags;
 
   @override
@@ -47,6 +50,7 @@ class OrganisationDetailModel {
      other.imageUrl == imageUrl &&
      other.mission == mission &&
      other.vision == vision &&
+     other.givtIdentifier == givtIdentifier &&
      other.metaTags == metaTags;
 
   @override
@@ -58,10 +62,11 @@ class OrganisationDetailModel {
     (imageUrl == null ? 0 : imageUrl.hashCode) +
     (mission == null ? 0 : mission.hashCode) +
     (vision == null ? 0 : vision.hashCode) +
+    (givtIdentifier == null ? 0 : givtIdentifier.hashCode) +
     (metaTags == null ? 0 : metaTags.hashCode);
 
   @override
-  String toString() => 'OrganisationDetailModel[id=$id, name=$name, description=$description, websiteUrl=$websiteUrl, imageUrl=$imageUrl, mission=$mission, vision=$vision, metaTags=$metaTags]';
+  String toString() => 'OrganisationDetailModel[id=$id, name=$name, description=$description, websiteUrl=$websiteUrl, imageUrl=$imageUrl, mission=$mission, vision=$vision, givtIdentifier=$givtIdentifier, metaTags=$metaTags]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -86,6 +91,9 @@ class OrganisationDetailModel {
     if (vision != null) {
       json[r'vision'] = vision;
     }
+    if (givtIdentifier != null) {
+      json[r'givtIdentifier'] = givtIdentifier;
+    }
     if (metaTags != null) {
       json[r'metaTags'] = metaTags;
     }
@@ -104,6 +112,7 @@ class OrganisationDetailModel {
         imageUrl: json[r'imageUrl'],
         mission: json[r'mission'],
         vision: json[r'vision'],
+        givtIdentifier: json[r'givtIdentifier'],
         metaTags: json[r'metaTags'] == null ?
           null :
           (json[r'metaTags'] as Map).cast<String, String>(),

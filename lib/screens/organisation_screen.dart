@@ -1,12 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
+import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
@@ -116,20 +121,20 @@ class OrganisationScreen extends StatelessWidget {
                     height: 10,
                   ),
                   OrganisationExtra('Visie', currentOrganisation.vision),
-                  /*if (org.donationLink != null)
+                  if (currentOrganisation.givtIdentifier != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: BlueButton(
-                          label: "Steun ${org.name}",
+                          label: "Steun ${currentOrganisation.name}",
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                            var url = org.donationLink!;
+                            var url = "https://givtapp.net/download?code=${base64.encode(utf8.encode("${currentOrganisation.givtIdentifier!}.ea0000000001"))}";
                             if (await canLaunch(url))
                               await launch(url);
                             else
                               throw "Could not launch $url";
                           }),
-                    )*/
+                    )
                 ],
               ),
             ),
