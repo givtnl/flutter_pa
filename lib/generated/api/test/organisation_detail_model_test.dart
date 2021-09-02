@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 
 // tests for OrganisationDetailModel
 void main() {
-  final instance = String();
+  final instance = OrganisationDetailModel();
 
   group('test OrganisationDetailModel', () {
     // String id
@@ -47,6 +47,11 @@ void main() {
 
     // String vision
     test('to test the property `vision`', () async {
+      // TODO
+    });
+
+    // String givtIdentifier
+    test('to test the property `givtIdentifier`', () async {
       // TODO
     });
 

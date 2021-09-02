@@ -313,6 +313,10 @@
             "type": "string",
             "nullable": true
           },
+          "givtIdentifier": {
+            "type": "string",
+            "nullable": true
+          },
           "metaTags": {
             "type": "object",
             "nullable": true,
