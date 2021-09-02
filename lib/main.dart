@@ -65,10 +65,11 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Color.fromRGBO(36, 106, 177, 1),
           backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          cardColor: Color.fromRGBO(239, 244, 249, 1),
           textTheme: TextTheme(
             bodyText1:TextStyle(
               fontFamily: 'Inter',
-              color: Color.fromRGBO(36, 106, 177, 1),
+              color: Theme.of(context).primaryColor,
             )
           )
         ),

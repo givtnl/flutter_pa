@@ -26,7 +26,7 @@ class _MatchesScreen extends State<MatchesScreen> {
       child: TrackedScreen(
         screenName: 'MatchesScreen',
         child: Scaffold(
-          backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -43,7 +43,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                       style: TextStyle(
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
-                        color: Color.fromRGBO(36, 106, 177, 1),
+                        color: Theme.of(context).primaryColor,
                         fontSize: 14,
                       ),
                     ),
@@ -86,7 +86,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
                   child: CircularProgressIndicator(
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               );

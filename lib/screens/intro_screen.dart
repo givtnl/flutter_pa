@@ -70,7 +70,7 @@ class IntroScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
                 child: Center(
                   child: CircularProgressIndicator(
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),

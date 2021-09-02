@@ -89,15 +89,15 @@ class _CategoryCardState extends State<CategoryCard> {
           scale: this.widget.selected ? (!kIsWeb ? 1.08 : 1.02) : 1.0,
           child: Container(
             decoration: BoxDecoration(
-                color: Color.fromRGBO(239, 244, 249, 1),
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                     width: 1,
-                    color: Color.fromRGBO(36, 106, 177, this.widget.selected ? 1 : 0)),
+                    color: this.widget.selected ? Theme.of(context).primaryColor.withOpacity(1) : Theme.of(context).primaryColor.withOpacity(0),),
                 boxShadow: this.widget.selected
                     ? [
                         BoxShadow(
-                          color: Color.fromRGBO(36, 106, 177, 1),
+                          color: Theme.of(context).primaryColor,
                           spreadRadius: .2,
                           blurRadius: 3,
                           offset: Offset(0, 1),
@@ -110,7 +110,7 @@ class _CategoryCardState extends State<CategoryCard> {
                 children: [
                   Icon(
                     icon,
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                     size: 30,
                     semanticLabel: this.widget.iconText,
                   ),
@@ -123,7 +123,7 @@ class _CategoryCardState extends State<CategoryCard> {
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(36, 106, 177, 1),
+                          color: Theme.of(context).primaryColor,
                           fontSize: 16,
                         ),
                         maxLines: 2,

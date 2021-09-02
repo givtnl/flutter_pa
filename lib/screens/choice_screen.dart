@@ -36,7 +36,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
           return false;
         },
         child: Scaffold(
-          backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -52,7 +52,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                           widthFactor: questionnaireProvider.currentProgress / 100,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(36, 106, 177, 1),
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                         ),

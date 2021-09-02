@@ -42,8 +42,8 @@ class _StatementContainerState extends State<StatementContainer> {
               trackHeight: 3,
             ),
             child: Slider(
-              inactiveColor: Color.fromRGBO(36, 106, 177, 1),
-              activeColor: Color.fromRGBO(36, 106, 177, 1),
+              inactiveColor: Theme.of(context).primaryColor,
+              activeColor: Theme.of(context).primaryColor,
               value: provider.currentSelectedStatementAnswer,
               min: 0,
               max: 4,
@@ -77,7 +77,7 @@ class _StatementContainerState extends State<StatementContainer> {
                   S.of(context).choiceScreen_totallyDisagree,
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                     fontSize: 12,
                   ),
                 ),
@@ -89,7 +89,7 @@ class _StatementContainerState extends State<StatementContainer> {
                   S.of(context).choiceScreen_totallyAgree,
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                     fontSize: 12,
                   ),
                   textAlign: TextAlign.end,
@@ -118,7 +118,7 @@ class _StatementContainerState extends State<StatementContainer> {
                 style: TextStyle(
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w700,
-                  color: Color.fromRGBO(36, 106, 177, 1),
+                  color: Theme.of(context).primaryColor,
                   fontSize: 14,
                   decoration: TextDecoration.underline,
                 ),

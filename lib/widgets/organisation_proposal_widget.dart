@@ -34,7 +34,7 @@ class OrganisationProposal extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
-                color: Color.fromRGBO(36, 106, 177, 1),
+                color: Theme.of(context).primaryColor,
                 fontSize: 14,
               ),
             ),
@@ -58,7 +58,7 @@ class OrganisationProposal extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(36, 106, 177, 1),
+                      color: Theme.of(context).primaryColor,
                       fontSize: 14,
                     ),
                   ),
