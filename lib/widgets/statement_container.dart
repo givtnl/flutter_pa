@@ -4,6 +4,7 @@ import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
+import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'big_text.dart';
@@ -109,9 +110,12 @@ class _StatementContainerState extends State<StatementContainer> {
               onPressed: () {
                 MixpanelManager.mixpanel
                     .track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
-                //provider.skipQuestion(question.id);
                 provider.skipCurrentQuestion();
-                provider.prepareNextScreen();
+                if (provider.isCompleted) {
+                      Navigator.of(context).pushNamed(MatchesScreen.routeName);
+                } else {
+                  provider.prepareNextScreen();
+                }
               },
               child: Text(
                 S.of(context).choiceScreen_skip,
