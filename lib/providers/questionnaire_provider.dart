@@ -91,7 +91,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   bool get isCompleted {
-    return questions.length == (completedQuestions.length + skippedQuestions.length);
+    return questions.length == completedQuestions.length;
   }
 
   ChoiceScreenType get currentScreenType {
@@ -130,7 +130,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   double get currentProgress {
-    return ((completedQuestions.length + skippedQuestions.length) / questions.length) * 100;
+    return ((completedQuestions.length) / questions.length) * 100;
   }
 
   int get screenNumber {
@@ -147,6 +147,9 @@ class QuestionnaireProvider with ChangeNotifier {
 
   void skipCurrentQuestion() {
     _skippedQuestions.add(getCurrentQuestion!);
+    if (_screenNumber == questions.length -1) {
+      _setPreviousScreenDone();
+    }
   }
 
   Future<void> saveQuestion(String user) async {
