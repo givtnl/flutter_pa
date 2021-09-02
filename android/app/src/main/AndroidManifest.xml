@@ -13,7 +13,7 @@
     </queries>
 
    <application
-        android:label="flutter_app"
+        android:label="Keuzewijzer"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
