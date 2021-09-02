@@ -1,13 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
-import 'package:flutter_app/providers/organisation_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/choice_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/login_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
-import 'package:flutter_app/screens/suggestions_screen.dart';
+import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/generated/l10n.dart';
@@ -42,9 +42,6 @@ class _MyAppState extends State<MyApp> {
           create: (_) => QuestionnaireProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => OrganisationProvider(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
         ChangeNotifierProvider(
@@ -68,17 +65,18 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: Color.fromRGBO(36, 106, 177, 1),
           backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+          cardColor: Color.fromRGBO(239, 244, 249, 1),
           textTheme: TextTheme(
             bodyText1:TextStyle(
               fontFamily: 'Inter',
-              color: Color.fromRGBO(36, 106, 177, 1),
+              color: Theme.of(context).primaryColor,
             )
           )
         ),
         routes: {
-          '/': (ctx) => LoginScreen(),
+          '/': (ctx) => kReleaseMode ? IntroScreen() : LoginScreen(),
           IntroScreen.routeName: (ctx) => IntroScreen(),
-          SuggestionsScreen.routeName: (ctx) => SuggestionsScreen(),
+          MatchesScreen.routeName: (ctx) => MatchesScreen(),
           OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
           ChoiceScreen.routeName: (ctx) => ChoiceScreen()
         },

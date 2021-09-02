@@ -16,7 +16,7 @@ class BlueRoundedButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Color.fromRGBO(36, 106, 177, 1),
+          color: Theme.of(context).primaryColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),

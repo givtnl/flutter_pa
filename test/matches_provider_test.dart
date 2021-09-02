@@ -47,7 +47,7 @@ void main() {
       var provider = MatchesProvider.withDependencies(matchesApi);
       await provider.loadMatches('Michiel');
       expect(matchesListResponse.result.length,
-          equals(provider.organisations.length));
+          equals(provider.organisationMatches.length));
     });
 
     test('Ensure Matches Are Sorted On score', () async {

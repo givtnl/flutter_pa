@@ -1,15 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryCard extends StatefulWidget {
   final String categoryId;
   final String categoryText;
   final String iconText;
+  final int index;
   var selected = false;
 
 
-  CategoryCard(this.categoryId, this.categoryText, this.iconText);
+  CategoryCard(this.categoryId, this.categoryText, this.iconText, this.index);
 
   @override
   _CategoryCardState createState() => _CategoryCardState();
@@ -19,6 +23,8 @@ class _CategoryCardState extends State<CategoryCard> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<QuestionnaireProvider>(context);
+
     final icon;
     switch (this.widget.iconText) {
       case 'dieren':
@@ -73,21 +79,25 @@ class _CategoryCardState extends State<CategoryCard> {
         onTap: () {
           setState(() {
             this.widget.selected = !this.widget.selected;
+            provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
+            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
+              "CATEGORY_ID": "${this.widget.categoryId}"
+            });
           });
         },
         child: Transform.scale(
           scale: this.widget.selected ? (!kIsWeb ? 1.08 : 1.02) : 1.0,
           child: Container(
             decoration: BoxDecoration(
-                color: Color.fromRGBO(239, 244, 249, 1),
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                     width: 1,
-                    color: Color.fromRGBO(36, 106, 177, this.widget.selected ? 1 : 0)),
+                    color: this.widget.selected ? Theme.of(context).primaryColor.withOpacity(1) : Theme.of(context).primaryColor.withOpacity(0),),
                 boxShadow: this.widget.selected
                     ? [
                         BoxShadow(
-                          color: Color.fromRGBO(36, 106, 177, 1),
+                          color: Theme.of(context).primaryColor,
                           spreadRadius: .2,
                           blurRadius: 3,
                           offset: Offset(0, 1),
@@ -100,7 +110,7 @@ class _CategoryCardState extends State<CategoryCard> {
                 children: [
                   Icon(
                     icon,
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                     size: 30,
                     semanticLabel: this.widget.iconText,
                   ),
@@ -113,7 +123,7 @@ class _CategoryCardState extends State<CategoryCard> {
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(36, 106, 177, 1),
+                          color: Theme.of(context).primaryColor,
                           fontSize: 16,
                         ),
                         maxLines: 2,

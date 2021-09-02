@@ -13,13 +13,15 @@ class LoginScreen extends StatelessWidget {
         .of(context)
         .backgroundColor;
 
-    var errorWidget = Container(
-      child: Text(
-        'Identificatie is verplicht',
-        style: const TextStyle(
-          color: Color.fromRGBO(36, 106, 177, 1),),
-      ),
-    );
+    var errorWidget = (context) =>
+        Container(
+          child: Text(
+            'Identificatie is verplicht',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        );
 
     Widget loginScreen = Scaffold(
       backgroundColor: Theme
@@ -47,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                               provider.setInitialEmptyFalse();
                             }),
                       )),
-                  provider.inputEmpty && !provider.initialEmpty ? errorWidget : Container(),
+                  provider.inputEmpty && !provider.initialEmpty ? errorWidget(context) : Container(),
                 ],
               ),
             ),

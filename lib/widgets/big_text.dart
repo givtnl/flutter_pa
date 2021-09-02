@@ -12,7 +12,7 @@ class BigText extends StatelessWidget {
         style: TextStyle(
           fontFamily: 'Inter',
           fontWeight: FontWeight.w700,
-          color: Color.fromRGBO(36, 106, 177, 1),
+          color: Theme.of(context).primaryColor,
           fontSize: 25,
         ),
       );

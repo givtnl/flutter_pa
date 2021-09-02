@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class BlueButton extends StatefulWidget {
   final VoidCallback tapped;
@@ -30,7 +31,7 @@ class _BlueButtonState extends State<BlueButton> {
               child: Container(
                   height: MediaQuery.of(context).size.height * .05,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(36, 106, 177, 1),
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(6),
                     boxShadow: [
                       BoxShadow(

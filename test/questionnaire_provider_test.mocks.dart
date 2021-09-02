@@ -104,3 +104,45 @@ class MockAnswersApi extends _i1.Mock implements _i2.AnswersApi {
   @override
   String toString() => super.toString();
 }
+
+/// A class which mocks [CreateAnswerRequest].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCreateAnswerRequest extends _i1.Mock
+    implements _i2.CreateAnswerRequest {
+  MockCreateAnswerRequest() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get userId =>
+      (super.noSuchMethod(Invocation.getter(#userId), returnValue: '')
+          as String);
+  @override
+  set userId(String? _userId) =>
+      super.noSuchMethod(Invocation.setter(#userId, _userId),
+          returnValueForMissingStub: null);
+  @override
+  String get questionId =>
+      (super.noSuchMethod(Invocation.getter(#questionId), returnValue: '')
+          as String);
+  @override
+  set questionId(String? _questionId) =>
+      super.noSuchMethod(Invocation.setter(#questionId, _questionId),
+          returnValueForMissingStub: null);
+  @override
+  List<_i2.CreateAnswerDetailRequest> get answers =>
+      (super.noSuchMethod(Invocation.getter(#answers),
+              returnValue: <_i2.CreateAnswerDetailRequest>[])
+          as List<_i2.CreateAnswerDetailRequest>);
+  @override
+  set answers(List<_i2.CreateAnswerDetailRequest>? _answers) =>
+      super.noSuchMethod(Invocation.setter(#answers, _answers),
+          returnValueForMissingStub: null);
+  @override
+  String toString() => super.toString();
+  @override
+  Map<String, dynamic> toJson() =>
+      (super.noSuchMethod(Invocation.method(#toJson, []),
+          returnValue: <String, dynamic>{}) as Map<String, dynamic>);
+}

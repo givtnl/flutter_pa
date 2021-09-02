@@ -1,4 +1,11 @@
 {
-    "introText": "Kom er achter welke doelen aansluiten bij jouw waarden, normen en identiteit.",
-    "introButton": "Naar de keuzewijzer!"
+    "introText": "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit.",
+    "introButton": "Naar de keuzewijzer!",
+    "nextButton": "Volgende",
+    "choiceScreen_disagree": "Oneens",
+    "choiceScreen_agree": "Eens",
+    "choiceScreen_skip": "Overslaan",
+    "choiceScreen_totallyDisagree": "Helemaal oneens",
+    "choiceScreen_totallyAgree": "Helemaal eens",
+    "choiceScreen_neutral": "Neutraal"
 }

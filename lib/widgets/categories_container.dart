@@ -27,7 +27,11 @@ class CategoriesContainer extends StatelessWidget {
     final categories = provider.getCurrentCategoriesTranslation;
 
     List<CategoryCard> cards =
-    categories.map((cat) => CategoryCard(cat, cat, cat)).toList();
+    categories.asMap().entries.map((entry){
+      int index = entry.key;
+      CategoryCard card = CategoryCard(entry.value, entry.value, entry.value, index);
+      return card;
+    }).toList();
     return categoryContainer(cards, context);
   }
 }

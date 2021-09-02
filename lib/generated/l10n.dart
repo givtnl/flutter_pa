@@ -69,6 +69,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Next`
+  String get nextButton {
+    return Intl.message(
+      'Next',
+      name: 'nextButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disagree`
+  String get choiceScreen_disagree {
+    return Intl.message(
+      'Disagree',
+      name: 'choiceScreen_disagree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agree`
+  String get choiceScreen_agree {
+    return Intl.message(
+      'Agree',
+      name: 'choiceScreen_agree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get choiceScreen_skip {
+    return Intl.message(
+      'Skip',
+      name: 'choiceScreen_skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Totally disagree`
+  String get choiceScreen_totallyDisagree {
+    return Intl.message(
+      'Totally disagree',
+      name: 'choiceScreen_totallyDisagree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Totally agree`
+  String get choiceScreen_totallyAgree {
+    return Intl.message(
+      'Totally agree',
+      name: 'choiceScreen_totallyAgree',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Neutral`
+  String get choiceScreen_neutral {
+    return Intl.message(
+      'Neutral',
+      name: 'choiceScreen_neutral',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
-import 'package:flutter_app/providers/organisation_provider.dart';
+import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
+import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
 import 'big_text.dart';
 import 'blue_rounded_button.dart';
 
 class OrganisationProposal extends StatelessWidget {
-  final String title;
-  final String explanation;
-  final int match;
-  final String orgId;
+  final UserOrganisationMatchListModel  match;
 
-  OrganisationProposal(this.orgId, this.title, this.explanation, this.match);
+  OrganisationProposal(this.match);
 
   @override
   Widget build(BuildContext context) {
+
+   var provider = Provider.of<MatchesProvider>(context);
+
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -25,15 +26,15 @@ class OrganisationProposal extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BigText(title),
+          BigText(match.organisation.name),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: Text(
-              explanation,
+              match.organisation.mission,
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
-                color: Color.fromRGBO(36, 106, 177, 1),
+                color: Theme.of(context).primaryColor,
                 fontSize: 14,
               ),
             ),
@@ -45,11 +46,11 @@ class OrganisationProposal extends StatelessWidget {
               children: [
                 BlueRoundedButton("Ontdek meer", () {
                   MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "DISCOVER_MORE"});
-                  Provider.of<OrganisationProvider>(context, listen: false).currentSelectedProposal = orgId;
+                  provider.selectOrganisationMatch(this.match);
                   Navigator.of(context).pushNamed(OrganisationScreen.routeName);
                 }),
                 Expanded(child: Container()),
-                BigText("$match%"),
+                BigText(match.score.toString() + '%'),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, bottom: 3.0),
                   child: Text(
@@ -57,7 +58,7 @@ class OrganisationProposal extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,
-                      color: Color.fromRGBO(36, 106, 177, 1),
+                      color: Theme.of(context).primaryColor,
                       fontSize: 14,
                     ),
                   ),
