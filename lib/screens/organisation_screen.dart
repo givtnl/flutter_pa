@@ -128,7 +128,7 @@ class OrganisationScreen extends StatelessWidget {
                           label: "Steun ${currentOrganisation.name}",
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                            var url = "https://givtapp.net/download?code=${base64.encode(utf8.encode("${currentOrganisation.givtIdentifier!}.ea0000000001"))}";
+                            var url = "https://www.givtapp.net/download?code=${base64.encode(utf8.encode("${currentOrganisation.givtIdentifier!}.ea0000000001"))}";
                             if (await canLaunch(url))
                               await launch(url);
                             else
