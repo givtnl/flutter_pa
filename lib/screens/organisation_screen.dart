@@ -128,7 +128,7 @@ class OrganisationScreen extends StatelessWidget {
                           label: "Steun ${currentOrganisation.name}",
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                            var url = currentOrganisation.metaTags["donationLink"]!;
+                            var url = currentOrganisation.metaTags["donationUrl"]!;
                             if (await canLaunch(url))
                               await launch(url);
                             else
