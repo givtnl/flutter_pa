@@ -121,14 +121,14 @@ class OrganisationScreen extends StatelessWidget {
                     height: 10,
                   ),
                   OrganisationExtra('Visie', currentOrganisation.vision),
-                  if (currentOrganisation.givtIdentifier != null)
+                  if (currentOrganisation.metaTags.containsKey("donationUrl"))
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: BlueButton(
                           label: "Steun ${currentOrganisation.name}",
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                            var url = "https://www.givtapp.net/download?code=${base64.encode(utf8.encode("${currentOrganisation.givtIdentifier!}.ea0000000001"))}";
+                            var url = currentOrganisation.metaTags["donationLink"]!;
                             if (await canLaunch(url))
                               await launch(url);
                             else
