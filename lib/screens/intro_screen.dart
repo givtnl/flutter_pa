@@ -6,6 +6,7 @@ import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,17 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    /// this is the code needed for drawing an svg
+    /// don't forget to add every asset to the pubspec.yaml file!
+    final String assetName = 'assets/svg/ellips.svg';
+    final Widget svg = SvgPicture.asset(
+        assetName,
+        semanticsLabel: 'Acme Logo'
+    );
+    /// This is the end of the code for the SVG
+
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
      var screen = TrackedScreen(
