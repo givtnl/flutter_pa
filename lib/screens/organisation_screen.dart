@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_button.dart';
@@ -13,13 +14,10 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../extensions/intl_extension.dart';
+
 class OrganisationScreen extends StatelessWidget {
   static const routeName = '/organisation-detail';
-
-  final Map<String, bool> _tags = {
-    "Internationale hulp en mensenrechten": false,
-    "religie en levensbeschouwing": true,
-  };
 
   OrganisationScreen();
 
@@ -28,6 +26,10 @@ class OrganisationScreen extends StatelessWidget {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
+
+    var itlProvider = S.of(context);
+
+    final _tags = currentMatch.organisation.metaTags["sectors"]!.split(",").map((e) => itlProvider.getSector(e));
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
@@ -82,7 +84,7 @@ class OrganisationScreen extends StatelessWidget {
                   ),
                   ListView.separated(
                     itemBuilder: (ctx, idx) {
-                      return OrganisationTag(_tags.entries.elementAt(idx).key, _tags.entries.elementAt(idx).value);
+                      return OrganisationTag(_tags.elementAt(idx), true);
                     },
                     itemCount: _tags.length,
                     shrinkWrap: true,
@@ -121,14 +123,14 @@ class OrganisationScreen extends StatelessWidget {
                     height: 10,
                   ),
                   OrganisationExtra('Visie', currentOrganisation.vision),
-                  if (currentOrganisation.givtIdentifier != null)
+                  if (currentOrganisation.metaTags.containsKey("donationUrl"))
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: BlueButton(
                           label: "Steun ${currentOrganisation.name}",
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                            var url = "https://www.givtapp.net/download?code=${base64.encode(utf8.encode("${currentOrganisation.givtIdentifier!}.ea0000000001"))}";
+                            var url = currentOrganisation.metaTags["donationUrl"]!;
                             if (await canLaunch(url))
                               await launch(url);
                             else
