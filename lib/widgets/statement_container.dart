@@ -24,7 +24,10 @@ class _StatementContainerState extends State<StatementContainer> {
       S.of(context).choiceScreen_neutral,
       S.of(context).choiceScreen_agree,
       S.of(context).choiceScreen_totallyAgree
-    ];
+    ].map((e) => e.replaceFirst(" ", "\n")).toList();
+    // did map and replace above cus im lazy and dont want to change the terms
+    // words should be on split lines according to design.
+
     var provider = Provider.of<QuestionnaireProvider>(context);
     return Column(
       children: [
