@@ -29,11 +29,13 @@ class CustomRectSliderTrackShape extends SliderTrackShape
     );
 
 
-    final Paint trackPaint = Paint()..color = trackColor;
+    final Paint trackPaint = Paint()
+      ..color = trackColor;
 
-    context.canvas.drawLine(
-        Offset(trackRect.left, trackRect.top),
-        Offset(trackRect.right, trackRect.bottom),
+    context.canvas.drawRect(
+        Rect.fromLTRB(
+            trackRect.left,
+            trackRect.top, trackRect.right, trackRect.bottom),
         trackPaint);
   }
 }
