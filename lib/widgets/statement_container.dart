@@ -5,6 +5,7 @@ import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
+import 'package:flutter_app/themes/light/theme.dart';
 import 'package:provider/provider.dart';
 
 import 'big_text.dart';
@@ -39,31 +40,26 @@ class _StatementContainerState extends State<StatementContainer> {
               left: 25,
               right: 25),
           child: SliderTheme(
-            data: SliderThemeData(
-              trackHeight: 3,
-            ),
-            child: Slider(
-              inactiveColor: Theme.of(context).primaryColor,
-              activeColor: Theme.of(context).primaryColor,
-              value: provider.currentSelectedStatementAnswer,
-              min: 0,
-              max: 4,
-              divisions: 4,
-              label:
-                  _valueTexts[provider.currentSelectedStatementAnswer.toInt()],
-              onChanged: (double value) {
-                setState(() {
-                  provider.setCurrentStatementValue(value);
-                });
-              },
-              onChangeEnd: (value) {
-                MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {
-                  "STATEMENT_ID": "${provider.getCurrentQuestion!.id}",
-                  "VALUE": "${value.toStringAsFixed(0)}"
-                });
-              },
-            ),
-          ),
+              data: SliderTheme.of(context),
+              child: Slider(
+                divisions: 4,
+                min: 0,
+                max: 4,
+                value: provider.currentSelectedStatementAnswer,
+                label: _valueTexts[
+                    provider.currentSelectedStatementAnswer.toInt()],
+                onChanged: (double value) {
+                  setState(() {
+                    provider.setCurrentStatementValue(value);
+                  });
+                },
+                onChangeEnd: (value) {
+                  MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {
+                    "STATEMENT_ID": "${provider.getCurrentQuestion!.id}",
+                    "VALUE": "${value.toStringAsFixed(0)}"
+                  });
+                },
+              )),
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -112,7 +108,7 @@ class _StatementContainerState extends State<StatementContainer> {
                     .track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
                 provider.skipCurrentQuestion();
                 if (provider.isCompleted) {
-                      Navigator.of(context).pushNamed(MatchesScreen.routeName);
+                  Navigator.of(context).pushNamed(MatchesScreen.routeName);
                 } else {
                   provider.prepareNextScreen();
                 }
