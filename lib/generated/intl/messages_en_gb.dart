@@ -34,6 +34,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("To the selection guide!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "UK Find out with charities match your values, standards and identity."),
-        "nextButton": MessageLookupByLibrary.simpleMessage("Next")
+        "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
+        "sectors_animals": MessageLookupByLibrary.simpleMessage("Animals"),
+        "sectors_artAndCulture":
+            MessageLookupByLibrary.simpleMessage("Art and culture"),
+        "sectors_educationAndScience":
+            MessageLookupByLibrary.simpleMessage("Education and science"),
+        "sectors_health": MessageLookupByLibrary.simpleMessage("Health"),
+        "sectors_internationalAidAndHumanRights":
+            MessageLookupByLibrary.simpleMessage(
+                "International aid and human rights"),
+        "sectors_natureAndEnvironment":
+            MessageLookupByLibrary.simpleMessage("Nature and environment"),
+        "sectors_religionAndPhilosophy":
+            MessageLookupByLibrary.simpleMessage("Religion and philosophy"),
+        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("Well-being")
       };
 }
