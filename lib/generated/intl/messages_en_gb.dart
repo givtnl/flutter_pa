@@ -33,7 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "introButton":
             MessageLookupByLibrary.simpleMessage("To the selection guide!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "UK Find out with charities match your values, standards and identity."),
+            "Find out with charities match your values, standards and identity."),
+        "introTitle": MessageLookupByLibrary.simpleMessage(
+            "Welcome to the selection guide!"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Animals"),
         "sectors_artAndCulture":

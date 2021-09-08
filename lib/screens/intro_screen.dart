@@ -13,7 +13,8 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
+    var questionnaireProvider =
+        Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
     var screen = TrackedScreen(
       screenName: 'IntroScreen',
@@ -28,10 +29,13 @@ class IntroScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text("Oi"),
+                      Text(
+                        S.of(context).introTitle,
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
                       Text(
                         S.of(context).introText,
-                        style: Theme.of(context).textTheme.headline1,
+                        style: Theme.of(context).textTheme.subtitle1,
                       ),
                     ],
                   ),
@@ -45,12 +49,14 @@ class IntroScreen extends StatelessWidget {
                     label: S.of(context).introButton,
                     tapped: () {
                       final DateTime now = DateTime.now();
-                      final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
+                      final DateFormat formatter =
+                          DateFormat("yyyy-MM-dd hh:mm");
                       final String formatted = formatter.format(now);
                       userProvider.userName = formatted;
                       if (kDebugMode) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("DEBUG MODE : ${userProvider.userName}"),
+                          content:
+                              Text("DEBUG MODE : ${userProvider.userName}"),
                           duration: Duration(seconds: 2),
                         ));
                         print(userProvider.userName);
@@ -79,7 +85,8 @@ class IntroScreen extends StatelessWidget {
               return Container(
                 color: Theme.of(context).backgroundColor,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 300, horizontal: 100),
                   child: Center(
                     child: CircularProgressIndicator(
                       color: Theme.of(context).primaryColor,

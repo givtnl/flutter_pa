@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Zur Auswahlhilfe!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
+        "introTitle": MessageLookupByLibrary.simpleMessage(
+            "Willkommen bei der Auswahlindikator!"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Nächste"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Tiere"),
         "sectors_artAndCulture":

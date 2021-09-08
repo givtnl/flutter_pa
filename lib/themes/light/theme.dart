@@ -13,11 +13,13 @@ class LightTheme {
         backgroundColor: Color.fromRGBO(238, 237, 233, 1),
         cardColor: Color.fromRGBO(239, 244, 249, 1),
         textTheme: TextTheme(
+
           // Intro page headline
           headline1: GoogleFonts.montserrat(
               textStyle: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 26,
+                color: blueColor
               )
           ),
           // Intro page subheadline
@@ -25,6 +27,7 @@ class LightTheme {
               textStyle: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
+                color: blueColor
               )
           ),
           // Button on every page

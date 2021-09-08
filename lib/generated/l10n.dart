@@ -219,6 +219,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome to the selection guide!`
+  String get introTitle {
+    return Intl.message(
+      'Welcome to the selection guide!',
+      name: 'introTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
