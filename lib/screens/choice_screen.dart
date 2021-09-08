@@ -6,7 +6,7 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
-import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/categories_container.dart';
 import 'package:flutter_app/widgets/statement_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -68,7 +68,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     body,
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height * .04),
-                      child: BlueButton(
+                      child: MainButton(
                         label: S.of(context).nextButton,
                         tapped: () async {
                           MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});

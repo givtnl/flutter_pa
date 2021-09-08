@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
-import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class IntroScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(50.0),
-                  child: BlueButton(
+                  child: MainButton(
                     label: S.of(context).introButton,
                     tapped: () {
                       final DateTime now = DateTime.now();

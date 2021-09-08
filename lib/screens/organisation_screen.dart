@@ -7,7 +7,7 @@ import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
-import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -126,7 +126,7 @@ class OrganisationScreen extends StatelessWidget {
                   if (currentOrganisation.metaTags.containsKey("donationUrl"))
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
-                      child: BlueButton(
+                      child: MainButton(
                           label: "Steun ${currentOrganisation.name}",
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
