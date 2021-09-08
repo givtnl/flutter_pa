@@ -139,6 +139,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Animals`
+  String get sectors_animals {
+    return Intl.message(
+      'Animals',
+      name: 'sectors_animals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Health`
+  String get sectors_health {
+    return Intl.message(
+      'Health',
+      name: 'sectors_health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `International aid and human rights`
+  String get sectors_internationalAidAndHumanRights {
+    return Intl.message(
+      'International aid and human rights',
+      name: 'sectors_internationalAidAndHumanRights',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Art and culture`
+  String get sectors_artAndCulture {
+    return Intl.message(
+      'Art and culture',
+      name: 'sectors_artAndCulture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nature and environment`
+  String get sectors_natureAndEnvironment {
+    return Intl.message(
+      'Nature and environment',
+      name: 'sectors_natureAndEnvironment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Education and science`
+  String get sectors_educationAndScience {
+    return Intl.message(
+      'Education and science',
+      name: 'sectors_educationAndScience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religion and philosophy`
+  String get sectors_religionAndPhilosophy {
+    return Intl.message(
+      'Religion and philosophy',
+      name: 'sectors_religionAndPhilosophy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Well-being`
+  String get sectors_wellBeing {
+    return Intl.message(
+      'Well-being',
+      name: 'sectors_wellBeing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

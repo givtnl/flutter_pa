@@ -7,5 +7,13 @@
     "choiceScreen_skip": "Overslaan",
     "choiceScreen_totallyDisagree": "Helemaal oneens",
     "choiceScreen_totallyAgree": "Helemaal eens",
-    "choiceScreen_neutral": "Neutraal"
+    "choiceScreen_neutral": "Neutraal",
+    "sectors_animals": "Dieren",
+    "sectors_health": "Gezondheid",
+    "sectors_internationalAidAndHumanRights": "Internationale hulp en mensenrechten",
+    "sectors_artAndCulture": "Kunst en cultuur",
+    "sectors_natureAndEnvironment": "Natuur en milieu",
+    "sectors_educationAndScience": "Onderwijs en wetenschap",
+    "sectors_religionAndPhilosophy": "Religie en levensbeschouwing",
+    "sectors_wellBeing": "Welzijn"
 }

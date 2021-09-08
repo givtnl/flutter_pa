@@ -34,6 +34,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Naar de keuzewijzer!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
-        "nextButton": MessageLookupByLibrary.simpleMessage("Volgende")
+        "nextButton": MessageLookupByLibrary.simpleMessage("Volgende"),
+        "sectors_animals": MessageLookupByLibrary.simpleMessage("Dieren"),
+        "sectors_artAndCulture":
+            MessageLookupByLibrary.simpleMessage("Kunst en cultuur"),
+        "sectors_educationAndScience":
+            MessageLookupByLibrary.simpleMessage("Onderwijs en wetenschap"),
+        "sectors_health": MessageLookupByLibrary.simpleMessage("Gezondheid"),
+        "sectors_internationalAidAndHumanRights":
+            MessageLookupByLibrary.simpleMessage(
+                "Internationale hulp en mensenrechten"),
+        "sectors_natureAndEnvironment":
+            MessageLookupByLibrary.simpleMessage("Natuur en milieu"),
+        "sectors_religionAndPhilosophy": MessageLookupByLibrary.simpleMessage(
+            "Religie en levensbeschouwing"),
+        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("Welzijn")
       };
 }

@@ -7,5 +7,13 @@
     "choiceScreen_skip": "Skip",
     "choiceScreen_totallyDisagree": "Totally disagree",
     "choiceScreen_totallyAgree": "Totally agree",
-    "choiceScreen_neutral": "Neutral"
+    "choiceScreen_neutral": "Neutral",
+    "sectors_animals": "Animals",
+    "sectors_health": "Health",
+    "sectors_internationalAidAndHumanRights": "International aid and human rights",
+    "sectors_artAndCulture": "Art and culture",
+    "sectors_natureAndEnvironment": "Nature and environment",
+    "sectors_educationAndScience": "Education and science",
+    "sectors_religionAndPhilosophy": "Religion and philosophy",
+    "sectors_wellBeing": "Well-being"
 }

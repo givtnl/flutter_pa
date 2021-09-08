@@ -23,7 +23,7 @@ class MatchesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  selectOrganisationMatch(UserOrganisationMatchListModel model){
-  this.selectedOrganisationMatch = model;
+  selectOrganisationMatch(UserOrganisationMatchListModel model) {
+    this.selectedOrganisationMatch = model;
   }
 }
