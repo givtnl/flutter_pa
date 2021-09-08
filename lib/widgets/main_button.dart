@@ -38,6 +38,7 @@ class _MainButtonState extends State<MainButton> {
                   child: Center(
                       child: Text(label,
                           style: Theme.of(context).textTheme.button,
+                          textAlign: TextAlign.center,
                       )
                   ),
                 )
