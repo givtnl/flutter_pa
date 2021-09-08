@@ -6,23 +6,27 @@ class BackgroundWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final String assetName = 'assets/svg/ellipse 25.svg';
-    final Widget svg = SvgPicture.asset(
-        assetName
-    );
+    final Widget svg1 = SvgPicture.asset('assets/svg/ellipse 25.svg');
+    final Widget svg2 = SvgPicture.asset('assets/svg/Vector 16 (Stroke).svg');
+    final Widget svg3 = SvgPicture.asset('assets/svg/Rectangle 1437 (Stroke).svg');
 
     return Container(
-      child: Center(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                svg
-              ],
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          svg1,
+          SizedBox(
+            height: 100,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40.0),
+            child: svg2,
+          ),
+          Expanded(
+            child: Container(),
+          ),
+          svg3,
+        ],
       ),
     );
   }
