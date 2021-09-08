@@ -72,6 +72,14 @@ flutter:
     - assets/svg/Rectangle 1437 (Stroke).svg
     - assets/svg/Ellipse 30 (Stroke).svg
     - assets/svg/pattern2/Ellipse 30.svg
+    - assets/svg/pattern2/Ellipse 24.svg
+    - assets/svg/pattern2/Ellipse 23 (Stroke).svg
+    - assets/svg/pattern2/path (Stroke).svg
+    - assets/svg/pattern3/Ellipse 23 (Stroke).svg
+    - assets/svg/pattern3/ellipse 25.svg
+    - assets/svg/pattern3/path (Stroke).svg
+    - assets/svg/pattern3/Rectangle 1437 (Stroke).svg
+    - assets/svg/pattern3/Vector 16 (Stroke).svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

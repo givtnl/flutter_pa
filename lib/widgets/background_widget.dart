@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'background_patterns/pattern1.dart';
 import 'background_patterns/pattern2.dart';
+import 'background_patterns/pattern3.dart';
 
 class BackgroundWidget extends StatefulWidget {
   @override
@@ -29,13 +30,13 @@ class _BackgroundWidgetState extends State<BackgroundWidget> with SingleTickerPr
     var provider = Provider.of<QuestionnaireProvider>(context);
     switch(_currentPattern) {
       case 0:
-        return BackgrounPattern1();
+        return BackgroundPattern1();
       case 1:
-        return BackgrounPattern2();
+        return BackgroundPattern2();
       case 2:
-        return BackgrounPattern2();
+        return BackgroundPattern3();
       default:
-        return BackgrounPattern1();
+        return BackgroundPattern1();
     };
   }
 }

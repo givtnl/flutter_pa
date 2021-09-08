@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class BackgrounPattern1 extends StatelessWidget {
+class BackgroundPattern1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
