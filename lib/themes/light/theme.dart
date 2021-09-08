@@ -30,6 +30,23 @@ class LightTheme {
                 color: blueColor
               )
           ),
+          // Skip stylings
+          subtitle2: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: blueColor,
+                  decoration: TextDecoration.underline,
+              )
+          ),
+          // Totally agree and disagree stylings
+          headline2: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                  color: blueColor,
+              )
+          ),
           // Button on every page
           button: GoogleFonts.montserrat(
             textStyle: TextStyle(

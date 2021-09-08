@@ -67,7 +67,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     ),
                     body,
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height * .04),
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 50),
                       child: MainButton(
                         label: S.of(context).nextButton,
                         tapped: () async {

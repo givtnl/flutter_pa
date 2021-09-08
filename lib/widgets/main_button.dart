@@ -30,14 +30,14 @@ class _MainButtonState extends State<MainButton> {
             child: GestureDetector(
                 onTap: tapped,
                 child: Container(
-                  height: MediaQuery.of(context).size.height * .05,
+                  height: 45,
                   decoration: BoxDecoration(
                     color: LightTheme.appleBlueSeaGreen,
                     borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
                   ),
                   child: Center(
                       child: Text(label,
-                          style: LightTheme.theme.textTheme.button
+                          style: Theme.of(context).textTheme.button,
                       )
                   ),
                 )

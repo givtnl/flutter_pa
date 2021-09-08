@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/themes/light/theme.dart';
 
 class BigText extends StatelessWidget {
   final String text;
@@ -9,12 +10,7 @@ class BigText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
         text,
-        style: TextStyle(
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w700,
-          color: Theme.of(context).primaryColor,
-          fontSize: 25,
-        ),
+        style: Theme.of(context).textTheme.headline1,
       );
   }
 }
