@@ -101,7 +101,7 @@ class _CustomLinearProgressIndicatorState extends State<CustomLinearProgressIndi
             borderRadius: widget.borderRadius,
             backgroundColor: widget._getBackgroundColor(context),
             valueColor: widget._getValueColor(context),
-            value: widget.value, // may be null
+            value: widget.value ?? 0, // may be null
             animationValue: animationValue, // ignored if widget.value is not null
             textDirection: textDirection,
           ),
@@ -131,7 +131,7 @@ class _CustomLinearProgressIndicatorPainter extends CustomPainter {
     required this.borderRadius,
     required this.backgroundColor,
     required this.valueColor,
-    this.value,
+    this.value = 0,
     required this.animationValue,
     required this.textDirection,
   }) : assert(textDirection != null);
@@ -139,7 +139,7 @@ class _CustomLinearProgressIndicatorPainter extends CustomPainter {
   final double borderRadius;
   final Color backgroundColor;
   final Color valueColor;
-  final double? value;
+  final double value;
   final double animationValue;
   final TextDirection textDirection;
   // The indeterminate progress animation displays two lines whose leading (head)
@@ -192,26 +192,25 @@ class _CustomLinearProgressIndicatorPainter extends CustomPainter {
           left = x;
           break;
       }
+
+      // if value is greater than  0.96 draw roundedCorners on topRight and bottomRight
+      // or else the value line is drawn outside the bottom line's path
+      bool drawCornersRightSide = value.toDouble() > 0.96;
+
       Path path = Path();
-      path.addRRect(RRect.fromRectAndRadius(
+      path.addRRect(RRect.fromRectAndCorners(
           Rect.fromLTWH(
               left, 0, width, size.height),
-          Radius.circular(borderRadius)));
+            topLeft: Radius.circular(borderRadius),
+            topRight: drawCornersRightSide ? Radius.circular(borderRadius) : Radius.zero,
+            bottomLeft: Radius.circular(borderRadius),
+            bottomRight: drawCornersRightSide ? Radius.circular(borderRadius) : Radius.zero,
+          ));
       canvas.drawPath(path, paint);
     }
 
-    if (value != null) {
-      drawBar(0.0, value!.clamp(0.0, 1.0) * size.width);
-    } else {
-      final double x1 = size.width * line1Tail.transform(animationValue);
-      final double width1 = size.width * line1Head.transform(animationValue) - x1;
+    drawBar(0.0, value.clamp(0.0, 1.0) * size.width);
 
-      final double x2 = size.width * line2Tail.transform(animationValue);
-      final double width2 = size.width * line2Head.transform(animationValue) - x2;
-
-      drawBar(x1, width1);
-      drawBar(x2, width2);
-    }
   }
 
   @override

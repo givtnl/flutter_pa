@@ -35,10 +35,12 @@ class OrganisationScreen extends StatelessWidget {
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     var testMatchTags = [
-      MatchingTag(80, "Nationaal - internationaal"),
-      MatchingTag(100, "Belastingsafrekbaar"),
-      MatchingTag(70, "Ontwikkelingshulp - crisishulp")
+      MatchingTag(0, "Nationaal - internationaal"),
+      MatchingTag(96, "Belastingsafrekbaar"),
+      MatchingTag(7, "Ontwikkelingshulp - crisishulp"),
+      MatchingTag(97, "Value cant be drawn outside outer path")
     ];
+
     var itlProvider = S.of(context);
 
     final _tags = currentMatch.organisation.metaTags["sectors"]!
