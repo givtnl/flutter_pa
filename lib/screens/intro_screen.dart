@@ -39,11 +39,12 @@ class IntroScreen extends StatelessWidget {
                   child: BlueButton(
                     label: S.of(context).introButton,
                     tapped: () {
-                      if (kReleaseMode) {
-                        final DateTime now = DateTime.now();
-                        final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
-                        final String formatted = formatter.format(now);
-                        userProvider.userName = formatted;
+                      final DateTime now = DateTime.now();
+                      final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
+                      final String formatted = formatter.format(now);
+                      userProvider.userName = formatted;
+                      if (kDebugMode) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("DEBUG MODE : ${userProvider.userName}"), duration: Duration(seconds: 2),));
                         print(userProvider.userName);
                       }
                       Navigator.of(context).pushNamed("/choice");

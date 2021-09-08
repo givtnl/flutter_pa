@@ -5,7 +5,6 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/choice_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
-import 'package:flutter_app/screens/login_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/themes/light/theme.dart';
@@ -65,7 +64,7 @@ class _MyAppState extends State<MyApp> {
         ],
         theme: LightTheme.theme,
         routes: {
-          '/': (ctx) => kReleaseMode ? IntroScreen() : LoginScreen(),
+          '/': (ctx) => IntroScreen(),
           IntroScreen.routeName: (ctx) => IntroScreen(),
           MatchesScreen.routeName: (ctx) => MatchesScreen(),
           OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
