@@ -34,8 +34,10 @@ class CustomRectSliderTrackShape extends SliderTrackShape
 
     context.canvas.drawRect(
         Rect.fromLTRB(
-            trackRect.left,
-            trackRect.top, trackRect.right, trackRect.bottom),
+            parentBox.semanticBounds.left,
+            trackRect.top,
+            parentBox.semanticBounds.right,
+            trackRect.bottom),
         trackPaint);
   }
 }
