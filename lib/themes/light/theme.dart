@@ -4,21 +4,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/themes/shapes/customRectSliderShape.dart';
 import 'package:flutter_app/themes/shapes/customRoundSliderThumbShape.dart';
 import 'package:flutter_app/themes/shapes/customValueIndicatorShape.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LightTheme {
-  static ThemeData get theme => ThemeData(
+  static ThemeData get theme =>
+      ThemeData(
         primaryColor: oldPrimaryColor,
         backgroundColor: Color.fromRGBO(222, 233, 243, 1),
         cardColor: Color.fromRGBO(239, 244, 249, 1),
         textTheme: TextTheme(
-          bodyText1: TextStyle(
-            fontFamily: 'Inter',
-            color: oldPrimaryColor,
+          // Intro page headline
+          headline1: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 26,
+              )
+          ),
+          // Intro page subheadline
+          subtitle1: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+              )
+          ),
+          // Button on every page
+          button: GoogleFonts.montserrat(
+            textStyle: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              color: Colors.white
+            )
+          ),
+          // Old body text
+          bodyText1: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                color: oldPrimaryColor,
+              )
           ),
         ),
         sliderTheme: SliderThemeData(
           trackHeight: 1,
-          trackShape: CustomRectSliderTrackShape(trackColor: purpleColor),
+          trackShape: CustomRectSliderTrackShape(
+            trackColor: purpleColor,
+          ),
           thumbShape: CustomRoundSliderThumbShape(
             outerRadius: 22,
             innerRadius: 13,
@@ -28,10 +56,12 @@ class LightTheme {
           overlayShape: SliderComponentShape.noOverlay,
           valueIndicatorShape: CustomValueIndicatorShape(),
           valueIndicatorColor: purpleColor,
-          valueIndicatorTextStyle: TextStyle(
-              // fontFamily: 'Montserrat', TODO: Get Montserrat fonts
-              fontWeight: FontWeight.bold,
-              color: Colors.white),
+          valueIndicatorTextStyle: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              )
+          ),
         ),
       );
 

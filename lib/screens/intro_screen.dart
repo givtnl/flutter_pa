@@ -26,7 +26,10 @@ class IntroScreen extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                  child: BigText(S.of(context).introText),
+                  child: Text(
+                    S.of(context).introText,
+                    style: Theme.of(context).textTheme.headline1,
+                  )
                 ),
               ),
               Align(
