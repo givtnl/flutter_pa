@@ -1,33 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:provider/provider.dart';
 
-class BackgroundWidget extends StatelessWidget {
-  const BackgroundWidget({Key? key}) : super(key: key);
+import 'background_patterns/pattern1.dart';
+import 'background_patterns/pattern2.dart';
+
+class BackgroundWidget extends StatefulWidget {
+  final int pattern;
+
+  BackgroundWidget(this.pattern);
+
+  @override
+  _BackgroundWidgetState createState() => _BackgroundWidgetState();
+}
+
+class _BackgroundWidgetState extends State<BackgroundWidget> with SingleTickerProviderStateMixin {
+
+  int _currentPattern = 0;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_currentPattern < 2)
+      _currentPattern++;
+    else {
+      _currentPattern = 0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Widget svg1 = SvgPicture.asset('assets/svg/ellipse 25.svg');
-    final Widget svg2 = SvgPicture.asset('assets/svg/Vector 16 (Stroke).svg');
-    final Widget svg3 = SvgPicture.asset('assets/svg/Rectangle 1437 (Stroke).svg');
-
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          svg1,
-          SizedBox(
-            height: 100,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40.0),
-            child: svg2,
-          ),
-          Expanded(
-            child: Container(),
-          ),
-          svg3,
-        ],
-      ),
-    );
+    var provider = Provider.of<QuestionnaireProvider>(context);
+    switch(_currentPattern) {
+      case 0:
+        return BackgrounPattern1();
+      case 1:
+        return BackgrounPattern2();
+      case 2:
+        return BackgrounPattern2();
+      default:
+        return BackgrounPattern1();
+    };
   }
 }
