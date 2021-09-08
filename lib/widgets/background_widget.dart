@@ -6,10 +6,6 @@ import 'background_patterns/pattern1.dart';
 import 'background_patterns/pattern2.dart';
 
 class BackgroundWidget extends StatefulWidget {
-  final int pattern;
-
-  BackgroundWidget(this.pattern);
-
   @override
   _BackgroundWidgetState createState() => _BackgroundWidgetState();
 }

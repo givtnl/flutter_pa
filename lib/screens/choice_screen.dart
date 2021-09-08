@@ -39,7 +39,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: Stack(children: [
-            BackgroundWidget(1),
+            BackgroundWidget(),
             SafeArea(
               child: Align(
                 alignment: Alignment.bottomCenter,
