@@ -28,6 +28,7 @@ class IntroScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         S.of(context).introTitle,
