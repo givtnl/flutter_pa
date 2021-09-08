@@ -18,7 +18,10 @@ class BackgroundPattern3 extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              svg4,
+              Padding(
+                padding: const EdgeInsets.only(top: 95.0),
+                child: svg4,
+              ),
               svg5,
             ],
           ),
@@ -29,7 +32,13 @@ class BackgroundPattern3 extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               svg1,
-              svg2,
+              Padding(
+                padding: const EdgeInsets.only(top: 90.0, right: 42.0),
+                child: svg2,
+              ),
+              Expanded(
+                child: Container(),
+              ),
               svg3,
             ],
           )
