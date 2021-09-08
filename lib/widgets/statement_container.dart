@@ -93,7 +93,7 @@ class _StatementContainerState extends State<StatementContainer> {
               Flexible(
                 child: Text(
                   S.of(context).choiceScreen_totallyDisagree,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
               ),
               Flexible(child: Container()),
@@ -101,7 +101,7 @@ class _StatementContainerState extends State<StatementContainer> {
               Flexible(
                 child: Text(
                   S.of(context).choiceScreen_totallyAgree,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headline3,
                   textAlign: TextAlign.end,
                 ),
               ),
