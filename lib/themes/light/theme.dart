@@ -10,7 +10,7 @@ class LightTheme {
   static ThemeData get theme =>
       ThemeData(
         primaryColor: oldPrimaryColor,
-        backgroundColor: Color.fromRGBO(222, 233, 243, 1),
+        backgroundColor: Color.fromRGBO(238, 237, 233, 1),
         cardColor: Color.fromRGBO(239, 244, 249, 1),
         textTheme: TextTheme(
           // Intro page headline
