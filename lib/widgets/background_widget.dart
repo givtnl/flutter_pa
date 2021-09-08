@@ -14,20 +14,22 @@ class BackgroundWidget extends StatefulWidget {
 class _BackgroundWidgetState extends State<BackgroundWidget> with SingleTickerProviderStateMixin {
 
   int _currentPattern = 0;
+  bool _initialized = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_currentPattern < 2)
+    if (_initialized && _currentPattern < 2)
       _currentPattern++;
     else {
       _currentPattern = 0;
     }
+    _initialized = true;
   }
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<QuestionnaireProvider>(context);
+    Provider.of<QuestionnaireProvider>(context);
     switch(_currentPattern) {
       case 0:
         return BackgroundPattern1();
