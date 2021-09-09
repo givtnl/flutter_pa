@@ -18,7 +18,7 @@ class MatchesProvider with ChangeNotifier {
 
   Future<void> loadMatches(String userId) async {
     var response = await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80);
-    organisationMatches = response.result;
+    organisationMatches = response.organisationMatches;
     organisationMatches.sort((a, b) => b.score - a.score);
     notifyListeners();
   }
