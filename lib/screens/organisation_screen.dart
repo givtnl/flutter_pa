@@ -34,12 +34,7 @@ class OrganisationScreen extends StatelessWidget {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
-    var testMatchTags = [
-      MatchingTag(0, "Nationaal - internationaal"),
-      MatchingTag(96, "Belastingsafrekbaar"),
-      MatchingTag(7, "Ontwikkelingshulp - crisishulp"),
-      MatchingTag(97, "Value cant be drawn outside outer path")
-    ];
+    var tagScores = provider.tagScores;
 
     var itlProvider = S.of(context);
 
@@ -166,7 +161,7 @@ class OrganisationScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              testMatchTags.elementAt(idx).name,
+                              tagScores.elementAt(idx).tag,
                               textAlign: TextAlign.left,
                               style: Theme.of(context).textTheme.bodyText2,
                             ),
@@ -176,9 +171,9 @@ class OrganisationScreen extends StatelessWidget {
                             CustomLinearProgressIndicator(
                               height: 20,
                               borderRadius: 20,
-                              value: testMatchTags
+                              value: tagScores
                                       .elementAt(idx)
-                                      .score
+                                      .currentScore
                                       .toDouble() /
                                   100,
                               color: getColorForIndicator(idx, context),
@@ -194,7 +189,7 @@ class OrganisationScreen extends StatelessWidget {
                           height: 15,
                         );
                       },
-                      itemCount: testMatchTags.length),
+                      itemCount: tagScores.length),
                   if (currentOrganisation.metaTags.containsKey("donationUrl"))
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
