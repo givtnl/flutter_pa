@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'big_text.dart';
@@ -36,19 +37,11 @@ class _StatementContainerState extends State<StatementContainer> {
             padding: EdgeInsets.only(top: 20),
             child: InkWell(
               child: Text(
-                'overslaan',
+                S.of(context).choiceScreen_skip.toLowerCase(),
                 style: Theme.of(context).textTheme.subtitle2,
                 textAlign: TextAlign.start,
               ),
-            ),
-          ),
-          /*Container(
-            width: double.infinity,
-            child: TextButton(
-              style: ButtonStyle(
-                alignment: AlignmentDirectional.centerStart,
-              ),
-              onPressed: () {
+              onTap: () {
                 MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
                 provider.skipCurrentQuestion();
                 if (provider.isCompleted) {
@@ -57,12 +50,8 @@ class _StatementContainerState extends State<StatementContainer> {
                   provider.prepareNextScreen();
                 }
               },
-              child: Text(
-                S.of(context).choiceScreen_skip.toLowerCase(),
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
             ),
-          ),*/
+          ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 50),
             child: Container(),
