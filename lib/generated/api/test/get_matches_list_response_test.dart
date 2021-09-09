@@ -15,8 +15,13 @@ void main() {
   final instance = GetMatchesListResponse();
 
   group('test GetMatchesListResponse', () {
-    // List<UserOrganisationMatchListModel> result (default value: const [])
-    test('to test the property `result`', () async {
+    // List<UserOrganisationMatchListModel> organisationMatches (default value: const [])
+    test('to test the property `organisationMatches`', () async {
+      // TODO
+    });
+
+    // List<UserTagMatchListModel> userTagMatches (default value: const [])
+    test('to test the property `userTagMatches`', () async {
       // TODO
     });
 

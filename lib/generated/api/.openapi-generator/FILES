@@ -23,6 +23,7 @@ doc/QuestionStatementModel.md
 doc/QuestionType.md
 doc/QuestionsApi.md
 doc/UserOrganisationMatchListModel.md
+doc/UserTagMatchListModel.md
 git_push.sh
 lib/api.dart
 lib/api/answers_api.dart
@@ -53,6 +54,7 @@ lib/model/question_list_model.dart
 lib/model/question_statement_model.dart
 lib/model/question_type.dart
 lib/model/user_organisation_match_list_model.dart
+lib/model/user_tag_match_list_model.dart
 pubspec.yaml
 test/answers_api_test.dart
 test/create_answer_detail_request_test.dart
@@ -74,3 +76,4 @@ test/question_statement_model_test.dart
 test/question_type_test.dart
 test/questions_api_test.dart
 test/user_organisation_match_list_model_test.dart
+test/user_tag_match_list_model_test.dart

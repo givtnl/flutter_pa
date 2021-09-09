@@ -223,6 +223,8 @@ class ApiClient {
           
         case 'UserOrganisationMatchListModel':
           return UserOrganisationMatchListModel.fromJson(value);
+        case 'UserTagMatchListModel':
+          return UserTagMatchListModel.fromJson(value);
         default:
           Match match;
           if (value is List && (match = _regList.firstMatch(targetType)) != null) {

@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
  - [QuestionStatementModel](doc//QuestionStatementModel.md)
  - [QuestionType](doc//QuestionType.md)
  - [UserOrganisationMatchListModel](doc//UserOrganisationMatchListModel.md)
+ - [UserTagMatchListModel](doc//UserTagMatchListModel.md)
 
 
 ## Documentation For Authorization

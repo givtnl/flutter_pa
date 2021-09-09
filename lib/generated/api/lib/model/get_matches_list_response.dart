@@ -12,26 +12,34 @@ part of openapi.api;
 class GetMatchesListResponse {
   /// Returns a new [GetMatchesListResponse] instance.
   GetMatchesListResponse({
-    this.result,
+    this.organisationMatches,
+    this.userTagMatches,
   });
 
-  List<UserOrganisationMatchListModel> result;
+  List<UserOrganisationMatchListModel> organisationMatches;
+
+  List<UserTagMatchListModel> userTagMatches;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetMatchesListResponse &&
-     other.result == result;
+     other.organisationMatches == organisationMatches &&
+     other.userTagMatches == userTagMatches;
 
   @override
   int get hashCode =>
-    (result == null ? 0 : result.hashCode);
+    (organisationMatches == null ? 0 : organisationMatches.hashCode) +
+    (userTagMatches == null ? 0 : userTagMatches.hashCode);
 
   @override
-  String toString() => 'GetMatchesListResponse[result=$result]';
+  String toString() => 'GetMatchesListResponse[organisationMatches=$organisationMatches, userTagMatches=$userTagMatches]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (result != null) {
-      json[r'result'] = result;
+    if (organisationMatches != null) {
+      json[r'organisationMatches'] = organisationMatches;
+    }
+    if (userTagMatches != null) {
+      json[r'userTagMatches'] = userTagMatches;
     }
     return json;
   }
@@ -41,7 +49,8 @@ class GetMatchesListResponse {
   static GetMatchesListResponse fromJson(Map<String, dynamic> json) => json == null
     ? null
     : GetMatchesListResponse(
-        result: UserOrganisationMatchListModel.listFromJson(json[r'result']),
+        organisationMatches: UserOrganisationMatchListModel.listFromJson(json[r'organisationMatches']),
+        userTagMatches: UserTagMatchListModel.listFromJson(json[r'userTagMatches']),
     );
 
   static List<GetMatchesListResponse> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

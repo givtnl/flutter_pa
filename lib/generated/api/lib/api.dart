@@ -47,6 +47,7 @@ part 'model/question_list_model.dart';
 part 'model/question_statement_model.dart';
 part 'model/question_type.dart';
 part 'model/user_organisation_match_list_model.dart';
+part 'model/user_tag_match_list_model.dart';
 
 
 const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};

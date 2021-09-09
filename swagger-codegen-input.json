@@ -250,11 +250,18 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "result": {
+          "organisationMatches": {
             "type": "array",
             "nullable": true,
             "items": {
               "$ref": "#/components/schemas/UserOrganisationMatchListModel"
+            }
+          },
+          "userTagMatches": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UserTagMatchListModel"
             }
           }
         }
@@ -263,10 +270,6 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "tag": {
-            "type": "string",
-            "nullable": true
-          },
           "organisation": {
             "nullable": true,
             "oneOf": [
@@ -319,6 +322,32 @@
             "additionalProperties": {
               "type": "string"
             }
+          }
+        }
+      },
+      "UserTagMatchListModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "user": {
+            "type": "string",
+            "nullable": true
+          },
+          "tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "maximumScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentage": {
+            "type": "number",
+            "format": "decimal"
           }
         }
       },
