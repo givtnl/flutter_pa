@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
+import 'package:flutter_app/screens/error_screen.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/organisation_proposal_widget.dart';
+import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -81,18 +83,9 @@ class _MatchesScreen extends State<MatchesScreen> {
               return buildWidget(context);
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return Container(
-                color: Theme.of(context).backgroundColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              );
+              return SpinnerContainer(true);
             case ConnectionState.none:
-              print("none");
-              return Container();
+              return ErrorScreen();
               break;
           }
         });

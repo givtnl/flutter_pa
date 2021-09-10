@@ -5,6 +5,7 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/error_screen.dart';
 import 'package:flutter_app/widgets/main_button.dart';
+import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -84,21 +85,9 @@ class IntroScreen extends StatelessWidget {
               return screen;
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return Container(
-                color: Theme.of(context).backgroundColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 300, horizontal: 100),
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ),
-              );
+              return SpinnerContainer(false);
             case ConnectionState.none:
-              print("none");
-              return Container();
+              return ErrorScreen();
               break;
           }
         });
