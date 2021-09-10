@@ -4,6 +4,7 @@ import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/choice_screen.dart';
+import 'package:flutter_app/screens/error_screen.dart';
 import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
@@ -16,6 +17,7 @@ import 'analytics/mixpanel_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MixpanelManager.mixpanel.flushEvents();
+  ErrorWidget.builder = (FlutterErrorDetails details) => ErrorScreen();
   runApp(MyApp());
 }
 
@@ -68,7 +70,8 @@ class _MyAppState extends State<MyApp> {
           IntroScreen.routeName: (ctx) => IntroScreen(),
           MatchesScreen.routeName: (ctx) => MatchesScreen(),
           OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
-          ChoiceScreen.routeName: (ctx) => ChoiceScreen()
+          ChoiceScreen.routeName: (ctx) => ChoiceScreen(),
+          ErrorScreen.routeName: (ctx) => ErrorScreen(),
         },
       ),
     );
