@@ -85,7 +85,7 @@ class IntroScreen extends StatelessWidget {
               return screen;
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return SpinnerContainer(false);
+              return SpinnerContainer("We halen de vragen op!");
             case ConnectionState.none:
               return ErrorScreen();
               break;

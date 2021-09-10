@@ -4,10 +4,10 @@ import 'package:flutter_app/widgets/big_text.dart';
 
 class SpinnerContainer extends StatelessWidget {
 
-  late final bool loadingMatches;
+  late final String text;
 
-  SpinnerContainer(bool loadingMatches) {
-    this.loadingMatches = loadingMatches;
+  SpinnerContainer(String text) {
+    this.text = text;
   }
 
   @override
@@ -26,7 +26,7 @@ class SpinnerContainer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: BigText("Even geduld."),
               ),
-              Text(loadingMatches ? "We berekenen je matches!" :  "We halen de vragen op!", style: Theme.of(context).textTheme.subtitle1,)
+              Text(text, style: Theme.of(context).textTheme.subtitle1,)
             ],
           ),
         ),

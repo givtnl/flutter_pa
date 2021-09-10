@@ -83,7 +83,7 @@ class _MatchesScreen extends State<MatchesScreen> {
               return buildWidget(context);
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return SpinnerContainer(true);
+              return SpinnerContainer("We berekenen je matches");
             case ConnectionState.none:
               return ErrorScreen();
               break;
