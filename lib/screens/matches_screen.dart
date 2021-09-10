@@ -73,7 +73,7 @@ class _MatchesScreen extends State<MatchesScreen> {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
 
     return new FutureBuilder(
-        future: provider.loadMatches(userProvider.userName),
+        future: Future.delayed(const Duration(seconds: 2),() => provider.loadMatches(userProvider.userName)),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);

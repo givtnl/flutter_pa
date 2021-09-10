@@ -75,7 +75,7 @@ class IntroScreen extends StatelessWidget {
       ),
     );
     return new FutureBuilder(
-        future: questionnaireProvider.loadQuestions(),
+        future: Future.delayed(const Duration(seconds: 2),() => questionnaireProvider.loadQuestions()),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
