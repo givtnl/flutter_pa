@@ -8,6 +8,7 @@ import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/categories_container.dart';
+import 'package:flutter_app/widgets/slideable_container/slideable_container.dart';
 import 'package:flutter_app/widgets/statement_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
@@ -21,10 +22,12 @@ class ChoiceScreen extends StatefulWidget {
 class _ChoiceScreenState extends State<ChoiceScreen> {
   var body;
 
+  final GlobalKey<SlideableContainerState> key = GlobalKey<SlideableContainerState>();
+
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    var userProvider = Provider.of<UserProvider>(context);
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
     if (!questionnaireProvider.isCompleted) {
       body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
     }
