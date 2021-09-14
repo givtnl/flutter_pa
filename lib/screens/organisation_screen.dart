@@ -13,6 +13,7 @@ import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,7 +36,7 @@ class OrganisationScreen extends StatelessWidget {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
-    var tagScores = provider.tagScores;
+    var tagScores = [UserOrganisationTagMatchListModel()];
 
     var itlProvider = S.of(context);
 
@@ -164,7 +165,7 @@ class OrganisationScreen extends StatelessWidget {
                               borderRadius: 20,
                               value: tagScores
                                       .elementAt(idx)
-                                      .currentScore
+                                      .score
                                       .toDouble() /
                                   100,
                               color: getColorForIndicator(idx, context),
