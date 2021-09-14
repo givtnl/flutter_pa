@@ -18,15 +18,14 @@ class OrganisationExtra extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-          child: RichText(
-            text: TextSpan(
-              style: Theme.of(context).textTheme.bodyText1,
-              children: <TextSpan>[
-                TextSpan(text: '$title\n\n'.toUpperCase(), style: TextStyle(fontWeight: FontWeight.w900, color: Theme.of(context).accentColor)),
-                TextSpan(text: text, style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w500)),
-              ],
-            ),
-          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title.toUpperCase(), style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w700, fontSize: 14),),
+              SizedBox(height: 10,),
+              Text(text, style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500, fontSize: 12),),
+            ],
+          )
         ),
       ),
     );
