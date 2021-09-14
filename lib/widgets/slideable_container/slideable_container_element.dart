@@ -55,10 +55,10 @@ class SlideableContainerElementState extends State<SlideableContainerElement> wi
     super.initState();
 
     _controllerIn = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _animationIn = Tween<Offset>(begin: Offset(-1.0, 0), end: Offset.zero).animate(CurvedAnimation(parent: _controllerIn, curve: Curves.easeIn));
+    _animationIn = Tween<Offset>(begin: Offset(1.0, 0), end: Offset.zero).animate(CurvedAnimation(parent: _controllerIn, curve: Curves.easeIn));
 
     _controllerOut = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _animationOut = Tween<Offset>(begin: Offset.zero, end: Offset(1.0, 0)).animate(CurvedAnimation(parent: _controllerOut, curve: Curves.easeIn));
+    _animationOut = Tween<Offset>(begin: Offset.zero, end: Offset(-1.0, 0)).animate(CurvedAnimation(parent: _controllerOut, curve: Curves.easeIn));
 
     _animationIn.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
