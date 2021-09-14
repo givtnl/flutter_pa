@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **translations** | **Map<String, String>** |  | [optional] [default to const {}]
 **categoryOptions** | [**List<CreateQuestionCategoryRequestOptions>**](CreateQuestionCategoryRequestOptions.md) |  | [optional] [default to const []]
 **statementOptions** | [**OneOfCreateQuestionStatementRequestOptions**](OneOfCreateQuestionStatementRequestOptions.md) |  | [optional] 
+**metaTags** | **Map<String, String>** |  | [optional] [default to const {}]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

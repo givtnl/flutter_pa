@@ -25,11 +25,15 @@ class MatchesApi {
   ///
   /// * [String] userId:
   ///
+  /// * [String] nextPageToken:
+  ///
   /// * [int] minimumScore:
-  Future<Response> getMatchesListWithHttpInfo({ String userId, int minimumScore }) async {
+  ///
+  /// * [int] limit:
+  Future<Response> getMatchesListWithHttpInfo({ String userId, String nextPageToken, int minimumScore, int limit }) async {
     // Verify required params are set.
 
-    final path = r'/Matches';
+    final path = r'/matches';
 
     Object postBody;
 
@@ -40,8 +44,14 @@ class MatchesApi {
     if (userId != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'UserId', userId));
     }
+    if (nextPageToken != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'NextPageToken', nextPageToken));
+    }
     if (minimumScore != null) {
       queryParams.addAll(_convertParametersForCollectionFormat('', 'MinimumScore', minimumScore));
+    }
+    if (limit != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'Limit', limit));
     }
 
     final contentTypes = <String>[];
@@ -69,9 +79,13 @@ class MatchesApi {
   ///
   /// * [String] userId:
   ///
+  /// * [String] nextPageToken:
+  ///
   /// * [int] minimumScore:
-  Future<GetMatchesListResponse> getMatchesList({ String userId, int minimumScore }) async {
-    final response = await getMatchesListWithHttpInfo( userId: userId, minimumScore: minimumScore );
+  ///
+  /// * [int] limit:
+  Future<GetUserOrganisationMatchesListResponse> getMatchesList({ String userId, String nextPageToken, int minimumScore, int limit }) async {
+    final response = await getMatchesListWithHttpInfo( userId: userId, nextPageToken: nextPageToken, minimumScore: minimumScore, limit: limit );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -79,8 +93,8 @@ class MatchesApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body != null && response.statusCode != HttpStatus.noContent) {
-      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetMatchesListResponse',) as GetMatchesListResponse;
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetUserOrganisationMatchesListResponse',) as GetUserOrganisationMatchesListResponse;
         }
-    return Future<GetMatchesListResponse>.value(null);
+    return Future<GetUserOrganisationMatchesListResponse>.value(null);
   }
 }

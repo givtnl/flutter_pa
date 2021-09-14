@@ -17,6 +17,7 @@ class CreateQuestionRequest {
     this.translations = const {},
     this.categoryOptions,
     this.statementOptions,
+    this.metaTags,
   });
 
   int displayOrder;
@@ -29,13 +30,16 @@ class CreateQuestionRequest {
 
   CreateQuestionStatementRequestOptions statementOptions;
 
+  Map<String, String> metaTags;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is CreateQuestionRequest &&
      other.displayOrder == displayOrder &&
      other.type == type &&
      other.translations == translations &&
      other.categoryOptions == categoryOptions &&
-     other.statementOptions == statementOptions;
+     other.statementOptions == statementOptions &&
+     other.metaTags == metaTags;
 
   @override
   int get hashCode =>
@@ -43,10 +47,11 @@ class CreateQuestionRequest {
     (type == null ? 0 : type.hashCode) +
     (translations == null ? 0 : translations.hashCode) +
     (categoryOptions == null ? 0 : categoryOptions.hashCode) +
-    (statementOptions == null ? 0 : statementOptions.hashCode);
+    (statementOptions == null ? 0 : statementOptions.hashCode) +
+    (metaTags == null ? 0 : metaTags.hashCode);
 
   @override
-  String toString() => 'CreateQuestionRequest[displayOrder=$displayOrder, type=$type, translations=$translations, categoryOptions=$categoryOptions, statementOptions=$statementOptions]';
+  String toString() => 'CreateQuestionRequest[displayOrder=$displayOrder, type=$type, translations=$translations, categoryOptions=$categoryOptions, statementOptions=$statementOptions, metaTags=$metaTags]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -65,6 +70,9 @@ class CreateQuestionRequest {
     if (statementOptions != null) {
       json[r'statementOptions'] = statementOptions;
     }
+    if (metaTags != null) {
+      json[r'metaTags'] = metaTags;
+    }
     return json;
   }
 
@@ -80,6 +88,9 @@ class CreateQuestionRequest {
           (json[r'translations'] as Map).cast<String, String>(),
         categoryOptions: CreateQuestionCategoryRequestOptions.listFromJson(json[r'categoryOptions']),
         statementOptions: CreateQuestionStatementRequestOptions.fromJson(json[r'statementOptions']),
+        metaTags: json[r'metaTags'] == null ?
+          null :
+          (json[r'metaTags'] as Map).cast<String, String>(),
     );
 
   static List<CreateQuestionRequest> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

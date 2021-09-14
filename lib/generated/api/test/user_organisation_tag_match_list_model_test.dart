@@ -10,13 +10,18 @@
 import 'package:openapi/api.dart';
 import 'package:test/test.dart';
 
-// tests for UserOrganisationMatchListModel
+// tests for UserOrganisationTagMatchListModel
 void main() {
-  final instance = UserOrganisationMatchListModel();
+  final instance = UserOrganisationTagMatchListModel();
 
-  group('test UserOrganisationMatchListModel', () {
-    // OneOfOrganisationDetailModel organisation
-    test('to test the property `organisation`', () async {
+  group('test UserOrganisationTagMatchListModel', () {
+    // String organisationId
+    test('to test the property `organisationId`', () async {
+      // TODO
+    });
+
+    // String tag
+    test('to test the property `tag`', () async {
       // TODO
     });
 

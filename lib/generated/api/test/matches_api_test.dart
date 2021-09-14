@@ -20,7 +20,7 @@ void main() {
     //
     // Returns a list of matches to build a wall for the user
     //
-    //Future<GetMatchesListResponse> getMatchesList({ String userId, int minimumScore }) async
+    //Future<GetUserOrganisationMatchesListResponse> getMatchesList({ String userId, String nextPageToken, int minimumScore, int limit }) async
     test('test getMatchesList', () async {
       // TODO
     });

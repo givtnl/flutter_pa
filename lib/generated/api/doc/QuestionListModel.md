@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **translations** | **Map<String, String>** |  | [optional] [default to const {}]
 **categoryOptions** | [**List<QuestionCategoryOptionModel>**](QuestionCategoryOptionModel.md) |  | [optional] [default to const []]
 **statementOptions** | [**OneOfQuestionStatementModel**](OneOfQuestionStatementModel.md) |  | [optional] 
+**metaTags** | **Map<String, String>** |  | [optional] [default to const {}]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

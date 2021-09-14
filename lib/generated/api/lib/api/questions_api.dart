@@ -30,7 +30,7 @@ class QuestionsApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: createQuestionRequest');
     }
 
-    final path = r'/Questions';
+    final path = r'/questions';
 
     Object postBody = createQuestionRequest;
 
@@ -81,24 +81,14 @@ class QuestionsApi {
   /// Returns a list of question to build a profile for the user by answering them
   ///
   /// Note: This method returns the HTTP [Response].
-  ///
-  /// Parameters:
-  ///
-  /// * [Object] request:
-  Future<Response> getQuestionsListWithHttpInfo({ Object request }) async {
-    // Verify required params are set.
-
-    final path = r'/Questions';
+  Future<Response> getQuestionsListWithHttpInfo() async {
+    final path = r'/questions';
 
     Object postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
-
-    if (request != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'request', request));
-    }
 
     final contentTypes = <String>[];
     final nullableContentType = contentTypes.isNotEmpty ? contentTypes[0] : null;
@@ -120,12 +110,8 @@ class QuestionsApi {
   /// Returns a list of questions
   ///
   /// Returns a list of question to build a profile for the user by answering them
-  ///
-  /// Parameters:
-  ///
-  /// * [Object] request:
-  Future<GetQuestionsListResponse> getQuestionsList({ Object request }) async {
-    final response = await getQuestionsListWithHttpInfo( request: request );
+  Future<GetQuestionsListResponse> getQuestionsList() async {
+    final response = await getQuestionsListWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

@@ -30,7 +30,7 @@ class OrganisationsApi {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: createOrganisationRequest');
     }
 
-    final path = r'/Organisations';
+    final path = r'/organisations';
 
     Object postBody = createOrganisationRequest;
 

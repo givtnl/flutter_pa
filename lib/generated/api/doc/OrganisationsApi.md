@@ -9,7 +9,7 @@ All URIs are relative to *https://0v9xof580f.execute-api.eu-west-3.amazonaws.com
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createOrganisation**](OrganisationsApi.md#createorganisation) | **POST** /Organisations | Creates an organisation
+[**createOrganisation**](OrganisationsApi.md#createorganisation) | **POST** /organisations | Creates an organisation
 
 
 # **createOrganisation**

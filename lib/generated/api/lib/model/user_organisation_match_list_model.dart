@@ -18,7 +18,7 @@ class UserOrganisationMatchListModel {
 
   OrganisationDetailModel organisation;
 
-  int score;
+  num score;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserOrganisationMatchListModel &&
@@ -50,7 +50,9 @@ class UserOrganisationMatchListModel {
     ? null
     : UserOrganisationMatchListModel(
         organisation: OrganisationDetailModel.fromJson(json[r'organisation']),
-        score: json[r'score'],
+        score: json[r'score'] == null ?
+          null :
+          json[r'score'].toDouble(),
     );
 
   static List<UserOrganisationMatchListModel> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

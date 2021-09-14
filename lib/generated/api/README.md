@@ -60,10 +60,11 @@ All URIs are relative to *https://0v9xof580f.execute-api.eu-west-3.amazonaws.com
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AnswersApi* | [**createAnswer**](doc//AnswersApi.md#createanswer) | **POST** /questions/{questionId}/answers | Answers a question
-*MatchesApi* | [**getMatchesList**](doc//MatchesApi.md#getmatcheslist) | **GET** /Matches | Returns a list of matches
-*OrganisationsApi* | [**createOrganisation**](doc//OrganisationsApi.md#createorganisation) | **POST** /Organisations | Creates an organisation
-*QuestionsApi* | [**createQuestion**](doc//QuestionsApi.md#createquestion) | **POST** /Questions | Creates a question
-*QuestionsApi* | [**getQuestionsList**](doc//QuestionsApi.md#getquestionslist) | **GET** /Questions | Returns a list of questions
+*MatchesApi* | [**getMatchesList**](doc//MatchesApi.md#getmatcheslist) | **GET** /matches | Returns a list of matches
+*OrganisationMatchesApi* | [**getUserOrganisationTagMatchesList**](doc//OrganisationMatchesApi.md#getuserorganisationtagmatcheslist) | **GET** /organisations/{organisationId}/matches | Returns a list of matches for the combination between an user and an organisation
+*OrganisationsApi* | [**createOrganisation**](doc//OrganisationsApi.md#createorganisation) | **POST** /organisations | Creates an organisation
+*QuestionsApi* | [**createQuestion**](doc//QuestionsApi.md#createquestion) | **POST** /questions | Creates a question
+*QuestionsApi* | [**getQuestionsList**](doc//QuestionsApi.md#getquestionslist) | **GET** /questions | Returns a list of questions
 
 
 ## Documentation For Models
@@ -76,15 +77,16 @@ Class | Method | HTTP request | Description
  - [CreateQuestionRequest](doc//CreateQuestionRequest.md)
  - [CreateQuestionResponse](doc//CreateQuestionResponse.md)
  - [CreateQuestionStatementRequestOptions](doc//CreateQuestionStatementRequestOptions.md)
- - [GetMatchesListResponse](doc//GetMatchesListResponse.md)
  - [GetQuestionsListResponse](doc//GetQuestionsListResponse.md)
+ - [GetUserOrganisationMatchesListResponse](doc//GetUserOrganisationMatchesListResponse.md)
+ - [GetUserOrganisationTagMatchesListResponse](doc//GetUserOrganisationTagMatchesListResponse.md)
  - [OrganisationDetailModel](doc//OrganisationDetailModel.md)
  - [QuestionCategoryOptionModel](doc//QuestionCategoryOptionModel.md)
  - [QuestionListModel](doc//QuestionListModel.md)
  - [QuestionStatementModel](doc//QuestionStatementModel.md)
  - [QuestionType](doc//QuestionType.md)
  - [UserOrganisationMatchListModel](doc//UserOrganisationMatchListModel.md)
- - [UserTagMatchListModel](doc//UserTagMatchListModel.md)
+ - [UserOrganisationTagMatchListModel](doc//UserOrganisationTagMatchListModel.md)
 
 
 ## Documentation For Authorization
