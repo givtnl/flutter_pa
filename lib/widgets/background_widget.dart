@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/widgets/slideable_container/slideable_container.dart';
 import 'package:provider/provider.dart';
 
 import 'background_patterns/pattern1.dart';
@@ -12,33 +13,24 @@ class BackgroundWidget extends StatefulWidget {
 }
 
 class _BackgroundWidgetState extends State<BackgroundWidget> with SingleTickerProviderStateMixin {
-
-  int _currentPattern = 0;
-  bool _initialized = false;
+  final GlobalKey<SlideableContainerState> key = GlobalKey<SlideableContainerState>();
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_initialized && _currentPattern < 2)
-      _currentPattern++;
-    else {
-      _currentPattern = 0;
-    }
-    _initialized = true;
+    key.currentState?.showNextWidget();
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<QuestionnaireProvider>(context);
-    switch(_currentPattern) {
-      case 0:
-        return BackgroundPattern1();
-      case 1:
-        return BackgroundPattern2();
-      case 2:
-        return BackgroundPattern3();
-      default:
-        return BackgroundPattern1();
-    };
+    return SlideableContainer(
+      key: key,
+      widgetsToShow: [
+        BackgroundPattern1(),
+        BackgroundPattern2(),
+        BackgroundPattern3(),
+      ],
+    );
   }
 }
