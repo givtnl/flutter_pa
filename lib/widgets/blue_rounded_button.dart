@@ -15,14 +15,14 @@ class BlueRoundedButton extends StatelessWidget {
       onPressed: clickListener,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(25),
+          color: Theme.of(context).accentColor,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
           child: Text(buttonText, style: TextStyle(
             fontFamily: 'Inter',
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w700,
             color: Colors.white,
           ),),
         ),

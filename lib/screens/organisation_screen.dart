@@ -7,6 +7,7 @@ import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
+import 'package:flutter_app/widgets/blue_rounded_button.dart';
 import 'package:flutter_app/widgets/custom_linear_progress_indicator.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
@@ -91,11 +92,11 @@ class OrganisationScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   ListView.separated(
                     itemBuilder: (ctx, idx) {
-                      return OrganisationTag(_tags.elementAt(idx), true);
+                      return OrganisationTag(_tags.elementAt(idx), false);
                     },
                     itemCount: _tags.length,
                     shrinkWrap: true,
@@ -105,26 +106,6 @@ class OrganisationScreen extends StatelessWidget {
                         height: 10,
                       );
                     },
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    currentOrganisation.description,
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      currentOrganisation.websiteUrl,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
                   ),
                   SizedBox(
                     height: 30,
@@ -139,6 +120,16 @@ class OrganisationScreen extends StatelessWidget {
                   OrganisationExtra(
                     'Visie',
                     currentOrganisation.vision,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: BlueRoundedButton(
+                      'bezoek de website',
+                        () {}
+                    ),
                   ),
                   SizedBox(
                     height: 40,

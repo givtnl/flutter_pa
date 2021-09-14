@@ -19,13 +19,13 @@ class OrganisationTag extends StatelessWidget {
               )
             : BoxDecoration(
                 color: Colors.white,
-                border: Border.all(color: Theme.of(context).primaryColor),
+                border: Border.all(width: 1,color: Theme.of(context).primaryColor),
                 borderRadius: BorderRadius.circular(25),
               ),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
         child: Text(
           text,
-          style: enabled ? TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 11) : TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w700, fontSize: 11),
+          style: enabled ? TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 11) : TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w600, fontSize: 11),
         ),
       ),
     );
