@@ -27,6 +27,7 @@ class _MatchesScreen extends State<MatchesScreen> {
           name: "Brandwonden stichting",
           vision: "Vision",
           websiteUrl: "http://www.google.be/",
+          metaTags: {'sectors': 'animals',}
         ),
         score: 87,
       )

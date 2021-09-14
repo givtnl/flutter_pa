@@ -36,7 +36,7 @@ class OrganisationScreen extends StatelessWidget {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
-    var tagScores = [UserOrganisationTagMatchListModel()];
+    var tagScores = [UserOrganisationTagMatchListModel(score: 90, tag: 'animals', organisationId: "1")];
 
     var itlProvider = S.of(context);
 
@@ -116,7 +116,7 @@ class OrganisationScreen extends StatelessWidget {
                     currentOrganisation.mission,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
                   OrganisationExtra(
                     'Visie',

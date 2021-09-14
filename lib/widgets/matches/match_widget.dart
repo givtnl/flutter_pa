@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/providers/matches_provider.dart';
+import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:openapi/api.dart';
+import 'package:provider/provider.dart';
 
 class MatchWidget extends StatelessWidget {
   final UserOrganisationMatchListModel match;
@@ -10,6 +13,8 @@ class MatchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<MatchesProvider>(context);
+
     return Container(
       child: Stack(
         children: [
@@ -49,7 +54,10 @@ class MatchWidget extends StatelessWidget {
                 ),
                 MainButton(
                   label: "ontdek meer",
-                  tapped: () {},
+                  tapped: () {
+                    provider.selectOrganisationMatch(match);
+                    Navigator.of(context).pushNamed(OrganisationScreen.routeName);
+                  },
                 )
               ],
             ),

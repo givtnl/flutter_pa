@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
+import 'package:flutter_app/screens/choice_screen.dart';
 import 'package:flutter_app/screens/error_screen.dart';
+import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -64,7 +66,7 @@ class IntroScreen extends StatelessWidget {
                         ));
                         print(userProvider.userName);
                       }
-                      Navigator.of(context).pushNamed("/choice");
+                      Navigator.of(context).pushNamed(ChoiceScreen.routeName);
                     },
                   ),
                 ),
