@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'custom_box_shadow.dart';
