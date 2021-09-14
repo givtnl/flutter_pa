@@ -12,7 +12,10 @@ class OrganisationExtra extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Container(
         width: MediaQuery.of(context).size.width * .8,
-        decoration: BoxDecoration(color: Colors.white.withOpacity(.5), borderRadius: BorderRadius.only(bottomRight: Radius.circular(25))),
+        decoration: BoxDecoration(
+            color: Colors.white.withOpacity(.5),
+            borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
+        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
           child: RichText(
