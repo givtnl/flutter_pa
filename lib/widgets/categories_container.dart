@@ -12,9 +12,9 @@ class CategoriesContainer extends StatelessWidget {
     return Container(
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 35),
+          padding: const EdgeInsets.symmetric(horizontal: 55.0, vertical: 35),
           child:
-          BigText('Welke van deze thema’s vind jij belangrijk?'),
+          BigText('Welke thema’s vind jij belangrijk?'),
         ),
         Container(height: MediaQuery.of(context).size.height * .5, child: Column(children: cards)),
       ]),
