@@ -47,7 +47,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   children: [
                     Container(
                       width: double.infinity,
-                      height: 10,
+                      height: 15,
                       child: Stack(
                         children: [
                           FractionallySizedBox(
@@ -55,7 +55,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                             widthFactor: questionnaireProvider.currentProgress / 100,
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).buttonColor,
                               ),
                             ),
                           ),
