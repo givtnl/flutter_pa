@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widgets/background_patterns/MediaQueryService.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BackgroundPattern3 extends StatelessWidget {
@@ -6,41 +7,41 @@ class BackgroundPattern3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget svg4 = SvgPicture.asset('assets/svg/pattern3/Ellipse 23 (Stroke).svg');
-    final Widget svg5 = SvgPicture.asset('assets/svg/pattern3/path (Stroke).svg');
-    final Widget svg1 = SvgPicture.asset('assets/svg/pattern3/ellipse 25.svg');
-    final Widget svg2 = SvgPicture.asset('assets/svg/pattern3/Vector 16 (Stroke).svg');
-    final Widget svg3 = SvgPicture.asset('assets/svg/pattern3/Rectangle 1437 (Stroke).svg');
+    var mqs = MediaQueryService.getInstance(context);
+
+    final Widget halfCirclePurple = SvgPicture.asset('assets/svg/pattern3/Ellipse 23 (Stroke).svg');
+    final Widget snake = SvgPicture.asset('assets/svg/pattern3/path (Stroke).svg');
+    final Widget ellipse = SvgPicture.asset('assets/svg/pattern3/ellipse 25.svg');
+    final Widget arrowGreen = SvgPicture.asset('assets/svg/pattern3/Vector 16 (Stroke).svg');
+    final Widget rightRectangle = SvgPicture.asset('assets/svg/pattern3/Rectangle 1437 (Stroke).svg');
 
     return Container(
-      child: Row(
+      child: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 95.0),
-                child: svg4,
-              ),
-              svg5,
-            ],
+          Positioned(
+            child: ellipse,
+            top: 0,
+            right: 0,
           ),
-          Expanded(
-            child: Container(),
+          Positioned(
+            child: halfCirclePurple,
+            top: mqs.getPercentageHeight(8),
+            left: 0,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              svg1,
-              Padding(
-                padding: const EdgeInsets.only(top: 90.0, right: 42.0),
-                child: svg2,
-              ),
-              Expanded(
-                child: Container(),
-              ),
-              svg3,
-            ],
+          Positioned(
+            child: arrowGreen,
+            top: mqs.getPercentageHeight(16),
+            right: mqs.getPercentageWidth(6),
+          ),
+          Positioned(
+            child: rightRectangle,
+            bottom: 0,
+            right: 0,
+          ),
+          Positioned(
+            child: snake,
+            top: mqs.getPercentageHeight(45),
+            left: 0,
           )
         ],
       ),
