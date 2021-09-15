@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
@@ -122,7 +123,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   width: MediaQuery.of(context).size.width * .55,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text(
+                    child: AutoSizeText(
                       widget.categoryText,
                       style: TextStyle(
                         fontFamily: 'Inter',
