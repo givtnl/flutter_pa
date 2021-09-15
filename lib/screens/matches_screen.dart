@@ -4,6 +4,7 @@ import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/matches/match_widget.dart';
+import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +81,7 @@ class _MatchesScreen extends State<MatchesScreen> {
     final UserProvider userProvider = Provider.of<UserProvider>(context);
 
     return new FutureBuilder(
-        future: provider.loadMatches(userProvider.userName),
+        future: Future.delayed(const Duration(seconds: 2), () => provider.loadMatches(userProvider.userName)),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
@@ -90,15 +91,7 @@ class _MatchesScreen extends State<MatchesScreen> {
               return buildWidget(context);
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return Container(
-                color: Theme.of(context).backgroundColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              );
+              return SpinnerContainer("We berekenen je matches!");
             case ConnectionState.none:
               print("none");
               return Container();
