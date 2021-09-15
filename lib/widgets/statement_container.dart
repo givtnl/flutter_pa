@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
@@ -21,17 +22,21 @@ class _StatementContainerState extends State<StatementContainer> {
       S.of(context).choiceScreen_disagree,
       S.of(context).choiceScreen_neutral,
       S.of(context).choiceScreen_agree,
-      S.of(context).choiceScreen_totallyAgree
+      S.of(context).choiceScreen_totallyAgree,
     ].map((e) => e.replaceFirst(" ", "\n")).toList();
     // did map and replace above cus im lazy and dont want to change the terms
     // words should be on split lines according to design.
-
     var provider = Provider.of<QuestionnaireProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          BigText(provider.getCurrentQuestionTranslation),
+          AutoSizeText(
+            provider.getCurrentQuestionTranslation,
+            style: Theme.of(context).textTheme.headline1,
+            maxLines: 5,
+          ),
           Container(
             width: double.infinity,
             padding: EdgeInsets.only(top: 20),
