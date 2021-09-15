@@ -15,7 +15,7 @@ class SpinnerContainer extends StatelessWidget {
     return Container(
       color: Theme.of(context).backgroundColor,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 200, horizontal: 100),
+        padding: const EdgeInsets.only(top: 300, left: 50, right: 50),
         child: Center(
           child: Column(
             children: [
@@ -23,7 +23,7 @@ class SpinnerContainer extends StatelessWidget {
                 color: Theme.of(context).primaryColor,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 child: BigText("Even geduld."),
               ),
               Text(text, style: Theme.of(context).textTheme.subtitle1, textAlign: TextAlign.center,)

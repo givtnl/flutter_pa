@@ -38,6 +38,7 @@ class IntroScreen extends StatelessWidget {
                         S.of(context).introTitle,
                         style: Theme.of(context).textTheme.headline1,
                       ),
+                      SizedBox(height: 20,),
                       Text(
                         S.of(context).introText,
                         style: Theme.of(context).textTheme.subtitle1,
