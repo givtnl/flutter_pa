@@ -6,6 +6,8 @@ import 'package:flutter_app/widgets/main_button.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 
+import '../match_percentage_circle.dart';
+
 class MatchWidget extends StatelessWidget {
   final UserOrganisationMatchListModel match;
 
@@ -67,36 +69,7 @@ class MatchWidget extends StatelessWidget {
               Expanded(
                 child: Container(),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 30.0),
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "${match.score}%",
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.button!.copyWith(
-                                color: Colors.white,
-                              ),
-                        ),
-                        Text(
-                          "match",
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white, fontSize: 9),
-                        ),
-                      ],
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor,
-                  ),
-                ),
-              ),
+              MatchPercentageCircle(match.score as int),
             ],
           )
         ],

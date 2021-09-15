@@ -10,6 +10,7 @@ import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/blue_rounded_button.dart';
 import 'package:flutter_app/widgets/custom_linear_progress_indicator.dart';
 import 'package:flutter_app/widgets/main_button.dart';
+import 'package:flutter_app/widgets/match_percentage_circle.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -65,36 +66,7 @@ class OrganisationScreen extends StatelessWidget {
                             child: BigText(currentOrganisation.name),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 30.0),
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            child: Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    "${currentMatch.score}%",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.button!.copyWith(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Text(
-                                    "match",
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white, fontSize: 9),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).accentColor,
-                            ),
-                          ),
-                        ),
+                        MatchPercentageCircle(currentMatch.score as int),
                       ],
                     ),
                   ),
