@@ -73,7 +73,7 @@ class _CategoryCardState extends State<CategoryCard> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 50),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 50),
       child: GestureDetector(
         onTap: () {
           setState(() {
@@ -83,7 +83,7 @@ class _CategoryCardState extends State<CategoryCard> {
           });
         },
         child: Container(
-          height: 70,
+          height: 60,
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(.5),
             borderRadius: BorderRadius.circular(15),
@@ -102,7 +102,7 @@ class _CategoryCardState extends State<CategoryCard> {
                 : [],
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
