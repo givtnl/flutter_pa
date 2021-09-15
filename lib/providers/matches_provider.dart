@@ -15,8 +15,7 @@ class MatchesProvider with ChangeNotifier {
           mission: 'io iuhoiuho ih oiuh ou uf oy ouyg ouoguygo yg',
           vision: 'adgpp poihpoihp w a a sedfasdgf asd',
           websiteUrl: 'www.steunerdesteun.be',
-          metaTags: {'sectors': 'animals',})
-  );
+          metaTags: {'sectors': 'animals', 'donationUrl': 'www.google.be'}));
 
   MatchesProvider() {
     this.matchesApi = MatchesApi();

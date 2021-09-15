@@ -55,6 +55,7 @@ class OrganisationScreen extends StatelessWidget {
                 children: [
                   Container(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Flexible(
@@ -64,28 +65,33 @@ class OrganisationScreen extends StatelessWidget {
                             child: BigText(currentOrganisation.name),
                           ),
                         ),
-                        Flexible(
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  currentMatch.score.toString() + '%',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 22,
-                                    color: Theme.of(context).primaryColor,
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "${currentMatch.score}%",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.button!.copyWith(
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "match",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: Theme.of(context).primaryColor,
+                                  Text(
+                                    "match",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white, fontSize: 9),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).accentColor,
                             ),
                           ),
                         ),
