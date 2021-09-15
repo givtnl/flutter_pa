@@ -192,7 +192,7 @@ class OrganisationScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: MainButton(
-                          label: "Steun ${currentOrganisation.name}",
+                          label: "geven",//todo
                           tapped: () async {
                             MixpanelManager.mixpanel.track("CLICKED",
                                 properties: {

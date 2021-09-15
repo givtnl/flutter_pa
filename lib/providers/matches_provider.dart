@@ -8,14 +8,8 @@ class MatchesProvider with ChangeNotifier {
 
   late UserOrganisationMatchListModel selectedOrganisationMatch = UserOrganisationMatchListModel(
       score: 90,
-      organisation: OrganisationDetailModel(
-          id: '1234',
-          name: 'Steun mij!',
-          description: 'lrem asd fjpaos djfasjd asdlfj laj pohsf pu i hpas d uof ih oiu oiuhiuho oiuho',
-          mission: 'io iuhoiuho ih oiuh ou uf oy ouyg ouoguygo yg',
-          vision: 'adgpp poihpoihp w a a sedfasdgf asd',
-          websiteUrl: 'www.steunerdesteun.be',
-          metaTags: {'sectors': 'animals', 'donationUrl': 'www.google.be'}));
+      organisation: OrganisationDetailModel()
+  );
 
   MatchesProvider() {
     this.matchesApi = MatchesApi();
