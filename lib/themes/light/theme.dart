@@ -93,7 +93,7 @@ class LightTheme {
 
   static Color get purpleColor => Color.fromRGBO(124, 96, 143, 1);
 
-  static Color get lightPurpleColor => Color.fromRGBO(124, 96, 143, 0.25);
+  static Color get lightPurpleColor => Color.fromRGBO(222,215,227, 1);
 
   static Color get appleBlueSeaGreen => Color.fromRGBO(159, 197, 194, 1);
 
