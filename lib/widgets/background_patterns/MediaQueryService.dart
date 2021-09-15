@@ -15,20 +15,28 @@ class MediaQueryService {
     return MediaQueryService(context);
   }
 
-  double getPercentageHeight(int percentage) {
-    return actualHeight * (percentage / 100);
+  double getPercentageHeight(int percentage, String elementName) {
+    var value = actualHeight * (percentage / 100);
+    print("${elementName} position Y: ${value}");
+    return value;
   }
 
-  double getPercentageWidth(int percentage) {
-    return actualWidth * (percentage / 100);
+  double getPercentageWidth(int percentage, String elementName) {
+    var value = actualWidth * (percentage / 100);
+    print("${elementName} position X: ${value}");
+    return value;
   }
 
   double get actualHeight {
-    return (_screenSize.height * _devicePixelRatio) - statusBarHeight;
+    var value = (_screenSize.height * _devicePixelRatio) - statusBarHeight;
+    print("Screen height: " + value.toString());
+    return value;
   }
 
   double get actualWidth {
-    return _screenSize.width * _devicePixelRatio;
+    var value = _screenSize.width * _devicePixelRatio;
+    print("Screen width: " + value.toString());
+    return value;
   }
 
   double get statusBarHeight {

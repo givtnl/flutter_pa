@@ -25,13 +25,13 @@ class BackgroundPattern3 extends StatelessWidget {
           ),
           Positioned(
             child: halfCirclePurple,
-            top: mqs.getPercentageHeight(8),
+            top: mqs.getPercentageHeight(8, "halve cirkel paars"),
             left: 0,
           ),
           Positioned(
             child: arrowGreen,
-            top: mqs.getPercentageHeight(16),
-            right: mqs.getPercentageWidth(6),
+            top: mqs.getPercentageHeight(16, "pijl"),
+            right: mqs.getPercentageWidth(6, "pijl"),
           ),
           Positioned(
             child: rightRectangle,
@@ -40,7 +40,7 @@ class BackgroundPattern3 extends StatelessWidget {
           ),
           Positioned(
             child: snake,
-            top: mqs.getPercentageHeight(45),
+            top: mqs.getPercentageHeight(45, "slangetje"),
             left: 0,
           )
         ],
