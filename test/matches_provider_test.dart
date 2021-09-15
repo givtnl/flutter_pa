@@ -7,10 +7,9 @@ import 'matches_provider_test.mocks.dart';
 
 @GenerateMocks([MatchesApi])
 void main() {
-  GetMatchesListResponse matchesListResponse = GetMatchesListResponse(
+  GetUserOrganisationMatchesListResponse userOrganisationMatchesListResponse = GetUserOrganisationMatchesListResponse(
       result: [
         UserOrganisationMatchListModel(
-            tag: 'Certification mark',
             score: 70,
             organisation: OrganisationDetailModel(
                 id: '1b4ff54c-6d35-4c04-8ceb-2b18bdcd3573',
@@ -18,7 +17,6 @@ void main() {
             )
         ),
         UserOrganisationMatchListModel(
-            tag: 'Animals',
             score: 80,
             organisation: OrganisationDetailModel(
               id: '31a50347-4c25-45a4-bd68-04dcf964563f',
@@ -26,7 +24,6 @@ void main() {
             )
         ),
         UserOrganisationMatchListModel(
-            tag: 'Health',
             score: 90,
             organisation: OrganisationDetailModel(
               id: '333d864a-8bde-423a-902e-f45f14f9ea49',
@@ -40,21 +37,21 @@ void main() {
   group('MatchesProvider tests', () {
     final matchesApi = MockMatchesApi();
 
-    when(matchesApi.getMatchesList(minimumScore: 80, userId: 'Michiel')).thenAnswer((_) =>
-        Future.value(matchesListResponse));
+    when(matchesApi.getMatchesList(minimumScore: null, userId: 'Michiel', nextPageToken: null,limit: null)).thenAnswer((_) =>
+        Future.value(userOrganisationMatchesListResponse));
 
     test('Ensure Matches Are Assigned When Executing Http Call', () async {
       var provider = MatchesProvider.withDependencies(matchesApi);
       await provider.loadMatches('Michiel');
-      expect(matchesListResponse.result.length,
+      expect(userOrganisationMatchesListResponse.result.length,
           equals(provider.organisationMatches.length));
     });
 
     test('Ensure Matches Are Sorted On score', () async {
       var provider = MatchesProvider.withDependencies(matchesApi);
       await provider.loadMatches('Michiel');
-      expect(matchesListResponse.result[0].score, equals(90));
-      expect(matchesListResponse.result[2].score, equals(70));
+      expect(userOrganisationMatchesListResponse.result[0].score, equals(70));
+      expect(userOrganisationMatchesListResponse.result[2].score, equals(90));
     });
 
   });
