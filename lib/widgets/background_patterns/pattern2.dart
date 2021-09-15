@@ -14,34 +14,35 @@ class BackgroundPattern2 extends StatelessWidget {
     final Widget snake = SvgPicture.asset('assets/svg/pattern2/path (Stroke).svg');
 
     return Container(
-        child: Stack(
-      children: [
-        Positioned(
-          child: halfMoon,
-          top: mqs.getPercentageHeight(5, "halve mane"),
-          left: mqs.getPercentageWidth(5, "halve mane"),
-        ),
-        Positioned(
-          child: halfCircle,
-          top: mqs.getPercentageHeight(50, "halve cirkel"),
-          left: 0,
-        ),
-        Positioned(
-          child: smallCircle,
-          top: mqs.getPercentageHeight(6, "bolletje"),
-          right: mqs.getPercentageWidth(10, "bolletje"),
-        ),
-        Positioned(
-          child: halfCirclePurple,
-          top: mqs.getPercentageHeight(8, "halve cirkel paars"),
-          right: 0,
-        ),
-        Positioned(
-          child: snake,
-          top: mqs.getPercentageHeight(45, "slangetje"),
-          right: 0,
-        )
-      ],
-    ));
+      child: Stack(
+        children: [
+          Positioned(
+            child: halfMoon,
+            top: mqs.getPercentageHeight(5, "halve mane"),
+            left: mqs.getPercentageWidth(5, "halve mane"),
+          ),
+          Positioned(
+            child: halfCircle,
+            top: mqs.getPercentageHeight(50, "halve cirkel"),
+            left: 0,
+          ),
+          Positioned(
+            child: smallCircle,
+            top: mqs.getPercentageHeight(6, "bolletje"),
+            right: mqs.getPercentageWidth(10, "bolletje"),
+          ),
+          Positioned(
+            child: halfCirclePurple,
+            top: mqs.getPercentageHeight(8, "halve cirkel paars"),
+            right: 0,
+          ),
+          Positioned(
+            child: snake,
+            top: mqs.getPercentageHeight(45, "slangetje"),
+            right: 0,
+          )
+        ],
+      ),
+    );
   }
 }
