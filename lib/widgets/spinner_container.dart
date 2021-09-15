@@ -15,7 +15,7 @@ class SpinnerContainer extends StatelessWidget {
     return Container(
       color: Theme.of(context).backgroundColor,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
+        padding: const EdgeInsets.symmetric(vertical: 200, horizontal: 100),
         child: Center(
           child: Column(
             children: [
