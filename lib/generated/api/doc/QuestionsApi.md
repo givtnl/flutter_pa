@@ -9,8 +9,8 @@ All URIs are relative to *https://0v9xof580f.execute-api.eu-west-3.amazonaws.com
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createQuestion**](QuestionsApi.md#createquestion) | **POST** /Questions | Creates a question
-[**getQuestionsList**](QuestionsApi.md#getquestionslist) | **GET** /Questions | Returns a list of questions
+[**createQuestion**](QuestionsApi.md#createquestion) | **POST** /questions | Creates a question
+[**getQuestionsList**](QuestionsApi.md#getquestionslist) | **GET** /questions | Returns a list of questions
 
 
 # **createQuestion**
@@ -57,7 +57,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getQuestionsList**
-> GetQuestionsListResponse getQuestionsList(request)
+> GetQuestionsListResponse getQuestionsList()
 
 Returns a list of questions
 
@@ -68,10 +68,9 @@ Returns a list of question to build a profile for the user by answering them
 import 'package:openapi/api.dart';
 
 final api_instance = QuestionsApi();
-final request = ; // OneOfobject | 
 
 try {
-    final result = api_instance.getQuestionsList(request);
+    final result = api_instance.getQuestionsList();
     print(result);
 } catch (e) {
     print('Exception when calling QuestionsApi->getQuestionsList: $e\n');
@@ -79,10 +78,7 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **request** | [**OneOfobject**](.md)|  | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 

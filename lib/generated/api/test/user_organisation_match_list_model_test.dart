@@ -15,17 +15,12 @@ void main() {
   final instance = UserOrganisationMatchListModel();
 
   group('test UserOrganisationMatchListModel', () {
-    // String tag
-    test('to test the property `tag`', () async {
-      // TODO
-    });
-
     // OneOfOrganisationDetailModel organisation
     test('to test the property `organisation`', () async {
       // TODO
     });
 
-    // int score
+    // num score
     test('to test the property `score`', () async {
       // TODO
     });

@@ -206,10 +206,12 @@ class ApiClient {
           return CreateQuestionResponse.fromJson(value);
         case 'CreateQuestionStatementRequestOptions':
           return CreateQuestionStatementRequestOptions.fromJson(value);
-        case 'GetMatchesListResponse':
-          return GetMatchesListResponse.fromJson(value);
         case 'GetQuestionsListResponse':
           return GetQuestionsListResponse.fromJson(value);
+        case 'GetUserOrganisationMatchesListResponse':
+          return GetUserOrganisationMatchesListResponse.fromJson(value);
+        case 'GetUserOrganisationTagMatchesListResponse':
+          return GetUserOrganisationTagMatchesListResponse.fromJson(value);
         case 'OrganisationDetailModel':
           return OrganisationDetailModel.fromJson(value);
         case 'QuestionCategoryOptionModel':
@@ -223,6 +225,8 @@ class ApiClient {
           
         case 'UserOrganisationMatchListModel':
           return UserOrganisationMatchListModel.fromJson(value);
+        case 'UserOrganisationTagMatchListModel':
+          return UserOrganisationTagMatchListModel.fromJson(value);
         default:
           Match match;
           if (value is List && (match = _regList.firstMatch(targetType)) != null) {

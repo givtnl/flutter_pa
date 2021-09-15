@@ -57,7 +57,7 @@
         }
       }
     },
-    "/Matches": {
+    "/matches": {
       "get": {
         "tags": [
           "Matches"
@@ -76,11 +76,73 @@
             "x-position": 1
           },
           {
+            "name": "NextPageToken",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
             "name": "MinimumScore",
             "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32",
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-position": 4
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserOrganisationMatchesListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organisations/{organisationId}/matches": {
+      "get": {
+        "tags": [
+          "OrganisationMatches"
+        ],
+        "summary": "Returns a list of matches for the combination between an user and an organisation",
+        "description": "Returns a list of calculated matches between the profile of the user and the profile of the organisation",
+        "operationId": "GetUserOrganisationTagMatchesList",
+        "parameters": [
+          {
+            "name": "organisationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "UserId",
+            "in": "query",
+            "schema": {
+              "type": "string",
               "nullable": true
             },
             "x-position": 2
@@ -92,7 +154,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetMatchesListResponse"
+                  "$ref": "#/components/schemas/GetUserOrganisationTagMatchesListResponse"
                 }
               }
             }
@@ -100,7 +162,7 @@
         }
       }
     },
-    "/Organisations": {
+    "/organisations": {
       "post": {
         "tags": [
           "Organisations"
@@ -134,7 +196,7 @@
         }
       }
     },
-    "/Questions": {
+    "/questions": {
       "get": {
         "tags": [
           "Questions"
@@ -142,21 +204,6 @@
         "summary": "Returns a list of questions",
         "description": "Returns a list of question to build a profile for the user by answering them",
         "operationId": "GetQuestionsList",
-        "parameters": [
-          {
-            "name": "request",
-            "in": "query",
-            "schema": {
-              "nullable": true,
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/GetQuestionsListRequest"
-                }
-              ]
-            },
-            "x-position": 1
-          }
-        ],
         "responses": {
           "200": {
             "description": "",
@@ -246,10 +293,14 @@
           }
         }
       },
-      "GetMatchesListResponse": {
+      "GetUserOrganisationMatchesListResponse": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
+          "nextPageToken": {
+            "type": "string",
+            "nullable": true
+          },
           "result": {
             "type": "array",
             "nullable": true,
@@ -263,10 +314,6 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "tag": {
-            "type": "string",
-            "nullable": true
-          },
           "organisation": {
             "nullable": true,
             "oneOf": [
@@ -276,8 +323,8 @@
             ]
           },
           "score": {
-            "type": "integer",
-            "format": "int32"
+            "type": "number",
+            "format": "decimal"
           }
         }
       },
@@ -319,6 +366,37 @@
             "additionalProperties": {
               "type": "string"
             }
+          }
+        }
+      },
+      "GetUserOrganisationTagMatchesListResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UserOrganisationTagMatchListModel"
+            }
+          }
+        }
+      },
+      "UserOrganisationTagMatchListModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "organisationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "decimal"
           }
         }
       },
@@ -419,6 +497,13 @@
                 "$ref": "#/components/schemas/QuestionStatementModel"
               }
             ]
+          },
+          "metaTags": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       },
@@ -473,10 +558,6 @@
           }
         }
       },
-      "GetQuestionsListRequest": {
-        "type": "object",
-        "additionalProperties": false
-      },
       "CreateQuestionRequest": {
         "type": "object",
         "additionalProperties": false,
@@ -508,6 +589,13 @@
                 "$ref": "#/components/schemas/CreateQuestionStatementRequestOptions"
               }
             ]
+          },
+          "metaTags": {
+            "type": "object",
+            "nullable": true,
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       },

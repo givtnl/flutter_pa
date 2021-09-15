@@ -1,9 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/p_a_icons_icons.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'custom_box_shadow.dart';
 
 class CategoryCard extends StatefulWidget {
   final String categoryId;
@@ -12,7 +13,6 @@ class CategoryCard extends StatefulWidget {
   final int index;
   var selected = false;
 
-
   CategoryCard(this.categoryId, this.categoryText, this.iconText, this.index);
 
   @override
@@ -20,12 +20,11 @@ class CategoryCard extends StatefulWidget {
 }
 
 class _CategoryCardState extends State<CategoryCard> {
-
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionnaireProvider>(context);
 
-    final icon;
+    IconData icon;
     switch (this.widget.iconText) {
       case 'dieren':
         {
@@ -54,7 +53,7 @@ class _CategoryCardState extends State<CategoryCard> {
         break;
       case 'welzijn':
         {
-          icon = PAIcons.gezondheid;
+          icon = PAIcons.welzijn;
         }
         break;
       case 'internationale hulp en mensenrechten':
@@ -74,64 +73,68 @@ class _CategoryCardState extends State<CategoryCard> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 50),
       child: GestureDetector(
         onTap: () {
           setState(() {
             this.widget.selected = !this.widget.selected;
             provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
-            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
-              "CATEGORY_ID": "${this.widget.categoryId}"
-            });
+            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {"CATEGORY_ID": "${this.widget.categoryId}"});
           });
         },
-        child: Transform.scale(
-          scale: this.widget.selected ? (!kIsWeb ? 1.08 : 1.02) : 1.0,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                    width: 1,
-                    color: this.widget.selected ? Theme.of(context).primaryColor.withOpacity(1) : Theme.of(context).primaryColor.withOpacity(0),),
-                boxShadow: this.widget.selected
-                    ? [
-                        BoxShadow(
-                          color: Theme.of(context).primaryColor,
-                          spreadRadius: .2,
-                          blurRadius: 3,
-                          offset: Offset(0, 1),
-                        )
-                      ]
-                    : []),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: MediaQuery.of(context).size.height * .015),
-              child: Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: Theme.of(context).primaryColor,
-                    size: 30,
-                    semanticLabel: this.widget.iconText,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * .6,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: Text(
-                        widget.categoryText,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 16,
-                        ),
-                        maxLines: 2,
-                      ),
+        child: Container(
+          height: 70,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(.5),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+              width: 1,
+              color: this.widget.selected ? Theme.of(context).primaryColor : Theme.of(context).primaryColor.withOpacity(0),
+            ),
+            boxShadow: this.widget.selected
+                ? [
+                    CustomBoxShadow(
+                      color: Theme.of(context).primaryColor,
+                      blurRadius: 10.0,
+                      blurStyle: BlurStyle.outer,
+                    ),
+                  ]
+                : [],
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Icon(
+                      icon,
+                      size: 30,
+                      color: Theme.of(context).primaryColor,
+                      semanticLabel: this.widget.iconText,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * .55,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Text(
+                      widget.categoryText,
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 16,
+                      ),
+                      maxLines: 2,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

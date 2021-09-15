@@ -12,37 +12,29 @@ part of openapi.api;
 class UserOrganisationMatchListModel {
   /// Returns a new [UserOrganisationMatchListModel] instance.
   UserOrganisationMatchListModel({
-    this.tag,
     this.organisation,
     this.score,
   });
 
-  String tag;
-
   OrganisationDetailModel organisation;
 
-  int score;
+  num score;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserOrganisationMatchListModel &&
-     other.tag == tag &&
      other.organisation == organisation &&
      other.score == score;
 
   @override
   int get hashCode =>
-    (tag == null ? 0 : tag.hashCode) +
     (organisation == null ? 0 : organisation.hashCode) +
     (score == null ? 0 : score.hashCode);
 
   @override
-  String toString() => 'UserOrganisationMatchListModel[tag=$tag, organisation=$organisation, score=$score]';
+  String toString() => 'UserOrganisationMatchListModel[organisation=$organisation, score=$score]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (tag != null) {
-      json[r'tag'] = tag;
-    }
     if (organisation != null) {
       json[r'organisation'] = organisation;
     }
@@ -57,9 +49,10 @@ class UserOrganisationMatchListModel {
   static UserOrganisationMatchListModel fromJson(Map<String, dynamic> json) => json == null
     ? null
     : UserOrganisationMatchListModel(
-        tag: json[r'tag'],
         organisation: OrganisationDetailModel.fromJson(json[r'organisation']),
-        score: json[r'score'],
+        score: json[r'score'] == null ?
+          null :
+          json[r'score'].toDouble(),
     );
 
   static List<UserOrganisationMatchListModel> listFromJson(List<dynamic> json, {bool emptyIsNull, bool growable,}) =>

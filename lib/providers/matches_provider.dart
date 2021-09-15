@@ -6,7 +6,10 @@ class MatchesProvider with ChangeNotifier {
 
   List<UserOrganisationMatchListModel> organisationMatches = [];
 
-  late UserOrganisationMatchListModel selectedOrganisationMatch;
+  late UserOrganisationMatchListModel selectedOrganisationMatch = UserOrganisationMatchListModel(
+      score: 90,
+      organisation: OrganisationDetailModel()
+  );
 
   MatchesProvider() {
     this.matchesApi = MatchesApi();
@@ -17,9 +20,9 @@ class MatchesProvider with ChangeNotifier {
   }
 
   Future<void> loadMatches(String userId) async {
-    var response = await this.matchesApi.getMatchesList(userId: userId, minimumScore: 80);
-    organisationMatches = response.result;
-    organisationMatches.sort((a, b) => b.score - a.score);
+    var response = await this.matchesApi.getMatchesList(userId: userId);
+    organisationMatches = response.result.toList();
+    organisationMatches.sort((a, b) => b.score.toInt() - a.score.toInt());
     notifyListeners();
   }
 

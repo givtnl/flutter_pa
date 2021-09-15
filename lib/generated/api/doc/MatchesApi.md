@@ -9,11 +9,11 @@ All URIs are relative to *https://0v9xof580f.execute-api.eu-west-3.amazonaws.com
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getMatchesList**](MatchesApi.md#getmatcheslist) | **GET** /Matches | Returns a list of matches
+[**getMatchesList**](MatchesApi.md#getmatcheslist) | **GET** /matches | Returns a list of matches
 
 
 # **getMatchesList**
-> GetMatchesListResponse getMatchesList(userId, minimumScore)
+> GetUserOrganisationMatchesListResponse getMatchesList(userId, nextPageToken, minimumScore, limit)
 
 Returns a list of matches
 
@@ -25,10 +25,12 @@ import 'package:openapi/api.dart';
 
 final api_instance = MatchesApi();
 final userId = userId_example; // String | 
+final nextPageToken = nextPageToken_example; // String | 
 final minimumScore = 56; // int | 
+final limit = 56; // int | 
 
 try {
-    final result = api_instance.getMatchesList(userId, minimumScore);
+    final result = api_instance.getMatchesList(userId, nextPageToken, minimumScore, limit);
     print(result);
 } catch (e) {
     print('Exception when calling MatchesApi->getMatchesList: $e\n');
@@ -40,11 +42,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**|  | [optional] 
+ **nextPageToken** | **String**|  | [optional] 
  **minimumScore** | **int**|  | [optional] 
+ **limit** | **int**|  | [optional] 
 
 ### Return type
 
-[**GetMatchesListResponse**](GetMatchesListResponse.md)
+[**GetUserOrganisationMatchesListResponse**](GetUserOrganisationMatchesListResponse.md)
 
 ### Authorization
 

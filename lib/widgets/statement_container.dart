@@ -1,9 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
-import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -22,65 +22,72 @@ class _StatementContainerState extends State<StatementContainer> {
       S.of(context).choiceScreen_disagree,
       S.of(context).choiceScreen_neutral,
       S.of(context).choiceScreen_agree,
-      S.of(context).choiceScreen_totallyAgree
-    ];
+      S.of(context).choiceScreen_totallyAgree,
+    ].map((e) => e.replaceFirst(" ", "\n")).toList();
+    // did map and replace above cus im lazy and dont want to change the terms
+    // words should be on split lines according to design.
     var provider = Provider.of<QuestionnaireProvider>(context);
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: 50,
-              vertical: MediaQuery.of(context).size.height * .05),
-          child: BigText(provider.getCurrentQuestionTranslation),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * .005,
-              left: 25,
-              right: 25),
-          child: SliderTheme(
-            data: SliderThemeData(
-              trackHeight: 3,
-            ),
-            child: Slider(
-              inactiveColor: Theme.of(context).primaryColor,
-              activeColor: Theme.of(context).primaryColor,
-              value: provider.currentSelectedStatementAnswer,
-              min: 0,
-              max: 4,
-              divisions: 4,
-              label:
-                  _valueTexts[provider.currentSelectedStatementAnswer.toInt()],
-              onChanged: (double value) {
-                setState(() {
-                  provider.setCurrentStatementValue(value);
-                });
-              },
-              onChangeEnd: (value) {
-                MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {
-                  "STATEMENT_ID": "${provider.getCurrentQuestion!.id}",
-                  "VALUE": "${value.toStringAsFixed(0)}"
-                });
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      child: Column(
+        children: [
+          AutoSizeText(
+            provider.getCurrentQuestionTranslation,
+            style: Theme.of(context).textTheme.headline1,
+            maxLines: 5,
+          ),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 20),
+            child: InkWell(
+              child: Text(
+                S.of(context).choiceScreen_skip.toLowerCase(),
+                style: Theme.of(context).textTheme.subtitle2,
+                textAlign: TextAlign.start,
+              ),
+              onTap: () {
+                MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
+                provider.skipCurrentQuestion();
+                if (provider.isCompleted) {
+                  Navigator.of(context).pushNamed(MatchesScreen.routeName);
+                } else {
+                  provider.prepareNextScreen();
+                }
               },
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * .05,
-              left: 50,
-              right: 50),
-          child: Row(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 50),
+            child: Container(),
+          ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 15),
+            child: SliderTheme(
+                data: SliderTheme.of(context),
+                child: Slider(
+                  divisions: 4,
+                  min: 0,
+                  max: 4,
+                  value: provider.currentSelectedStatementAnswer,
+                  label: _valueTexts[provider.currentSelectedStatementAnswer.toInt()],
+                  onChanged: (double value) {
+                    setState(() {
+                      provider.setCurrentStatementValue(value);
+                    });
+                  },
+                  onChangeEnd: (value) {
+                    MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID": "${provider.getCurrentQuestion!.id}", "VALUE": "${value.toStringAsFixed(0)}"});
+                  },
+                )),
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 child: Text(
                   S.of(context).choiceScreen_totallyDisagree,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 12,
-                  ),
+                  style: Theme.of(context).textTheme.headline3,
                 ),
               ),
               Flexible(child: Container()),
@@ -88,49 +95,14 @@ class _StatementContainerState extends State<StatementContainer> {
               Flexible(
                 child: Text(
                   S.of(context).choiceScreen_totallyAgree,
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 12,
-                  ),
+                  style: Theme.of(context).textTheme.headline3,
                   textAlign: TextAlign.end,
                 ),
               ),
             ],
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          child: Container(
-            width: double.infinity,
-            child: TextButton(
-              style: ButtonStyle(
-                alignment: AlignmentDirectional.centerStart,
-              ),
-              onPressed: () {
-                MixpanelManager.mixpanel
-                    .track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
-                provider.skipCurrentQuestion();
-                if (provider.isCompleted) {
-                      Navigator.of(context).pushNamed(MatchesScreen.routeName);
-                } else {
-                  provider.prepareNextScreen();
-                }
-              },
-              child: Text(
-                S.of(context).choiceScreen_skip,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  color: Theme.of(context).primaryColor,
-                  fontSize: 14,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

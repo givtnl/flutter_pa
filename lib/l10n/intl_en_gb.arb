@@ -1,5 +1,5 @@
 {
-    "introText": "UK Find out with charities match your values, standards and identity.",
+    "introText": "Find out with charities match your values, standards and identity.",
     "introButton": "To the selection guide!",
     "nextButton": "Next",
     "choiceScreen_disagree": "Disagree",
@@ -15,5 +15,6 @@
     "sectors_natureAndEnvironment": "Nature and environment",
     "sectors_educationAndScience": "Education and science",
     "sectors_religionAndPhilosophy": "Religion and philosophy",
-    "sectors_wellBeing": "Well-being"
+    "sectors_wellBeing": "Well-being",
+    "introTitle": "Welcome to the selection guide!"
 }

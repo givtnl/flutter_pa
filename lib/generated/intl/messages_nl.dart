@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Naar de keuzewijzer!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
+        "introTitle":
+            MessageLookupByLibrary.simpleMessage("Welkom bij  de keuzewijzer!"),
         "nextButton": MessageLookupByLibrary.simpleMessage("Volgende"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Dieren"),
         "sectors_artAndCulture":

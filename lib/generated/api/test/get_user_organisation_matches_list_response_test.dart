@@ -10,11 +10,16 @@
 import 'package:openapi/api.dart';
 import 'package:test/test.dart';
 
-// tests for GetMatchesListResponse
+// tests for GetUserOrganisationMatchesListResponse
 void main() {
-  final instance = GetMatchesListResponse();
+  final instance = GetUserOrganisationMatchesListResponse();
 
-  group('test GetMatchesListResponse', () {
+  group('test GetUserOrganisationMatchesListResponse', () {
+    // String nextPageToken
+    test('to test the property `nextPageToken`', () async {
+      // TODO
+    });
+
     // List<UserOrganisationMatchListModel> result (default value: const [])
     test('to test the property `result`', () async {
       // TODO

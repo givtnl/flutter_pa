@@ -43,8 +43,9 @@ dependencies:
   openapi:
     path: ./lib/generated/api
   flutter_spinkit: "^4.1.2"
+  google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
-
+  auto_size_text: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,10 +64,22 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/svg/ellips.svg
+    - assets/svg/ellipse 25.svg
+    - assets/svg/pattern2/ellipse 25.svg
+    - assets/svg/Vector 16 (Stroke).svg
+    - assets/svg/Rectangle 1437 (Stroke).svg
+    - assets/svg/Ellipse 30 (Stroke).svg
+    - assets/svg/pattern2/Ellipse 30.svg
+    - assets/svg/pattern2/Ellipse 24.svg
+    - assets/svg/pattern2/Ellipse 23 (Stroke).svg
+    - assets/svg/pattern2/path (Stroke).svg
+    - assets/svg/pattern3/Ellipse 23 (Stroke).svg
+    - assets/svg/pattern3/ellipse 25.svg
+    - assets/svg/pattern3/path (Stroke).svg
+    - assets/svg/pattern3/Rectangle 1437 (Stroke).svg
+    - assets/svg/pattern3/Vector 16 (Stroke).svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

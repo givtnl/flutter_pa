@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
-import 'package:flutter_app/widgets/big_text.dart';
-import 'package:flutter_app/widgets/blue_button.dart';
+import 'package:flutter_app/screens/choice_screen.dart';
+import 'package:flutter_app/screens/error_screen.dart';
+import 'package:flutter_app/widgets/background_widget.dart';
+import 'package:flutter_app/widgets/main_button.dart';
+import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -15,47 +17,70 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-    /// this is the code needed for drawing an svg
-    /// don't forget to add every asset to the pubspec.yaml file!
-    final String assetName = 'assets/svg/ellips.svg';
-    final Widget svg = SvgPicture.asset(
-        assetName,
-        semanticsLabel: 'Acme Logo'
-    );
-    /// This is the end of the code for the SVG
-
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
-     var screen = TrackedScreen(
+    var screen = TrackedScreen(
       screenName: 'IntroScreen',
       child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: Stack(
             children: [
+              BackgroundWidget(),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                  child: BigText(S.of(context).introText),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        S.of(context).introTitle,
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                      Text(
+                        S.of(context).introText,
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(50.0),
-                  child: BlueButton(
+                  child: MainButton(
                     label: S.of(context).introButton,
                     tapped: () {
-                      if (kReleaseMode) {
-                        final DateTime now = DateTime.now();
-                        final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
-                        final String formatted = formatter.format(now);
-                        userProvider.userName = formatted;
+                      final DateTime now = DateTime.now();
+                      final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
+                      final String formatted = formatter.format(now);
+                      userProvider.userName = formatted;
+                      if (kDebugMode) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("DEBUG MODE : ${userProvider.userName}"),
+                          duration: Duration(seconds: 2),
+                        ));
                         print(userProvider.userName);
                       }
-                      Navigator.of(context).pushNamed("/choice");
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => ChoiceScreen(),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            const begin = Offset(1.0, 0.0);
+                            const end = Offset.zero;
+                            const curve = Curves.easeIn;
+
+                            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                            return SlideTransition(
+                              position: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -66,7 +91,7 @@ class IntroScreen extends StatelessWidget {
       ),
     );
     return new FutureBuilder(
-        future:  questionnaireProvider.loadQuestions(),
+        future: Future.delayed(const Duration(seconds: 2), () => questionnaireProvider.loadQuestions()),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
@@ -76,20 +101,9 @@ class IntroScreen extends StatelessWidget {
               return screen;
             case ConnectionState.active:
             case ConnectionState.waiting:
-            return Container(
-              color: Theme.of(context).backgroundColor,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 300, horizontal: 100),
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-            );
+              return SpinnerContainer("We halen de vragen op!");
             case ConnectionState.none:
-              print("none");
-              return Container();
+              return ErrorScreen();
               break;
           }
         });

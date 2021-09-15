@@ -45,6 +45,11 @@ void main() {
       // TODO
     });
 
+    // Map<String, String> metaTags (default value: const {})
+    test('to test the property `metaTags`', () async {
+      // TODO
+    });
+
 
   });
 
