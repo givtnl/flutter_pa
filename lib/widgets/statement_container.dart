@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
@@ -36,6 +37,7 @@ class _StatementContainerState extends State<StatementContainer> {
             provider.getCurrentQuestionTranslation,
             style: Theme.of(context).textTheme.headline1,
             maxLines: 5,
+            wrapWords: false
           ),
           Container(
             width: double.infinity,
