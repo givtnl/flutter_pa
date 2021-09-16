@@ -96,7 +96,7 @@ class _CategoryCardState extends State<CategoryCard> {
                 ? [
                     CustomBoxShadow(
                       color: Theme.of(context).primaryColor,
-                      blurRadius: 10.0,
+                      blurRadius: 5.0,
                       blurStyle: BlurStyle.outer,
                     ),
                   ]
@@ -129,7 +129,7 @@ class _CategoryCardState extends State<CategoryCard> {
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).primaryColor,
-                        fontSize: 16,
+                        fontSize: 15,
                       ),
                       maxLines: 2,
                     ),
