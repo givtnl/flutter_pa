@@ -16,5 +16,15 @@
     "sectors_educationAndScience": "onderwijs en wetenschap",
     "sectors_religionAndPhilosophy": "religie en levensbeschouwing",
     "sectors_wellBeing": "welzijn",
-    "introTitle": "Welkom bij \u2028de keuzewijzer!"
+    "introTitle": "Welkom bij \u2028de keuzewijzer!",
+    "matchesScreen_yourPersonalSuggestions": "Jouw persoonlijke voorstellen",
+    "matchesScreen_subtitleText": "Deze organisaties passen het beste bij jouw waarden, normen en identiteit.",
+    "matchCircle_match": "match",
+    "matchesScreen_findOutMore": "ontdek meer",
+    "organisationDetailScreen_mission": "Missie",
+    "organisationDetailScreen_vision": "Visie",
+    "organisationDetailScreen_visitWebsite": "bezoek de website",
+    "organisationDetailScreen_youMatchTitle": "Jullie matchen!",
+    "organisationDetailScreen_youMatchSubTitle": "Dit vinden jullie allebei belangrijk:",
+    "organisationDetailScreen_giveButton": "geven"
 }
