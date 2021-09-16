@@ -1,6 +1,6 @@
 {
     "introText": "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen.",
-    "introButton": "Zur Auswahlhilfe!",
+    "introButton": "zur Auswahlhilfe",
     "nextButton": "nächste",
     "choiceScreen_disagree": "anderer Meinung",
     "choiceScreen_agree": "zugestimmt",
@@ -26,5 +26,6 @@
     "organisationDetailScreen_visitWebsite": "",
     "organisationDetailScreen_youMatchTitle": "",
     "organisationDetailScreen_youMatchSubTitle": "",
-    "organisationDetailScreen_giveButton": ""
+    "organisationDetailScreen_giveButton": "",
+    "categoryScreenTitleQuestion": ""
 }
