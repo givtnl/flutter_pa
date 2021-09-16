@@ -23,11 +23,11 @@ class _MatchesScreen extends State<MatchesScreen> {
         organisation: OrganisationDetailModel(
           id: "1",
           description: "Description",
-          imageUrl: "http://www.google.be/",
+          imageUrl: "https://www.google.be/",
           mission: "Wij gaan voor de beste brandwondenzorg: de beste zorg aan patiënten, de hoogst mogelijke kwaliteit van leven en de meest effectieve preventie.",
           name: "Brandwonden stichting",
           vision: "Vision",
-          websiteUrl: "http://www.google.be/",
+          websiteUrl: "https://www.google.be/",
           metaTags: {'sectors': 'animals', 'donationUrl': 'https://www.vrt.be'}
         ),
         score: 87,

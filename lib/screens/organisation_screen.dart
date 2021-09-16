@@ -19,6 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions/intl_extension.dart';
+import 'error_screen.dart';
 
 class MatchingTag {
   int score;
@@ -110,7 +111,14 @@ class OrganisationScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: BlueRoundedButton('bezoek de website', () {}),
+                          child: BlueRoundedButton('bezoek de website', () async {
+                            if (await canLaunch(currentOrganisation.websiteUrl)) {
+                              await launch(currentOrganisation.websiteUrl);
+                            }
+                            else {
+                              Navigator.of(context).pushNamed(ErrorScreen.routeName);
+                            }
+                          }),
                         ),
                         SizedBox(
                           height: 40,
