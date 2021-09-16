@@ -27,33 +27,47 @@ class _StatementContainerState extends State<StatementContainer> {
     var provider = Provider.of<QuestionnaireProvider>(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(horizontal: 45.5),
       child: Column(
         children: [
-          AutoSizeText(
-            provider.getCurrentQuestionTranslation,
-            style: Theme.of(context).textTheme.headline1,
-            maxLines: 5,
-            wrapWords: false
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.5),
+            child: AutoSizeText(
+              provider.getCurrentQuestionTranslation,
+              style: Theme.of(context).textTheme.headline1,
+              maxLines: 5,
+              wrapWords: false,
+            ),
           ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(top: 20),
-            child: InkWell(
+          if (provider.getCurrentQuestion != null && provider.getCurrentQuestion!.metaTags != null && provider.getCurrentQuestion!.metaTags["explanation_nl"] != null)
+            Padding(
+              padding: EdgeInsets.only(top: 10, left: 4.5, right: 4.5),
               child: Text(
-                S.of(context).choiceScreen_skip.toLowerCase(),
-                style: Theme.of(context).textTheme.subtitle2,
-                textAlign: TextAlign.start,
+                provider.getCurrentQuestion!.metaTags["explanation_nl"].toString(),
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
               ),
-              onTap: () {
-                MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
-                provider.skipCurrentQuestion();
-                if (provider.isCompleted) {
-                  Navigator.of(context).pushNamed(MatchesScreen.routeName);
-                } else {
-                  provider.prepareNextScreen();
-                }
-              },
+            ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.5),
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(top: 20),
+              child: InkWell(
+                child: Text(
+                  S.of(context).choiceScreen_skip.toLowerCase(),
+                  style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.start,
+                ),
+                onTap: () {
+                  MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
+                  provider.skipCurrentQuestion();
+                  if (provider.isCompleted) {
+                    Navigator.of(context).pushNamed(MatchesScreen.routeName);
+                  } else {
+                    provider.prepareNextScreen();
+                  }
+                },
+              ),
             ),
           ),
           Padding(
@@ -80,25 +94,28 @@ class _StatementContainerState extends State<StatementContainer> {
                   },
                 )),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Text(
-                  S.of(context).choiceScreen_totallyDisagree,
-                  style: Theme.of(context).textTheme.headline3,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    S.of(context).choiceScreen_totallyDisagree,
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
                 ),
-              ),
-              Flexible(child: Container()),
-              //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
-              Flexible(
-                child: Text(
-                  S.of(context).choiceScreen_totallyAgree,
-                  style: Theme.of(context).textTheme.headline3,
-                  textAlign: TextAlign.end,
+                Flexible(child: Container()),
+                //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
+                Flexible(
+                  child: Text(
+                    S.of(context).choiceScreen_totallyAgree,
+                    style: Theme.of(context).textTheme.headline3,
+                    textAlign: TextAlign.end,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

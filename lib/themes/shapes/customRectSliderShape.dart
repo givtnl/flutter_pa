@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'customRoundSliderThumbShape.dart';
+
 class CustomRectSliderTrackShape extends SliderTrackShape
     with BaseSliderTrackShape {
   final Color trackColor;
@@ -28,15 +30,16 @@ class CustomRectSliderTrackShape extends SliderTrackShape
       isDiscrete: isDiscrete,
     );
 
-
     final Paint trackPaint = Paint()
       ..color = trackColor;
 
+    var thumbShape = sliderTheme.thumbShape as CustomRoundSliderThumbShape;
+    var differenceRadii = thumbShape.outerRadius - thumbShape.innerRadius;
     context.canvas.drawRect(
         Rect.fromLTRB(
-            parentBox.semanticBounds.left,
+            parentBox.semanticBounds.left + differenceRadii,
             trackRect.top,
-            parentBox.semanticBounds.right,
+            parentBox.semanticBounds.right - differenceRadii,
             trackRect.bottom),
         trackPaint);
   }

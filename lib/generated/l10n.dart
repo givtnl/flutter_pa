@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Find out with charities match your values, standards and identity.`
+  /// `Find out which charities match your values, standards and identity.`
   String get introText {
     return Intl.message(
-      'Find out with charities match your values, standards and identity.',
+      'Find out which charities match your values, standards and identity.',
       name: 'introText',
       desc: '',
       args: [],
@@ -70,150 +70,150 @@ class S {
     );
   }
 
-  /// `Next`
+  /// `next`
   String get nextButton {
     return Intl.message(
-      'Next',
+      'next',
       name: 'nextButton',
       desc: '',
       args: [],
     );
   }
 
-  /// `Disagree`
+  /// `disagree`
   String get choiceScreen_disagree {
     return Intl.message(
-      'Disagree',
+      'disagree',
       name: 'choiceScreen_disagree',
       desc: '',
       args: [],
     );
   }
 
-  /// `Agree`
+  /// `agree`
   String get choiceScreen_agree {
     return Intl.message(
-      'Agree',
+      'agree',
       name: 'choiceScreen_agree',
       desc: '',
       args: [],
     );
   }
 
-  /// `Skip`
+  /// `skip`
   String get choiceScreen_skip {
     return Intl.message(
-      'Skip',
+      'skip',
       name: 'choiceScreen_skip',
       desc: '',
       args: [],
     );
   }
 
-  /// `Totally disagree`
+  /// `totally disagree`
   String get choiceScreen_totallyDisagree {
     return Intl.message(
-      'Totally disagree',
+      'totally disagree',
       name: 'choiceScreen_totallyDisagree',
       desc: '',
       args: [],
     );
   }
 
-  /// `Totally agree`
+  /// `totally agree`
   String get choiceScreen_totallyAgree {
     return Intl.message(
-      'Totally agree',
+      'totally agree',
       name: 'choiceScreen_totallyAgree',
       desc: '',
       args: [],
     );
   }
 
-  /// `Neutral`
+  /// `neutral`
   String get choiceScreen_neutral {
     return Intl.message(
-      'Neutral',
+      'neutral',
       name: 'choiceScreen_neutral',
       desc: '',
       args: [],
     );
   }
 
-  /// `Animals`
+  /// `animals`
   String get sectors_animals {
     return Intl.message(
-      'Animals',
+      'animals',
       name: 'sectors_animals',
       desc: '',
       args: [],
     );
   }
 
-  /// `Health`
+  /// `health`
   String get sectors_health {
     return Intl.message(
-      'Health',
+      'health',
       name: 'sectors_health',
       desc: '',
       args: [],
     );
   }
 
-  /// `International aid and human rights`
+  /// `international aid and human rights`
   String get sectors_internationalAidAndHumanRights {
     return Intl.message(
-      'International aid and human rights',
+      'international aid and human rights',
       name: 'sectors_internationalAidAndHumanRights',
       desc: '',
       args: [],
     );
   }
 
-  /// `Art and culture`
+  /// `art and culture`
   String get sectors_artAndCulture {
     return Intl.message(
-      'Art and culture',
+      'art and culture',
       name: 'sectors_artAndCulture',
       desc: '',
       args: [],
     );
   }
 
-  /// `Nature and environment`
+  /// `nature and environment`
   String get sectors_natureAndEnvironment {
     return Intl.message(
-      'Nature and environment',
+      'nature and environment',
       name: 'sectors_natureAndEnvironment',
       desc: '',
       args: [],
     );
   }
 
-  /// `Education and science`
+  /// `education and science`
   String get sectors_educationAndScience {
     return Intl.message(
-      'Education and science',
+      'education and science',
       name: 'sectors_educationAndScience',
       desc: '',
       args: [],
     );
   }
 
-  /// `Religion and philosophy`
+  /// `religion and philosophy`
   String get sectors_religionAndPhilosophy {
     return Intl.message(
-      'Religion and philosophy',
+      'religion and philosophy',
       name: 'sectors_religionAndPhilosophy',
       desc: '',
       args: [],
     );
   }
 
-  /// `Well-being`
+  /// `well-being`
   String get sectors_wellBeing {
     return Intl.message(
-      'Well-being',
+      'well-being',
       name: 'sectors_wellBeing',
       desc: '',
       args: [],
