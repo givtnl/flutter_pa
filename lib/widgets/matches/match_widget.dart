@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/widgets/main_button.dart';
@@ -55,7 +56,7 @@ class MatchWidget extends StatelessWidget {
                   ),
                 ),
                 MainButton(
-                  label: "ontdek meer",
+                  label: S.of(context).matchesScreen_findOutMore,
                   tapped: () {
                     provider.selectOrganisationMatch(match);
                     Navigator.of(context).pushNamed(OrganisationScreen.routeName);

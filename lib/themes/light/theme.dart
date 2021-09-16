@@ -35,6 +35,12 @@ class LightTheme {
             fontSize: 12,
             color: blueColor,
           ),
+          headline4: TextStyle(
+            fontFamily: _fontFamily,
+            fontWeight: FontWeight.w600,
+            fontSize: 12,
+            color: blueColor,
+          ),
           // Intro page subheadline
           subtitle1: TextStyle(
             fontFamily: _fontFamily,

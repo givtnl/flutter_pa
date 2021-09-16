@@ -116,14 +116,14 @@ class OrganisationScreen extends StatelessWidget {
                           height: 30,
                         ),
                         OrganisationExtra(
-                          'Missie',
+                          S.of(context).organisationDetailScreen_mission,
                           currentOrganisation.mission,
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         OrganisationExtra(
-                          'Visie',
+                          S.of(context).organisationDetailScreen_vision,
                           currentOrganisation.vision,
                         ),
                         SizedBox(
@@ -131,11 +131,10 @@ class OrganisationScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: AccentRoundedButton('bezoek de website', () async {
+                          child: AccentRoundedButton(S.of(context).organisationDetailScreen_visitWebsite, () async {
                             if (await canLaunch(currentOrganisation.websiteUrl)) {
                               await launch(currentOrganisation.websiteUrl);
-                            }
-                            else {
+                            } else {
                               Navigator.of(context).pushNamed(ErrorScreen.routeName);
                             }
                           }),
@@ -145,9 +144,21 @@ class OrganisationScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Waarom matchen jullie?",
-                            style: Theme.of(context).textTheme.headline2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                S.of(context).organisationDetailScreen_youMatchTitle,
+                                style: Theme.of(context).textTheme.headline2,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                S.of(context).organisationDetailScreen_youMatchSubTitle,
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
@@ -188,7 +199,7 @@ class OrganisationScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 30.0),
                             child: MainButton(
-                                label: "geven", //todo
+                                label: S.of(context).organisationDetailScreen_giveButton,
                                 tapped: () async {
                                   MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
                                   var url = currentOrganisation.metaTags["donationUrl"]!;

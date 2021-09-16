@@ -24,7 +24,7 @@ class MatchPercentageCircle extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               Text(
-                "match",
+                S.of(context).matchCircle_match,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.white, fontSize: 9),
               ),

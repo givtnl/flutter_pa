@@ -37,14 +37,14 @@ class _MatchesScreen extends State<MatchesScreen> {
                     width: double.infinity,
                     padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 20),
                     child: Text(
-                      S.of(context).matchesScreen_subtitleText,
+                      S.of(context).matchesScreen_yourPersonalSuggestions,
                       style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: Text(
-                      "Deze organisaties passen het beste bij jouw waarden, normen en identiteit.",
+                      S.of(context).matchesScreen_subtitleText,
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
                     ),
                   ),
