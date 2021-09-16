@@ -12,7 +12,7 @@ class LightTheme {
         primaryColor: blueColor,
         accentColor: purpleColor,
         buttonColor: appleBlueSeaGreen,
-        backgroundColor: Color.fromRGBO(238, 237, 233, 1),
+        backgroundColor: cremeColor,
         cardColor: Color.fromRGBO(239, 244, 249, 1),
         textTheme: TextTheme(
           // Intro page headline
@@ -106,4 +106,6 @@ class LightTheme {
   static Color get appleBlueSeaGreen => Color.fromRGBO(159, 197, 194, 1);
 
   static Color get oldPrimaryColor => Color.fromRGBO(36, 106, 177, 1);
+
+  static Color get cremeColor => Color.fromRGBO(238, 237, 233, 1);
 }

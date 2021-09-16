@@ -173,7 +173,7 @@ class OrganisationScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    currentTags.elementAt(idx).tag,
+                                    currentTags.elementAt(idx).tag.toUpperCase(),
                                     textAlign: TextAlign.left,
                                     style: Theme.of(context).textTheme.bodyText2,
                                   ),
