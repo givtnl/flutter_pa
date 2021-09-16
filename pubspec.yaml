@@ -65,11 +65,11 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/svg/ellipse 25.svg
+    - assets/svg/pattern1/ellipse 25.svg
+    - assets/svg/pattern1/Vector 16 (Stroke).svg
+    - assets/svg/pattern1/Rectangle 1437 (Stroke).svg
+    - assets/svg/pattern1/Ellipse 30 (Stroke).svg
     - assets/svg/pattern2/ellipse 25.svg
-    - assets/svg/Vector 16 (Stroke).svg
-    - assets/svg/Rectangle 1437 (Stroke).svg
-    - assets/svg/Ellipse 30 (Stroke).svg
     - assets/svg/pattern2/Ellipse 30.svg
     - assets/svg/pattern2/Ellipse 24.svg
     - assets/svg/pattern2/Ellipse 23 (Stroke).svg
@@ -79,6 +79,7 @@ flutter:
     - assets/svg/pattern3/path (Stroke).svg
     - assets/svg/pattern3/Rectangle 1437 (Stroke).svg
     - assets/svg/pattern3/Vector 16 (Stroke).svg
+    - assets/svg/back-arrow.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

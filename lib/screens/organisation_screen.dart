@@ -14,6 +14,7 @@ import 'package:flutter_app/widgets/match_percentage_circle.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,15 +45,32 @@ class OrganisationScreen extends StatelessWidget {
 
     var itlProvider = S.of(context);
 
+    final Widget backArrow = SvgPicture.asset('assets/svg/back-arrow.svg');
+
     final _tags = currentMatch.organisation.metaTags["sectors"]!.split(",").map((e) => itlProvider.getSector(e));
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: backArrow,
+            onPressed: () {
+              print("ah yeet, kerre ki were");
+              // fyi: het lijkt erop dat de leading element in de appBar een maximum breedte maar mag hebben
+              // de positie lijkt ook vast te staan tot op eem maximum van X -> aan de rechter kant.
+              // vanaf dan begint alles te shrinken... Wrap de IconButton maar eens in padding :see-no-evil:
+            },
+            iconSize: 25,
+            splashRadius: 25, // put this on 25 because default (35) overlaps the app bar
+          ),
+          backgroundColor: Theme.of(context).backgroundColor,
+          shadowColor: Color.fromRGBO(0, 0, 0, 0),
+        ),
         backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
+              padding: const EdgeInsets.only(bottom: 50),
               child: Column(
                 children: [
                   Container(
