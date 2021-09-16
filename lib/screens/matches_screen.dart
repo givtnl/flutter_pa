@@ -17,23 +17,7 @@ class MatchesScreen extends StatefulWidget {
 class _MatchesScreen extends State<MatchesScreen> {
   Widget buildWidget(BuildContext context) {
     var provider = Provider.of<MatchesProvider>(context);
-    var matches = [
-      UserOrganisationMatchListModel(
-        organisation: OrganisationDetailModel(
-          id: "1",
-          description: "Description",
-          imageUrl: "https://www.google.be/",
-          mission: "Wij gaan voor de beste brandwondenzorg: de beste zorg aan patiënten, de hoogst mogelijke kwaliteit van leven en de meest effectieve preventie.",
-          name: "Brandwonden stichting",
-          vision: "Vision",
-          websiteUrl: "https://www.google.be/",
-          metaTags: {'sectors': 'animals', 'donationUrl': 'https://www.vrt.be'}
-        ),
-        score: 87,
-      )
-    ];
-
-    // TODO: Localize terms here on this screen
+    var matches = provider.organisationMatches;
 
     return WillPopScope(
       onWillPop: () async {
@@ -65,7 +49,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Column(children: matches.map((e) => MatchWidget(e)).take(5).toList()),
+                    child: Column(children: matches.map((e) => MatchWidget(e)).take(3).toList()),
                   ),
                 ],
               ),

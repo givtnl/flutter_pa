@@ -229,6 +229,106 @@ class S {
       args: [],
     );
   }
+
+  /// ``
+  String get matchesScreen_yourPersonalSuggestions {
+    return Intl.message(
+      '',
+      name: 'matchesScreen_yourPersonalSuggestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get matchesScreen_subtitleText {
+    return Intl.message(
+      '',
+      name: 'matchesScreen_subtitleText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get matchCircle_match {
+    return Intl.message(
+      '',
+      name: 'matchCircle_match',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get matchesScreen_findOutMore {
+    return Intl.message(
+      '',
+      name: 'matchesScreen_findOutMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get organisationDetailScreen_mission {
+    return Intl.message(
+      '',
+      name: 'organisationDetailScreen_mission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get organisationDetailScreen_vision {
+    return Intl.message(
+      '',
+      name: 'organisationDetailScreen_vision',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get organisationDetailScreen_visitWebsite {
+    return Intl.message(
+      '',
+      name: 'organisationDetailScreen_visitWebsite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get organisationDetailScreen_youMatchTitle {
+    return Intl.message(
+      '',
+      name: 'organisationDetailScreen_youMatchTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get organisationDetailScreen_youMatchSubTitle {
+    return Intl.message(
+      '',
+      name: 'organisationDetailScreen_youMatchSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get organisationDetailScreen_giveButton {
+    return Intl.message(
+      '',
+      name: 'organisationDetailScreen_giveButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

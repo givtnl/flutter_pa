@@ -69,7 +69,7 @@ class MatchWidget extends StatelessWidget {
               Expanded(
                 child: Container(),
               ),
-              MatchPercentageCircle(match.score as int),
+              MatchPercentageCircle(match.score.round()),
             ],
           )
         ],

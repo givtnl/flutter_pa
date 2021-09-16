@@ -38,7 +38,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Willkommen bei der Auswahlindikator!"),
+        "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_findOutMore": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_yourPersonalSuggestions":
+            MessageLookupByLibrary.simpleMessage(""),
         "nextButton": MessageLookupByLibrary.simpleMessage("nächste"),
+        "organisationDetailScreen_giveButton":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_mission":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_vision":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_visitWebsite":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_youMatchSubTitle":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_youMatchTitle":
+            MessageLookupByLibrary.simpleMessage(""),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Tiere"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("Kunst und Kultur"),
