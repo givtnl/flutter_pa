@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/themes/shapes/customRectSliderShape.dart';
 import 'package:flutter_app/themes/shapes/customRoundSliderThumbShape.dart';
 import 'package:flutter_app/themes/shapes/customValueIndicatorShape.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LightTheme {
   static String _fontFamily = "Montserrat";
