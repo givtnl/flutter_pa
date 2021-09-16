@@ -27,5 +27,6 @@
     "organisationDetailScreen_youMatchTitle": "You match!",
     "organisationDetailScreen_youMatchSubTitle": "This matters to you both:",
     "organisationDetailScreen_giveButton": "give",
-    "categoryScreenTitleQuestion": "Which subjects matter to you?"
+    "categoryScreenTitleQuestion": "Which subjects matter to you?",
+    "loadingTitle": "Please wait..."
 }
