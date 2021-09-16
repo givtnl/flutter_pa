@@ -50,8 +50,8 @@ void main() {
     test('Ensure Matches Are Sorted On score', () async {
       var provider = MatchesProvider.withDependencies(matchesApi);
       await provider.loadMatches('Michiel');
-      expect(userOrganisationMatchesListResponse.result[0].score, equals(70));
-      expect(userOrganisationMatchesListResponse.result[2].score, equals(90));
+      expect(userOrganisationMatchesListResponse.result[0].score, equals(90));
+      expect(userOrganisationMatchesListResponse.result[2].score, equals(70));
     });
 
   });

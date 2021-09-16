@@ -21,6 +21,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "categoryScreenTitleQuestion": MessageLookupByLibrary.simpleMessage(
+            "Which subjects matter to you?"),
         "choiceScreen_agree": MessageLookupByLibrary.simpleMessage("agree"),
         "choiceScreen_disagree":
             MessageLookupByLibrary.simpleMessage("disagree"),
@@ -31,30 +33,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("totally disagree"),
         "introButton":
-            MessageLookupByLibrary.simpleMessage("To the selection guide!"),
+            MessageLookupByLibrary.simpleMessage("to the selection guide"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Find out which charities match your values, standards and identity."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Welcome to the selection guide!"),
-        "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
-        "matchesScreen_findOutMore": MessageLookupByLibrary.simpleMessage(""),
-        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(""),
+        "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
+        "matchesScreen_findOutMore":
+            MessageLookupByLibrary.simpleMessage("discover more"),
+        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(
+            "These organisations best match your values, norms and identity."),
         "matchesScreen_yourPersonalSuggestions":
             MessageLookupByLibrary.simpleMessage(
                 "Jouw persoonlijke voorstellen"),
         "nextButton": MessageLookupByLibrary.simpleMessage("next"),
         "organisationDetailScreen_giveButton":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("give"),
         "organisationDetailScreen_mission":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Mission"),
         "organisationDetailScreen_vision":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Vision"),
         "organisationDetailScreen_visitWebsite":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("visit the website"),
         "organisationDetailScreen_youMatchSubTitle":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("This matters to you both:"),
         "organisationDetailScreen_youMatchTitle":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("You match!"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("animals"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("art and culture"),

@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "categoryScreenTitleQuestion": MessageLookupByLibrary.simpleMessage(""),
         "choiceScreen_agree":
             MessageLookupByLibrary.simpleMessage("zugestimmt"),
         "choiceScreen_disagree":
@@ -32,8 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("völlig einverstanden"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("völlig anderer Meinung"),
-        "introButton":
-            MessageLookupByLibrary.simpleMessage("Zur Auswahlhilfe!"),
+        "introButton": MessageLookupByLibrary.simpleMessage("zur Auswahlhilfe"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
         "introTitle": MessageLookupByLibrary.simpleMessage(

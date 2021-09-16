@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `To the selection guide!`
+  /// `to the selection guide`
   String get introButton {
     return Intl.message(
-      'To the selection guide!',
+      'to the selection guide',
       name: 'introButton',
       desc: '',
       args: [],
@@ -240,91 +240,101 @@ class S {
     );
   }
 
-  /// ``
+  /// `These organisations best match your values, norms and identity.`
   String get matchesScreen_subtitleText {
     return Intl.message(
-      '',
+      'These organisations best match your values, norms and identity.',
       name: 'matchesScreen_subtitleText',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `match`
   String get matchCircle_match {
     return Intl.message(
-      '',
+      'match',
       name: 'matchCircle_match',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `discover more`
   String get matchesScreen_findOutMore {
     return Intl.message(
-      '',
+      'discover more',
       name: 'matchesScreen_findOutMore',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Mission`
   String get organisationDetailScreen_mission {
     return Intl.message(
-      '',
+      'Mission',
       name: 'organisationDetailScreen_mission',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Vision`
   String get organisationDetailScreen_vision {
     return Intl.message(
-      '',
+      'Vision',
       name: 'organisationDetailScreen_vision',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `visit the website`
   String get organisationDetailScreen_visitWebsite {
     return Intl.message(
-      '',
+      'visit the website',
       name: 'organisationDetailScreen_visitWebsite',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `You match!`
   String get organisationDetailScreen_youMatchTitle {
     return Intl.message(
-      '',
+      'You match!',
       name: 'organisationDetailScreen_youMatchTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `This matters to you both:`
   String get organisationDetailScreen_youMatchSubTitle {
     return Intl.message(
-      '',
+      'This matters to you both:',
       name: 'organisationDetailScreen_youMatchSubTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `give`
   String get organisationDetailScreen_giveButton {
     return Intl.message(
-      '',
+      'give',
       name: 'organisationDetailScreen_giveButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Which subjects matter to you?`
+  String get categoryScreenTitleQuestion {
+    return Intl.message(
+      'Which subjects matter to you?',
+      name: 'categoryScreenTitleQuestion',
       desc: '',
       args: [],
     );

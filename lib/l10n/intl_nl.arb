@@ -1,6 +1,6 @@
 {
     "introText": "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit.",
-    "introButton": "Naar de keuzewijzer!",
+    "introButton": "naar de keuzewijzer",
     "nextButton": "volgende",
     "choiceScreen_disagree": "oneens",
     "choiceScreen_agree": "eens",
@@ -26,5 +26,6 @@
     "organisationDetailScreen_visitWebsite": "bezoek de website",
     "organisationDetailScreen_youMatchTitle": "Jullie matchen!",
     "organisationDetailScreen_youMatchSubTitle": "Dit vinden jullie allebei belangrijk:",
-    "organisationDetailScreen_giveButton": "geven"
+    "organisationDetailScreen_giveButton": "geven",
+    "categoryScreenTitleQuestion": "Welke thema’s vind jij belangrijk?"
 }
