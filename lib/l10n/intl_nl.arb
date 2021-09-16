@@ -27,5 +27,6 @@
     "organisationDetailScreen_youMatchTitle": "Jullie matchen!",
     "organisationDetailScreen_youMatchSubTitle": "Dit vinden jullie allebei belangrijk:",
     "organisationDetailScreen_giveButton": "geven",
-    "categoryScreenTitleQuestion": "Welke thema’s vind jij belangrijk?"
+    "categoryScreenTitleQuestion": "Welke thema’s vind jij belangrijk?",
+    "loadingTitle": "Even wachten..."
 }
