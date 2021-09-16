@@ -7,9 +7,8 @@ import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
-import 'package:flutter_app/widgets/categories_container.dart';
+import 'package:flutter_app/widgets/questionnaire_body_widget.dart';
 import 'package:flutter_app/widgets/slideable_container/slideable_container.dart';
-import 'package:flutter_app/widgets/statement_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -20,17 +19,12 @@ class ChoiceScreen extends StatefulWidget {
 }
 
 class _ChoiceScreenState extends State<ChoiceScreen> {
-  var body;
-
   final GlobalKey<SlideableContainerState> key = GlobalKey<SlideableContainerState>();
 
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
-    if (!questionnaireProvider.isCompleted) {
-      body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
-    }
 
     return TrackedScreen(
       screenName: 'ChoiceScreen',
@@ -53,14 +47,18 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       height: 15,
                       child: Stack(
                         children: [
-                          FractionallySizedBox(
-                            heightFactor: 1,
-                            widthFactor: questionnaireProvider.currentProgress / 100,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).buttonColor,
-                              ),
-                            ),
+                          Consumer<QuestionnaireProvider>(
+                            builder: (_, a, ctx) {
+                              return FractionallySizedBox(
+                                heightFactor: 1,
+                                widthFactor: questionnaireProvider.currentProgress / 100,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).buttonColor,
+                                  ),
+                                ),
+                              );
+                            }
                           ),
                         ],
                       ),
@@ -68,7 +66,13 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     Expanded(
                       child: Container(),
                     ),
-                    SlideableContainer(key: key, widgetsToShow: [StatementContainer(), StatementContainer(),],),
+                    SlideableContainer(
+                      key: key,
+                      widgetsToShow: [
+                        QuestionnaireBody(),
+                        QuestionnaireBody(),
+                      ],
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 50),
                       child: MainButton(

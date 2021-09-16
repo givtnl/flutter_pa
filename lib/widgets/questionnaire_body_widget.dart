@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_app/providers/questionnaire_provider.dart';
+import 'package:flutter_app/widgets/statement_container.dart';
+import 'package:provider/provider.dart';
+
+import 'categories_container.dart';
+
+class QuestionnaireBody extends StatefulWidget {
+  const QuestionnaireBody({Key? key}) : super(key: key);
+
+  @override
+  _QuestionnaireBodyState createState() => _QuestionnaireBodyState();
+}
+
+class _QuestionnaireBodyState extends State<QuestionnaireBody> {
+  @override
+  Widget build(BuildContext context) {
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
+    print(questionnaireProvider.currentScreenType);
+    var body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
+    return Container(
+      child: body,
+    );
+  }
+}
