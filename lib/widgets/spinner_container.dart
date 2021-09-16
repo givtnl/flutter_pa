@@ -12,8 +12,7 @@ class SpinnerContainer extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    // TODO: Localize terms
+  Widget build(BuildContext context)
 
     return Container(
       color: Theme.of(context).backgroundColor,
@@ -29,7 +28,6 @@ class SpinnerContainer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: AutoSizeText(
                     S.of(context).loadingTitle
-                  //"Even geduld",
                   style: Theme.of(context).textTheme.headline1,
                   wrapWords: false,
                 ),
