@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
-import 'package:flutter_app/widgets/big_text.dart';
 import 'package:flutter_app/widgets/matches/match_widget.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
@@ -34,6 +33,8 @@ class _MatchesScreen extends State<MatchesScreen> {
       )
     ];
 
+    // TODO: Localize terms here on this screen
+
     return WillPopScope(
       onWillPop: () async {
         // this prevents the user of going back in the flow to the questionnaire
@@ -52,13 +53,13 @@ class _MatchesScreen extends State<MatchesScreen> {
                     padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 20),
                     child: Text(
                       "Jouw persoonlijke voorstellen",
-                      style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24, fontWeight: FontWeight.w300),
+                      style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: Text(
-                      "Dit zijn de organisaties die qua identiteit het beste bij jou passen.",
+                      "Deze organisaties passen het beste bij jouw waarden, normen en identiteit.",
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
                     ),
                   ),

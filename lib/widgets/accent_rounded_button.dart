@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class BlueRoundedButton extends StatelessWidget {
-
+class AccentRoundedButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback clickListener;
 
-  BlueRoundedButton(this.buttonText, this.clickListener);
+  AccentRoundedButton(this.buttonText, this.clickListener);
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      padding: EdgeInsets.zero,
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    return TextButton(
       onPressed: clickListener,
+      style: ButtonStyle(
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
@@ -20,11 +20,10 @@ class BlueRoundedButton extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-          child: Text(buttonText, style: TextStyle(
-            fontFamily: 'Inter',
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),),
+          child: Text(
+            buttonText,
+            style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),
+          ),
         ),
       ),
     );

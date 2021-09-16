@@ -18,16 +18,14 @@ class MatchPercentageCircle extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "${percentage}%",
+                "$percentage%",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.button!.copyWith(
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.button,
               ),
               Text(
                 "match",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white, fontSize: 9),
+                style: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.white, fontSize: 9),
               ),
             ],
           ),

@@ -1,13 +1,13 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
-import 'package:flutter_app/widgets/big_text.dart';
-import 'package:flutter_app/widgets/blue_rounded_button.dart';
+import 'package:flutter_app/widgets/accent_rounded_button.dart';
 import 'package:flutter_app/widgets/custom_linear_progress_indicator.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/match_percentage_circle.dart';
@@ -34,6 +34,8 @@ class OrganisationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Localize terms here on this screen
+
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
@@ -63,7 +65,7 @@ class OrganisationScreen extends StatelessWidget {
                             flex: 2,
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: BigText(currentOrganisation.name),
+                              child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
                             ),
                           ),
                           MatchPercentageCircle(currentMatch.score as int),
@@ -110,7 +112,10 @@ class OrganisationScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: BlueRoundedButton('bezoek de website', () {}),
+                          child: AccentRoundedButton(
+                            'bezoek de website',
+                            () {},
+                          ),
                         ),
                         SizedBox(
                           height: 40,
