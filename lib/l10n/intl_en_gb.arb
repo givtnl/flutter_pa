@@ -1,6 +1,6 @@
 {
     "introText": "Find out which charities match your values, standards and identity.",
-    "introButton": "To the selection guide!",
+    "introButton": "to the selection guide",
     "nextButton": "next",
     "choiceScreen_disagree": "disagree",
     "choiceScreen_agree": "agree",
@@ -18,13 +18,14 @@
     "sectors_wellBeing": "well-being",
     "introTitle": "Welcome to the selection guide!",
     "matchesScreen_yourPersonalSuggestions": "Jouw persoonlijke voorstellen",
-    "matchesScreen_subtitleText": "",
-    "matchCircle_match": "",
-    "matchesScreen_findOutMore": "",
-    "organisationDetailScreen_mission": "",
-    "organisationDetailScreen_vision": "",
-    "organisationDetailScreen_visitWebsite": "",
-    "organisationDetailScreen_youMatchTitle": "",
-    "organisationDetailScreen_youMatchSubTitle": "",
-    "organisationDetailScreen_giveButton": ""
+    "matchesScreen_subtitleText": "These organisations best match your values, norms and identity.",
+    "matchCircle_match": "match",
+    "matchesScreen_findOutMore": "discover more",
+    "organisationDetailScreen_mission": "Mission",
+    "organisationDetailScreen_vision": "Vision",
+    "organisationDetailScreen_visitWebsite": "visit the website",
+    "organisationDetailScreen_youMatchTitle": "You match!",
+    "organisationDetailScreen_youMatchSubTitle": "This matters to you both:",
+    "organisationDetailScreen_giveButton": "give",
+    "categoryScreenTitleQuestion": "Which subjects matter to you?"
 }
