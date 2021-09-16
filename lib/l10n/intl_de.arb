@@ -27,5 +27,6 @@
     "organisationDetailScreen_youMatchTitle": "",
     "organisationDetailScreen_youMatchSubTitle": "",
     "organisationDetailScreen_giveButton": "",
-    "categoryScreenTitleQuestion": ""
+    "categoryScreenTitleQuestion": "",
+    "loadingTitle": ""
 }
