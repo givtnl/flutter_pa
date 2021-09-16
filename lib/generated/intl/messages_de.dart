@@ -42,7 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "matchesScreen_findOutMore": MessageLookupByLibrary.simpleMessage(""),
         "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(""),
         "matchesScreen_yourPersonalSuggestions":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage(
+                "Jouw persoonlijke voorstellen"),
         "nextButton": MessageLookupByLibrary.simpleMessage("nächste"),
         "organisationDetailScreen_giveButton":
             MessageLookupByLibrary.simpleMessage(""),
