@@ -50,7 +50,12 @@ class _MatchesScreen extends State<MatchesScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Column(children: matches.map((e) => MatchWidget(e)).take(3).toList()),
+                    child: Column(children: matches.map((e) => Column(
+                      children: [
+                        MatchWidget(e),
+                        SizedBox(height: 10,)
+                      ],
+                    )).take(3).toList()),
                   ),
                 ],
               ),
