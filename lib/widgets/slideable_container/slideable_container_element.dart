@@ -84,8 +84,6 @@ class SlideableContainerElementState extends State<SlideableContainerElement> wi
     // add a container with max width and max height so we can use the whole screen when needed.
     // Or when positioned inside an element we can use all the available space
     return Container(
-      width: double.infinity,
-      height: double.infinity,
       child: SlideTransition(
         position: isIn ? _animationOut : _animationIn,
         child: _child,

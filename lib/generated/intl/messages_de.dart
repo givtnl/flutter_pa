@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("zugestimmt"),
         "choiceScreen_disagree":
             MessageLookupByLibrary.simpleMessage("anderer Meinung"),
-        "choiceScreen_neutral": MessageLookupByLibrary.simpleMessage("Neutral"),
+        "choiceScreen_neutral": MessageLookupByLibrary.simpleMessage("neutral"),
         "choiceScreen_skip":
             MessageLookupByLibrary.simpleMessage("überspringen"),
         "choiceScreen_totallyAgree":
@@ -38,7 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Willkommen bei der Auswahlindikator!"),
-        "nextButton": MessageLookupByLibrary.simpleMessage("Nächste"),
+        "nextButton": MessageLookupByLibrary.simpleMessage("nächste"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Tiere"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("Kunst und Kultur"),

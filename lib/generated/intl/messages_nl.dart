@@ -21,35 +21,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "choiceScreen_agree": MessageLookupByLibrary.simpleMessage("Eens"),
-        "choiceScreen_disagree": MessageLookupByLibrary.simpleMessage("Oneens"),
+        "choiceScreen_agree": MessageLookupByLibrary.simpleMessage("eens"),
+        "choiceScreen_disagree": MessageLookupByLibrary.simpleMessage("oneens"),
         "choiceScreen_neutral":
-            MessageLookupByLibrary.simpleMessage("Neutraal"),
-        "choiceScreen_skip": MessageLookupByLibrary.simpleMessage("Overslaan"),
+            MessageLookupByLibrary.simpleMessage("neutraal"),
+        "choiceScreen_skip": MessageLookupByLibrary.simpleMessage("overslaan"),
         "choiceScreen_totallyAgree":
-            MessageLookupByLibrary.simpleMessage("Helemaal eens"),
+            MessageLookupByLibrary.simpleMessage("helemaal eens"),
         "choiceScreen_totallyDisagree":
-            MessageLookupByLibrary.simpleMessage("Helemaal oneens"),
+            MessageLookupByLibrary.simpleMessage("helemaal oneens"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("Naar de keuzewijzer!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
         "introTitle":
             MessageLookupByLibrary.simpleMessage("Welkom bij  de keuzewijzer!"),
-        "nextButton": MessageLookupByLibrary.simpleMessage("Volgende"),
-        "sectors_animals": MessageLookupByLibrary.simpleMessage("Dieren"),
+        "nextButton": MessageLookupByLibrary.simpleMessage("volgende"),
+        "sectors_animals": MessageLookupByLibrary.simpleMessage("dieren"),
         "sectors_artAndCulture":
-            MessageLookupByLibrary.simpleMessage("Kunst en cultuur"),
+            MessageLookupByLibrary.simpleMessage("kunst en cultuur"),
         "sectors_educationAndScience":
-            MessageLookupByLibrary.simpleMessage("Onderwijs en wetenschap"),
-        "sectors_health": MessageLookupByLibrary.simpleMessage("Gezondheid"),
+            MessageLookupByLibrary.simpleMessage("onderwijs en wetenschap"),
+        "sectors_health": MessageLookupByLibrary.simpleMessage("gezondheid"),
         "sectors_internationalAidAndHumanRights":
             MessageLookupByLibrary.simpleMessage(
-                "Internationale hulp en mensenrechten"),
+                "internationale hulp en mensenrechten"),
         "sectors_natureAndEnvironment":
-            MessageLookupByLibrary.simpleMessage("Natuur en milieu"),
+            MessageLookupByLibrary.simpleMessage("natuur en milieu"),
         "sectors_religionAndPhilosophy": MessageLookupByLibrary.simpleMessage(
-            "Religie en levensbeschouwing"),
-        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("Welzijn")
+            "religie en levensbeschouwing"),
+        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("welzijn")
       };
 }

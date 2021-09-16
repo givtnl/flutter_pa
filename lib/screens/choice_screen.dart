@@ -26,7 +26,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
     if (!questionnaireProvider.isCompleted) {
       body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
@@ -68,7 +68,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     Expanded(
                       child: Container(),
                     ),
-                    body,
+                    SlideableContainer(key: key, widgetsToShow: [StatementContainer(), StatementContainer(),],),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 50),
                       child: MainButton(
@@ -78,6 +78,8 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
 
                           await questionnaireProvider.saveQuestion(userProvider.userName);
                           questionnaireProvider.prepareNextScreen();
+
+                          key.currentState?.showNextWidget();
 
                           if (questionnaireProvider.isCompleted) {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);

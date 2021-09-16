@@ -21,35 +21,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "choiceScreen_agree": MessageLookupByLibrary.simpleMessage("Agree"),
+        "choiceScreen_agree": MessageLookupByLibrary.simpleMessage("agree"),
         "choiceScreen_disagree":
-            MessageLookupByLibrary.simpleMessage("Disagree"),
-        "choiceScreen_neutral": MessageLookupByLibrary.simpleMessage("Neutral"),
-        "choiceScreen_skip": MessageLookupByLibrary.simpleMessage("Skip"),
+            MessageLookupByLibrary.simpleMessage("disagree"),
+        "choiceScreen_neutral": MessageLookupByLibrary.simpleMessage("neutral"),
+        "choiceScreen_skip": MessageLookupByLibrary.simpleMessage("skip"),
         "choiceScreen_totallyAgree":
-            MessageLookupByLibrary.simpleMessage("Totally agree"),
+            MessageLookupByLibrary.simpleMessage("totally agree"),
         "choiceScreen_totallyDisagree":
-            MessageLookupByLibrary.simpleMessage("Totally disagree"),
+            MessageLookupByLibrary.simpleMessage("totally disagree"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("To the selection guide!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Find out with charities match your values, standards and identity."),
+            "Find out which charities match your values, standards and identity."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Welcome to the selection guide!"),
-        "nextButton": MessageLookupByLibrary.simpleMessage("Next"),
-        "sectors_animals": MessageLookupByLibrary.simpleMessage("Animals"),
+        "nextButton": MessageLookupByLibrary.simpleMessage("next"),
+        "sectors_animals": MessageLookupByLibrary.simpleMessage("animals"),
         "sectors_artAndCulture":
-            MessageLookupByLibrary.simpleMessage("Art and culture"),
+            MessageLookupByLibrary.simpleMessage("art and culture"),
         "sectors_educationAndScience":
-            MessageLookupByLibrary.simpleMessage("Education and science"),
-        "sectors_health": MessageLookupByLibrary.simpleMessage("Health"),
+            MessageLookupByLibrary.simpleMessage("education and science"),
+        "sectors_health": MessageLookupByLibrary.simpleMessage("health"),
         "sectors_internationalAidAndHumanRights":
             MessageLookupByLibrary.simpleMessage(
-                "International aid and human rights"),
+                "international aid and human rights"),
         "sectors_natureAndEnvironment":
-            MessageLookupByLibrary.simpleMessage("Nature and environment"),
+            MessageLookupByLibrary.simpleMessage("nature and environment"),
         "sectors_religionAndPhilosophy":
-            MessageLookupByLibrary.simpleMessage("Religion and philosophy"),
-        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("Well-being")
+            MessageLookupByLibrary.simpleMessage("religion and philosophy"),
+        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("well-being")
       };
 }
