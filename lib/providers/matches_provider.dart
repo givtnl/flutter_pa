@@ -5,6 +5,7 @@ class MatchesProvider with ChangeNotifier {
   late MatchesApi matchesApi;
 
   List<UserOrganisationMatchListModel> organisationMatches = [];
+  String nextPageToken = "";
 
   late UserOrganisationMatchListModel selectedOrganisationMatch = UserOrganisationMatchListModel(
       score: 90,
@@ -21,10 +22,13 @@ class MatchesProvider with ChangeNotifier {
 
   Future<void> loadMatches(String userId) async {
     var response = await this.matchesApi.getMatchesList(userId: userId);
-    organisationMatches = response.result.toList();
+    organisationMatches = response.result;
+    nextPageToken = response.nextPageToken;
     organisationMatches.sort((a, b) => b.score.toInt() - a.score.toInt());
     notifyListeners();
   }
+
+
 
   selectOrganisationMatch(UserOrganisationMatchListModel model) {
     this.selectedOrganisationMatch = model;

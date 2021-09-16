@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/matches/match_widget.dart';
@@ -52,7 +53,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                     width: double.infinity,
                     padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 20),
                     child: Text(
-                      "Jouw persoonlijke voorstellen",
+                      S.of(context).,
                       style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
                     ),
                   ),
