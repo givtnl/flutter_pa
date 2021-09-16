@@ -51,29 +51,30 @@ class OrganisationScreen extends StatelessWidget {
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: backArrow,
-            onPressed: () {
-              Navigator.of(context).pop();
-              print("ah yeet, kerre ki were");
-              // fyi: het lijkt erop dat de leading element in de appBar een maximum breedte maar mag hebben
-              // de positie lijkt ook vast te staan tot op eem maximum van X -> aan de rechter kant.
-              // vanaf dan begint alles te shrinken... Wrap de IconButton maar eens in padding :see-no-evil:
-            },
-            iconSize: 25,
-            splashRadius: 25, // put this on 25 because default (35) overlaps the app bar
-          ),
-          backgroundColor: Theme.of(context).backgroundColor,
-          shadowColor: Color.fromRGBO(0, 0, 0, 0),
-        ),
         backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 50),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: IconButton(
+                      icon: backArrow,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        print("ah yeet, kerre ki were");
+                        // fyi: het lijkt erop dat de leading element in de appBar een maximum breedte maar mag hebben
+                        // de positie lijkt ook vast te staan tot op eem maximum van X -> aan de rechter kant.
+                        // vanaf dan begint alles te shrinken... Wrap de IconButton maar eens in padding :see-no-evil:
+                      },
+                      iconSize: 15,
+                      splashRadius: .1, // put this on 25 because default (35) overlaps the app bar
+                    ),
+                  ),
+                  SizedBox(height: 15,),
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 50),

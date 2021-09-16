@@ -60,7 +60,7 @@ class LightTheme {
           button: TextStyle(
             fontFamily: _fontFamily,
             fontWeight: FontWeight.w700,
-            fontSize: 16,
+            fontSize: 14,
             color: Colors.white,
           ),
           // Old body text

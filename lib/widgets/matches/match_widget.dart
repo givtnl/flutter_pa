@@ -4,6 +4,7 @@ import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
+import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
@@ -56,13 +57,32 @@ class MatchWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                MainButton(
-                  label: S.of(context).matchesScreen_findOutMore,
-                  tapped: () async {
-                    var userName = Provider.of<UserProvider>(context, listen: false).userName;
-                    await provider.selectOrganisationMatch(match, userName);
-                    Navigator.of(context).pushNamed(OrganisationScreen.routeName);
-                  },
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Expanded(
+                        child: GestureDetector(
+                            onTap: () async {
+                              var userName = Provider.of<UserProvider>(context, listen: false).userName;
+                              await provider.selectOrganisationMatch(match, userName);
+                              Navigator.of(context).pushNamed(OrganisationScreen.routeName);
+                            },
+                            child: Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: LightTheme.appleBlueSeaGreen,
+                                borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
+                              ),
+                              child: Center(
+                                  child: Text(S.of(context).matchesScreen_findOutMore,
+                                    style: Theme.of(context).textTheme.button,
+                                    textAlign: TextAlign.center,
+                                  )
+                              ),
+                            )
+                        )
+                    )
+                  ],
                 )
               ],
             ),

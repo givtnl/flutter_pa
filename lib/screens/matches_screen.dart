@@ -35,7 +35,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                 children: [
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 20),
+                    padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 10),
                     child: Text(
                       S.of(context).matchesScreen_yourPersonalSuggestions,
                       style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
