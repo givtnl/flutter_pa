@@ -45,10 +45,10 @@ class MatchWidget extends StatelessWidget {
                             top: 10.0,
                             bottom: 15,
                           ),
-                          child: Text(match.organisation.mission,
-                              style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    fontWeight: FontWeight.normal,
-                                  )),
+                          child: Text(
+                            match.organisation.mission, // TODO: Change to organisationDescription
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
                         )
                       ],
                     ),
