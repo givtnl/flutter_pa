@@ -67,24 +67,40 @@ class _MyAppState extends State<MyApp> {
             case IntroScreen.routeName:
               return CustomPageRoute(
                 pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => IntroScreen(),
-                transitionsBuilder: (BuildContext context,
-                    Animation<double> animation,
-                    Animation<double> secondaryAnimation,
-                    Widget child,) {
+                transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child,
+                ) {
                   final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
                   final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
                   return SlideTransition(position: slideOutLeftAnimation, child: child);
                 },
               );
             case ErrorScreen.routeName:
-              return CustomPageRoute(pageBuilder: (context, anim1, anim2) => ErrorScreen());
+              return CustomPageRoute(
+                pageBuilder: (context, anim1, anim2) => ErrorScreen(),
+                transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child,
+                ) {
+                  final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
+                  final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
+                  return SlideTransition(position: slideOutLeftAnimation, child: child);
+                },
+              );
             case MatchesScreen.routeName:
               return CustomPageRoute(
                 pageBuilder: (context, anim1, anim2) => MatchesScreen(),
-                transitionsBuilder: (BuildContext context,
-                    Animation<double> animation,
-                    Animation<double> secondaryAnimation,
-                    Widget child,) {
+                transitionsBuilder: (
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child,
+                ) {
                   final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
                   final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
                   return SlideTransition(position: slideOutLeftAnimation, child: child);
@@ -94,23 +110,19 @@ class _MyAppState extends State<MyApp> {
               return CustomPageRoute(
                 pageBuilder: (context, anim1, anim2) => OrganisationScreen(),
                 transitionsBuilder: (
-                BuildContext context,
-                Animation < double > animation,
-                Animation < double > secondaryAnimation,
-                Widget child,
-              )
-              {
-                final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
-                final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
-                return SlideTransition(position: slideOutLeftAnimation, child: child);
-              },
-          );
-          case ChoiceScreen.routeName:
-              return CustomPageRoute(pageBuilder: (context, anim1, anim2) => ChoiceScreen
-          (
-          )
-          );
-        }
+                  BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child,
+                ) {
+                  final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
+                  final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
+                  return SlideTransition(position: slideOutLeftAnimation, child: child);
+                },
+              );
+            case ChoiceScreen.routeName:
+              return CustomPageRoute(pageBuilder: (context, anim1, anim2) => ChoiceScreen());
+          }
         },
       ),
     );

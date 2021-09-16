@@ -34,8 +34,16 @@ class _StatementContainerState extends State<StatementContainer> {
             provider.getCurrentQuestionTranslation,
             style: Theme.of(context).textTheme.headline1,
             maxLines: 5,
-            wrapWords: false
+            wrapWords: false,
           ),
+          if (provider.getCurrentQuestion != null && provider.getCurrentQuestion!.metaTags != null && provider.getCurrentQuestion!.metaTags["explanation_nl"] != null)
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                provider.getCurrentQuestion!.metaTags["explanation_nl"].toString(),
+                style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+            ),
           Container(
             width: double.infinity,
             padding: EdgeInsets.only(top: 20),
