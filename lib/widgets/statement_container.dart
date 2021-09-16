@@ -101,15 +101,16 @@ class _StatementContainerState extends State<StatementContainer> {
               children: [
                 Flexible(
                   child: Text(
-                    S.of(context).choiceScreen_totallyDisagree,
+                    S.of(context).choiceScreen_disagree,
                     style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 Flexible(child: Container()),
                 //necessary because otherwise the 'helemaal niet akkoord' doesn't get a line break
+                // TODO EDIT: this might not be necessary anymore, because changed now to 'disagree' and 'agree'
                 Flexible(
                   child: Text(
-                    S.of(context).choiceScreen_totallyAgree,
+                    S.of(context).choiceScreen_agree,
                     style: Theme.of(context).textTheme.headline3,
                     textAlign: TextAlign.end,
                   ),
