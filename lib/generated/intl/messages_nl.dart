@@ -36,7 +36,28 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
         "introTitle":
             MessageLookupByLibrary.simpleMessage("Welkom bij  de keuzewijzer!"),
+        "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
+        "matchesScreen_findOutMore":
+            MessageLookupByLibrary.simpleMessage("ontdek meer"),
+        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(
+            "Deze organisaties passen het beste bij jouw waarden, normen en identiteit."),
+        "matchesScreen_yourPersonalSuggestions":
+            MessageLookupByLibrary.simpleMessage(
+                "Jouw persoonlijke voorstellen"),
         "nextButton": MessageLookupByLibrary.simpleMessage("volgende"),
+        "organisationDetailScreen_giveButton":
+            MessageLookupByLibrary.simpleMessage("geven"),
+        "organisationDetailScreen_mission":
+            MessageLookupByLibrary.simpleMessage("Missie"),
+        "organisationDetailScreen_vision":
+            MessageLookupByLibrary.simpleMessage("Visie"),
+        "organisationDetailScreen_visitWebsite":
+            MessageLookupByLibrary.simpleMessage("bezoek de website"),
+        "organisationDetailScreen_youMatchSubTitle":
+            MessageLookupByLibrary.simpleMessage(
+                "Dit vinden jullie allebei belangrijk:"),
+        "organisationDetailScreen_youMatchTitle":
+            MessageLookupByLibrary.simpleMessage("Jullie matchen!"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("dieren"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("kunst en cultuur"),

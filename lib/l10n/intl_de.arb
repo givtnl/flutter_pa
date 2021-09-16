@@ -16,5 +16,15 @@
     "sectors_educationAndScience": "Bildung und Wissenschaft",
     "sectors_religionAndPhilosophy": "Religion und Philosophie",
     "sectors_wellBeing": "Wohlbefinden",
-    "introTitle": "Willkommen bei der Auswahlindikator!"
+    "introTitle": "Willkommen bei der Auswahlindikator!",
+    "matchesScreen_yourPersonalSuggestions": "Jouw persoonlijke voorstellen",
+    "matchesScreen_subtitleText": "",
+    "matchCircle_match": "",
+    "matchesScreen_findOutMore": "",
+    "organisationDetailScreen_mission": "",
+    "organisationDetailScreen_vision": "",
+    "organisationDetailScreen_visitWebsite": "",
+    "organisationDetailScreen_youMatchTitle": "",
+    "organisationDetailScreen_youMatchSubTitle": "",
+    "organisationDetailScreen_giveButton": ""
 }

@@ -36,7 +36,25 @@ class MessageLookup extends MessageLookupByLibrary {
             "Find out which charities match your values, standards and identity."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Welcome to the selection guide!"),
+        "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_findOutMore": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_yourPersonalSuggestions":
+            MessageLookupByLibrary.simpleMessage(
+                "Jouw persoonlijke voorstellen"),
         "nextButton": MessageLookupByLibrary.simpleMessage("next"),
+        "organisationDetailScreen_giveButton":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_mission":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_vision":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_visitWebsite":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_youMatchSubTitle":
+            MessageLookupByLibrary.simpleMessage(""),
+        "organisationDetailScreen_youMatchTitle":
+            MessageLookupByLibrary.simpleMessage(""),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("animals"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("art and culture"),

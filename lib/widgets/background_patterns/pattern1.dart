@@ -7,10 +7,10 @@ class BackgroundPattern1 extends StatelessWidget {
   Widget build(BuildContext context) {
     var mqs = MediaQueryService.getInstance(context);
 
-    final Widget ellipse = SvgPicture.asset('assets/svg/ellipse 25.svg');
-    final Widget arrow = SvgPicture.asset('assets/svg/Vector 16 (Stroke).svg');
-    final Widget rectangle = SvgPicture.asset('assets/svg/Rectangle 1437 (Stroke).svg');
-    final Widget halfCircle = SvgPicture.asset('assets/svg/Ellipse 30 (Stroke).svg');
+    final Widget ellipse = SvgPicture.asset('assets/svg/pattern1/ellipse 25.svg');
+    final Widget arrow = SvgPicture.asset('assets/svg/pattern1/Vector 16 (Stroke).svg');
+    final Widget rectangle = SvgPicture.asset('assets/svg/pattern1/Rectangle 1437 (Stroke).svg');
+    final Widget halfCircle = SvgPicture.asset('assets/svg/pattern1/Ellipse 30 (Stroke).svg');
 
     return Container(
       child: Stack(

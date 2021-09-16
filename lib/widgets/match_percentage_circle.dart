@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 
 class MatchPercentageCircle extends StatelessWidget {
   late final int percentage;
@@ -23,7 +24,7 @@ class MatchPercentageCircle extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               Text(
-                "match",
+                S.of(context).matchCircle_match,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline3!.copyWith(color: Colors.white, fontSize: 9),
               ),

@@ -14,6 +14,7 @@ import 'package:flutter_app/widgets/match_percentage_circle.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -40,9 +41,11 @@ class OrganisationScreen extends StatelessWidget {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
-    var tagScores = [UserOrganisationTagMatchListModel(score: 90, tag: 'animals', organisationId: "1")];
+    var currentTags = provider.currentMatchingTags;
 
     var itlProvider = S.of(context);
+
+    final Widget backArrow = SvgPicture.asset('assets/svg/back-arrow.svg');
 
     final _tags = currentMatch.organisation.metaTags["sectors"]!.split(",").map((e) => itlProvider.getSector(e));
     return TrackedScreen(
@@ -52,9 +55,26 @@ class OrganisationScreen extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
+              padding: const EdgeInsets.only(bottom: 50),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: IconButton(
+                      icon: backArrow,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        print("ah yeet, kerre ki were");
+                        // fyi: het lijkt erop dat de leading element in de appBar een maximum breedte maar mag hebben
+                        // de positie lijkt ook vast te staan tot op eem maximum van X -> aan de rechter kant.
+                        // vanaf dan begint alles te shrinken... Wrap de IconButton maar eens in padding :see-no-evil:
+                      },
+                      iconSize: 15,
+                      splashRadius: .1, // put this on 25 because default (35) overlaps the app bar
+                    ),
+                  ),
+                  SizedBox(height: 15,),
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 50),
@@ -69,7 +89,7 @@ class OrganisationScreen extends StatelessWidget {
                               child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
                             ),
                           ),
-                          MatchPercentageCircle(currentMatch.score as int),
+                          MatchPercentageCircle(currentMatch.score.round()),
                         ],
                       ),
                     ),
@@ -98,14 +118,14 @@ class OrganisationScreen extends StatelessWidget {
                           height: 30,
                         ),
                         OrganisationExtra(
-                          'Missie',
+                          S.of(context).organisationDetailScreen_mission,
                           currentOrganisation.mission,
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         OrganisationExtra(
-                          'Visie',
+                          S.of(context).organisationDetailScreen_vision,
                           currentOrganisation.vision,
                         ),
                         SizedBox(
@@ -113,11 +133,10 @@ class OrganisationScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: AccentRoundedButton('bezoek de website', () async {
+                          child: AccentRoundedButton(S.of(context).organisationDetailScreen_visitWebsite, () async {
                             if (await canLaunch(currentOrganisation.websiteUrl)) {
                               await launch(currentOrganisation.websiteUrl);
-                            }
-                            else {
+                            } else {
                               Navigator.of(context).pushNamed(ErrorScreen.routeName);
                             }
                           }),
@@ -127,9 +146,21 @@ class OrganisationScreen extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Waarom matchen jullie?",
-                            style: Theme.of(context).textTheme.headline2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                S.of(context).organisationDetailScreen_youMatchTitle,
+                                style: Theme.of(context).textTheme.headline2,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                S.of(context).organisationDetailScreen_youMatchSubTitle,
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(
@@ -143,7 +174,7 @@ class OrganisationScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    tagScores.elementAt(idx).tag,
+                                    currentTags.elementAt(idx).tag.toUpperCase(),
                                     textAlign: TextAlign.left,
                                     style: Theme.of(context).textTheme.bodyText2,
                                   ),
@@ -153,7 +184,7 @@ class OrganisationScreen extends StatelessWidget {
                                   CustomLinearProgressIndicator(
                                     height: 20,
                                     borderRadius: 20,
-                                    value: tagScores.elementAt(idx).score.toDouble() / 100,
+                                    value: currentTags.elementAt(idx).score.toDouble() / 100,
                                     color: getColorForIndicator(idx, context),
                                     backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
                                   )
@@ -165,12 +196,12 @@ class OrganisationScreen extends StatelessWidget {
                                 height: 15,
                               );
                             },
-                            itemCount: tagScores.length),
+                            itemCount: currentTags.length),
                         if (currentOrganisation.metaTags.containsKey("donationUrl"))
                           Padding(
                             padding: const EdgeInsets.only(top: 30.0),
                             child: MainButton(
-                                label: "geven", //todo
+                                label: S.of(context).organisationDetailScreen_giveButton,
                                 tapped: () async {
                                   MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
                                   var url = currentOrganisation.metaTags["donationUrl"]!;
@@ -178,7 +209,7 @@ class OrganisationScreen extends StatelessWidget {
                                     await launch(url);
                                   else
                                     throw "Could not launch $url";
-                                }),
+                                }, fontSize: 16,height: 45, ),
                           )
                       ],
                     ),

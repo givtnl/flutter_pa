@@ -16,10 +16,10 @@ class OrganisationTag extends StatelessWidget {
           border: Border.all(width: 1, color: Theme.of(context).accentColor),
           borderRadius: BorderRadius.circular(25),
         ),
-        padding: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
         child: Text(
           text.toLowerCase(),
-          style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 11),
+          style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 12),
         ),
       ),
     );

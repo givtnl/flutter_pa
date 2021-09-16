@@ -12,7 +12,7 @@ class LightTheme {
         primaryColor: blueColor,
         accentColor: purpleColor,
         buttonColor: appleBlueSeaGreen,
-        backgroundColor: Color.fromRGBO(238, 237, 233, 1),
+        backgroundColor: cremeColor,
         cardColor: Color.fromRGBO(239, 244, 249, 1),
         textTheme: TextTheme(
           // Intro page headline
@@ -30,6 +30,12 @@ class LightTheme {
           ),
           // Totally agree and disagree stylings
           headline3: TextStyle(
+            fontFamily: _fontFamily,
+            fontWeight: FontWeight.w600,
+            fontSize: 12,
+            color: blueColor,
+          ),
+          headline4: TextStyle(
             fontFamily: _fontFamily,
             fontWeight: FontWeight.w600,
             fontSize: 12,
@@ -54,7 +60,7 @@ class LightTheme {
           button: TextStyle(
             fontFamily: _fontFamily,
             fontWeight: FontWeight.w700,
-            fontSize: 16,
+            fontSize: 14,
             color: Colors.white,
           ),
           // Old body text
@@ -100,4 +106,6 @@ class LightTheme {
   static Color get appleBlueSeaGreen => Color.fromRGBO(159, 197, 194, 1);
 
   static Color get oldPrimaryColor => Color.fromRGBO(36, 106, 177, 1);
+
+  static Color get cremeColor => Color.fromRGBO(238, 237, 233, 1);
 }
