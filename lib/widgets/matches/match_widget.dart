@@ -57,33 +57,11 @@ class MatchWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Expanded(
-                        child: GestureDetector(
-                            onTap: () async {
-                              var userName = Provider.of<UserProvider>(context, listen: false).userName;
-                              await provider.selectOrganisationMatch(match, userName);
-                              Navigator.of(context).pushNamed(OrganisationScreen.routeName);
-                            },
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: LightTheme.appleBlueSeaGreen,
-                                borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
-                              ),
-                              child: Center(
-                                  child: Text(S.of(context).matchesScreen_findOutMore,
-                                    style: Theme.of(context).textTheme.button,
-                                    textAlign: TextAlign.center,
-                                  )
-                              ),
-                            )
-                        )
-                    )
-                  ],
-                )
+                MainButton(label: S.of(context).matchesScreen_findOutMore, tapped: () async {
+                  var userName = Provider.of<UserProvider>(context, listen: false).userName;
+                  await provider.selectOrganisationMatch(match, userName);
+                  Navigator.of(context).pushNamed(OrganisationScreen.routeName);
+                }, height: 35, fontSize: 14),
               ],
             ),
           ),

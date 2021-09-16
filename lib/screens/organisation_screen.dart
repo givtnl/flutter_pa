@@ -209,7 +209,7 @@ class OrganisationScreen extends StatelessWidget {
                                     await launch(url);
                                   else
                                     throw "Could not launch $url";
-                                }),
+                                }, fontSize: 16,height: 45, ),
                           )
                       ],
                     ),

@@ -89,6 +89,8 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);
                           }
                         },
+                        height: 45,
+                        fontSize: 16,
                       ),
                     )
                   ],
