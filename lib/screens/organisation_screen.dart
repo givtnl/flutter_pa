@@ -41,7 +41,7 @@ class OrganisationScreen extends StatelessWidget {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
-    var tagScores = [UserOrganisationTagMatchListModel(score: 90, tag: 'animals', organisationId: "1")];
+    var currentTags = provider.currentMatchingTags;
 
     var itlProvider = S.of(context);
 
@@ -161,7 +161,7 @@ class OrganisationScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    tagScores.elementAt(idx).tag,
+                                    currentTags.elementAt(idx).tag,
                                     textAlign: TextAlign.left,
                                     style: Theme.of(context).textTheme.bodyText2,
                                   ),
@@ -171,7 +171,7 @@ class OrganisationScreen extends StatelessWidget {
                                   CustomLinearProgressIndicator(
                                     height: 20,
                                     borderRadius: 20,
-                                    value: tagScores.elementAt(idx).score.toDouble() / 100,
+                                    value: currentTags.elementAt(idx).score.toDouble() / 100,
                                     color: getColorForIndicator(idx, context),
                                     backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
                                   )
@@ -183,7 +183,7 @@ class OrganisationScreen extends StatelessWidget {
                                 height: 15,
                               );
                             },
-                            itemCount: tagScores.length),
+                            itemCount: currentTags.length),
                         if (currentOrganisation.metaTags.containsKey("donationUrl"))
                           Padding(
                             padding: const EdgeInsets.only(top: 30.0),
