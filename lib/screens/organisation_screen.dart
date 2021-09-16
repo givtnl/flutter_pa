@@ -87,7 +87,7 @@ class OrganisationScreen extends StatelessWidget {
                               child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
                             ),
                           ),
-                          MatchPercentageCircle(currentMatch.score as int),
+                          MatchPercentageCircle(currentMatch.score.round()),
                         ],
                       ),
                     ),
