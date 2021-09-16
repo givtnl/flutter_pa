@@ -55,6 +55,7 @@ class OrganisationScreen extends StatelessWidget {
           leading: IconButton(
             icon: backArrow,
             onPressed: () {
+              Navigator.of(context).pop();
               print("ah yeet, kerre ki were");
               // fyi: het lijkt erop dat de leading element in de appBar een maximum breedte maar mag hebben
               // de positie lijkt ook vast te staan tot op eem maximum van X -> aan de rechter kant.
