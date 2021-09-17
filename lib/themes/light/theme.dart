@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/themes/shapes/customRectSliderShape.dart';
-import 'package:flutter_app/themes/shapes/customRoundSliderThumbShape.dart';
-import 'package:flutter_app/themes/shapes/customValueIndicatorShape.dart';
+import 'package:flutter_app/themes/slider/shapes/customRectSliderShape.dart';
+import 'package:flutter_app/themes/slider/shapes/customRoundSliderThumbShape.dart';
+import 'package:flutter_app/themes/slider/shapes/customValueIndicatorShape.dart';
 
 class LightTheme {
   static String _fontFamily = "Montserrat";

@@ -5,6 +5,7 @@ import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
+import 'package:flutter_app/themes/slider/customSlider.dart';
 import 'package:provider/provider.dart';
 
 class StatementContainer extends StatefulWidget {
@@ -78,7 +79,7 @@ class _StatementContainerState extends State<StatementContainer> {
             padding: EdgeInsets.only(bottom: 15),
             child: SliderTheme(
                 data: SliderTheme.of(context),
-                child: Slider(
+                child: CustomSlider(
                   divisions: 4,
                   min: 0,
                   max: 4,
