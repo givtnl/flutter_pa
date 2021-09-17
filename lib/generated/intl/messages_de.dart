@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Willkommen bei der Auswahlindikator!"),
+        "loadingTitle": MessageLookupByLibrary.simpleMessage(""),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
         "matchesScreen_findOutMore": MessageLookupByLibrary.simpleMessage(""),
         "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(""),

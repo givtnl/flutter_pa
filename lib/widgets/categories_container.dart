@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:provider/provider.dart';
 import 'category_card.dart';
@@ -12,7 +13,7 @@ class CategoriesContainer extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 55.0, vertical: 35),
           child: AutoSizeText(
-            "Welke thema’s vind jij belangrijk?", // TODO: Localize this
+            S.of(context).categoryScreenTitleQuestion,
             style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
           ),
         ),

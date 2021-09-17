@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
         "introTitle":
             MessageLookupByLibrary.simpleMessage("Welkom bij  de keuzewijzer!"),
+        "loadingTitle": MessageLookupByLibrary.simpleMessage("Even wachten..."),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
         "matchesScreen_findOutMore":
             MessageLookupByLibrary.simpleMessage("ontdek meer"),

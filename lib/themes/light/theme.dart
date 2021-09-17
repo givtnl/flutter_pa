@@ -45,7 +45,7 @@ class LightTheme {
           subtitle1: TextStyle(
             fontFamily: _fontFamily,
             fontWeight: FontWeight.w500,
-            fontSize: 16,
+            fontSize: 14,
             color: blueColor,
           ),
           // Skip stylings
@@ -70,7 +70,7 @@ class LightTheme {
           ),
           bodyText2: TextStyle(
               fontFamily: _fontFamily,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               fontSize: 12,
               color: blueColor,
             ),

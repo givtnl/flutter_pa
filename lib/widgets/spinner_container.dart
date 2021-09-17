@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 
 class SpinnerContainer extends StatelessWidget {
 
@@ -12,7 +13,6 @@ class SpinnerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Localize terms
 
     return Container(
       color: Theme.of(context).backgroundColor,
@@ -27,7 +27,7 @@ class SpinnerContainer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: AutoSizeText(
-                  "Even geduld",
+                    S.of(context).loadingTitle,
                   style: Theme.of(context).textTheme.headline1,
                   wrapWords: false,
                 ),
