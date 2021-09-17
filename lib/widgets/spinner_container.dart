@@ -12,7 +12,7 @@ class SpinnerContainer extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context)
+  Widget build(BuildContext context) {
 
     return Container(
       color: Theme.of(context).backgroundColor,
@@ -27,7 +27,7 @@ class SpinnerContainer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: AutoSizeText(
-                    S.of(context).loadingTitle
+                    S.of(context).loadingTitle,
                   style: Theme.of(context).textTheme.headline1,
                   wrapWords: false,
                 ),

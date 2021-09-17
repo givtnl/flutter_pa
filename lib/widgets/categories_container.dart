@@ -13,7 +13,7 @@ class CategoriesContainer extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 55.0, vertical: 35),
           child: AutoSizeText(
-            S.of(context).categoryScreenTitle,
+            S.of(context).categoryScreenTitleQuestion,
 //            "Welke thema’s vind jij belangrijk?", // TODO: Localize this
 
             style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
