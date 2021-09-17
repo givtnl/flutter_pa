@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
-import 'package:flutter_app/p_a_icons_icons.dart';
+import 'package:flutter_app/givt_icons.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -29,47 +29,47 @@ class _CategoryCardState extends State<CategoryCard> {
     switch (this.widget.iconText) {
       case 'dieren':
         {
-          icon = PAIcons.dieren;
+          icon = Givt.dieren;
         }
         break;
       case 'natuur en milieu':
         {
-          icon = PAIcons.natuur;
+          icon = Givt.natuur;
         }
         break;
       case 'onderwijs en wetenschap':
         {
-          icon = PAIcons.onderwijs;
+          icon = Givt.onderwijs;
         }
         break;
       case 'Religie en levensbeschouwing':
         {
-          icon = PAIcons.religie;
+          icon = Givt.religie;
         }
         break;
       case 'gezondheid':
         {
-          icon = PAIcons.gezondheid;
+          icon = Givt.gezondheid;
         }
         break;
       case 'welzijn':
         {
-          icon = PAIcons.welzijn;
+          icon = Givt.welzijn;
         }
         break;
       case 'internationale hulp en mensenrechten':
         {
-          icon = PAIcons.hulp;
+          icon = Givt.hulp;
         }
         break;
       case 'kunst en cultuur':
         {
-          icon = PAIcons.kunst;
+          icon = Givt.kunst;
         }
         break;
       default:
         {
-          icon = PAIcons.dieren;
+          icon = Givt.dieren;
         }
     }
 
