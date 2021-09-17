@@ -65,10 +65,6 @@ class OrganisationScreen extends StatelessWidget {
                       icon: backArrow,
                       onPressed: () {
                         Navigator.of(context).pop();
-                        print("ah yeet, kerre ki were");
-                        // fyi: het lijkt erop dat de leading element in de appBar een maximum breedte maar mag hebben
-                        // de positie lijkt ook vast te staan tot op eem maximum van X -> aan de rechter kant.
-                        // vanaf dan begint alles te shrinken... Wrap de IconButton maar eens in padding :see-no-evil:
                       },
                       iconSize: 15,
                       splashRadius: .1, // put this on 25 because default (35) overlaps the app bar

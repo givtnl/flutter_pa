@@ -23,6 +23,7 @@ class CustomValueIndicatorShape extends RectangularSliderValueIndicatorShape {
       }) {
     final Canvas canvas = context.canvas;
     final double scale = activationAnimation.value;
+    labelPainter.layout();
     labelPainter.textAlign = TextAlign.center;
     _pathPainter.paint(
       parentBox: parentBox,
