@@ -42,7 +42,7 @@ class _CategoryCardState extends State<CategoryCard> {
           icon = Givt.onderwijs;
         }
         break;
-      case 'Religie en levensbeschouwing':
+      case 'religie en levensbeschouwing':
         {
           icon = Givt.religie;
         }
