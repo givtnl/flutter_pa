@@ -80,6 +80,7 @@ flutter:
     - assets/svg/pattern3/Rectangle 1437 (Stroke).svg
     - assets/svg/pattern3/Vector 16 (Stroke).svg
     - assets/svg/back-arrow.svg
+    - assets/svg/givt-logo.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

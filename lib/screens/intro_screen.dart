@@ -9,6 +9,7 @@ import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,13 @@ class IntroScreen extends StatelessWidget {
           child: Stack(
             children: [
               BackgroundWidget(),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
+                  child: SvgPicture.asset('assets/svg/givt-logo.svg', height: 30,),
+                ),
+              ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
@@ -38,7 +46,9 @@ class IntroScreen extends StatelessWidget {
                         S.of(context).introTitle,
                         style: Theme.of(context).textTheme.headline1,
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Text(
                         S.of(context).introText,
                         style: Theme.of(context).textTheme.subtitle1,
