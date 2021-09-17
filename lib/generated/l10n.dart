@@ -339,6 +339,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please wait...`
+  String get loadingTitle {
+    return Intl.message(
+      'Please wait...',
+      name: 'loadingTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

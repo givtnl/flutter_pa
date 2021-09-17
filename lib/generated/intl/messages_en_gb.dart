@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Find out which charities match your values, standards and identity."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Welcome to the selection guide!"),
+        "loadingTitle": MessageLookupByLibrary.simpleMessage("Please wait..."),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
         "matchesScreen_findOutMore":
             MessageLookupByLibrary.simpleMessage("discover more"),
