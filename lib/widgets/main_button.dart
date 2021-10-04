@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/themes/light/theme.dart';
 
@@ -29,28 +30,31 @@ class _MainButtonState extends State<MainButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        Expanded(
-            child: GestureDetector(
-                onTap: tapped,
-                child: Container(
-                  height: height,
-                  decoration: BoxDecoration(
-                    color: LightTheme.appleBlueSeaGreen,
-                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
-                  ),
-                  child: Center(
-                      child: Text(label,
-                          style: Theme.of(context).textTheme.button!.merge(TextStyle(fontSize: fontSize)),
-                          textAlign: TextAlign.center,
-                      )
-                  ),
-                )
-            )
-        )
-      ],
+    return SizedBox(
+      width: kIsWeb ? 700 : double.infinity,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Expanded(
+              child: GestureDetector(
+                  onTap: tapped,
+                  child: Container(
+                    height: height,
+                    decoration: BoxDecoration(
+                      color: LightTheme.appleBlueSeaGreen,
+                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
+                    ),
+                    child: Center(
+                        child: Text(label,
+                            style: Theme.of(context).textTheme.button!.merge(TextStyle(fontSize: fontSize)),
+                            textAlign: TextAlign.center,
+                        )
+                    ),
+                  )
+              )
+          )
+        ],
+      ),
     );
   }
 }

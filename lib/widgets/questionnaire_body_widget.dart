@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/widgets/statement_container.dart';
@@ -18,7 +19,8 @@ class _QuestionnaireBodyState extends State<QuestionnaireBody> {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
     print(questionnaireProvider.currentScreenType);
     var body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
-    return Container(
+    return SizedBox(
+      width: kIsWeb ? 700 : double.infinity,
       child: body,
     );
   }
