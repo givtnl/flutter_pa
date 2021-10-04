@@ -38,10 +38,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp
-    ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     return MultiProvider(
       providers: [
@@ -56,75 +53,29 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        localizationsDelegates: [S.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate, GlobalCupertinoLocalizations.delegate],
-        supportedLocales: [Locale('en', ''), Locale('en', 'GB'), Locale('nl', ''), Locale('de', '')],
-        theme: LightTheme.theme,
-        initialRoute: '/',
-        onGenerateRoute: (settings) {
-          switch (settings.name) {
-            case '/':
-            case IntroScreen.routeName:
-              return CustomPageRoute(
-                pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => IntroScreen(),
-                transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child,
-                ) {
-                  final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
-                  final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
-                  return SlideTransition(position: slideOutLeftAnimation, child: child);
-                },
-              );
-            case ErrorScreen.routeName:
-              return CustomPageRoute(
-                pageBuilder: (context, anim1, anim2) => ErrorScreen(),
-                transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child,
-                ) {
-                  final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
-                  final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
-                  return SlideTransition(position: slideOutLeftAnimation, child: child);
-                },
-              );
-            case MatchesScreen.routeName:
-              return CustomPageRoute(
-                pageBuilder: (context, anim1, anim2) => MatchesScreen(),
-                transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child,
-                ) {
-                  final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
-                  final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
-                  return SlideTransition(position: slideOutLeftAnimation, child: child);
-                },
-              );
-            case OrganisationScreen.routeName:
-              return CustomPageRoute(
-                pageBuilder: (context, anim1, anim2) => OrganisationScreen(),
-                transitionsBuilder: (
-                  BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child,
-                ) {
-                  final Tween<Offset> offsetTween = Tween<Offset>(begin: Offset(0.0, 0.0), end: Offset(-1.0, 0.0));
-                  final Animation<Offset> slideOutLeftAnimation = offsetTween.animate(secondaryAnimation);
-                  return SlideTransition(position: slideOutLeftAnimation, child: child);
-                },
-              );
-            case ChoiceScreen.routeName:
-              return CustomPageRoute(pageBuilder: (context, anim1, anim2) => ChoiceScreen());
-          }
-        },
-      ),
+          title: 'Flutter Demo',
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate
+          ],
+          supportedLocales: [
+            Locale('en', ''),
+            Locale('en', 'GB'),
+            Locale('nl', ''),
+            Locale('de', '')
+          ],
+          theme: LightTheme.theme,
+          initialRoute: '/',
+          routes: {
+            '/': (ctx) => IntroScreen(),
+            IntroScreen.routeName: (ctx) => IntroScreen(),
+            MatchesScreen.routeName: (ctx) => MatchesScreen(),
+            OrganisationScreen.routeName: (ctx) => OrganisationScreen(),
+            ChoiceScreen.routeName: (ctx) => ChoiceScreen(),
+            ErrorScreen.routeName: (ctx) => ErrorScreen(),
+          }),
     );
   }
 }
@@ -133,5 +84,6 @@ class CustomPageRoute extends PageRouteBuilder {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 500);
 
-  CustomPageRoute({pageBuilder, transitionsBuilder}) : super(pageBuilder: pageBuilder, transitionsBuilder: transitionsBuilder);
+  CustomPageRoute({pageBuilder, transitionsBuilder})
+      : super(pageBuilder: pageBuilder, transitionsBuilder: transitionsBuilder);
 }

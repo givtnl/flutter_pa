@@ -5,10 +5,10 @@ import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
+import 'package:flutter_app/widgets/background_patterns/pattern1.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/questionnaire_body_widget.dart';
-import 'package:flutter_app/widgets/slideable_container/slideable_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +19,6 @@ class ChoiceScreen extends StatefulWidget {
 }
 
 class _ChoiceScreenState extends State<ChoiceScreen> {
-  final GlobalKey<SlideableContainerState> key = GlobalKey<SlideableContainerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: Stack(children: [
-            BackgroundWidget(),
+            BackgroundPattern1(),
             SafeArea(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -66,13 +65,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     Expanded(
                       child: Container(),
                     ),
-                    SlideableContainer(
-                      key: key,
-                      widgetsToShow: [
-                        QuestionnaireBody(),
-                        QuestionnaireBody(),
-                      ],
-                    ),
+                    QuestionnaireBody(),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 50),
                       child: MainButton(
@@ -82,8 +75,6 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
 
                           await questionnaireProvider.saveQuestion(userProvider.userName);
                           questionnaireProvider.prepareNextScreen();
-
-                          key.currentState?.showNextWidget();
 
                           if (questionnaireProvider.isCompleted) {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);
