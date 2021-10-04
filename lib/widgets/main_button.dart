@@ -31,7 +31,7 @@ class _MainButtonState extends State<MainButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: kIsWeb ? 700 : double.infinity,
+      width: kIsWeb ? 610 : double.infinity,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
