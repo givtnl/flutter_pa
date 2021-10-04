@@ -1,5 +1,5 @@
-name: flutter_app
-description: A flutter app for testing the choice-pointer
+name: Givt Selection Guide
+description: An app to help you select the right organisation
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
