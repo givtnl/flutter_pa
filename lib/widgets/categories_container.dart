@@ -11,10 +11,20 @@ class CategoriesContainer extends StatelessWidget {
     return Container(
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 55.0, vertical: 35),
-          child: AutoSizeText(
-            S.of(context).categoryScreenTitleQuestion,
-            style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                S.of(context).categoryScreenTitleQuestion,
+                style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
+              ),
+              SizedBox(height: 15,),
+              AutoSizeText(S.of(context).categoryScreenSubtitle,
+                style: Theme.of(context).textTheme.subtitle1!,
+                textAlign: TextAlign.start,
+              ),
+            ],
           ),
         ),
         Container(height: MediaQuery.of(context).size.height * .5, child: Column(children: cards)),

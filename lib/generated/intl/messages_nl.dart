@@ -21,6 +21,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "categoryScreenSubtitle": MessageLookupByLibrary.simpleMessage(
+            "Je kunt meerdere thema\'s selecteren."),
         "categoryScreenTitleQuestion": MessageLookupByLibrary.simpleMessage(
             "Welke thema’s vind jij belangrijk?"),
         "choiceScreen_agree": MessageLookupByLibrary.simpleMessage("eens"),

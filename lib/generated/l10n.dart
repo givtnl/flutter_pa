@@ -349,6 +349,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You can select multiple subjects.`
+  String get categoryScreenSubtitle {
+    return Intl.message(
+      'You can select multiple subjects.',
+      name: 'categoryScreenSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
