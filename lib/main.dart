@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Givt Selection Guide',
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
