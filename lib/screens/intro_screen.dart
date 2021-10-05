@@ -83,7 +83,7 @@ class IntroScreen extends StatelessWidget {
                     },
                     fontSize: 16,
                     height: 45,
-                    webWidth: 600,
+                    webWidth: 600.0,
                   ),
                 ),
               ),
