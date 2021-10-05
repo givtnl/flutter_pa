@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
@@ -84,7 +85,10 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                         fontSize: 16,
                         webWidth: 600.0,
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: kIsWeb ? MediaQuery.of(context).size.height * .2 : 0,
+                    ),
                   ],
                 ),
               ),

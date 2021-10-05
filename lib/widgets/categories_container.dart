@@ -27,7 +27,7 @@ class CategoriesContainer extends StatelessWidget {
             ],
           ),
         ),
-        Container(height: MediaQuery.of(context).size.height * .5, child: Column(children: cards)),
+        Container(child: Column(children: cards)),
       ]),
     );
   }
