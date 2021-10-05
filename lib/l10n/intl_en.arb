@@ -29,5 +29,7 @@
     "organisationDetailScreen_giveButton": "give",
     "categoryScreenTitleQuestion": "Which subjects matter to you?",
     "loadingTitle": "Please wait...",
-    "categoryScreenSubtitle": "You can select multiple subjects."
+    "categoryScreenSubtitle": "You can select multiple subjects.",
+    "fetchingQuestions": "We're fetching the questions!",
+    "calculatingMatches": "We're calculating your matches!"
 }
