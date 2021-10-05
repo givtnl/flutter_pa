@@ -82,6 +82,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                         },
                         height: 45,
                         fontSize: 16,
+                        webWidth: 600,
                       ),
                     )
                   ],

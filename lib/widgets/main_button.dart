@@ -8,30 +8,33 @@ class MainButton extends StatefulWidget {
   final String label;
   final double height;
   final double fontSize;
+  var webWidth;
 
-  MainButton({required this.label, required this.tapped, required this.height, required this.fontSize});
+  MainButton({required this.label, required this.tapped, required this.height, required this.fontSize, this.webWidth = double.infinity});
 
   @override
-  _MainButtonState createState() => _MainButtonState(label, tapped, height, fontSize);
+  _MainButtonState createState() => _MainButtonState(label, tapped, height, fontSize, webWidth);
 }
 
 class _MainButtonState extends State<MainButton> {
   late VoidCallback tapped;
   late String label;
   late double height;
+  late double webWidth;
   late double fontSize;
 
-  _MainButtonState(String label, VoidCallback function, double height, double fontSize) {
+  _MainButtonState(String label, VoidCallback function, double height, double fontSize, double width) {
     this.tapped = function;
     this.label = label;
     this.height = height;
     this.fontSize = fontSize;
+    this.webWidth = width;
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: kIsWeb ? 610 : double.infinity,
+      width: kIsWeb ? webWidth : double.infinity,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
