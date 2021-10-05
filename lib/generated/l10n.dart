@@ -230,10 +230,10 @@ class S {
     );
   }
 
-  /// `Jouw persoonlijke voorstellen`
+  /// `Your personal suggestions`
   String get matchesScreen_yourPersonalSuggestions {
     return Intl.message(
-      'Jouw persoonlijke voorstellen',
+      'Your personal suggestions',
       name: 'matchesScreen_yourPersonalSuggestions',
       desc: '',
       args: [],

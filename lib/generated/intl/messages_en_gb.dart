@@ -51,8 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(
             "These organisations best match your values, norms and identity."),
         "matchesScreen_yourPersonalSuggestions":
-            MessageLookupByLibrary.simpleMessage(
-                "Jouw persoonlijke voorstellen"),
+            MessageLookupByLibrary.simpleMessage("Your personal suggestions"),
         "nextButton": MessageLookupByLibrary.simpleMessage("next"),
         "organisationDetailScreen_giveButton":
             MessageLookupByLibrary.simpleMessage("give"),
