@@ -359,6 +359,26 @@ class S {
       args: [],
     );
   }
+
+  /// `We're fetching the questions!`
+  String get fetchingQuestions {
+    return Intl.message(
+      'We\'re fetching the questions!',
+      name: 'fetchingQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're calculating your matches!`
+  String get calculatingMatches {
+    return Intl.message(
+      'We\'re calculating your matches!',
+      name: 'calculatingMatches',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

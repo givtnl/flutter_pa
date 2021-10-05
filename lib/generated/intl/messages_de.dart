@@ -21,6 +21,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "calculatingMatches":
+            MessageLookupByLibrary.simpleMessage("Wir berechnen Ihre Matches!"),
         "categoryScreenSubtitle": MessageLookupByLibrary.simpleMessage(
             "Sie können mehrere Themen auswählen."),
         "categoryScreenTitleQuestion": MessageLookupByLibrary.simpleMessage(
@@ -36,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("völlig einverstanden"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("völlig anderer Meinung"),
+        "fetchingQuestions":
+            MessageLookupByLibrary.simpleMessage("Wir sammeln die Fragen!"),
         "introButton": MessageLookupByLibrary.simpleMessage("zur Auswahlhilfe"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
@@ -43,11 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Willkommen bei der Auswahlhilfe!"),
         "loadingTitle": MessageLookupByLibrary.simpleMessage(""),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
-        "matchesScreen_findOutMore": MessageLookupByLibrary.simpleMessage(""),
-        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(""),
+        "matchesScreen_findOutMore":
+            MessageLookupByLibrary.simpleMessage("entdecke mehr"),
+        "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(
+            "Diese Organisationen entsprechen am besten Ihren Werten, Normen und Ihrer Identität."),
         "matchesScreen_yourPersonalSuggestions":
             MessageLookupByLibrary.simpleMessage(
-                "Jouw persoonlijke voorstellen"),
+                "Ihre persönlichen Vorschläge"),
         "nextButton": MessageLookupByLibrary.simpleMessage("nächste"),
         "organisationDetailScreen_giveButton":
             MessageLookupByLibrary.simpleMessage(""),
