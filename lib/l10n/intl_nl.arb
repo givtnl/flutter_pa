@@ -29,5 +29,7 @@
     "organisationDetailScreen_giveButton": "geven",
     "categoryScreenTitleQuestion": "Welke thema’s vind jij belangrijk?",
     "loadingTitle": "Even wachten...",
-    "categoryScreenSubtitle": "Je kunt meerdere thema's selecteren."
+    "categoryScreenSubtitle": "Je kunt meerdere thema's selecteren.",
+    "fetchingQuestions": "We halen de vragen op!",
+    "calculatingMatches": "We berekenen je matches!"
 }
