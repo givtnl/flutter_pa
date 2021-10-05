@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/analytics/mixpanel_manager.dart';
@@ -56,161 +57,166 @@ class OrganisationScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 50),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: IconButton(
-                      icon: backArrow,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      iconSize: 15,
-                      splashRadius: .1, // put this on 25 because default (35) overlaps the app bar
-                    ),
-                  ),
-                  SizedBox(height: 15,),
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 50),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            flex: 2,
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
-                            ),
-                          ),
-                          MatchPercentageCircle(currentMatch.score.round()),
-                        ],
+              child: Center(
+                child: Container(
+                  width:  kIsWeb ? 600 : double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: IconButton(
+                          icon: backArrow,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          iconSize: 15,
+                          splashRadius: .1, // put this on 25 because default (35) overlaps the app bar
+                        ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListView.separated(
-                          itemBuilder: (ctx, idx) {
-                            return OrganisationTag(_tags.elementAt(idx), false);
-                          },
-                          itemCount: _tags.length,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          separatorBuilder: (BuildContext context, int index) {
-                            return SizedBox(
-                              height: 10,
-                            );
-                          },
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        OrganisationExtra(
-                          S.of(context).organisationDetailScreen_mission,
-                          currentOrganisation.mission,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        OrganisationExtra(
-                          S.of(context).organisationDetailScreen_vision,
-                          currentOrganisation.vision,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: AccentRoundedButton(S.of(context).organisationDetailScreen_visitWebsite, () async {
-                            if (await canLaunch(currentOrganisation.websiteUrl)) {
-                              await launch(currentOrganisation.websiteUrl);
-                            } else {
-                              Navigator.of(context).pushNamed(ErrorScreen.routeName);
-                            }
-                          }),
-                        ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Column(
+                      SizedBox(height: 15,),
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                S.of(context).organisationDetailScreen_youMatchTitle,
-                                style: Theme.of(context).textTheme.headline2,
+                              Flexible(
+                                flex: 2,
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
+                                ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                S.of(context).organisationDetailScreen_youMatchSubTitle,
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ),
+                              MatchPercentageCircle(currentMatch.score.round()),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (ctx, idx) {
-                              return Column(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ListView.separated(
+                              itemBuilder: (ctx, idx) {
+                                return OrganisationTag(_tags.elementAt(idx), false);
+                              },
+                              itemCount: _tags.length,
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              separatorBuilder: (BuildContext context, int index) {
+                                return SizedBox(
+                                  height: 10,
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            OrganisationExtra(
+                              S.of(context).organisationDetailScreen_mission,
+                              currentOrganisation.mission,
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            OrganisationExtra(
+                              S.of(context).organisationDetailScreen_vision,
+                              currentOrganisation.vision,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: AccentRoundedButton(S.of(context).organisationDetailScreen_visitWebsite, () async {
+                                if (await canLaunch(currentOrganisation.websiteUrl)) {
+                                  await launch(currentOrganisation.websiteUrl);
+                                } else {
+                                  Navigator.of(context).pushNamed(ErrorScreen.routeName);
+                                }
+                              }),
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    currentTags.elementAt(idx).tag.toUpperCase(),
-                                    textAlign: TextAlign.left,
-                                    style: Theme.of(context).textTheme.bodyText2,
+                                    S.of(context).organisationDetailScreen_youMatchTitle,
+                                    style: Theme.of(context).textTheme.headline2,
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
-                                  CustomLinearProgressIndicator(
-                                    height: 20,
-                                    borderRadius: 20,
-                                    value: currentTags.elementAt(idx).score.toDouble() / 100,
-                                    color: getColorForIndicator(idx, context),
-                                    backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
-                                  )
+                                  Text(
+                                    S.of(context).organisationDetailScreen_youMatchSubTitle,
+                                    style: Theme.of(context).textTheme.subtitle1,
+                                  ),
                                 ],
-                              );
-                            },
-                            separatorBuilder: (BuildContext context, int index) {
-                              return SizedBox(
-                                height: 15,
-                              );
-                            },
-                            itemCount: currentTags.length),
-                        if (currentOrganisation.metaTags.containsKey("donationUrl"))
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30.0),
-                            child: MainButton(
-                                label: S.of(context).organisationDetailScreen_giveButton,
-                                tapped: () async {
-                                  MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                                  var url = currentOrganisation.metaTags["donationUrl"]!;
-                                  if (await canLaunch(url))
-                                    await launch(url);
-                                  else
-                                    throw "Could not launch $url";
-                                }, fontSize: 16,height: 45, ),
-                          )
-                      ],
-                    ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            ListView.separated(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemBuilder: (ctx, idx) {
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        currentTags.elementAt(idx).tag.toUpperCase(),
+                                        textAlign: TextAlign.left,
+                                        style: Theme.of(context).textTheme.bodyText2,
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      CustomLinearProgressIndicator(
+                                        height: 20,
+                                        borderRadius: 20,
+                                        value: currentTags.elementAt(idx).score.toDouble() / 100,
+                                        color: getColorForIndicator(idx, context),
+                                        backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
+                                      )
+                                    ],
+                                  );
+                                },
+                                separatorBuilder: (BuildContext context, int index) {
+                                  return SizedBox(
+                                    height: 15,
+                                  );
+                                },
+                                itemCount: currentTags.length),
+                            if (currentOrganisation.metaTags.containsKey("donationUrl"))
+                              Padding(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: MainButton(
+                                    label: S.of(context).organisationDetailScreen_giveButton,
+                                    tapped: () async {
+                                      MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
+                                      var url = currentOrganisation.metaTags["donationUrl"]!;
+                                      if (await canLaunch(url))
+                                        await launch(url);
+                                      else
+                                        throw "Could not launch $url";
+                                    }, fontSize: 16,height: 45, ),
+                              )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
