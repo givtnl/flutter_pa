@@ -109,7 +109,7 @@ class _MatchesScreen extends State<MatchesScreen> {
               return buildWidget(context);
             case ConnectionState.active:
             case ConnectionState.waiting:
-              return SpinnerContainer("We berekenen je matches!");
+              return SpinnerContainer(S.of(context).calculatingMatches);
             case ConnectionState.none:
               print("none");
               return Container();
