@@ -48,28 +48,31 @@ class _StatementContainerState extends State<StatementContainer> {
                 style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
               ),
             ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.5),
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(top: 20),
-              child: InkWell(
-                child: Text(
-                  S.of(context).choiceScreen_skip.toLowerCase(),
-                  style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.start,
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 20),
+                child: InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      S.of(context).choiceScreen_skip.toLowerCase(),
+                      style: Theme.of(context).textTheme.subtitle2,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  onTap: () {
+                    MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
+                    provider.skipCurrentQuestion();
+                    if (provider.isCompleted) {
+                      Navigator.of(context).pushNamed(MatchesScreen.routeName);
+                    } else {
+                      provider.prepareNextScreen();
+                    }
+                  },
                 ),
-                onTap: () {
-                  MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
-                  provider.skipCurrentQuestion();
-                  if (provider.isCompleted) {
-                    Navigator.of(context).pushNamed(MatchesScreen.routeName);
-                  } else {
-                    provider.prepareNextScreen();
-                  }
-                },
               ),
-            ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 50),
