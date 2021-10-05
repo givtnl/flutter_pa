@@ -121,7 +121,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   ),
                 ),
                 Container(
-                  width: kIsWeb ? 500 : MediaQuery.of(context).size.width * .55,
+                  width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .3,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: AutoSizeText(
