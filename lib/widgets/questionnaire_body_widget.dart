@@ -16,12 +16,19 @@ class QuestionnaireBody extends StatefulWidget {
 class _QuestionnaireBodyState extends State<QuestionnaireBody> {
   @override
   Widget build(BuildContext context) {
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context);
-    print(questionnaireProvider.currentScreenType);
-    var body = (questionnaireProvider.currentScreenType == ChoiceScreenType.statement) ? StatementContainer() : CategoriesContainer();
+    var questionnaireProvider = Provider.of<QuestionnaireProvider>(
+        context);
+    Widget body = Container();
+    if (!questionnaireProvider.isCompleted) {
+      body = (questionnaireProvider.currentScreenType ==
+          ChoiceScreenType.statement)
+          ? StatementContainer()
+          : CategoriesContainer();
+    }
+
     return SizedBox(
       width: kIsWeb ? 700 : double.infinity,
-      child: body,
+      child: body
     );
   }
 }
