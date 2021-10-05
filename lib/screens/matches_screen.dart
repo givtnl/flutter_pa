@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
@@ -30,35 +31,59 @@ class _MatchesScreen extends State<MatchesScreen> {
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 10),
-                    child: Text(
-                      S.of(context).matchesScreen_yourPersonalSuggestions,
-                      style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: kIsWeb ? 700 : double.infinity,
+                  child: Container(
+                    alignment: kIsWeb ? Alignment.center : null,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.only(
+                                top: 50, left: 50, right: 50, bottom: 10),
+                            child: Text(
+                              S.of(context).matchesScreen_yourPersonalSuggestions,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline1!
+                                  .copyWith(fontSize: 24),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                            child: Text(
+                              S.of(context).matchesScreen_subtitleText,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(fontSize: 14),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
+                            child: Column(
+                                children: matches
+                                    .map((e) => Column(
+                                          children: [
+                                            MatchWidget(e),
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        ))
+                                    .take(3)
+                                    .toList()),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                    child: Text(
-                      S.of(context).matchesScreen_subtitleText,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Column(children: matches.map((e) => Column(
-                      children: [
-                        MatchWidget(e),
-                        SizedBox(height: 10,)
-                      ],
-                    )).take(3).toList()),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -68,11 +93,13 @@ class _MatchesScreen extends State<MatchesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final MatchesProvider provider = Provider.of<MatchesProvider>(context, listen: false);
+    final MatchesProvider provider =
+        Provider.of<MatchesProvider>(context, listen: false);
     final UserProvider userProvider = Provider.of<UserProvider>(context);
 
     return new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2), () => provider.loadMatches(userProvider.userName)),
+        future: Future.delayed(const Duration(seconds: 2),
+            () => provider.loadMatches(userProvider.userName)),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
