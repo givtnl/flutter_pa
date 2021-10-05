@@ -59,7 +59,7 @@ class OrganisationScreen extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 50),
               child: Center(
                 child: Container(
-                  width:  kIsWeb ? 700 : double.infinity,
+                  width:  kIsWeb && MediaQuery.of(context).size.width > 700 ? 700 : double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

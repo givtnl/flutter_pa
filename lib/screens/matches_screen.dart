@@ -35,7 +35,7 @@ class _MatchesScreen extends State<MatchesScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: kIsWeb ? 700 : double.infinity,
+                  width: kIsWeb && MediaQuery.of(context).size.width > 700 ? 700 : MediaQuery.of(context).size.width,
                   child: Container(
                     alignment: kIsWeb ? Alignment.center : null,
                     child: SingleChildScrollView(
