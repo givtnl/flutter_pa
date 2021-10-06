@@ -230,10 +230,10 @@ class S {
     );
   }
 
-  /// `Jouw persoonlijke voorstellen`
+  /// `Your personal suggestions`
   String get matchesScreen_yourPersonalSuggestions {
     return Intl.message(
-      'Jouw persoonlijke voorstellen',
+      'Your personal suggestions',
       name: 'matchesScreen_yourPersonalSuggestions',
       desc: '',
       args: [],
@@ -355,6 +355,36 @@ class S {
     return Intl.message(
       'You can select multiple subjects.',
       name: 'categoryScreenSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're fetching the questions!`
+  String get fetchingQuestions {
+    return Intl.message(
+      'We\'re fetching the questions!',
+      name: 'fetchingQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're calculating your matches!`
+  String get calculatingMatches {
+    return Intl.message(
+      'We\'re calculating your matches!',
+      name: 'calculatingMatches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selection Guide`
+  String get app_mainTitle {
+    return Intl.message(
+      'Selection Guide',
+      name: 'app_mainTitle',
       desc: '',
       args: [],
     );

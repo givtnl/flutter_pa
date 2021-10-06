@@ -17,10 +17,10 @@
     "sectors_religionAndPhilosophy": "Religion und Philosophie",
     "sectors_wellBeing": "Wohlbefinden",
     "introTitle": "Willkommen bei der Auswahlhilfe!",
-    "matchesScreen_yourPersonalSuggestions": "Jouw persoonlijke voorstellen",
-    "matchesScreen_subtitleText": "",
+    "matchesScreen_yourPersonalSuggestions": "Ihre persönlichen Vorschläge",
+    "matchesScreen_subtitleText": "Diese Organisationen entsprechen am besten Ihren Werten, Normen und Ihrer Identität.",
     "matchCircle_match": "",
-    "matchesScreen_findOutMore": "",
+    "matchesScreen_findOutMore": "entdecke mehr",
     "organisationDetailScreen_mission": "",
     "organisationDetailScreen_vision": "",
     "organisationDetailScreen_visitWebsite": "",
@@ -29,5 +29,8 @@
     "organisationDetailScreen_giveButton": "",
     "categoryScreenTitleQuestion": "Welche Themen sind Ihnen wichtig?",
     "loadingTitle": "",
-    "categoryScreenSubtitle": "Sie können mehrere Themen auswählen."
+    "categoryScreenSubtitle": "Sie können mehrere Themen auswählen.",
+    "fetchingQuestions": "Wir sammeln die Fragen!",
+    "calculatingMatches": "Wir berechnen Ihre Matches!",
+    "app_mainTitle": ""
 }

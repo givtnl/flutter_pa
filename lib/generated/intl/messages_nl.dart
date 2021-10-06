@@ -21,6 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "app_mainTitle": MessageLookupByLibrary.simpleMessage("Keuzewijzer"),
+        "calculatingMatches":
+            MessageLookupByLibrary.simpleMessage("We berekenen je matches!"),
         "categoryScreenSubtitle": MessageLookupByLibrary.simpleMessage(
             "Je kunt meerdere thema\'s selecteren."),
         "categoryScreenTitleQuestion": MessageLookupByLibrary.simpleMessage(
@@ -34,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("helemaal eens"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("helemaal oneens"),
+        "fetchingQuestions":
+            MessageLookupByLibrary.simpleMessage("We halen de vragen op!"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("naar de keuzewijzer"),
         "introText": MessageLookupByLibrary.simpleMessage(

@@ -21,6 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "app_mainTitle":
+            MessageLookupByLibrary.simpleMessage("Selection Guide"),
+        "calculatingMatches": MessageLookupByLibrary.simpleMessage(
+            "We\'re calculating your matches!"),
         "categoryScreenSubtitle": MessageLookupByLibrary.simpleMessage(
             "You can select multiple subjects."),
         "categoryScreenTitleQuestion": MessageLookupByLibrary.simpleMessage(
@@ -34,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("totally agree"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("totally disagree"),
+        "fetchingQuestions": MessageLookupByLibrary.simpleMessage(
+            "We\'re fetching the questions!"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("to the selection guide"),
         "introText": MessageLookupByLibrary.simpleMessage(
@@ -47,8 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(
             "These organisations best match your values, norms and identity."),
         "matchesScreen_yourPersonalSuggestions":
-            MessageLookupByLibrary.simpleMessage(
-                "Jouw persoonlijke voorstellen"),
+            MessageLookupByLibrary.simpleMessage("Your personal suggestions"),
         "nextButton": MessageLookupByLibrary.simpleMessage("next"),
         "organisationDetailScreen_giveButton":
             MessageLookupByLibrary.simpleMessage("give"),
