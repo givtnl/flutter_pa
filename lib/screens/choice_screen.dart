@@ -87,7 +87,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: kIsWeb ? MediaQuery.of(context).size.height * .2 : 0,
+                      height: kIsWeb && !(Theme.of(context).platform == TargetPlatform.iOS || Theme.of(context).platform == TargetPlatform.android) ? MediaQuery.of(context).size.height * .2 : 0,
                     ),
                   ],
                 ),

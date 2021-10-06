@@ -12,7 +12,6 @@ import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'analytics/mixpanel_manager.dart';
