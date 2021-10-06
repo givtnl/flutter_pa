@@ -87,7 +87,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: kIsWeb && MediaQuery.of(context).size.height > 800 ? MediaQuery.of(context).size.height * .2 : 0,
+                      height: kIsWeb && MediaQuery.of(context).size.height > 950 ? MediaQuery.of(context).size.height * .2 : 0,
                     ),
                   ],
                 ),
