@@ -31,5 +31,6 @@
     "loadingTitle": "",
     "categoryScreenSubtitle": "Sie können mehrere Themen auswählen.",
     "fetchingQuestions": "Wir sammeln die Fragen!",
-    "calculatingMatches": "Wir berechnen Ihre Matches!"
+    "calculatingMatches": "Wir berechnen Ihre Matches!",
+    "app_mainTitle": ""
 }
