@@ -6,8 +6,6 @@ import 'package:flutter_app/givt_icons.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'custom_box_shadow.dart';
-
 class CategoryCard extends StatefulWidget {
   final String categoryId;
   final String categoryText;
@@ -87,18 +85,17 @@ class _CategoryCardState extends State<CategoryCard> {
         child: Container(
           height: 60,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.5),
+            color: Colors.white,
             borderRadius: BorderRadius.circular(15),
             border: Border.all(
               width: 1,
-              color: this.widget.selected ? Theme.of(context).primaryColor : Theme.of(context).primaryColor.withOpacity(0),
+              color: this.widget.selected ? Theme.of(context).primaryColor : Colors.white,
             ),
             boxShadow: this.widget.selected
                 ? [
-                    CustomBoxShadow(
+                    new BoxShadow(
                       color: Theme.of(context).primaryColor,
                       blurRadius: 5.0,
-                      blurStyle: BlurStyle.outer,
                     ),
                   ]
                 : [],
