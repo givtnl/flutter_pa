@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-          title: 'Givt Selection Guide',
+          title: S.of(context).app_mainTitle,
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,

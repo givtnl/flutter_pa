@@ -379,6 +379,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Selection Guide`
+  String get app_mainTitle {
+    return Intl.message(
+      'Selection Guide',
+      name: 'app_mainTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
