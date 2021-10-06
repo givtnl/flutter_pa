@@ -31,5 +31,6 @@
     "loadingTitle": "Please wait...",
     "categoryScreenSubtitle": "You can select multiple subjects.",
     "fetchingQuestions": "We're fetching the questions!",
-    "calculatingMatches": "We're calculating your matches!"
+    "calculatingMatches": "We're calculating your matches!",
+    "app_mainTitle": "Selection Guide"
 }
