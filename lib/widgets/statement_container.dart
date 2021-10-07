@@ -36,7 +36,7 @@ class _StatementContainerState extends State<StatementContainer> {
             child: AutoSizeText(
               provider.getCurrentQuestionTranslation,
               style: Theme.of(context).textTheme.headline1,
-              maxLines: 5,
+              maxLines: 4,
               wrapWords: false,
             ),
           ),
