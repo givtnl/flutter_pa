@@ -87,6 +87,9 @@ class LightTheme {
             innerColor: purpleColor,
           ),
           overlayShape: SliderComponentShape.noOverlay,
+          activeTickMarkColor: appleBlueSeaGreen,
+          inactiveTickMarkColor: appleBlueSeaGreen,
+          tickMarkShape: RoundSliderTickMarkShape(tickMarkRadius: 5),
           valueIndicatorShape: CustomValueIndicatorShape(),
           valueIndicatorColor: purpleColor,
           valueIndicatorTextStyle: TextStyle(
