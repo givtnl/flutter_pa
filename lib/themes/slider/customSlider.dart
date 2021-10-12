@@ -1351,7 +1351,7 @@ class _CustomRenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMi
       sliderTheme: _sliderTheme,
       isDiscrete: isDiscrete,
     );
-    final Offset thumbCenter = Offset(trackRect.left + visualPosition * trackRect.width, trackRect.center.dy);
+    final Offset thumbCenter = Offset(trackRect.left + visualPosition * trackRect.width + (visualPosition-.5)*20, trackRect.center.dy);
 
     _sliderTheme.trackShape!.paint(
       context,
@@ -1389,14 +1389,14 @@ class _CustomRenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMi
       ).width;
       final double padding = trackRect.height;
       final double adjustedTrackWidth = trackRect.width - padding;
-      // If the tick marks would be too dense, don't bother painting them.
-      if (adjustedTrackWidth / divisions! >= 3.0 * tickMarkWidth) {
+      // If the tick marks would be too dense, don't bother painting them. Michiel wants to draw them anyway!
+      //if (adjustedTrackWidth / divisions! >= 3.0 * tickMarkWidth) {
         final double dy = trackRect.center.dy;
         for (int i = 0; i <= divisions!; i++) {
           final double value = i / divisions!;
           // The ticks are mapped to be within the track, so the tick mark width
           // must be subtracted from the track width.
-          final double dx = trackRect.left + value * adjustedTrackWidth + padding / 2;
+          double dx = trackRect.left + value * adjustedTrackWidth + (value - .5)*28;
           final Offset tickMarkOffset = Offset(dx, dy);
           _sliderTheme.tickMarkShape!.paint(
             context,
@@ -1409,7 +1409,6 @@ class _CustomRenderSlider extends RenderBox with RelayoutWhenSystemFontsChangeMi
             isEnabled: isInteractive,
           );
         }
-      }
     }
 
     if (isInteractive && label != null && !_valueIndicatorAnimation.isDismissed) {
