@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/themes/slider/shapes/customRectSliderShape.dart';
 import 'package:flutter_app/themes/slider/shapes/customRoundSliderThumbShape.dart';
+import 'package:flutter_app/themes/slider/shapes/customSliderTickMarkShape.dart';
 import 'package:flutter_app/themes/slider/shapes/customValueIndicatorShape.dart';
 
 class LightTheme {
@@ -87,6 +88,9 @@ class LightTheme {
             innerColor: purpleColor,
           ),
           overlayShape: SliderComponentShape.noOverlay,
+          activeTickMarkColor: purpleColor,
+          inactiveTickMarkColor: purpleColor,
+          tickMarkShape: CustomSliderTickMarkShape(color: purpleColor, height: 100, width: 100),
           valueIndicatorShape: CustomValueIndicatorShape(),
           valueIndicatorColor: purpleColor,
           valueIndicatorTextStyle: TextStyle(
