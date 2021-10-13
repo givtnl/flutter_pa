@@ -93,7 +93,7 @@ class _CustomLinearProgressIndicatorState extends State<CustomLinearProgressIndi
       context: context,
       child: Container(
         constraints: BoxConstraints(
-          minWidth: double.infinity,
+          minWidth: MediaQuery.of(context).size.width * .65,
           minHeight: widget.height ?? 4.0,
         ),
         child: CustomPaint(

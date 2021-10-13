@@ -196,6 +196,40 @@
         }
       }
     },
+    "/organisations/{organisationId}/tags": {
+      "get": {
+        "tags": [
+          "OrganisationTags"
+        ],
+        "summary": "Retrieves tags from the given organisation",
+        "description": "Retrieves all the tags and the scores for a given organisation",
+        "operationId": "GetOrganisationTags",
+        "parameters": [
+          {
+            "name": "organisationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrganisationTagsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/questions": {
       "get": {
         "tags": [
@@ -446,6 +480,45 @@
               "type": "integer",
               "format": "int32"
             }
+          }
+        }
+      },
+      "GetOrganisationTagsResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "results": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/OrganisationTagMatchListModel"
+            }
+          }
+        }
+      },
+      "OrganisationTagMatchListModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "organisationId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organisation": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrganisationDetailModel"
+              }
+            ]
           }
         }
       },

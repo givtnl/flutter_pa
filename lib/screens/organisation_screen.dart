@@ -22,6 +22,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions/intl_extension.dart';
+import '../givt_icons.dart';
 import 'error_screen.dart';
 
 class MatchingTag {
@@ -44,6 +45,7 @@ class OrganisationScreen extends StatelessWidget {
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     var currentTags = provider.currentMatchingTags;
+    var currentOrganisationTags = provider.currentOrganisationTags;
 
     var itlProvider = S.of(context);
 
@@ -218,19 +220,53 @@ class OrganisationScreen extends StatelessWidget {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        CustomLinearProgressIndicator(
-                                          height: 20,
-                                          borderRadius: 20,
-                                          value: currentTags
-                                                  .elementAt(idx)
-                                                  .score
-                                                  .toDouble() /
-                                              100,
-                                          color: getColorForIndicator(
-                                              idx, context),
-                                          backgroundColor:
+                                        Row( //USER
+                                          children: [
+                                            Icon(
+                                              Givt.user_icon,
+                                              size: 20,
+                                              color: Theme.of(context).primaryColor,
+                                              semanticLabel: "Jouw score op tag " + currentOrganisationTags[idx].tag,
+                                            ),
+                                            SizedBox(width: 10),
+                                            CustomLinearProgressIndicator(
+                                              height: 20,
+                                              borderRadius: 20,
+                                              value: currentTags
+                                                      .elementAt(idx)
+                                                      .score
+                                                      .toDouble() /
+                                                  100,
+                                              color: getColorForIndicator(
+                                                  idx, context),
+                                              backgroundColor:
+                                                  getColorForIndicator(idx, context)
+                                                      .withOpacity(0.15),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 15),
+                                        Row( //Organisation
+                                          children: [
+                                            Icon(
+                                              Givt.org_icon,
+                                              size: 20,
+                                              color: Theme.of(context).primaryColor,
+                                              semanticLabel: "Score organisatie " + currentOrganisationTags[idx].tag,
+                                            ),
+                                            SizedBox(width: 10),
+                                            CustomLinearProgressIndicator(
+                                              height: 20,
+                                              borderRadius: 20,
+                                              value: provider.getOrganisationTagScore(currentOrganisationTags[idx].tag)
+                                                  .toDouble() /100,
+                                              color: getColorForIndicator(
+                                                  idx, context),
+                                              backgroundColor:
                                               getColorForIndicator(idx, context)
                                                   .withOpacity(0.15),
+                                            ),
+                                          ],
                                         )
                                       ],
                                     );

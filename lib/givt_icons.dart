@@ -30,4 +30,6 @@ class Givt {
   static const IconData onderwijs = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData welzijn = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData religie = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData user_icon = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData org_icon = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

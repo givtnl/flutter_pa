@@ -206,6 +206,8 @@ class ApiClient {
           return CreateQuestionResponse.fromJson(value);
         case 'CreateQuestionStatementRequestOptions':
           return CreateQuestionStatementRequestOptions.fromJson(value);
+        case 'GetOrganisationTagsResponse':
+          return GetOrganisationTagsResponse.fromJson(value);
         case 'GetQuestionsListResponse':
           return GetQuestionsListResponse.fromJson(value);
         case 'GetUserOrganisationMatchesListResponse':
@@ -214,6 +216,8 @@ class ApiClient {
           return GetUserOrganisationTagMatchesListResponse.fromJson(value);
         case 'OrganisationDetailModel':
           return OrganisationDetailModel.fromJson(value);
+        case 'OrganisationTagMatchListModel':
+          return OrganisationTagMatchListModel.fromJson(value);
         case 'QuestionCategoryOptionModel':
           return QuestionCategoryOptionModel.fromJson(value);
         case 'QuestionListModel':
