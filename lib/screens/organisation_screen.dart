@@ -22,6 +22,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions/intl_extension.dart';
+import '../givt_icons.dart';
 import 'error_screen.dart';
 
 class MatchingTag {
@@ -44,6 +45,7 @@ class OrganisationScreen extends StatelessWidget {
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     var currentTags = provider.currentMatchingTags;
+    var currentOrganisationTags = provider.currentOrganisationTags;
 
     var itlProvider = S.of(context);
 
@@ -52,6 +54,31 @@ class OrganisationScreen extends StatelessWidget {
     final _tags = currentMatch.organisation.metaTags["sectors"]!
         .split(",")
         .map((e) => itlProvider.getSector(e));
+
+    final Widget fab = FloatingActionButton.large(
+      onPressed: () async {
+        MixpanelManager.mixpanel.track("CLICKED", properties: {
+          "BUTTON_NAME": "SUPPORT_ORGANISATION"
+        });
+        var url = currentOrganisation.metaTags["donationUrl"]!;
+        if (await canLaunch(url))
+          await launch(url);
+        else
+          throw "Could not launch $url";
+      },
+      backgroundColor: Theme.of(context).primaryColor,
+      child: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Givt.org_icon, size: 45,),
+              SizedBox(height: 5,),
+              Text(S.of(context).organisationDetailScreen_giveButton.toUpperCase(), style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),),
+            ]
+        ),
+      ),
+    );
+
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
@@ -152,8 +179,7 @@ class OrganisationScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: AccentRoundedButton(
-                                    S
-                                        .of(context)
+                                    S.of(context)
                                         .organisationDetailScreen_visitWebsite,
                                     () async {
                                   if (await canLaunch(
@@ -164,7 +190,7 @@ class OrganisationScreen extends StatelessWidget {
                                     Navigator.of(context)
                                         .pushNamed(ErrorScreen.routeName);
                                   }
-                                }),
+                                }, Theme.of(context).buttonColor),
                               ),
                               SizedBox(
                                 height: 40,
@@ -218,19 +244,53 @@ class OrganisationScreen extends StatelessWidget {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        CustomLinearProgressIndicator(
-                                          height: 20,
-                                          borderRadius: 20,
-                                          value: currentTags
-                                                  .elementAt(idx)
-                                                  .score
-                                                  .toDouble() /
-                                              100,
-                                          color: getColorForIndicator(
-                                              idx, context),
-                                          backgroundColor:
+                                        Row( //USER
+                                          children: [
+                                            Icon(
+                                              Givt.user_icon,
+                                              size: 20,
+                                              color: Theme.of(context).primaryColor,
+                                              semanticLabel: "Jouw score op tag " + currentOrganisationTags[idx].tag,
+                                            ),
+                                            SizedBox(width: 10),
+                                            CustomLinearProgressIndicator(
+                                              height: 20,
+                                              borderRadius: 20,
+                                              value: currentTags
+                                                      .elementAt(idx)
+                                                      .score
+                                                      .toDouble() /
+                                                  100,
+                                              color: getColorForIndicator(
+                                                  idx, context),
+                                              backgroundColor:
+                                                  getColorForIndicator(idx, context)
+                                                      .withOpacity(0.15),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 15),
+                                        Row( //Organisation
+                                          children: [
+                                            Icon(
+                                              Givt.org_icon,
+                                              size: 20,
+                                              color: Theme.of(context).primaryColor,
+                                              semanticLabel: "Score organisatie " + currentOrganisationTags[idx].tag,
+                                            ),
+                                            SizedBox(width: 10),
+                                            CustomLinearProgressIndicator(
+                                              height: 20,
+                                              borderRadius: 20,
+                                              value: provider.getOrganisationTagScore(currentOrganisationTags[idx].tag)
+                                                  .toDouble() /100,
+                                              color: getColorForIndicator(
+                                                  idx, context),
+                                              backgroundColor:
                                               getColorForIndicator(idx, context)
                                                   .withOpacity(0.15),
+                                            ),
+                                          ],
                                         )
                                       ],
                                     );
@@ -238,12 +298,12 @@ class OrganisationScreen extends StatelessWidget {
                                   separatorBuilder:
                                       (BuildContext context, int index) {
                                     return SizedBox(
-                                      height: 15,
+                                      height: 20,
                                     );
                                   },
                                   itemCount: currentTags.length),
                               if (currentOrganisation.metaTags
-                                  .containsKey("donationUrl"))
+                                  .containsKey("donationUrl") && MediaQuery.of(context).size.height >=800)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30.0),
                                   child: MainButton(
@@ -277,6 +337,23 @@ class OrganisationScreen extends StatelessWidget {
             ),
           ]),
         ),
+        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 800) ?
+          Row(
+            children: [
+              SizedBox(width: MediaQuery.of(context).size.width *.8,),
+              Column(
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height *.8,),
+                  Container(
+                    height: 65,
+                    width: 65,
+                    child: FittedBox(child: fab,),
+                  ),
+                ],
+              ),
+            ],
+          ): null,
+        floatingActionButtonLocation: !kIsWeb ? FloatingActionButtonLocation.endFloat : FloatingActionButtonLocation.endDocked,
       ),
     );
   }
