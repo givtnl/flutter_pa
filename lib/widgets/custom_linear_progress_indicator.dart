@@ -89,11 +89,23 @@ class _CustomLinearProgressIndicatorState extends State<CustomLinearProgressIndi
   }
 
   Widget _buildIndicator(BuildContext context, double animationValue, TextDirection textDirection) {
+    var deviceWidth = MediaQuery.of(context).size.width;
+    double webWidth;
+    if (deviceWidth > 700) { //desktop web
+      webWidth = 570.0;
+    } else if (deviceWidth < 350) { //small phone web
+      webWidth = deviceWidth * .6;
+    } else { // normal phone web
+      webWidth = deviceWidth * .7;
+    }
+
+    print(webWidth);
+
     return widget._buildSemanticsWrapper(
       context: context,
       child: Container(
         constraints: BoxConstraints(
-          minWidth: !kIsWeb ? MediaQuery.of(context).size.width * .65 : (MediaQuery.of(context).size.width > 700 ? 570 : MediaQuery.of(context).size.width * .74),
+          minWidth: !kIsWeb ? deviceWidth * .65 : webWidth,
           minHeight: widget.height ?? 4.0,
         ),
         child: CustomPaint(
