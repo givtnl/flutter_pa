@@ -303,7 +303,7 @@ class OrganisationScreen extends StatelessWidget {
                                   },
                                   itemCount: currentTags.length),
                               if (currentOrganisation.metaTags
-                                  .containsKey("donationUrl") && MediaQuery.of(context).size.height >=800)
+                                  .containsKey("donationUrl") && MediaQuery.of(context).size.height >=1000)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30.0),
                                   child: MainButton(
@@ -337,7 +337,7 @@ class OrganisationScreen extends StatelessWidget {
             ),
           ]),
         ),
-        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 800) ?
+        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 1000) ?
           Row(
             children: [
               SizedBox(width: MediaQuery.of(context).size.width *.75,),

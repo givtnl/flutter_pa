@@ -91,12 +91,13 @@ class _CustomLinearProgressIndicatorState extends State<CustomLinearProgressIndi
   Widget _buildIndicator(BuildContext context, double animationValue, TextDirection textDirection) {
     var deviceWidth = MediaQuery.of(context).size.width;
     double webWidth;
+    var ratio = (deviceWidth + 700)/1750; //A man's gotta have his Rico
     if (deviceWidth > 700) { //desktop web
       webWidth = 570.0;
     } else if (deviceWidth < 350) { //small phone web
       webWidth = deviceWidth * .6;
     } else { // normal phone web
-      webWidth = deviceWidth * .7;
+      webWidth = deviceWidth * ratio;
     }
 
     print(webWidth);
