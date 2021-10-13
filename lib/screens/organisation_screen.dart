@@ -343,7 +343,7 @@ class OrganisationScreen extends StatelessWidget {
               SizedBox(width: MediaQuery.of(context).size.width *.8,),
               Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height *.8,),
+                  SizedBox(height: MediaQuery.of(context).size.height *.7,),
                   Container(
                     height: 65,
                     width: 65,
