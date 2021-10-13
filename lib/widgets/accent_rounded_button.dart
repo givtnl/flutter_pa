@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class AccentRoundedButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback clickListener;
+  Color buttonColor;
 
-  AccentRoundedButton(this.buttonText, this.clickListener);
+  AccentRoundedButton(this.buttonText, this.clickListener, this.buttonColor);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class AccentRoundedButton extends StatelessWidget {
       onPressed: clickListener,
       style: ButtonStyle(
         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
-        backgroundColor: MaterialStateProperty.all(Theme.of(context).accentColor),  
+        backgroundColor: buttonColor != null ? MaterialStateProperty.all(buttonColor) : MaterialStateProperty.all(Theme.of(context).accentColor),
       ),
       child: Container(
         child: Padding(

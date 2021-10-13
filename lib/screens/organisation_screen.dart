@@ -154,8 +154,7 @@ class OrganisationScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: AccentRoundedButton(
-                                    S
-                                        .of(context)
+                                    S.of(context)
                                         .organisationDetailScreen_visitWebsite,
                                     () async {
                                   if (await canLaunch(
@@ -166,7 +165,7 @@ class OrganisationScreen extends StatelessWidget {
                                     Navigator.of(context)
                                         .pushNamed(ErrorScreen.routeName);
                                   }
-                                }),
+                                }, Theme.of(context).buttonColor),
                               ),
                               SizedBox(
                                 height: 40,
@@ -274,7 +273,7 @@ class OrganisationScreen extends StatelessWidget {
                                   separatorBuilder:
                                       (BuildContext context, int index) {
                                     return SizedBox(
-                                      height: 15,
+                                      height: 20,
                                     );
                                   },
                                   itemCount: currentTags.length),
