@@ -71,7 +71,7 @@ class OrganisationScreen extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Givt.org_icon, size: 45,),
+              Icon(Givt.org_icon, size: !kIsWeb ? 42 : 38,),
               SizedBox(height: 5,),
               Text(S.of(context).organisationDetailScreen_giveButton.toUpperCase(), style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),),
             ]
@@ -340,10 +340,10 @@ class OrganisationScreen extends StatelessWidget {
         floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 800) ?
           Row(
             children: [
-              SizedBox(width: MediaQuery.of(context).size.width *.8,),
+              SizedBox(width: MediaQuery.of(context).size.width *.75,),
               Column(
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height *.8,),
+                  SizedBox(height: MediaQuery.of(context).size.height *.7,),
                   Container(
                     height: 65,
                     width: 65,
