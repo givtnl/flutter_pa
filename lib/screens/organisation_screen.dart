@@ -346,7 +346,7 @@ class OrganisationScreen extends StatelessWidget {
             child: FittedBox(child: fab,),
           ),
         ): null,
-        floatingActionButtonLocation: !kIsWeb ? FloatingActionButtonLocation.endFloat : FloatingActionButtonLocation.endTop,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
