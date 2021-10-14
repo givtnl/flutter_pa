@@ -337,7 +337,7 @@ class OrganisationScreen extends StatelessWidget {
             ),
           ]),
         ),
-        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 1000) ?
+        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 900) ?
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Container(
