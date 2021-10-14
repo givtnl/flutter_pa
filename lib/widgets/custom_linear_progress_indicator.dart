@@ -100,8 +100,6 @@ class _CustomLinearProgressIndicatorState extends State<CustomLinearProgressIndi
       webWidth = deviceWidth * ratio;
     }
 
-    print(webWidth);
-
     return widget._buildSemanticsWrapper(
       context: context,
       child: Container(
