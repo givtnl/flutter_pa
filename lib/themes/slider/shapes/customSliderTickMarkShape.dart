@@ -26,7 +26,7 @@ class CustomSliderTickMarkShape extends SliderTickMarkShape {
     final canvas = context.canvas;
     final Paint paint =  Paint()
       ..color = color
-      ..strokeWidth = 2;
+      ..strokeWidth = 1;
     canvas.drawLine(center.translate(0, -5), center.translate(0, 5), paint);
   }
 }
