@@ -101,7 +101,7 @@ class _CategoryCardState extends State<CategoryCard> {
                 : [],
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
+            padding: EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +118,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   ),
                 ),
                 Container(
-                  width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .55,
+                  width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: AutoSizeText(

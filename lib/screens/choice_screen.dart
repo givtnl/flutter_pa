@@ -68,7 +68,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     ),
                     QuestionnaireBody(),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 50),
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height > 600 ? 50 : MediaQuery.of(context).size.height * .02),
                       child: MainButton(
                         label: S.of(context).nextButton,
                         tapped: () async {
@@ -81,7 +81,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);
                           }
                         },
-                        height: 45,
+                        height: MediaQuery.of(context).size.height < 600 ? MediaQuery.of(context).size.height * .05 : 45,
                         fontSize: 16,
                         webWidth: 600.0,
                       ),
