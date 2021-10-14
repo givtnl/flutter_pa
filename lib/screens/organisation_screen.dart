@@ -303,7 +303,7 @@ class OrganisationScreen extends StatelessWidget {
                                   },
                                   itemCount: currentTags.length),
                               if (currentOrganisation.metaTags
-                                  .containsKey("donationUrl") && MediaQuery.of(context).size.height >=1000)
+                                  .containsKey("donationUrl") && MediaQuery.of(context).size.height >=900)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30.0),
                                   child: MainButton(
