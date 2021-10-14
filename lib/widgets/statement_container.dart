@@ -75,7 +75,7 @@ class _StatementContainerState extends State<StatementContainer> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 50),
+            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .05),
             child: Container(),
           ),
           Padding(
