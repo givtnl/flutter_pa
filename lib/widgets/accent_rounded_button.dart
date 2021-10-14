@@ -9,15 +9,15 @@ class AccentRoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
+    return TextButton(
       onPressed: clickListener,
       style: ButtonStyle(
         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
-        backgroundColor: buttonColor != null ? MaterialStateProperty.all(buttonColor) : MaterialStateProperty.all(Theme.of(context).accentColor),
+        backgroundColor: MaterialStateProperty.all(buttonColor)
       ),
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 4),
           child: Text(
             buttonText,
             style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),
