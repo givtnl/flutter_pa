@@ -338,22 +338,15 @@ class OrganisationScreen extends StatelessWidget {
           ]),
         ),
         floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 1000) ?
-          Row(
-            children: [
-              SizedBox(width: MediaQuery.of(context).size.width *.75,),
-              Column(
-                children: [
-                  SizedBox(height: MediaQuery.of(context).size.height *.7,),
-                  Container(
-                    height: 65,
-                    width: 65,
-                    child: FittedBox(child: fab,),
-                  ),
-                ],
-              ),
-            ],
-          ): null,
-        floatingActionButtonLocation: !kIsWeb ? FloatingActionButtonLocation.endFloat : FloatingActionButtonLocation.endDocked,
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Container(
+            height: 65,
+            width: 65,
+            child: FittedBox(child: fab,),
+          ),
+        ): null,
+        floatingActionButtonLocation: !kIsWeb ? FloatingActionButtonLocation.endFloat : FloatingActionButtonLocation.endTop,
       ),
     );
   }
