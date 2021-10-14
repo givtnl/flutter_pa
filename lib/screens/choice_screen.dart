@@ -81,7 +81,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);
                           }
                         },
-                        height: MediaQuery.of(context).size.height < 600 ? MediaQuery.of(context).size.height * .05 : 45,
+                        height: 45,
                         fontSize: 16,
                         webWidth: 600.0,
                       ),
