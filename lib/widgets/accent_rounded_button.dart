@@ -1,11 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AccentRoundedButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback clickListener;
   Color buttonColor;
+  bool isWebsiteButton;
 
-  AccentRoundedButton(this.buttonText, this.clickListener, this.buttonColor);
+  AccentRoundedButton(this.buttonText, this.clickListener, this.buttonColor, this.isWebsiteButton);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class AccentRoundedButton extends StatelessWidget {
       ),
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 4),
+          padding: isWebsiteButton ? const EdgeInsets.symmetric(horizontal: 18,vertical: 3) : const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Text(
             buttonText,
             style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),
