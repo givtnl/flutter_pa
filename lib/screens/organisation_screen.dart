@@ -17,7 +17,6 @@ import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
