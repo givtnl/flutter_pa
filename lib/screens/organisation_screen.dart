@@ -190,7 +190,7 @@ class OrganisationScreen extends StatelessWidget {
                                     Navigator.of(context)
                                         .pushNamed(ErrorScreen.routeName);
                                   }
-                                }, Theme.of(context).buttonColor),
+                                }, Theme.of(context).buttonColor, true),
                               ),
                               SizedBox(
                                 height: 40,
