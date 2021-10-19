@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/generated/l10n.dart';
@@ -13,15 +12,7 @@ import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-
 import 'analytics/mixpanel_manager.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  MixpanelManager.mixpanel.flushEvents();
-  ErrorWidget.builder = (FlutterErrorDetails details) => ErrorScreen();
-  runApp(MyApp());
-}
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -53,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-          title: "Givt Selection Guide",
+          title: "Givt Wizard",
           localizationsDelegates: [
             S.delegate,
             GlobalMaterialLocalizations.delegate,
