@@ -135,24 +135,13 @@ class OrganisationScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                height: 30,
-                                alignment: Alignment.centerLeft,
-                                child: ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (ctx, idx) {
-                                    return OrganisationTag(_tags.elementAt(idx), false);
-                                  },
-                                  itemCount: _tags.length,
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-
-                                  separatorBuilder: (BuildContext context, int index) {
-                                    return SizedBox(
-                                      height: 10,
-                                      width: 10,
-                                    );
-                                  },
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Wrap(
+                                  children: _tags.map((e) {
+                                    return OrganisationTag(e, false);
+                                  }).toList(),
+                                  spacing: 10,
                                 ),
                               ),
                               SizedBox(
