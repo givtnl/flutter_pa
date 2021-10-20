@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:js' as js;
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,11 +17,11 @@ import 'package:flutter_app/widgets/organisation_extra_description.dart';
 import 'package:flutter_app/widgets/organisation_tag.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../extensions/intl_extension.dart';
+import '../givt_icons.dart';
 import 'error_screen.dart';
 
 class MatchingTag {
@@ -44,14 +44,41 @@ class OrganisationScreen extends StatelessWidget {
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     var currentTags = provider.currentMatchingTags;
+    var currentOrganisationTags = provider.currentOrganisationTags;
 
     var itlProvider = S.of(context);
 
     final Widget backArrow = SvgPicture.asset('assets/svg/back-arrow.svg');
 
-    final _tags = currentMatch.organisation.metaTags["sectors"]!
-        .split(",")
-        .map((e) => itlProvider.getSector(e));
+    final _tags = currentMatch.organisation.metaTags["sectors"]!.split(",").map((e) => itlProvider.getSector(e));
+
+    final Widget fab = FloatingActionButton.large(
+      onPressed: () async {
+        MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
+        var url = currentOrganisation.metaTags["donationUrl"]!;
+        if (await canLaunch(url))
+          await launch(url);
+        else
+          throw "Could not launch $url";
+      },
+      backgroundColor: Theme.of(context).primaryColor,
+      child: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(
+            Givt.org_icon,
+            size: !kIsWeb ? 42 : 38,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            S.of(context).organisationDetailScreen_giveButton.toUpperCase(),
+            style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),
+          ),
+        ]),
+      ),
+    );
+
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
@@ -64,9 +91,7 @@ class OrganisationScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 50),
                 child: Center(
                   child: Container(
-                    width: kIsWeb && MediaQuery.of(context).size.width > 700
-                        ? 700
-                        : double.infinity,
+                    width: kIsWeb && MediaQuery.of(context).size.width > 700 ? 700 : double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -78,8 +103,7 @@ class OrganisationScreen extends StatelessWidget {
                               Navigator.of(context).pop();
                             },
                             iconSize: 15,
-                            splashRadius:
-                                .1, // put this on 25 because default (35) overlaps the app bar
+                            splashRadius: .1, // put this on 25 because default (35) overlaps the app bar
                           ),
                         ),
                         SizedBox(
@@ -96,16 +120,10 @@ class OrganisationScreen extends StatelessWidget {
                                   flex: 2,
                                   child: Align(
                                     alignment: Alignment.topLeft,
-                                    child: AutoSizeText(
-                                        currentOrganisation.name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1!
-                                            .copyWith(fontSize: 24)),
+                                    child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
                                   ),
                                 ),
-                                MatchPercentageCircle(
-                                    currentMatch.score.round()),
+                                MatchPercentageCircle(currentMatch.score.round()),
                               ],
                             ),
                           ),
@@ -117,20 +135,25 @@ class OrganisationScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              ListView.separated(
-                                itemBuilder: (ctx, idx) {
-                                  return OrganisationTag(
-                                      _tags.elementAt(idx), false);
-                                },
-                                itemCount: _tags.length,
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                separatorBuilder:
-                                    (BuildContext context, int index) {
-                                  return SizedBox(
-                                    height: 10,
-                                  );
-                                },
+                              Container(
+                                height: 30,
+                                alignment: Alignment.centerLeft,
+                                child: ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (ctx, idx) {
+                                    return OrganisationTag(_tags.elementAt(idx), false);
+                                  },
+                                  itemCount: _tags.length,
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+
+                                  separatorBuilder: (BuildContext context, int index) {
+                                    return SizedBox(
+                                      height: 10,
+                                      width: 10,
+                                    );
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 30,
@@ -151,20 +174,13 @@ class OrganisationScreen extends StatelessWidget {
                               ),
                               Align(
                                 alignment: Alignment.centerLeft,
-                                child: AccentRoundedButton(
-                                    S
-                                        .of(context)
-                                        .organisationDetailScreen_visitWebsite,
-                                    () async {
-                                  if (await canLaunch(
-                                      currentOrganisation.websiteUrl)) {
-                                    await launch(
-                                        currentOrganisation.websiteUrl);
+                                child: AccentRoundedButton(S.of(context).organisationDetailScreen_visitWebsite, () async {
+                                  if (await canLaunch(currentOrganisation.websiteUrl)) {
+                                    await launch(currentOrganisation.websiteUrl);
                                   } else {
-                                    Navigator.of(context)
-                                        .pushNamed(ErrorScreen.routeName);
+                                    Navigator.of(context).pushNamed(ErrorScreen.routeName);
                                   }
-                                }),
+                                }, Theme.of(context).buttonColor, true),
                               ),
                               SizedBox(
                                 height: 40,
@@ -175,21 +191,15 @@ class OrganisationScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      S
-                                          .of(context)
-                                          .organisationDetailScreen_youMatchTitle,
-                                      style:
-                                          Theme.of(context).textTheme.headline2,
+                                      S.of(context).organisationDetailScreen_youMatchTitle,
+                                      style: Theme.of(context).textTheme.headline2,
                                     ),
                                     SizedBox(
                                       height: 10,
                                     ),
                                     Text(
-                                      S
-                                          .of(context)
-                                          .organisationDetailScreen_youMatchSubTitle,
-                                      style:
-                                          Theme.of(context).textTheme.subtitle1,
+                                      S.of(context).organisationDetailScreen_youMatchSubTitle,
+                                      style: Theme.of(context).textTheme.subtitle1,
                                     ),
                                   ],
                                 ),
@@ -202,65 +212,80 @@ class OrganisationScreen extends StatelessWidget {
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder: (ctx, idx) {
                                     return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          currentTags
-                                              .elementAt(idx)
-                                              .tag
-                                              .toUpperCase(),
+                                          currentTags.elementAt(idx).tag.toUpperCase(),
                                           textAlign: TextAlign.left,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2,
+                                          style: Theme.of(context).textTheme.bodyText2,
                                         ),
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        CustomLinearProgressIndicator(
-                                          height: 20,
-                                          borderRadius: 20,
-                                          value: currentTags
-                                                  .elementAt(idx)
-                                                  .score
-                                                  .toDouble() /
-                                              100,
-                                          color: getColorForIndicator(
-                                              idx, context),
-                                          backgroundColor:
-                                              getColorForIndicator(idx, context)
-                                                  .withOpacity(0.15),
+                                        Row(
+                                          //USER
+                                          children: [
+                                            Icon(
+                                              Givt.user_icon,
+                                              size: 20,
+                                              color: Theme.of(context).primaryColor,
+                                              semanticLabel: "Jouw score op tag " + currentOrganisationTags[idx].tag,
+                                            ),
+                                            SizedBox(width: 10),
+                                            CustomLinearProgressIndicator(
+                                              height: 20,
+                                              borderRadius: 20,
+                                              value: currentTags.elementAt(idx).score.toDouble() / 100,
+                                              color: getColorForIndicator(idx, context),
+                                              backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 15),
+                                        Row(
+                                          //Organisation
+                                          children: [
+                                            Icon(
+                                              Givt.org_icon,
+                                              size: 20,
+                                              color: Theme.of(context).primaryColor,
+                                              semanticLabel: "Score organisatie " + currentOrganisationTags[idx].tag,
+                                            ),
+                                            SizedBox(width: 10),
+                                            CustomLinearProgressIndicator(
+                                              height: 20,
+                                              borderRadius: 20,
+                                              value: provider.getOrganisationTagScore(currentOrganisationTags[idx].tag).toDouble() / 100,
+                                              color: getColorForIndicator(idx, context),
+                                              backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
+                                            ),
+                                          ],
                                         )
                                       ],
                                     );
                                   },
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
+                                  separatorBuilder: (BuildContext context, int index) {
                                     return SizedBox(
-                                      height: 15,
+                                      height: 20,
                                     );
                                   },
                                   itemCount: currentTags.length),
-                              if (currentOrganisation.metaTags
-                                  .containsKey("donationUrl"))
+                              if (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height >= 900)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30.0),
                                   child: MainButton(
-                                    label: S
-                                        .of(context)
-                                        .organisationDetailScreen_giveButton,
+                                    label: S.of(context).organisationDetailScreen_giveButton,
                                     tapped: () async {
-                                      MixpanelManager.mixpanel
-                                          .track("CLICKED", properties: {
-                                        "BUTTON_NAME": "SUPPORT_ORGANISATION"
-                                      });
-                                      var url = currentOrganisation
-                                          .metaTags["donationUrl"]!;
-                                      if (await canLaunch(url))
-                                        await launch(url);
-                                      else
-                                        throw "Could not launch $url";
+                                      MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
+                                      var url = currentOrganisation.metaTags["donationUrl"]!;
+                                      if (kIsWeb) {
+                                        js.context.callMethod('open', [url]);
+                                      } else {
+                                        if (await canLaunch(url))
+                                          await launch(url);
+                                        else
+                                          throw "Could not launch $url";
+                                      }
                                     },
                                     fontSize: 16,
                                     height: 45,
@@ -277,6 +302,19 @@ class OrganisationScreen extends StatelessWidget {
             ),
           ]),
         ),
+        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 900)
+            ? Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  height: 65,
+                  width: 65,
+                  child: FittedBox(
+                    child: fab,
+                  ),
+                ),
+              )
+            : null,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }

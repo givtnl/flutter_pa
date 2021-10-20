@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/intro_screen.dart';
+import 'package:flutter_app/widgets/accent_rounded_button.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 
 class ErrorScreen extends StatelessWidget {
@@ -25,16 +27,15 @@ class ErrorScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    'Herstart de applicatie.',
-                    style: Theme.of(context).textTheme.subtitle1,
+                  child: AccentRoundedButton("probeer opnieuw", () {
+                      Navigator.of(context).pushNamed(IntroScreen.routeName);
+                    }, Theme.of(context).buttonColor, false),
                   ),
-                )
-              ],
+                ]
+              ),
             ),
           ),
         ),
-      ),
     );
   }
 }

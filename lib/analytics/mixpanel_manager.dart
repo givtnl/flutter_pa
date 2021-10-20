@@ -4,12 +4,14 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+import '../flavors_config.dart';
 import 'Import_result.dart';
 import 'database_access/event.dart' as DbEvent;
 import 'event.dart';
 
 class MixpanelManager {
-  String _mixpanelUri = "https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod";
+  String _mixpanelUriProd = "https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod";
+  String _mixpanelUriQA = "https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/qa";
   String? _identity;
   late DbEvent.EventDatabase _store;
   static MixpanelManager _mixpanelManager = MixpanelManager._();
@@ -65,7 +67,16 @@ class MixpanelManager {
   _exportEvents(List<Event> events) async {
     var json = jsonEncode(events);
     try {
-      var response = await http.post(Uri.parse("$_mixpanelUri/tracking"), body: json);
+      var url;
+      if (FlavorConfig.isProduction()) {
+        url = Uri.parse("$_mixpanelUriProd/tracking");
+      } else if (FlavorConfig.isQA()) {
+        url = Uri.parse("$_mixpanelUriQA/tracking");
+      } else { //no tracking for dev
+        return;
+      }
+
+      var response = await http.post(url, body: json);
       var responseBody = jsonDecode(response.body);
       print("${ApiImportResult.fromJson(responseBody).records} events exported to mixpanel");
     } catch (exception) {

@@ -51,27 +51,27 @@ void main() {
     when(answersApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a",any)).thenAnswer((_) => Future.value(CreateQuestionResponse(id: "38390a35-6ce2-4778-bf73-be39dbfb323a")));
 
     test('Ensure Questions Are Assigned When Executing Http Call', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       expect(questionListResponse.result.length, equals(provider.questions.length));
     });
 
     test('Ensure Questions Are Sorted On DisplayOrder', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       expect(questionListResponse.result[0].displayOrder, equals(1));
       expect(questionListResponse.result[4].displayOrder, equals(5));
     });
 
     test('Ensure Next Question Has Correct DisplayOrder', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       expect(provider.getNextQuestion()!.displayOrder, equals(2));
     });
 
     test('Ensure answered question gets added to completed questions', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -79,14 +79,14 @@ void main() {
     });
 
     test('Ensure next ChoiceScreenType is /question', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       expect(provider.currentScreenType, equals(ChoiceScreenType.statement));
     });
 
     test('Ensure next ChoiceScreenType is /category', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -95,7 +95,7 @@ void main() {
     });
 
     test('Ensure next ChoiceScreenType is /suggestions', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -106,7 +106,7 @@ void main() {
     });
 
     test('Ensure that skipping a question adds it to the skipped questions array', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.skipCurrentQuestion();
       provider.prepareNextScreen();
@@ -122,7 +122,7 @@ void main() {
     });
 
     test('Ensure that a category is added correctly to the currentSelectedCategories list', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -133,7 +133,7 @@ void main() {
     });
 
     test('Ensure that preparing the next question on a category screen clears the currentSelectedCategories list', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -145,7 +145,7 @@ void main() {
     });
 
     test('Ensure answered Category gets added to completed questions', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -155,7 +155,7 @@ void main() {
     });
 
     test('Ensure toggle categories on statement does not add it to currentSelectedCategories', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.toggleCategoryAnswer(true, 1);
@@ -163,7 +163,7 @@ void main() {
     });
 
     test('Ensure toggle categories adds and removes the categories correctly', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -180,7 +180,7 @@ void main() {
     });
 
     test('Ensure toggle categories does not throw exception with wrong index', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.prepareNextScreen();
@@ -190,7 +190,7 @@ void main() {
     });
 
     test('Ensure http call is executed when question is saved', () async {
-      var provider = QuestionnaireProvider.withDependencies(questionsApi, answersApi);
+      var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
       await provider.loadQuestions();
       provider.prepareNextScreen();
       provider.setCurrentStatementValue(3);

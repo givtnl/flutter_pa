@@ -4,9 +4,11 @@ import 'package:openapi/api.dart';
 class MatchesProvider with ChangeNotifier {
   late MatchesApi matchesApi;
   late OrganisationMatchesApi _organisationMatchesApi;
+  late OrganisationTagsApi _organisationTagsApi;
 
   List<UserOrganisationMatchListModel> organisationMatches = [];
   List<UserOrganisationTagMatchListModel> currentMatchingTags = [];
+  List<OrganisationTagMatchListModel> currentOrganisationTags = [];
 
   String nextPageToken = "";
 
@@ -15,13 +17,16 @@ class MatchesProvider with ChangeNotifier {
       organisation: OrganisationDetailModel()
   );
 
-  MatchesProvider() {
-    this.matchesApi = MatchesApi();
-    _organisationMatchesApi = OrganisationMatchesApi();
+  MatchesProvider.withDependencies(ApiClient apiClient) {
+    this.matchesApi = MatchesApi(apiClient);
+    _organisationMatchesApi = OrganisationMatchesApi(apiClient);
+    _organisationTagsApi = OrganisationTagsApi(apiClient);
   }
 
-  MatchesProvider.withDependencies(MatchesApi matchesApi) {
+  MatchesProvider.withMockDependencies(MatchesApi matchesApi) {
     this.matchesApi = matchesApi;
+    _organisationTagsApi = OrganisationTagsApi();
+    _organisationMatchesApi = OrganisationMatchesApi();
   }
 
   Future<void> loadMatches(String userId) async {
@@ -35,5 +40,12 @@ class MatchesProvider with ChangeNotifier {
   selectOrganisationMatch(UserOrganisationMatchListModel model, String userId) async {
     this.selectedOrganisationMatch = model;
     currentMatchingTags = (await this._organisationMatchesApi.getUserOrganisationTagMatchesList(this.selectedOrganisationMatch.organisation.id, userId: userId)).result;
+    currentOrganisationTags = (await this._organisationTagsApi.getOrganisationTags(model.organisation.id)).results;
   }
+
+  int getOrganisationTagScore(String tag){
+    var organisationTags = currentOrganisationTags.where((element) => element.tag == tag);
+    return organisationTags.isNotEmpty ? organisationTags.first.score : 0;
+  }
+
 }

@@ -37,7 +37,7 @@ class CustomRectSliderTrackShape extends SliderTrackShape
     var differenceRadii = thumbShape.outerRadius - thumbShape.innerRadius;
     context.canvas.drawRect(
         Rect.fromLTRB(
-            parentBox.semanticBounds.left + differenceRadii,
+            parentBox.semanticBounds.left + differenceRadii - 1,
             trackRect.top,
             parentBox.semanticBounds.right - differenceRadii,
             trackRect.bottom),

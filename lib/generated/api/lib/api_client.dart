@@ -10,7 +10,7 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod'}) {
+  ApiClient({this.basePath = 'https://poxv71al5m.execute-api.eu-west-3.amazonaws.com/prod'}) {
   }
 
   final String basePath;
@@ -206,6 +206,8 @@ class ApiClient {
           return CreateQuestionResponse.fromJson(value);
         case 'CreateQuestionStatementRequestOptions':
           return CreateQuestionStatementRequestOptions.fromJson(value);
+        case 'GetOrganisationTagsResponse':
+          return GetOrganisationTagsResponse.fromJson(value);
         case 'GetQuestionsListResponse':
           return GetQuestionsListResponse.fromJson(value);
         case 'GetUserOrganisationMatchesListResponse':
@@ -214,6 +216,8 @@ class ApiClient {
           return GetUserOrganisationTagMatchesListResponse.fromJson(value);
         case 'OrganisationDetailModel':
           return OrganisationDetailModel.fromJson(value);
+        case 'OrganisationTagMatchListModel':
+          return OrganisationTagMatchListModel.fromJson(value);
         case 'QuestionCategoryOptionModel':
           return QuestionCategoryOptionModel.fromJson(value);
         case 'QuestionListModel':

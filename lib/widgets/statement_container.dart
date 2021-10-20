@@ -54,7 +54,7 @@ class _StatementContainerState extends State<StatementContainer> {
                 padding: EdgeInsets.only(top: 20),
                 child: InkWell(
                   child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: MediaQuery.of(context).size.height > 600 ? const EdgeInsets.all(10.0) : const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       S.of(context).choiceScreen_skip.toLowerCase(),
                       style: Theme.of(context).textTheme.subtitle2,
@@ -75,11 +75,11 @@ class _StatementContainerState extends State<StatementContainer> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 50),
+            padding: EdgeInsets.only(bottom: 30),
             child: Container(),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 15),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height > 600 ? 15 : 0),
             child: SliderTheme(
                 data: SliderTheme.of(context),
                 child: CustomSlider(

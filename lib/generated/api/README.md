@@ -55,13 +55,14 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod*
+All URIs are relative to *https://poxv71al5m.execute-api.eu-west-3.amazonaws.com/prod*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AnswersApi* | [**createAnswer**](doc//AnswersApi.md#createanswer) | **POST** /questions/{questionId}/answers | Answers a question
 *MatchesApi* | [**getMatchesList**](doc//MatchesApi.md#getmatcheslist) | **GET** /matches | Returns a list of matches
 *OrganisationMatchesApi* | [**getUserOrganisationTagMatchesList**](doc//OrganisationMatchesApi.md#getuserorganisationtagmatcheslist) | **GET** /organisations/{organisationId}/matches | Returns a list of matches for the combination between an user and an organisation
+*OrganisationTagsApi* | [**getOrganisationTags**](doc//OrganisationTagsApi.md#getorganisationtags) | **GET** /organisations/{organisationId}/tags | Retrieves tags from the given organisation
 *OrganisationsApi* | [**createOrganisation**](doc//OrganisationsApi.md#createorganisation) | **POST** /organisations | Creates an organisation
 *QuestionsApi* | [**createQuestion**](doc//QuestionsApi.md#createquestion) | **POST** /questions | Creates a question
 *QuestionsApi* | [**getQuestionsList**](doc//QuestionsApi.md#getquestionslist) | **GET** /questions | Returns a list of questions
@@ -77,10 +78,12 @@ Class | Method | HTTP request | Description
  - [CreateQuestionRequest](doc//CreateQuestionRequest.md)
  - [CreateQuestionResponse](doc//CreateQuestionResponse.md)
  - [CreateQuestionStatementRequestOptions](doc//CreateQuestionStatementRequestOptions.md)
+ - [GetOrganisationTagsResponse](doc//GetOrganisationTagsResponse.md)
  - [GetQuestionsListResponse](doc//GetQuestionsListResponse.md)
  - [GetUserOrganisationMatchesListResponse](doc//GetUserOrganisationMatchesListResponse.md)
  - [GetUserOrganisationTagMatchesListResponse](doc//GetUserOrganisationTagMatchesListResponse.md)
  - [OrganisationDetailModel](doc//OrganisationDetailModel.md)
+ - [OrganisationTagMatchListModel](doc//OrganisationTagMatchListModel.md)
  - [QuestionCategoryOptionModel](doc//QuestionCategoryOptionModel.md)
  - [QuestionListModel](doc//QuestionListModel.md)
  - [QuestionStatementModel](doc//QuestionStatementModel.md)

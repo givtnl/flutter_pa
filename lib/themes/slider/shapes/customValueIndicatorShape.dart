@@ -157,7 +157,7 @@ class _RectangularSliderValueIndicatorPathPainter {
     // The label text is centered within the value indicator.
     final double bottomTipToUpperRectTranslateY = -_preferredHalfHeight / 2 - upperRect.height;
     canvas.translate(0, bottomTipToUpperRectTranslateY);
-    final Offset boxCenter = Offset(horizontalShift, upperRect.height / 2);
+    final Offset boxCenter = Offset(horizontalShift, upperRect.height / 2 + 1); //+1 bc it doesn't look exactly in the middle otherwise
     final Offset halfLabelPainterOffset = Offset(labelPainter.width / 2, labelPainter.height / 2);
     final Offset labelOffset = boxCenter - halfLabelPainterOffset;
     labelPainter.paint(canvas, labelOffset);

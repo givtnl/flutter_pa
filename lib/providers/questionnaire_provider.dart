@@ -16,12 +16,12 @@ class QuestionnaireProvider with ChangeNotifier {
   List<CreateAnswerDetailRequest> _currentSelectedCategories = [];
   double _currentSelectedStatementAnswer = 2;
 
-  QuestionnaireProvider() {
-    this.questionsApi = QuestionsApi();
-    this.answerApi = AnswersApi();
+  QuestionnaireProvider.withDependencies(ApiClient apiClient) {
+    this.questionsApi = QuestionsApi(apiClient);
+    this.answerApi = AnswersApi(apiClient);
   }
 
-  QuestionnaireProvider.withDependencies(QuestionsApi questionsApi, AnswersApi answersApi) {
+  QuestionnaireProvider.withMockDependencies(QuestionsApi questionsApi, AnswersApi answersApi) {
     this.questionsApi = questionsApi;
     this.answerApi = answersApi;
   }
