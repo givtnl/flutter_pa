@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod"
+      "url": "https://poxv71al5m.execute-api.eu-west-3.amazonaws.com/prod"
     }
   ],
   "paths": {

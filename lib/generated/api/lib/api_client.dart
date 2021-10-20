@@ -10,7 +10,7 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod'}) {
+  ApiClient({this.basePath = 'https://poxv71al5m.execute-api.eu-west-3.amazonaws.com/prod'}) {
   }
 
   final String basePath;

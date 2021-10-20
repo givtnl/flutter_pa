@@ -2,6 +2,8 @@
   <configuration default="false" name="wizard_qa" type="FlutterRunConfigurationType" factoryName="Flutter">
     <option name="additionalArgs" value="--no-sound-null-safety" />
     <option name="filePath" value="$PROJECT_DIR$/lib/main_qa.dart" />
-    <method v="2" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="update-models-locally-qa.ps1" run_configuration_type="PowerShellRunType" />
+    </method>
   </configuration>
 </component>
