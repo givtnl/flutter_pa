@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod*
+All URIs are relative to *https://poxv71al5m.execute-api.eu-west-3.amazonaws.com/prod*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
