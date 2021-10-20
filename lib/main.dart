@@ -11,8 +11,10 @@ import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
 import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
 import 'analytics/mixpanel_manager.dart';
+import 'flavors_config.dart';
 
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
@@ -31,16 +33,18 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
+    ApiClient apiClient = ApiClient(basePath: FlavorConfig.instance.values.baseUrl);
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => QuestionnaireProvider(),
+          create: (_) => QuestionnaireProvider.withDependencies(apiClient),
         ),
         ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => MatchesProvider(),
+          create: (_) => MatchesProvider.withDependencies(apiClient),
         ),
       ],
       child: MaterialApp(
