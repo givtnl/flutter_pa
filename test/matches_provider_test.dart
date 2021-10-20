@@ -41,14 +41,14 @@ void main() {
         Future.value(userOrganisationMatchesListResponse));
 
     test('Ensure Matches Are Assigned When Executing Http Call', () async {
-      var provider = MatchesProvider.withDependencies(matchesApi);
+      var provider = MatchesProvider.withMockDependencies(matchesApi);
       await provider.loadMatches('Michiel');
       expect(userOrganisationMatchesListResponse.result.length,
           equals(provider.organisationMatches.length));
     });
 
     test('Ensure Matches Are Sorted On score', () async {
-      var provider = MatchesProvider.withDependencies(matchesApi);
+      var provider = MatchesProvider.withMockDependencies(matchesApi);
       await provider.loadMatches('Michiel');
       expect(userOrganisationMatchesListResponse.result[0].score, equals(90));
       expect(userOrganisationMatchesListResponse.result[2].score, equals(70));
