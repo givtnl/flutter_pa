@@ -1,5 +1,3 @@
-import 'dart:js' as js;
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +17,7 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:universal_html/js.dart' as js;
 
 import '../extensions/intl_extension.dart';
 import '../givt_icons.dart';
@@ -135,18 +134,14 @@ class OrganisationScreen extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              ListView.separated(
-                                itemBuilder: (ctx, idx) {
-                                  return OrganisationTag(_tags.elementAt(idx), false);
-                                },
-                                itemCount: _tags.length,
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                separatorBuilder: (BuildContext context, int index) {
-                                  return SizedBox(
-                                    height: 10,
-                                  );
-                                },
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Wrap(
+                                  children: _tags.map((e) {
+                                    return OrganisationTag(e, false);
+                                  }).toList(),
+                                  spacing: 10,
+                                ),
                               ),
                               SizedBox(
                                 height: 30,
