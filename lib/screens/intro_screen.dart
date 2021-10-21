@@ -5,12 +5,14 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/choice_screen.dart';
 import 'package:flutter_app/screens/error_screen.dart';
+import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -18,7 +20,8 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
+    var questionnaireProvider =
+        Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
     var screen = TrackedScreen(
       screenName: 'IntroScreen',
@@ -31,8 +34,12 @@ class IntroScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
-                  child: SvgPicture.asset('assets/svg/givt-logo.svg', height: 30,),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 50.0, vertical: 80.0),
+                  child: SvgPicture.asset(
+                    'assets/svg/givt-logo.svg',
+                    height: 30,
+                  ),
                 ),
               ),
               Center(
@@ -61,29 +68,57 @@ class IntroScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(50.0),
-                  child: MainButton(
-                    label: S.of(context).introButton,
-                    tapped: () {
-                      final DateTime now = DateTime.now();
-                      final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
-                      final String formatted = formatter.format(now);
-                      userProvider.userName = formatted;
-                      if (kDebugMode) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("DEBUG MODE : ${userProvider.userName}"),
-                          duration: Duration(seconds: 2),
-                        ));
-                        print(userProvider.userName);
-                      }
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => ChoiceScreen(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        width: double.infinity,
+                        child: Container(
+                          height: 25,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "No worries, you do not have to share any personal information to see your results!",
+                            style: TextStyle(
+                                fontFamily: "Montserrat",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 10,
+                                decoration: TextDecoration.underline,
+                                color: LightTheme.mediumBlueColor,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      );
-                    },
-                    fontSize: 16,
-                    height: 45,
-                    webWidth: 600.0,
+                      ),
+                      MainButton(
+                        label: S.of(context).introButton,
+                        tapped: () {
+                          final DateTime now = DateTime.now();
+                          final DateFormat formatter =
+                              DateFormat("yyyy-MM-dd hh:mm");
+                          final String formatted = formatter.format(now);
+                          userProvider.userName = formatted;
+                          if (kDebugMode) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text("DEBUG MODE : ${userProvider.userName}"),
+                              duration: Duration(seconds: 2),
+                            ));
+                            print(userProvider.userName);
+                          }
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      ChoiceScreen(),
+                            ),
+                          );
+                        },
+                        fontSize: 16,
+                        height: 45,
+                        webWidth: 600.0,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -93,7 +128,8 @@ class IntroScreen extends StatelessWidget {
       ),
     );
     return new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2), () => questionnaireProvider.loadQuestions()),
+        future: Future.delayed(const Duration(seconds: 2),
+            () => questionnaireProvider.loadQuestions()),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
