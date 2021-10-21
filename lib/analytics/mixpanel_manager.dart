@@ -70,7 +70,7 @@ class MixpanelManager {
   _exportEvents(List<Event> events) async {
     var json = jsonEncode(events);
     try {
-      var response = await http.post(_url, body: json);
+      var response = await http.post(Uri.parse(_url), body: json);
       var responseBody = jsonDecode(response.body);
       print("${ApiImportResult.fromJson(responseBody).records} events exported to mixpanel");
     } catch (exception) {
