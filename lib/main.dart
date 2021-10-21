@@ -59,12 +59,7 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate
           ],
-          supportedLocales: [
-            Locale('en', ''),
-            Locale('en', 'GB'),
-            Locale('nl', ''),
-            Locale('de', '')
-          ],
+          supportedLocales: [Locale('nl', '')],
           theme: LightTheme.theme,
           initialRoute: '/',
           routes: {
