@@ -16,6 +16,10 @@ import 'package:provider/provider.dart';
 import 'analytics/mixpanel_manager.dart';
 import 'flavors_config.dart';
 
+const URL_PROD = "https://2pl7tv80ki.execute-api.eu-west-3.amazonaws.com/prod";
+const URL_QA = "https://poxv71al5m.execute-api.eu-west-3.amazonaws.com/prod";
+const URL_DEV = "https://0v9xof580f.execute-api.eu-west-3.amazonaws.com/prod";
+
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
