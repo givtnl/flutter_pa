@@ -6,8 +6,9 @@ import 'main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MixpanelManager.mixpanel.setUrl(URL_PROD + '/tracking');
   MixpanelManager.mixpanel.flushEvents();
   ErrorWidget.builder = (FlutterErrorDetails details) => ErrorScreen();
-  FlavorConfig(flavor: Flavor.PRODUCTION, values: FlavorValues(baseUrl: "https://2pl7tv80ki.execute-api.eu-west-3.amazonaws.com/prod"));
+  FlavorConfig(flavor: Flavor.PRODUCTION, values: FlavorValues(baseUrl: URL_PROD));
   runApp(MyApp());
 }
