@@ -20,9 +20,14 @@ class CategoryCard extends StatefulWidget {
 }
 
 class _CategoryCardState extends State<CategoryCard> {
+
+  var sizeBigEnough = true;
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionnaireProvider>(context);
+
+    sizeBigEnough = MediaQuery.of(context).size.height > 500;
 
     IconData icon;
     switch (this.widget.iconText) {
@@ -83,7 +88,7 @@ class _CategoryCardState extends State<CategoryCard> {
           });
         },
         child: Container(
-          height: 60,
+          height: sizeBigEnough ? 60 : 40,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
@@ -101,12 +106,12 @@ class _CategoryCardState extends State<CategoryCard> {
                 : [],
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15),
+            padding: sizeBigEnough ? EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15) : EdgeInsets.all(0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
+                sizeBigEnough ? Container(
                   child: Align(
                     alignment: Alignment.center,
                     child: Icon(
@@ -116,7 +121,8 @@ class _CategoryCardState extends State<CategoryCard> {
                       semanticLabel: this.widget.iconText,
                     ),
                   ),
-                ),
+                ) : SizedBox.shrink(),
+                sizeBigEnough ?
                 Container(
                   width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
                   child: Padding(
@@ -132,6 +138,24 @@ class _CategoryCardState extends State<CategoryCard> {
                       maxLines: 2,
                     ),
                   ),
+                ) : Container(
+                    width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Center(
+                        child: AutoSizeText(
+                          widget.categoryText,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 15,
+                          ),
+                          maxLines: 2,
+                        ),
+                      ),
+                    )
                 ),
               ],
             ),

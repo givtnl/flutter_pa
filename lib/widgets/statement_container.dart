@@ -14,6 +14,8 @@ class StatementContainer extends StatefulWidget {
 }
 
 class _StatementContainerState extends State<StatementContainer> {
+  bool sizeBigEnough = true;
+
   @override
   Widget build(BuildContext context) {
     final _valueTexts = [
@@ -27,6 +29,8 @@ class _StatementContainerState extends State<StatementContainer> {
     // words should be on split lines according to design.
     var provider = Provider.of<QuestionnaireProvider>(context);
 
+    sizeBigEnough = MediaQuery.of(context).size.height > 500;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 45.5),
       child: Column(
@@ -35,17 +39,20 @@ class _StatementContainerState extends State<StatementContainer> {
             padding: const EdgeInsets.symmetric(horizontal: 4.5),
             child: AutoSizeText(
               provider.getCurrentQuestionTranslation,
-              style: Theme.of(context).textTheme.headline1,
-              maxLines: 6,
+              style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: sizeBigEnough ? 26 : 16),
+              maxLines: 5,
               wrapWords: false,
+              minFontSize: 5,
             ),
           ),
           if (provider.getCurrentQuestion != null && provider.getCurrentQuestion!.metaTags != null && provider.getCurrentQuestion!.metaTags["explanation_nl"] != null)
             Padding(
               padding: EdgeInsets.only(top: 10, left: 4.5, right: 4.5),
-              child: Text(
+              child: AutoSizeText(
                 provider.getCurrentQuestion!.metaTags["explanation_nl"].toString(),
                 style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+                maxLines: 3,
+                minFontSize: 5,
               ),
             ),
           Row(
@@ -75,7 +82,7 @@ class _StatementContainerState extends State<StatementContainer> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 30),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height > 500 ? 30 : 10),
             child: Container(),
           ),
           Padding(

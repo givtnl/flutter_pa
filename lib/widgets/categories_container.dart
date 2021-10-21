@@ -7,7 +7,12 @@ import 'package:provider/provider.dart';
 import 'category_card.dart';
 
 class CategoriesContainer extends StatelessWidget {
+  bool sizeBigEnough = true;
+
   Widget categoryContainer(cards, context) {
+
+    sizeBigEnough = MediaQuery.of(context).size.height > 500;
+
     return Container(
       child: Column(children: [
         Padding(
@@ -17,7 +22,7 @@ class CategoriesContainer extends StatelessWidget {
             children: [
               AutoSizeText(
                 S.of(context).categoryScreenTitleQuestion,
-                style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
+                style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: sizeBigEnough ? 24 : 18),
               ),
               SizedBox(height: 15,),
               AutoSizeText(S.of(context).categoryScreenSubtitle,
