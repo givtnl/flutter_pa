@@ -1,6 +1,6 @@
 {
     "introText": "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen.",
-    "introButton": "zur Auswahlhilfe",
+    "introButton": "zur Givt Wizard",
     "nextButton": "nächste",
     "choiceScreen_disagree": "anderer Meinung",
     "choiceScreen_agree": "zugestimmt",
@@ -16,7 +16,7 @@
     "sectors_educationAndScience": "Bildung und Wissenschaft",
     "sectors_religionAndPhilosophy": "Religion und Philosophie",
     "sectors_wellBeing": "Wohlbefinden",
-    "introTitle": "Willkommen bei der Auswahlhilfe!",
+    "introTitle": "Willkommen bei der Givt Wizard!",
     "matchesScreen_yourPersonalSuggestions": "Ihre persönlichen Vorschläge",
     "matchesScreen_subtitleText": "Diese Organisationen entsprechen am besten Ihren Werten, Normen und Ihrer Identität.",
     "matchCircle_match": "",
@@ -32,5 +32,6 @@
     "categoryScreenSubtitle": "Sie können mehrere Themen auswählen.",
     "fetchingQuestions": "Wir sammeln die Fragen!",
     "calculatingMatches": "Wir berechnen Ihre Matches!",
-    "app_mainTitle": ""
+    "app_mainTitle": "Givt Wizard",
+    "introPrivacyPolicyLink": ""
 }
