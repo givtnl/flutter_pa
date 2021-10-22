@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "app_mainTitle": MessageLookupByLibrary.simpleMessage(""),
+        "app_mainTitle": MessageLookupByLibrary.simpleMessage("Givt Wizard"),
         "calculatingMatches":
             MessageLookupByLibrary.simpleMessage("Wir berechnen Ihre Matches!"),
         "categoryScreenSubtitle": MessageLookupByLibrary.simpleMessage(
@@ -41,11 +41,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("völlig anderer Meinung"),
         "fetchingQuestions":
             MessageLookupByLibrary.simpleMessage("Wir sammeln die Fragen!"),
-        "introButton": MessageLookupByLibrary.simpleMessage("zur Auswahlhilfe"),
+        "introButton": MessageLookupByLibrary.simpleMessage("zur Givt Wizard"),
+        "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(""),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
-            "Willkommen bei der Auswahlhilfe!"),
+            "Willkommen bei der Givt Wizard!"),
         "loadingTitle": MessageLookupByLibrary.simpleMessage(""),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
         "matchesScreen_findOutMore":

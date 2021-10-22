@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `to the selection guide`
+  /// `to the Givt Wizard`
   String get introButton {
     return Intl.message(
-      'to the selection guide',
+      'to the Givt Wizard',
       name: 'introButton',
       desc: '',
       args: [],
@@ -220,10 +220,10 @@ class S {
     );
   }
 
-  /// `Welcome to the selection guide!`
+  /// `Welcome to the Givt Wizard!`
   String get introTitle {
     return Intl.message(
-      'Welcome to the selection guide!',
+      'Welcome to the Givt Wizard!',
       name: 'introTitle',
       desc: '',
       args: [],
@@ -380,11 +380,21 @@ class S {
     );
   }
 
-  /// `Selection Guide`
+  /// `Givt Wizard`
   String get app_mainTitle {
     return Intl.message(
-      'Selection Guide',
+      'Givt Wizard',
       name: 'app_mainTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No worries, you do not have to share any personal information to see your results!`
+  String get introPrivacyPolicyLink {
+    return Intl.message(
+      'No worries, you do not have to share any personal information to see your results!',
+      name: 'introPrivacyPolicyLink',
       desc: '',
       args: [],
     );

@@ -78,7 +78,7 @@ class IntroScreen extends StatelessWidget {
                           height: 25,
                           alignment: Alignment.center,
                           child: Text(
-                            "No worries, you do not have to share any personal information to see your results!",
+                            S.of(context).introPrivacyPolicyLink,
                             style: TextStyle(
                                 fontFamily: "Montserrat",
                                 fontWeight: FontWeight.w500,
