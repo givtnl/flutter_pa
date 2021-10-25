@@ -3,25 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'feedback_button.dart';
 
-class FeedbackWidget extends StatelessWidget {
+class FeedbackEmailWidget extends StatelessWidget {
   late final bool isBiggerThan360;
   final VoidCallback closeModal;
-  final VoidCallback giveFeedback;
 
-  FeedbackWidget(this.closeModal, this.giveFeedback);
+  FeedbackEmailWidget(this.closeModal);
 
   @override
   Widget build(BuildContext context) {
     isBiggerThan360 = MediaQuery.of(context).size.width > 360;
-    List<String> opinions = [
-      'very-sad',
-      'sad',
-      'neutral',
-      'happy',
-      'very-happy',
-    ];
-    List<FeedbackButton> buttons =
-        opinions.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
 
     return Stack(
       children: [
@@ -55,22 +45,15 @@ class FeedbackWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Wat vind je van de Givt Wizard?",
+                        "Jouw feedback geeft ons richting",
                         style: Theme.of(context).textTheme.headline2,
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        "Hoe zou je je ervaring met de Givt Wizard beoordelen?",
+                        "Vul je emailadres in en we contacteren je voor een gesprekje.",
                         style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.center,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 40),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: buttons,
-                        ),
-                      )
                     ],
                   ),
                 ]),

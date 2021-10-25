@@ -5,6 +5,7 @@ import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
+import 'package:flutter_app/widgets/feedback_email_widget.dart';
 import 'package:flutter_app/widgets/feedback_widget.dart';
 import 'package:flutter_app/widgets/matches/match_widget.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
@@ -18,12 +19,22 @@ class MatchesScreen extends StatefulWidget {
 }
 
 class _MatchesScreen extends State<MatchesScreen> {
+  var showFeedbackModal = false;
+  var initialLoad = true;
+
+  var showFeedbackEmailModal = false;
+
   Widget buildWidget(BuildContext context) {
     var provider = Provider.of<MatchesProvider>(context);
     var matches = provider.organisationMatches;
 
     return WillPopScope(
       onWillPop: () async {
+        // FOR DEBUGGING PURPOSE!!!
+        setState(() {
+          showFeedbackModal = !showFeedbackModal;
+        });
+
         // this prevents the user of going back in the flow to the questionnaire
         return false;
       },
@@ -87,7 +98,19 @@ class _MatchesScreen extends State<MatchesScreen> {
                         setState(() {
                           showFeedbackModal = false;
                         });
+                      }, () {
+                        setState(() {
+                          showFeedbackModal = false;
+                          showFeedbackEmailModal = true;
+                        });
                       })
+                    : Container(),
+                showFeedbackEmailModal
+                    ? FeedbackEmailWidget(() {
+                  setState(() {
+                    showFeedbackEmailModal = false;
+                  });
+                })
                     : Container()
               ],
             ),
@@ -123,6 +146,5 @@ class _MatchesScreen extends State<MatchesScreen> {
         });
 
     return initialLoad ? futureBuilder : buildWidget(context);
-
   }
 }
