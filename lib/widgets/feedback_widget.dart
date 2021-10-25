@@ -34,9 +34,9 @@ class FeedbackWidget extends StatelessWidget {
         Center(
           child: SizedBox(
             width:
-                isBiggerThan360 ? 300 : MediaQuery.of(context).size.width - 60,
+                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             height:
-                isBiggerThan360 ? 300 : MediaQuery.of(context).size.width - 60,
+                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             child: Container(
               decoration: BoxDecoration(color: Colors.white),
               child: Padding(
