@@ -62,10 +62,13 @@ class FeedbackWidget extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Wat vind je van de Givt Wizard?",
-                        style: Theme.of(context).textTheme.headline2,
-                        textAlign: TextAlign.center,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: Text(
+                          "Wat vind je van de Givt Wizard?",
+                          style: Theme.of(context).textTheme.headline2,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       Text(
                         "Hoe zou je je ervaring met de Givt Wizard beoordelen?",
