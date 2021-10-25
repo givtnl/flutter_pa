@@ -43,13 +43,7 @@ class OrganisationScreen extends StatelessWidget {
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     var currentTags = provider.currentMatchingTags;
     var currentOrganisationTags = provider.currentOrganisationTags;
-    var showFeedbackModal = true;
-
     var itlProvider = S.of(context);
-
-    toggleFeedbackWidget() {
-      showFeedbackModal = !showFeedbackModal;
-    }
 
     final Widget backArrow = SvgPicture.asset('assets/svg/back-arrow.svg');
 
@@ -360,15 +354,11 @@ class OrganisationScreen extends StatelessWidget {
                 ),
               ),
             ),
-            showFeedbackModal
-                ? FeedbackWidget(toggleFeedbackWidget)
-                : Container(),
           ]),
         ),
         floatingActionButton:
             (currentOrganisation.metaTags.containsKey("donationUrl") &&
-                    MediaQuery.of(context).size.height < 900 &&
-                    !showFeedbackModal)
+                    MediaQuery.of(context).size.height < 900)
                 ? Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Container(

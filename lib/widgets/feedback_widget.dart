@@ -5,7 +5,7 @@ import 'feedback_button.dart';
 
 class FeedbackWidget extends StatelessWidget {
   late final bool isBiggerThan360;
-  VoidCallback closeModal;
+  final VoidCallback closeModal;
 
   FeedbackWidget(this.closeModal);
 
