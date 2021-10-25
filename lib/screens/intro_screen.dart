@@ -83,7 +83,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              showPrivacyStatement = !showPrivacyStatement;
+                              showPrivacyStatement = true;
                             });
                           },
                           child: Container(
@@ -131,7 +131,11 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                 ),
               ),
-              if (showPrivacyStatement) PrivacyStatementWidget()
+              if (showPrivacyStatement) PrivacyStatementWidget(() {
+                setState(() {
+                  showPrivacyStatement = false;
+                });
+              })
             ],
           ),
         ),
