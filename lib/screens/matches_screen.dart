@@ -25,18 +25,15 @@ class _MatchesScreen extends State<MatchesScreen> {
   var showFeedbackEmailModal = false;
 
   Widget buildWidget(BuildContext context) {
-    var provider = Provider.of<MatchesProvider>(context);
+    var provider = Provider.of<MatchesProvider>(context, listen: false);
     var matches = provider.organisationMatches;
-
-    Future.delayed(Duration(seconds: 3), () {
-      setState(() {
-        showFeedbackModal = true;
-      });
-    });
 
     return WillPopScope(
       onWillPop: () async {
         // this prevents the user of going back in the flow to the questionnaire
+        setState(() {
+          showFeedbackModal = true;
+        });
         return false;
       },
       child: TrackedScreen(
@@ -108,10 +105,10 @@ class _MatchesScreen extends State<MatchesScreen> {
                     : Container(),
                 showFeedbackEmailModal
                     ? FeedbackEmailWidget(() {
-                  setState(() {
-                    showFeedbackEmailModal = false;
-                  });
-                })
+                        setState(() {
+                          showFeedbackEmailModal = false;
+                        });
+                      })
                     : Container()
               ],
             ),
@@ -124,28 +121,38 @@ class _MatchesScreen extends State<MatchesScreen> {
   @override
   Widget build(BuildContext context) {
     final MatchesProvider provider = Provider.of<MatchesProvider>(context, listen: false);
-    final UserProvider userProvider = Provider.of<UserProvider>(context);
+    final UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
 
-    var futureBuilder = new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2), () => provider.loadMatches(userProvider.userName)),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            print(snapshot.error);
-          }
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              initialLoad = false;
-              return buildWidget(context);
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return SpinnerContainer(S.of(context).calculatingMatches);
-            case ConnectionState.none:
-              print("none");
-              return Container();
-              break;
-          }
-        });
+    if (initialLoad) {
+      return new FutureBuilder(
+          future: Future.delayed(const Duration(seconds: 2), () => provider.loadMatches(userProvider.userName)),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              print(snapshot.error);
+            }
+            switch (snapshot.connectionState) {
+              case ConnectionState.done:
+                initialLoad = false;
+                Future.delayed(
+                  const Duration(seconds: 3),
+                  () => {
+                    setState(() {
+                      showFeedbackModal = true;
+                    })
+                  },
+                );
+                return buildWidget(context);
+              case ConnectionState.active:
+              case ConnectionState.waiting:
+                return SpinnerContainer(S.of(context).calculatingMatches);
+              case ConnectionState.none:
+                print("none");
+                return Container();
+                break;
+            }
+          });
+    }
 
-    return initialLoad ? futureBuilder : buildWidget(context);
+    return buildWidget(context);
   }
 }
