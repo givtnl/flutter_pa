@@ -1,6 +1,6 @@
 {
     "introText": "Find out which charities match your values, standards and identity.",
-    "introButton": "to the selection guide",
+    "introButton": "to the Givt Wizard",
     "nextButton": "next",
     "choiceScreen_disagree": "disagree",
     "choiceScreen_agree": "agree",
@@ -16,7 +16,7 @@
     "sectors_educationAndScience": "education and science",
     "sectors_religionAndPhilosophy": "religion and philosophy",
     "sectors_wellBeing": "well-being",
-    "introTitle": "Welcome to the selection guide!",
+    "introTitle": "Welcome to the Givt Wizard!",
     "matchesScreen_yourPersonalSuggestions": "Your personal suggestions",
     "matchesScreen_subtitleText": "These organisations best match your values, norms and identity.",
     "matchCircle_match": "match",
@@ -32,5 +32,6 @@
     "categoryScreenSubtitle": "You can select multiple subjects.",
     "fetchingQuestions": "We're fetching the questions!",
     "calculatingMatches": "We're calculating your matches!",
-    "app_mainTitle": "Selection Guide"
+    "app_mainTitle": "Givt Wizard",
+    "introPrivacyPolicyLink": "No worries, you do not have to share any personal information to see your results!"
 }

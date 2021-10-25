@@ -1,6 +1,6 @@
 {
     "introText": "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit.",
-    "introButton": "naar de keuzewijzer",
+    "introButton": "naar de Givt Wizard",
     "nextButton": "volgende",
     "choiceScreen_disagree": "oneens",
     "choiceScreen_agree": "eens",
@@ -16,7 +16,7 @@
     "sectors_educationAndScience": "onderwijs en wetenschap",
     "sectors_religionAndPhilosophy": "religie en levensbeschouwing",
     "sectors_wellBeing": "welzijn",
-    "introTitle": "Welkom bij \u2028de keuzewijzer!",
+    "introTitle": "Welkom bij \u2028de Givt Wizard!",
     "matchesScreen_yourPersonalSuggestions": "Jouw persoonlijke voorstellen",
     "matchesScreen_subtitleText": "Deze organisaties passen het beste bij jouw waarden, normen en identiteit.",
     "matchCircle_match": "match",
@@ -32,5 +32,6 @@
     "categoryScreenSubtitle": "Je kunt meerdere thema's selecteren.",
     "fetchingQuestions": "We halen de vragen op!",
     "calculatingMatches": "We berekenen je matches!",
-    "app_mainTitle": "Keuzewijzer"
+    "app_mainTitle": "Givt Wizard",
+    "introPrivacyPolicyLink": "Geen zorgen, je hoeft geen persoonlijke informatie \u2028te delen om je resultaten te bekijken!"
 }
