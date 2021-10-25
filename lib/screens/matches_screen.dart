@@ -28,13 +28,14 @@ class _MatchesScreen extends State<MatchesScreen> {
     var provider = Provider.of<MatchesProvider>(context);
     var matches = provider.organisationMatches;
 
+    Future.delayed(Duration(seconds: 3), () {
+      setState(() {
+        showFeedbackModal = true;
+      });
+    });
+
     return WillPopScope(
       onWillPop: () async {
-        // FOR DEBUGGING PURPOSE!!!
-        setState(() {
-          showFeedbackModal = !showFeedbackModal;
-        });
-
         // this prevents the user of going back in the flow to the questionnaire
         return false;
       },
