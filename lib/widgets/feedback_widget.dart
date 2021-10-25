@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'feedback_button.dart';
 
 class FeedbackWidget extends StatelessWidget {
@@ -20,8 +21,7 @@ class FeedbackWidget extends StatelessWidget {
       'happy',
       'very-happy',
     ];
-    List<FeedbackButton> buttons =
-        opinions.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
+    List<FeedbackButton> buttons = opinions.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
 
     return Stack(
       children: [
@@ -33,10 +33,8 @@ class FeedbackWidget extends StatelessWidget {
         ),
         Center(
           child: SizedBox(
-            width:
-                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
-            height:
-                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
+            width: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
+            height: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             child: Container(
               decoration: BoxDecoration(color: Colors.white),
               child: Padding(
