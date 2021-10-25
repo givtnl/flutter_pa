@@ -9,6 +9,7 @@ import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/accent_rounded_button.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/custom_linear_progress_indicator.dart';
+import 'package:flutter_app/widgets/feedback_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/match_percentage_circle.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
@@ -399,70 +400,3 @@ Color getColorForIndicator(int idx, BuildContext context) {
   }
 }
 
-class FeedbackWidget extends StatelessWidget {
-  bool isBiggerThan360 = true;
-  VoidCallback toggleFeedback;
-
-  FeedbackWidget(this.toggleFeedback);
-
-  @override
-  Widget build(BuildContext context) {
-    isBiggerThan360 = MediaQuery.of(context).size.width > 360;
-
-    return Stack(
-      children: [
-        GestureDetector(
-          onTap: toggleFeedback,
-          child: Container(
-            color: Theme.of(context).backgroundColor.withOpacity(.75),
-          ),
-        ),
-        Center(
-          child: SizedBox(
-            width:
-                isBiggerThan360 ? 300 : MediaQuery.of(context).size.width - 60,
-            height:
-                isBiggerThan360 ? 300 : MediaQuery.of(context).size.width - 60,
-            child: Container(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: GestureDetector(
-                        child: SvgPicture.asset(
-                          'assets/svg/krus.svg',
-                        ),
-                        onTap: toggleFeedback,
-                      ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Wat vind je van de Givt Wizard?",
-                          style: Theme.of(context).textTheme.headline2,
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          "Hoe zou je je ervaring met de Givt Wizard beoordelen?",
-                          style: Theme.of(context).textTheme.bodyText2,
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(
-                          children: [],
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
