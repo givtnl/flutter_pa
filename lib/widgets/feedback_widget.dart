@@ -36,7 +36,17 @@ class FeedbackWidget extends StatelessWidget {
             width: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             height: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             child: Container(
-              decoration: BoxDecoration(color: Colors.white),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.15),
+                    spreadRadius: 8,
+                    blurRadius: 15,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Stack(children: [

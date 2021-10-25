@@ -37,7 +37,7 @@ class PrivacyStatementWidget extends StatelessWidget {
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.15),
                               spreadRadius: 8,
-                              blurRadius: 5,
+                              blurRadius: 15,
                               offset: Offset(0, 3), // changes position of shadow
                             ),
                           ], color: Colors.white),
