@@ -28,8 +28,11 @@ class FeedbackWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: closeModal,
-          child: Container(
-            color: Theme.of(context).backgroundColor.withOpacity(.75),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Container(
+              color: Theme.of(context).backgroundColor.withOpacity(.75),
+            ),
           ),
         ),
         Center(
@@ -54,8 +57,11 @@ class FeedbackWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
-                      child: SvgPicture.asset(
-                        'assets/svg/krus.svg',
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: SvgPicture.asset(
+                          'assets/svg/krus.svg',
+                        ),
                       ),
                       onTap: closeModal,
                     ),

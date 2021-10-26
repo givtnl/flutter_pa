@@ -63,8 +63,11 @@ class PrivacyStatementWidget extends StatelessWidget {
                     Center(
                       child: GestureDetector(
                         onTap: voidTapAction,
-                        child: SvgPicture.asset(
-                          'assets/svg/close_in_circle.svg',
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: SvgPicture.asset(
+                            'assets/svg/close_in_circle.svg',
+                          ),
                         ),
                       ),
                     ),

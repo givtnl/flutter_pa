@@ -35,8 +35,11 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
           onTap: () {
             this.widget.closeModal();
           },
-          child: Container(
-            color: Theme.of(context).backgroundColor.withOpacity(.75),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Container(
+              color: Theme.of(context).backgroundColor.withOpacity(.75),
+            ),
           ),
         ),
         Center(
@@ -61,8 +64,11 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                   Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
-                      child: SvgPicture.asset(
-                        'assets/svg/krus.svg',
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: SvgPicture.asset(
+                          'assets/svg/krus.svg',
+                        ),
                       ),
                       onTap: () {
                         this.widget.closeModal();

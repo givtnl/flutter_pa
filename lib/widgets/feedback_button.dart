@@ -12,9 +12,12 @@ class FeedbackButton extends StatelessWidget {
     var test = MediaQuery.of(context).size.width > 360;
 
     return GestureDetector(
-      child: SizedBox(
-        child: SvgPicture.asset(
-          'assets/svg/feedback-modal/' + name + '.svg',
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: SizedBox(
+          child: SvgPicture.asset(
+            'assets/svg/feedback-modal/' + name + '.svg',
+          ),
         ),
       ),
       onTap: onClick,

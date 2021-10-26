@@ -41,17 +41,20 @@ class _MainButtonState extends State<MainButton> {
           Expanded(
               child: GestureDetector(
                   onTap: tapped,
-                  child: Container(
-                    height: height,
-                    decoration: BoxDecoration(
-                      color: LightTheme.appleBlueSeaGreen,
-                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
-                    ),
-                    child: Center(
-                        child: Text(label,
-                            style: Theme.of(context).textTheme.button!.merge(TextStyle(fontSize: fontSize)),
-                            textAlign: TextAlign.center,
-                        )
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Container(
+                      height: height,
+                      decoration: BoxDecoration(
+                        color: LightTheme.appleBlueSeaGreen,
+                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(25)),
+                      ),
+                      child: Center(
+                          child: Text(label,
+                              style: Theme.of(context).textTheme.button!.merge(TextStyle(fontSize: fontSize)),
+                              textAlign: TextAlign.center,
+                          )
+                      ),
                     ),
                   )
               )

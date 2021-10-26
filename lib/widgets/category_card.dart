@@ -87,77 +87,80 @@ class _CategoryCardState extends State<CategoryCard> {
             MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {"CATEGORY_ID": "${this.widget.categoryId}"});
           });
         },
-        child: Container(
-          height: sizeBigEnough ? 60 : 40,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(
-              width: 1,
-              color: this.widget.selected ? Theme.of(context).primaryColor : Colors.white,
-            ),
-            boxShadow: this.widget.selected
-                ? [
-                    new BoxShadow(
-                      color: Theme.of(context).primaryColor,
-                      blurRadius: 5.0,
-                    ),
-                  ]
-                : [],
-          ),
-          child: Padding(
-            padding: sizeBigEnough ? EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15) : EdgeInsets.all(0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                sizeBigEnough ? Container(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Icon(
-                      icon,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                      semanticLabel: this.widget.iconText,
-                    ),
-                  ),
-                ) : SizedBox.shrink(),
-                sizeBigEnough ?
-                Container(
-                  width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: AutoSizeText(
-                      widget.categoryText,
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: Container(
+            height: sizeBigEnough ? 60 : 40,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                width: 1,
+                color: this.widget.selected ? Theme.of(context).primaryColor : Colors.white,
+              ),
+              boxShadow: this.widget.selected
+                  ? [
+                      new BoxShadow(
                         color: Theme.of(context).primaryColor,
-                        fontSize: 15,
+                        blurRadius: 5.0,
                       ),
-                      maxLines: 2,
+                    ]
+                  : [],
+            ),
+            child: Padding(
+              padding: sizeBigEnough ? EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15) : EdgeInsets.all(0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  sizeBigEnough ? Container(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        icon,
+                        size: 30,
+                        color: Theme.of(context).primaryColor,
+                        semanticLabel: this.widget.iconText,
+                      ),
                     ),
-                  ),
-                ) : Container(
+                  ) : SizedBox.shrink(),
+                  sizeBigEnough ?
+                  Container(
                     width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Center(
-                        child: AutoSizeText(
-                          widget.categoryText,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 15,
-                          ),
-                          maxLines: 2,
+                      child: AutoSizeText(
+                        widget.categoryText,
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 15,
                         ),
+                        maxLines: 2,
                       ),
-                    )
-                ),
-              ],
+                    ),
+                  ) : Container(
+                      width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Center(
+                          child: AutoSizeText(
+                            widget.categoryText,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 15,
+                            ),
+                            maxLines: 2,
+                          ),
+                        ),
+                      )
+                  ),
+                ],
+              ),
             ),
           ),
         ),
