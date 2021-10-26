@@ -35,10 +35,13 @@
     "app_mainTitle": "Givt Wizard",
     "introPrivacyPolicyLink": "",
     "privacyPolicyTitle": "",
-    "privacyPolicy": "",
+    "privacyPolicy_Pt1": "",
     "feedbackWidget_title": "",
     "feedbackWidget_subTitle": "",
     "feedbackEmailWidget_title": "",
     "feedbackEmailWidget_subTitle": "",
-    "feedbackEmailWidget_mainButton": ""
+    "feedbackEmailWidget_mainButton": "",
+    "privacyPolicy_Pt2_website": "",
+    "privacyPolicy_Pt3": "",
+    "privacyPolicy_Pt4_email": "info@givtapp.net"
 }
