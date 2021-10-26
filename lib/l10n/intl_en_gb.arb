@@ -33,5 +33,7 @@
     "fetchingQuestions": "We're fetching the questions!",
     "calculatingMatches": "We're calculating your matches!",
     "app_mainTitle": "Givt Wizard",
-    "introPrivacyPolicyLink": "No worries, you do not have to share any personal information to see your results!"
+    "introPrivacyPolicyLink": "No worries, you do not have to share any personal information to see your results!",
+    "privacyPolicyTitle": "",
+    "privacyPolicy": ""
 }
