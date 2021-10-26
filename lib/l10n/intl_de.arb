@@ -36,15 +36,9 @@
     "introPrivacyPolicyLink": "",
     "privacyPolicyTitle": "",
     "privacyPolicy": "",
-    "title in the feedback widget": {
-        "feedbackWidget_title": ""
-    },
-    "subtitle in the feedback widget": {
-        "feedbackWidget_subTitle": ""
-    },
-    "title in the feedback email widget": {
-        "feedbackEmailWidget_title": "",
-        "feedbackEmailWidget_subTitle": ""
-    },
+    "feedbackWidget_title": "",
+    "feedbackWidget_subTitle": "",
+    "feedbackEmailWidget_title": "",
+    "feedbackEmailWidget_subTitle": "",
     "feedbackEmailWidget_mainButton": ""
 }
