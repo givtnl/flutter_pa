@@ -80,25 +80,28 @@ class _IntroScreenState extends State<IntroScreen> {
                       SizedBox(
                         height: 40,
                         width: double.infinity,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              showPrivacyStatement = true;
-                            });
-                          },
-                          child: Container(
-                            height: 25,
-                            alignment: Alignment.center,
-                            child: Text(
-                              S.of(context).introPrivacyPolicyLink,
-                              style: TextStyle(
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 10,
-                                decoration: TextDecoration.underline,
-                                color: LightTheme.mediumBlueColor,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                showPrivacyStatement = true;
+                              });
+                            },
+                            child: Container(
+                              height: 25,
+                              alignment: Alignment.center,
+                              child: Text(
+                                S.of(context).introPrivacyPolicyLink,
+                                style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10,
+                                  decoration: TextDecoration.underline,
+                                  color: LightTheme.mediumBlueColor,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),
