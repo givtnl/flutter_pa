@@ -52,11 +52,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "introButton":
             MessageLookupByLibrary.simpleMessage("naar de Givt Wizard"),
         "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(
-            "Geen zorgen, je hoeft geen persoonlijke informatie  te delen om je resultaten te bekijken!"),
+            "Geen zorgen, je hoeft geen persoonlijke informatie te delen om je resultaten te bekijken!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Ontdek in slechts 2 minuten met welke doelen jij  de beste klik hebt."),
+            "Ontdek in slechts 2 minuten met welke doelen jij de beste klik hebt."),
         "introTitle":
-            MessageLookupByLibrary.simpleMessage("Welkom bij  de Givt Wizard!"),
+            MessageLookupByLibrary.simpleMessage("Welkom bij de Givt Wizard"),
         "loadingTitle": MessageLookupByLibrary.simpleMessage("Even wachten..."),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
         "matchesScreen_findOutMore":
