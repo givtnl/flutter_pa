@@ -1,14 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'accent_rounded_button.dart';
-import 'feedback_button.dart';
 
-class FeedbackEmailWidget extends StatelessWidget {
-  late final bool isBiggerThan360;
-  final VoidCallback closeModal;
+import 'accent_rounded_button.dart';
+
+class FeedbackEmailWidget extends StatefulWidget {
+  final Function closeModal;
 
   FeedbackEmailWidget(this.closeModal);
+
+  @override
+  State<FeedbackEmailWidget> createState() => _FeedbackEmailWidgetState();
+}
+
+class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
+  late final bool isBiggerThan360;
+
+  final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +31,17 @@ class FeedbackEmailWidget extends StatelessWidget {
     return Stack(
       children: [
         GestureDetector(
-          onTap: closeModal,
+          onTap: () {
+            this.widget.closeModal();
+          },
           child: Container(
             color: Theme.of(context).backgroundColor.withOpacity(.75),
           ),
         ),
         Center(
           child: SizedBox(
-            width:
-                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
-            height:
-                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
+            width: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
+            height: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -49,7 +63,9 @@ class FeedbackEmailWidget extends StatelessWidget {
                       child: SvgPicture.asset(
                         'assets/svg/krus.svg',
                       ),
-                      onTap: closeModal,
+                      onTap: () {
+                        this.widget.closeModal();
+                      },
                     ),
                   ),
                   Padding(
@@ -72,6 +88,7 @@ class FeedbackEmailWidget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0),
                           child: TextField(
+                            controller: emailController,
                             decoration: new InputDecoration(
                               filled: true,
                               fillColor: Color.fromRGBO(233, 237, 242, 1),
@@ -89,7 +106,7 @@ class FeedbackEmailWidget extends StatelessWidget {
                           ),
                         ),
                         AccentRoundedButton("Ik wiln elpen", () {
-                          closeModal();
+                          widget.closeModal();
                         }, Theme.of(context).buttonColor, true),
                       ],
                     ),

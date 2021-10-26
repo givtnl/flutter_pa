@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
+import 'package:flutter_app/providers/feedback_provider.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
@@ -98,14 +99,16 @@ class _MatchesScreen extends State<MatchesScreen> {
                         });
                       }, () {
                         setState(() {
+                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedback();
                           showFeedbackModal = false;
                           showFeedbackEmailModal = true;
                         });
                       })
                     : Container(),
                 showFeedbackEmailModal
-                    ? FeedbackEmailWidget(() {
+                    ? FeedbackEmailWidget((email) {
                         setState(() {
+                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedbackWithEmail();
                           showFeedbackEmailModal = false;
                         });
                       })
