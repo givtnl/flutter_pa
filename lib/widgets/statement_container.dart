@@ -40,9 +40,9 @@ class _StatementContainerState extends State<StatementContainer> {
             child: AutoSizeText(
               provider.getCurrentQuestionTranslation,
               style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: sizeBigEnough ? 26 : 16),
-              maxLines: 5,
-              wrapWords: false,
-              minFontSize: 5,
+              maxLines: 4,
+              wrapWords: true,
+              minFontSize: 3,
             ),
           ),
           if (provider.getCurrentQuestion != null && provider.getCurrentQuestion!.metaTags != null && provider.getCurrentQuestion!.metaTags["explanation_nl"] != null)
@@ -69,7 +69,9 @@ class _StatementContainerState extends State<StatementContainer> {
                     ),
                   ),
                   onTap: () {
-                    MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SKIP"});
+                    MixpanelManager.mixpanel.track("CLICKED", properties: {
+                      "BUTTON_NAME": "SKIP"
+                    });
                     provider.skipCurrentQuestion();
                     if (provider.isCompleted) {
                       Navigator.of(context).pushNamed(MatchesScreen.routeName);
@@ -101,7 +103,10 @@ class _StatementContainerState extends State<StatementContainer> {
                     });
                   },
                   onChangeEnd: (value) {
-                    MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {"STATEMENT_ID": "${provider.getCurrentQuestion!.id}", "VALUE": "${value.toStringAsFixed(0)}"});
+                    MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {
+                      "STATEMENT_ID": "${provider.getCurrentQuestion!.id}",
+                      "VALUE": "${value.toStringAsFixed(0)}"
+                    });
                   },
                 )),
           ),
