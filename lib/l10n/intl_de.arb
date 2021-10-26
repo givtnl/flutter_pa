@@ -35,5 +35,16 @@
     "app_mainTitle": "Givt Wizard",
     "introPrivacyPolicyLink": "",
     "privacyPolicyTitle": "",
-    "privacyPolicy": ""
+    "privacyPolicy": "",
+    "title in the feedback widget": {
+        "feedbackWidget_title": ""
+    },
+    "subtitle in the feedback widget": {
+        "feedbackWidget_subTitle": ""
+    },
+    "title in the feedback email widget": {
+        "feedbackEmailWidget_title": "",
+        "feedbackEmailWidget_subTitle": ""
+    },
+    "feedbackEmailWidget_mainButton": ""
 }
