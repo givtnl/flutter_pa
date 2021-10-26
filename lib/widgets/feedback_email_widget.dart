@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'accent_rounded_button.dart';
@@ -75,13 +76,13 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 15.0),
                           child: Text(
-                            "Jouw feedback geeft ons richting",
+                           S.of(context).feedbackEmailWidget_title,
                             style: Theme.of(context).textTheme.headline2,
                             textAlign: TextAlign.center,
                           ),
                         ),
                         Text(
-                          "Vul je emailadres in en we contacteren je voor een gesprekje.",
+                          S.of(context).feedbackEmailWidget_subTitle,
                           style: Theme.of(context).textTheme.bodyText2,
                           textAlign: TextAlign.center,
                         ),
@@ -105,7 +106,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                             ),
                           ),
                         ),
-                        AccentRoundedButton("Ik wiln elpen", () {
+                        AccentRoundedButton(S.of(context).feedbackEmailWidget_mainButton, () {
                           widget.closeModal();
                         }, Theme.of(context).buttonColor, true),
                       ],

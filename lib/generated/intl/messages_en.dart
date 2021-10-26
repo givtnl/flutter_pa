@@ -37,6 +37,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("totally agree"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("totally disagree"),
+        "feedbackEmailWidget_mainButton":
+            MessageLookupByLibrary.simpleMessage(""),
+        "feedbackEmailWidget_subTitle":
+            MessageLookupByLibrary.simpleMessage(""),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(""),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(""),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(""),
         "fetchingQuestions": MessageLookupByLibrary.simpleMessage(
             "We\'re fetching the questions!"),
         "introButton":
@@ -68,6 +75,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This matters to you both:"),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage("You match!"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage(
+            "We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt\'s service.\n\nDo you want to know more about what this service entails? Visit our website: www.givtapp.net or send us an email at info@givtapp.net"),
+        "privacyPolicyTitle":
+            MessageLookupByLibrary.simpleMessage("Privacy policy"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("animals"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("art and culture"),

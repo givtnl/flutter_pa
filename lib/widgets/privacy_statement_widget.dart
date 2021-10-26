@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PrivacyStatementWidget extends StatelessWidget {
@@ -49,17 +50,9 @@ class PrivacyStatementWidget extends StatelessWidget {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 20.0),
-                                    child: Text("PRIVACY VERKLARING", style: Theme.of(context).textTheme.headline2),
+                                    child: Text(S.of(context).privacyPolicyTitle, style: Theme.of(context).textTheme.headline2),
                                   ),
-                                  Text("""Wij zetten geen cookies op het apparaat waarmee je de Givt Wizard doorloopt. Wij verzamelen ook geen persoonsgegevens of IP-adressen.
-
-De keuzes die je maakt worden zonder persoonlijke identificatie naar de server gestuurd en we registreren ook op welke knoppen je drukt. Op die manier komen wij te weten hoe de Givt Wizard wordt gebruikt. En dat is helemaal anoniem.
-
-Aan het einde van de Givt Wizard krijg je een resultaat dat je later alleen maar nog een keer kunt opvragen als je je e-mailadres achterlaat. Waartoe je niet verplicht wordt.
-
-Als je je e-mailadres achterlaat bestaat er de kans dat je een e-mailtje van ons krijgt met de vraag om ons te helpen de service van Givt te verbeteren.
-
-Wil je meer weten wat die service inhoudt? Bezoek dan onze website: www.givtapp.net of stuur ons een mailtje op info@givtapp.net"""),
+                                  Text(S.of(context).privacyPolicy),
                                 ],
                               ),
                             ),

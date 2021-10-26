@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'feedback_button.dart';
@@ -65,13 +66,13 @@ class FeedbackWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 15.0),
                         child: Text(
-                          "Wat vind je van de Givt Wizard?",
+                          S.of(context).feedbackWidget_title,
                           style: Theme.of(context).textTheme.headline2,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Text(
-                        "Hoe zou je je ervaring met de Givt Wizard beoordelen?",
+                        S.of(context).feedbackWidget_title,
                         style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.center,
                       ),

@@ -399,6 +399,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Privacy policy`
+  String get privacyPolicyTitle {
+    return Intl.message(
+      'Privacy policy',
+      name: 'privacyPolicyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt's service.\n\nDo you want to know more about what this service entails? Visit our website: www.givtapp.net or send us an email at info@givtapp.net`
+  String get privacyPolicy {
+    return Intl.message(
+      'We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt\'s service.\n\nDo you want to know more about what this service entails? Visit our website: www.givtapp.net or send us an email at info@givtapp.net',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get feedbackWidget_title {
+    return Intl.message(
+      '',
+      name: 'feedbackWidget_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get feedbackWidget_subTitle {
+    return Intl.message(
+      '',
+      name: 'feedbackWidget_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get feedbackEmailWidget_title {
+    return Intl.message(
+      '',
+      name: 'feedbackEmailWidget_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get feedbackEmailWidget_subTitle {
+    return Intl.message(
+      '',
+      name: 'feedbackEmailWidget_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get feedbackEmailWidget_mainButton {
+    return Intl.message(
+      '',
+      name: 'feedbackEmailWidget_mainButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

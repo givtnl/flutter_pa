@@ -37,6 +37,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("helemaal eens"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("helemaal oneens"),
+        "feedbackEmailWidget_mainButton":
+            MessageLookupByLibrary.simpleMessage("Ik wil helpen!"),
+        "feedbackEmailWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Vul je emailadres in en we contacteren je voor een gesprekje."),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Jouw feedback geeft ons richting"),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Hoe zou je je ervaring met de Givt Wizard beoordelen?"),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Wat vind je van de Givt Wizard?"),
         "fetchingQuestions":
             MessageLookupByLibrary.simpleMessage("We halen de vragen op!"),
         "introButton":
@@ -70,6 +80,10 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Dit vinden jullie allebei belangrijk:"),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage("Jullie matchen!"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage(
+            "Wij zetten geen cookies op het apparaat waarmee je de Givt Wizard doorloopt. Wij verzamelen ook geen persoonsgegevens of IP-adressen.\n\nDe keuzes die je maakt worden zonder persoonlijke identificatie naar de server gestuurd en we registreren ook op welke knoppen je drukt. Op die manier komen wij te weten hoe de Givt Wizard wordt gebruikt. En dat is helemaal anoniem.\n\nAan het einde van de Givt Wizard krijg je een resultaat dat je later alleen maar nog een keer kunt opvragen als je je e-mailadres achterlaat. Waartoe je niet verplicht wordt.\n\nAls je je e-mailadres achterlaat bestaat er de kans dat je een e-mailtje van ons krijgt met de vraag om ons te helpen de service van Givt te verbeteren.\n\nWil je meer weten wat die service inhoudt? Bezoek dan onze website: www.givtapp.net of stuur ons een mailtje op info@givtapp.net"),
+        "privacyPolicyTitle":
+            MessageLookupByLibrary.simpleMessage("Privacy verklaring"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("dieren"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("kunst en cultuur"),

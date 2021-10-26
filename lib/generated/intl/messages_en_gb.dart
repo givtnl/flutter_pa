@@ -37,6 +37,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("totally agree"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("totally disagree"),
+        "feedbackEmailWidget_mainButton":
+            MessageLookupByLibrary.simpleMessage(""),
+        "feedbackEmailWidget_subTitle":
+            MessageLookupByLibrary.simpleMessage(""),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(""),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(""),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(""),
         "fetchingQuestions": MessageLookupByLibrary.simpleMessage(
             "We\'re fetching the questions!"),
         "introButton":
@@ -68,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This matters to you both:"),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage("You match!"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicyTitle": MessageLookupByLibrary.simpleMessage(""),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("animals"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("art and culture"),

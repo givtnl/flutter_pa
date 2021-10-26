@@ -39,6 +39,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("völlig einverstanden"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("völlig anderer Meinung"),
+        "feedbackEmailWidget_mainButton":
+            MessageLookupByLibrary.simpleMessage(""),
+        "feedbackEmailWidget_subTitle":
+            MessageLookupByLibrary.simpleMessage(""),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(""),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(""),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(""),
         "fetchingQuestions":
             MessageLookupByLibrary.simpleMessage("Wir sammeln die Fragen!"),
         "introButton": MessageLookupByLibrary.simpleMessage("zur Givt Wizard"),
@@ -69,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(""),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicyTitle": MessageLookupByLibrary.simpleMessage(""),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Tiere"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("Kunst und Kultur"),
