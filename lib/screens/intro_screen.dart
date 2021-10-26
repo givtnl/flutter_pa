@@ -80,17 +80,17 @@ class _IntroScreenState extends State<IntroScreen> {
                       SizedBox(
                         height: 40,
                         width: double.infinity,
-                        child: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                showPrivacyStatement = true;
-                              });
-                            },
-                            child: Container(
-                              height: 25,
-                              alignment: Alignment.center,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showPrivacyStatement = true;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            alignment: Alignment.center,
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
                               child: Text(
                                 S.of(context).introPrivacyPolicyLink,
                                 style: TextStyle(
@@ -134,18 +134,19 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                 ),
               ),
-              if (showPrivacyStatement) PrivacyStatementWidget(() {
-                setState(() {
-                  showPrivacyStatement = false;
-                });
-              })
+              if (showPrivacyStatement)
+                PrivacyStatementWidget(() {
+                  setState(() {
+                    showPrivacyStatement = false;
+                  });
+                })
             ],
           ),
         ),
       ),
     );
     var futureBuilder = new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 1), () => { questionnaireProvider.loadQuestions()}),
+        future: Future.delayed(const Duration(seconds: 1), () => {questionnaireProvider.loadQuestions()}),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
