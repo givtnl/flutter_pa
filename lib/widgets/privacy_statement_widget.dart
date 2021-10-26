@@ -1,6 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mailto/mailto.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PrivacyStatementWidget extends StatelessWidget {
   final VoidCallback voidTapAction;
@@ -9,7 +12,6 @@ class PrivacyStatementWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     var portrait = size.height > size.width;
 
@@ -52,7 +54,34 @@ class PrivacyStatementWidget extends StatelessWidget {
                                     padding: const EdgeInsets.only(bottom: 20.0),
                                     child: Text(S.of(context).privacyPolicyTitle, style: Theme.of(context).textTheme.headline2),
                                   ),
-                                  Text(S.of(context).privacyPolicy),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(text: S.of(context).privacyPolicy_Pt1, style: TextStyle(color: Theme.of(context).primaryColor)),
+                                        TextSpan(
+                                            text: S.of(context).privacyPolicy_Pt2_website,
+                                            style: TextStyle(
+                                              decoration: TextDecoration.underline,
+                                              color: Theme.of(context).primaryColor,
+                                            ),
+                                            recognizer: new TapGestureRecognizer()
+                                              ..onTap = () {
+                                                launch('https://www.givtapp.net');
+                                              }),
+                                        TextSpan(text: " ${S.of(context).privacyPolicy_Pt3}", style: TextStyle(color: Theme.of(context).primaryColor)),
+                                        TextSpan(
+                                            text: S.of(context).privacyPolicy_Pt4_email,
+                                            style: TextStyle(
+                                              decoration: TextDecoration.underline,
+                                              color: Theme.of(context).primaryColor,
+                                            ),
+                                            recognizer: new TapGestureRecognizer()
+                                              ..onTap = () {
+                                                launch('mailto:info@givtapp.net');
+                                              }),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

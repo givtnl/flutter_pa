@@ -54,7 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(
             "Geen zorgen, je hoeft geen persoonlijke informatie  te delen om je resultaten te bekijken!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Ontdek welke doelen aansluiten bij jouw waarden, normen en identiteit."),
+            "Ontdek in slechts 2 minuten met welke doelen jij  de beste klik hebt."),
         "introTitle":
             MessageLookupByLibrary.simpleMessage("Welkom bij  de Givt Wizard!"),
         "loadingTitle": MessageLookupByLibrary.simpleMessage("Even wachten..."),
@@ -80,10 +80,16 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Dit vinden jullie allebei belangrijk:"),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage("Jullie matchen!"),
-        "privacyPolicy": MessageLookupByLibrary.simpleMessage(
-            "Wij zetten geen cookies op het apparaat waarmee je de Givt Wizard doorloopt. Wij verzamelen ook geen persoonsgegevens of IP-adressen.\n\nDe keuzes die je maakt worden zonder persoonlijke identificatie naar de server gestuurd en we registreren ook op welke knoppen je drukt. Op die manier komen wij te weten hoe de Givt Wizard wordt gebruikt. En dat is helemaal anoniem.\n\nAan het einde van de Givt Wizard krijg je een resultaat dat je later alleen maar nog een keer kunt opvragen als je je e-mailadres achterlaat. Waartoe je niet verplicht wordt.\n\nAls je je e-mailadres achterlaat bestaat er de kans dat je een e-mailtje van ons krijgt met de vraag om ons te helpen de service van Givt te verbeteren.\n\nWil je meer weten wat die service inhoudt? Bezoek dan onze website: www.givtapp.net of stuur ons een mailtje op info@givtapp.net"),
         "privacyPolicyTitle":
-            MessageLookupByLibrary.simpleMessage("Privacy verklaring"),
+            MessageLookupByLibrary.simpleMessage("Privacyverklaring"),
+        "privacyPolicy_Pt1": MessageLookupByLibrary.simpleMessage(
+            "Wij zetten geen cookies op het apparaat waarmee je de Givt Wizard doorloopt. Wij verzamelen ook geen persoonsgegevens of IP-adressen.\n\nDe keuzes die je maakt worden zonder persoonlijke identificatie naar de server gestuurd en we registreren ook op welke knoppen je drukt. Op die manier komen wij te weten hoe de Givt Wizard wordt gebruikt. En dat is helemaal anoniem.\n\nAan het einde van de Givt Wizard krijg je een resultaat dat je later alleen maar nog een keer kunt opvragen als je je e-mailadres achterlaat. Waartoe je niet verplicht wordt.\n\nAls je je e-mailadres achterlaat bestaat er de kans dat je een e-mailtje van ons krijgt met de vraag om ons te helpen de service van Givt te verbeteren.\n\nWil je meer weten wat die service inhoudt? Bezoek dan onze website: "),
+        "privacyPolicy_Pt2_website":
+            MessageLookupByLibrary.simpleMessage("www.givtapp.net"),
+        "privacyPolicy_Pt3": MessageLookupByLibrary.simpleMessage(
+            "of stuur ons een mailtje op "),
+        "privacyPolicy_Pt4_email":
+            MessageLookupByLibrary.simpleMessage("info@givtapp.net"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("dieren"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("kunst en cultuur"),

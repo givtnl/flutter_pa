@@ -76,8 +76,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(""),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage(""),
-        "privacyPolicy": MessageLookupByLibrary.simpleMessage(""),
         "privacyPolicyTitle": MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicy_Pt1": MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicy_Pt2_website": MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicy_Pt3": MessageLookupByLibrary.simpleMessage(""),
+        "privacyPolicy_Pt4_email":
+            MessageLookupByLibrary.simpleMessage("info@givtapp.net"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Tiere"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("Kunst und Kultur"),

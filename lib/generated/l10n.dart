@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Find out which charities match your values, standards and identity.`
+  /// `Discover in just 2 minutes with which goals you feel the most connected.`
   String get introText {
     return Intl.message(
-      'Find out which charities match your values, standards and identity.',
+      'Discover in just 2 minutes with which goals you feel the most connected.',
       name: 'introText',
       desc: '',
       args: [],
@@ -410,11 +410,11 @@ class S {
     );
   }
 
-  /// `We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt's service.\n\nDo you want to know more about what this service entails? Visit our website: www.givtapp.net or send us an email at info@givtapp.net`
-  String get privacyPolicy {
+  /// `We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt's service.\n\nDo you want to know more about what this service entails? Visit our website: `
+  String get privacyPolicy_Pt1 {
     return Intl.message(
-      'We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt\'s service.\n\nDo you want to know more about what this service entails? Visit our website: www.givtapp.net or send us an email at info@givtapp.net',
-      name: 'privacyPolicy',
+      'We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt\'s service.\n\nDo you want to know more about what this service entails? Visit our website: ',
+      name: 'privacyPolicy_Pt1',
       desc: '',
       args: [],
     );
@@ -465,6 +465,36 @@ class S {
     return Intl.message(
       '',
       name: 'feedbackEmailWidget_mainButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `www.givt.co.uk`
+  String get privacyPolicy_Pt2_website {
+    return Intl.message(
+      'www.givt.co.uk',
+      name: 'privacyPolicy_Pt2_website',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or send us an email at `
+  String get privacyPolicy_Pt3 {
+    return Intl.message(
+      'or send us an email at ',
+      name: 'privacyPolicy_Pt3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `info@givtapp.net`
+  String get privacyPolicy_Pt4_email {
+    return Intl.message(
+      'info@givtapp.net',
+      name: 'privacyPolicy_Pt4_email',
       desc: '',
       args: [],
     );
