@@ -130,7 +130,9 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   double get currentProgress {
-    return ((completedQuestions.length) / questions.length) * 100;
+    var progress = completedQuestions.length / questions.length;
+    progress = progress == 0 ? 100/(questions.length * 2) : progress * 100;
+    return progress;
   }
 
   int get screenNumber {
