@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("helemaal oneens"),
         "feedbackEmailWidget_mainButton":
             MessageLookupByLibrary.simpleMessage("Ik wil helpen!"),
+        "feedbackEmailWidget_nonValidEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "Controleer even je e-mailadres"),
         "feedbackEmailWidget_subTitle": MessageLookupByLibrary.simpleMessage(
             "Vul je emailadres in en we contacteren je voor een gesprekje."),
         "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(

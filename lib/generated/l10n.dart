@@ -499,6 +499,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter a valid e-mail address`
+  String get feedbackEmailWidget_nonValidEmail {
+    return Intl.message(
+      'Please enter a valid e-mail address',
+      name: 'feedbackEmailWidget_nonValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

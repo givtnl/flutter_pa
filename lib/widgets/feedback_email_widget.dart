@@ -130,7 +130,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                             widget.sendFeedback(emailController.text);
                           else
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Enter valid email please."),
+                              content: Text(S.of(context).feedbackEmailWidget_nonValidEmail),
                               duration: Duration(seconds: 2),
                             ));
                         }, Theme.of(context).buttonColor, true),
