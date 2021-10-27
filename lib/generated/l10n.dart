@@ -390,10 +390,10 @@ class S {
     );
   }
 
-  /// `No worries, you do not have to share any personal information to see your results!`
+  /// `No worries, we don't need any personal information!`
   String get introPrivacyPolicyLink {
     return Intl.message(
-      'No worries, you do not have to share any personal information to see your results!',
+      'No worries, we don\'t need any personal information!',
       name: 'introPrivacyPolicyLink',
       desc: '',
       args: [],
@@ -420,50 +420,50 @@ class S {
     );
   }
 
-  /// ``
+  /// `Wat vind je van de Givt Wizard?`
   String get feedbackWidget_title {
     return Intl.message(
-      '',
+      'Wat vind je van de Givt Wizard?',
       name: 'feedbackWidget_title',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Hoe zou je je ervaring met de Givt Wizard beoordelen?`
   String get feedbackWidget_subTitle {
     return Intl.message(
-      '',
+      'Hoe zou je je ervaring met de Givt Wizard beoordelen?',
       name: 'feedbackWidget_subTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Jouw feedback geeft ons richting`
   String get feedbackEmailWidget_title {
     return Intl.message(
-      '',
+      'Jouw feedback geeft ons richting',
       name: 'feedbackEmailWidget_title',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Vul je emailadres in en we contacteren je voor een gesprekje.`
   String get feedbackEmailWidget_subTitle {
     return Intl.message(
-      '',
+      'Vul je emailadres in en we contacteren je voor een gesprekje.',
       name: 'feedbackEmailWidget_subTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Ik wil helpen!`
   String get feedbackEmailWidget_mainButton {
     return Intl.message(
-      '',
+      'Ik wil helpen!',
       name: 'feedbackEmailWidget_mainButton',
       desc: '',
       args: [],

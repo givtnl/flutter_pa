@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introButton":
             MessageLookupByLibrary.simpleMessage("naar de Givt Wizard"),
         "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(
-            "Geen zorgen, je hoeft geen persoonlijke informatie te delen om je resultaten te bekijken!"),
+            "Geen zorgen, we hebben geen persoonlijke informatie nodig!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Ontdek in slechts 2 minuten met welke doelen jij de beste klik hebt."),
         "introTitle":

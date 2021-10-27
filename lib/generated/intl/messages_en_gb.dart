@@ -38,18 +38,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("totally disagree"),
         "feedbackEmailWidget_mainButton":
-            MessageLookupByLibrary.simpleMessage(""),
-        "feedbackEmailWidget_subTitle":
-            MessageLookupByLibrary.simpleMessage(""),
-        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(""),
-        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(""),
-        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Ik wil helpen!"),
+        "feedbackEmailWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Vul je emailadres in en we contacteren je voor een gesprekje."),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Jouw feedback geeft ons richting"),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Hoe zou je je ervaring met de Givt Wizard beoordelen?"),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Wat vind je van de Givt Wizard?"),
         "fetchingQuestions": MessageLookupByLibrary.simpleMessage(
             "We\'re fetching the questions!"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("to the Givt Wizard"),
         "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(
-            "No worries, you do not have to share any personal information to see your results!"),
+            "No worries, we don\'t need any personal information!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Discover in just 2 minutes with which goals you feel the most connected."),
         "introTitle":

@@ -40,22 +40,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("völlig anderer Meinung"),
         "feedbackEmailWidget_mainButton":
-            MessageLookupByLibrary.simpleMessage(""),
-        "feedbackEmailWidget_subTitle":
-            MessageLookupByLibrary.simpleMessage(""),
-        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(""),
-        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(""),
-        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Ik wil helpen!"),
+        "feedbackEmailWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Vul je emailadres in en we contacteren je voor een gesprekje."),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Jouw feedback geeft ons richting"),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Hoe zou je je ervaring met de Givt Wizard beoordelen?"),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Wat vind je van de Givt Wizard?"),
         "fetchingQuestions":
             MessageLookupByLibrary.simpleMessage("Wir sammeln die Fragen!"),
         "introButton": MessageLookupByLibrary.simpleMessage("zur Givt Wizard"),
-        "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(""),
+        "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(
+            "Geen zorgen, we hebben geen persoonlijke informatie nodig!"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Finden Sie heraus, welche Wohltätigkeitsorganisationen Ihren Werten, Normen und Ihrer Identität entsprechen."),
         "introTitle": MessageLookupByLibrary.simpleMessage(
             "Willkommen bei der Givt Wizard!"),
-        "loadingTitle": MessageLookupByLibrary.simpleMessage(""),
-        "matchCircle_match": MessageLookupByLibrary.simpleMessage(""),
+        "loadingTitle": MessageLookupByLibrary.simpleMessage("Even wachten..."),
+        "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
         "matchesScreen_findOutMore":
             MessageLookupByLibrary.simpleMessage("entdecke mehr"),
         "matchesScreen_subtitleText": MessageLookupByLibrary.simpleMessage(
@@ -65,21 +69,26 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Ihre persönlichen Vorschläge"),
         "nextButton": MessageLookupByLibrary.simpleMessage("nächste"),
         "organisationDetailScreen_giveButton":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("geven"),
         "organisationDetailScreen_mission":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Missie"),
         "organisationDetailScreen_vision":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Visie"),
         "organisationDetailScreen_visitWebsite":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("bezoek de website"),
         "organisationDetailScreen_youMatchSubTitle":
-            MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage(
+                "Dit vinden jullie allebei belangrijk:"),
         "organisationDetailScreen_youMatchTitle":
-            MessageLookupByLibrary.simpleMessage(""),
-        "privacyPolicyTitle": MessageLookupByLibrary.simpleMessage(""),
-        "privacyPolicy_Pt1": MessageLookupByLibrary.simpleMessage(""),
-        "privacyPolicy_Pt2_website": MessageLookupByLibrary.simpleMessage(""),
-        "privacyPolicy_Pt3": MessageLookupByLibrary.simpleMessage(""),
+            MessageLookupByLibrary.simpleMessage("Jullie matchen!"),
+        "privacyPolicyTitle":
+            MessageLookupByLibrary.simpleMessage("Privacyverklaring"),
+        "privacyPolicy_Pt1": MessageLookupByLibrary.simpleMessage(
+            "Wij zetten geen cookies op het apparaat waarmee je de Givt Wizard doorloopt. Wij verzamelen ook geen persoonsgegevens of IP-adressen.\n\nDe keuzes die je maakt worden zonder persoonlijke identificatie naar de server gestuurd en we registreren ook op welke knoppen je drukt. Op die manier komen wij te weten hoe de Givt Wizard wordt gebruikt. En dat is helemaal anoniem.\n\nAan het einde van de Givt Wizard krijg je een resultaat dat je later alleen maar nog een keer kunt opvragen als je je e-mailadres achterlaat. Waartoe je niet verplicht wordt.\n\nAls je je e-mailadres achterlaat bestaat er de kans dat je een e-mailtje van ons krijgt met de vraag om ons te helpen de service van Givt te verbeteren.\n\nWil je meer weten wat die service inhoudt? Bezoek dan onze website: "),
+        "privacyPolicy_Pt2_website":
+            MessageLookupByLibrary.simpleMessage("www.givtapp.net"),
+        "privacyPolicy_Pt3": MessageLookupByLibrary.simpleMessage(
+            "of stuur ons een mailtje op "),
         "privacyPolicy_Pt4_email":
             MessageLookupByLibrary.simpleMessage("info@givtapp.net"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("Tiere"),
