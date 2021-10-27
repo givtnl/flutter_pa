@@ -78,7 +78,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        height: 40,
+                        height: 42,
                         width: double.infinity,
                         child: GestureDetector(
                           onTap: () {
@@ -87,7 +87,7 @@ class _IntroScreenState extends State<IntroScreen> {
                             });
                           },
                           child: Container(
-                            height: 25,
+                            margin: EdgeInsets.only(bottom: 10.0),
                             alignment: Alignment.center,
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
@@ -96,7 +96,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                 style: TextStyle(
                                   fontFamily: "Montserrat",
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 10,
+                                  fontSize: 11,
                                   decoration: TextDecoration.underline,
                                   color: LightTheme.mediumBlueColor,
                                 ),
@@ -146,7 +146,11 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
     );
     var futureBuilder = new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 1), () => {questionnaireProvider.loadQuestions()}),
+        future: Future.delayed(
+            const Duration(seconds: 1),
+            () => {
+                  questionnaireProvider.loadQuestions()
+                }),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
