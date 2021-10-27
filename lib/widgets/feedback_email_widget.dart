@@ -16,6 +16,7 @@ class FeedbackEmailWidget extends StatefulWidget {
 }
 
 class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
+
   bool isBiggerThan360 = false;
 
   final emailController = TextEditingController();
@@ -33,9 +34,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {
-            this.widget.closeModal();
-          },
+          onTap: this.widget.closeModal,
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: Container(
@@ -112,7 +111,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                           ),
                         ),
                         AccentRoundedButton(S.of(context).feedbackEmailWidget_mainButton, () {
-                          widget.closeModal();
+                          widget.sendFeedback(emailController.text);
                         }, Theme.of(context).buttonColor, true),
                       ],
                     ),
