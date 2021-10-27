@@ -43,5 +43,6 @@
     "feedbackEmailWidget_mainButton": "Ik wil helpen!",
     "privacyPolicy_Pt2_website": "www.givtapp.net",
     "privacyPolicy_Pt3": "of stuur ons een mailtje op ",
-    "privacyPolicy_Pt4_email": "info@givtapp.net"
+    "privacyPolicy_Pt4_email": "info@givtapp.net",
+    "feedbackEmailWidget_nonValidEmail": "Controleer even je e-mailadres"
 }
