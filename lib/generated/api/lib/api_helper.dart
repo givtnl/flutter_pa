@@ -61,6 +61,9 @@ String parameterToString(dynamic value) {
   if (value is QuestionType) {
     return QuestionTypeTypeTransformer().encode(value).toString();
   }
+  if (value is UserFeedback) {
+    return UserFeedbackTypeTransformer().encode(value).toString();
+  }
   return value.toString();
 }
 

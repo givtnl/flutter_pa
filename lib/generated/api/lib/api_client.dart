@@ -206,6 +206,8 @@ class ApiClient {
           return CreateQuestionResponse.fromJson(value);
         case 'CreateQuestionStatementRequestOptions':
           return CreateQuestionStatementRequestOptions.fromJson(value);
+        case 'CreateUserFeedbackRequest':
+          return CreateUserFeedbackRequest.fromJson(value);
         case 'GetOrganisationTagsResponse':
           return GetOrganisationTagsResponse.fromJson(value);
         case 'GetQuestionsListResponse':
@@ -226,6 +228,9 @@ class ApiClient {
           return QuestionStatementModel.fromJson(value);
         case 'QuestionType':
           return QuestionTypeTypeTransformer().decode(value);
+          
+        case 'UserFeedback':
+          return UserFeedbackTypeTransformer().decode(value);
           
         case 'UserOrganisationMatchListModel':
           return UserOrganisationMatchListModel.fromJson(value);

@@ -27,6 +27,7 @@ part 'auth/http_basic_auth.dart';
 part 'auth/http_bearer_auth.dart';
 
 part 'api/answers_api.dart';
+part 'api/feedback_api.dart';
 part 'api/matches_api.dart';
 part 'api/organisation_matches_api.dart';
 part 'api/organisation_tags_api.dart';
@@ -41,6 +42,7 @@ part 'model/create_question_category_request_options.dart';
 part 'model/create_question_request.dart';
 part 'model/create_question_response.dart';
 part 'model/create_question_statement_request_options.dart';
+part 'model/create_user_feedback_request.dart';
 part 'model/get_organisation_tags_response.dart';
 part 'model/get_questions_list_response.dart';
 part 'model/get_user_organisation_matches_list_response.dart';
@@ -51,6 +53,7 @@ part 'model/question_category_option_model.dart';
 part 'model/question_list_model.dart';
 part 'model/question_statement_model.dart';
 part 'model/question_type.dart';
+part 'model/user_feedback.dart';
 part 'model/user_organisation_match_list_model.dart';
 part 'model/user_organisation_tag_match_list_model.dart';
 
