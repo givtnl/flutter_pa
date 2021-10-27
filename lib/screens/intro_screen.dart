@@ -28,6 +28,9 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var portrait = size.height > size.width;
+
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
     var screen = TrackedScreen(
@@ -39,7 +42,7 @@ class _IntroScreenState extends State<IntroScreen> {
             children: [
               BackgroundWidget(),
               Align(
-                alignment: Alignment.topLeft,
+                alignment: portrait ? Alignment.topLeft : Alignment.topCenter,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
                   child: SvgPicture.asset(
@@ -53,7 +56,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: portrait ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                     children: [
                       Text(
                         S.of(context).introTitle,
@@ -78,7 +81,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        height: 42,
+                        height: 40,
                         width: double.infinity,
                         child: GestureDetector(
                           onTap: () {
@@ -87,7 +90,7 @@ class _IntroScreenState extends State<IntroScreen> {
                             });
                           },
                           child: Container(
-                            margin: EdgeInsets.only(bottom: 10.0),
+                            height: 25,
                             alignment: Alignment.center,
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
@@ -96,7 +99,7 @@ class _IntroScreenState extends State<IntroScreen> {
                                 style: TextStyle(
                                   fontFamily: "Montserrat",
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   decoration: TextDecoration.underline,
                                   color: LightTheme.mediumBlueColor,
                                 ),
@@ -128,7 +131,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         },
                         fontSize: 16,
                         height: 45,
-                        webWidth: 600.0,
+                        webWidth: 350.0,
                       ),
                     ],
                   ),
@@ -146,11 +149,7 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
     );
     var futureBuilder = new FutureBuilder(
-        future: Future.delayed(
-            const Duration(seconds: 1),
-            () => {
-                  questionnaireProvider.loadQuestions()
-                }),
+        future: Future.delayed(const Duration(seconds: 1), () => {questionnaireProvider.loadQuestions()}),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
