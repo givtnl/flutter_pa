@@ -95,6 +95,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                           child: Form(
                             autovalidateMode: AutovalidateMode.always,
                             child: TextFormField(
+                              keyboardType: TextInputType.emailAddress,
                               validator: validateEmail,
                               controller: emailController,
                               decoration: new InputDecoration(
@@ -125,7 +126,13 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                           ),
                         ),
                         AccentRoundedButton(S.of(context).feedbackEmailWidget_mainButton, () {
-                          widget.sendFeedback(emailController.text);
+                          if (validateEmail(emailController.text) == null)
+                            widget.sendFeedback(emailController.text);
+                          else
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Enter valid email please."),
+                              duration: Duration(seconds: 2),
+                            ));
                         }, Theme.of(context).buttonColor, true),
                       ],
                     ),
