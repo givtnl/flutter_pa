@@ -73,7 +73,7 @@ class FeedbackWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        S.of(context).feedbackWidget_title,
+                        S.of(context).feedbackWidget_subTitle,
                         style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.center,
                       ),
