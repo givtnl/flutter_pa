@@ -16,7 +16,7 @@ class FeedbackEmailWidget extends StatefulWidget {
 }
 
 class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
-  late final bool isBiggerThan360;
+  bool isBiggerThan360 = false;
 
   final emailController = TextEditingController();
 
@@ -81,7 +81,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 15.0),
                           child: Text(
-                           S.of(context).feedbackEmailWidget_title,
+                            S.of(context).feedbackEmailWidget_title,
                             style: Theme.of(context).textTheme.headline2,
                             textAlign: TextAlign.center,
                           ),
