@@ -92,20 +92,34 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: TextField(
-                            controller: emailController,
-                            decoration: new InputDecoration(
-                              filled: true,
-                              fillColor: Color.fromRGBO(233, 237, 242, 1),
-                              hintText: 'Username',
-                              contentPadding: const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: new BorderSide(color: Colors.white),
-                                borderRadius: new BorderRadius.only(bottomRight: Radius.circular(25)),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: new BorderSide(color: Colors.white),
-                                borderRadius: new BorderRadius.only(bottomRight: Radius.circular(25)),
+                          child: Form(
+                            autovalidateMode: AutovalidateMode.always,
+                            child: TextFormField(
+                              validator: validateEmail,
+                              controller: emailController,
+                              decoration: new InputDecoration(
+                                errorText: null,
+                                errorStyle: TextStyle(height: 0),
+                                filled: true,
+                                fillColor: Color.fromRGBO(233, 237, 242, 1),
+                                hintText: 'Email',
+                                contentPadding: const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.red),
+                                  borderRadius: new BorderRadius.only(bottomRight: Radius.circular(25)),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.red),
+                                  borderRadius: new BorderRadius.only(bottomRight: Radius.circular(25)),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.white),
+                                  borderRadius: new BorderRadius.only(bottomRight: Radius.circular(25)),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.white),
+                                  borderRadius: new BorderRadius.only(bottomRight: Radius.circular(25)),
+                                ),
                               ),
                             ),
                           ),
@@ -123,5 +137,13 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
         )
       ],
     );
+  }
+
+  String? validateEmail(String? value) {
+    RegExp regex = new RegExp("(?:[a-z0-9A-Z!#\$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9A-Z!#\$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+    if (value == null || !regex.hasMatch(value))
+      return "";
+    else
+      return null;
   }
 }
