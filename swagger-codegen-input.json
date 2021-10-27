@@ -44,15 +44,8 @@
           "x-position": 2
         },
         "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateQuestionResponse"
-                }
-              }
-            }
+          "204": {
+            "description": ""
           }
         }
       }
@@ -90,16 +83,8 @@
           "x-position": 2
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
+          "204": {
+            "description": ""
           }
         }
       }
@@ -334,15 +319,6 @@
   },
   "components": {
     "schemas": {
-      "CreateQuestionResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          }
-        }
-      },
       "CreateAnswerRequest": {
         "type": "object",
         "additionalProperties": false,
@@ -710,6 +686,15 @@
               "type": "integer",
               "format": "int32"
             }
+          }
+        }
+      },
+      "CreateQuestionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
           }
         }
       },

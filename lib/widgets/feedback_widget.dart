@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
+import 'package:flutter_app/models/UserFeedback.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'feedback_button.dart';
@@ -8,21 +9,15 @@ import 'feedback_button.dart';
 class FeedbackWidget extends StatelessWidget {
   late final bool isBiggerThan360;
   final VoidCallback closeModal;
-  final VoidCallback giveFeedback;
+  final Function giveFeedback;
 
   FeedbackWidget(this.closeModal, this.giveFeedback);
 
   @override
   Widget build(BuildContext context) {
     isBiggerThan360 = MediaQuery.of(context).size.width > 360;
-    List<String> opinions = [
-      'very-sad',
-      'sad',
-      'neutral',
-      'happy',
-      'very-happy',
-    ];
-    List<FeedbackButton> buttons = opinions.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
+
+    List<FeedbackButton> buttons = UserFeedback.values.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
 
     return Stack(
       children: [

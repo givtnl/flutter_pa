@@ -20,7 +20,7 @@ void main() {
     //
     // Registers feedback and the email from a specific user linked to an userid.
     //
-    //Future<MultipartFile> createFeedback(String userId, CreateUserFeedbackRequest createUserFeedbackRequest) async
+    //Future createFeedback(String userId, CreateUserFeedbackRequest createUserFeedbackRequest) async
     test('test createFeedback', () async {
       // TODO
     });

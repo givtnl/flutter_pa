@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
+import 'package:flutter_app/models/UserFeedback.dart';
 import 'package:flutter_app/providers/feedback_provider.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
@@ -25,8 +26,11 @@ class _MatchesScreen extends State<MatchesScreen> {
 
   var showFeedbackEmailModal = false;
 
+  UserFeedback? feedback;
+
   Widget buildWidget(BuildContext context) {
     var provider = Provider.of<MatchesProvider>(context, listen: false);
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
     var matches = provider.organisationMatches;
 
     return WillPopScope(
@@ -97,9 +101,9 @@ class _MatchesScreen extends State<MatchesScreen> {
                         setState(() {
                           showFeedbackModal = false;
                         });
-                      }, () {
+                      }, (feedback) {
                         setState(() {
-                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedback();
+                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback, userProvider.userName);
                           showFeedbackModal = false;
                           showFeedbackEmailModal = true;
                         });
@@ -108,10 +112,10 @@ class _MatchesScreen extends State<MatchesScreen> {
                 showFeedbackEmailModal
                     ? FeedbackEmailWidget((email) {
                         setState(() {
-                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedbackWithEmail();
+                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback!, userProvider.userName, email: email);
                           showFeedbackEmailModal = false;
                         });
-                      })
+                      }, () { showFeedbackEmailModal = false; })
                     : Container()
               ],
             ),

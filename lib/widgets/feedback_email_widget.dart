@@ -6,9 +6,10 @@ import 'package:flutter_svg/svg.dart';
 import 'accent_rounded_button.dart';
 
 class FeedbackEmailWidget extends StatefulWidget {
-  final Function closeModal;
+  final Function sendFeedback;
+  final VoidCallback closeModal;
 
-  FeedbackEmailWidget(this.closeModal);
+  FeedbackEmailWidget(this.sendFeedback, this.closeModal);
 
   @override
   State<FeedbackEmailWidget> createState() => _FeedbackEmailWidgetState();
@@ -70,9 +71,7 @@ class _FeedbackEmailWidgetState extends State<FeedbackEmailWidget> {
                           'assets/svg/krus.svg',
                         ),
                       ),
-                      onTap: () {
-                        this.widget.closeModal();
-                      },
+                      onTap: this.widget.closeModal,
                     ),
                   ),
                   Padding(

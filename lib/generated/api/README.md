@@ -45,8 +45,7 @@ final questionId = questionId_example; // String |
 final createAnswerRequest = CreateAnswerRequest(); // CreateAnswerRequest | 
 
 try {
-    final result = api_instance.createAnswer(questionId, createAnswerRequest);
-    print(result);
+    api_instance.createAnswer(questionId, createAnswerRequest);
 } catch (e) {
     print('Exception when calling AnswersApi->createAnswer: $e\n');
 }

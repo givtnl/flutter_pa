@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **createAnswer**
-> CreateQuestionResponse createAnswer(questionId, createAnswerRequest)
+> createAnswer(questionId, createAnswerRequest)
 
 Answers a question
 
@@ -28,8 +28,7 @@ final questionId = questionId_example; // String |
 final createAnswerRequest = CreateAnswerRequest(); // CreateAnswerRequest | 
 
 try {
-    final result = api_instance.createAnswer(questionId, createAnswerRequest);
-    print(result);
+    api_instance.createAnswer(questionId, createAnswerRequest);
 } catch (e) {
     print('Exception when calling AnswersApi->createAnswer: $e\n');
 }
@@ -44,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CreateQuestionResponse**](CreateQuestionResponse.md)
+void (empty response body)
 
 ### Authorization
 
@@ -53,7 +52,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

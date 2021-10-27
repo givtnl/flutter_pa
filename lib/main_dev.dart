@@ -6,9 +6,9 @@ import 'main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MixpanelManager.mixpanel.setUrl(URL_DEV + '/tracking');
+  MixpanelManager.mixpanel.setUrl(URL_QA + '/tracking');
   MixpanelManager.mixpanel.flushEvents();
   ErrorWidget.builder = (FlutterErrorDetails details) => ErrorScreen();
-  FlavorConfig(flavor: Flavor.DEV, values: FlavorValues(baseUrl: URL_DEV));
+  FlavorConfig(flavor: Flavor.DEV, values: FlavorValues(baseUrl: URL_QA));
   runApp(MyApp());
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/generated/l10n.dart';
+import 'package:flutter_app/providers/feedback_provider.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
@@ -49,6 +50,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => MatchesProvider.withDependencies(apiClient),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => FeedbackProvider.withDependencies(apiClient),
         ),
       ],
       child: MaterialApp(

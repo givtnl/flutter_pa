@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/models/UserFeedback.dart';
 import 'package:flutter_svg/svg.dart';
 
 class FeedbackButton extends StatelessWidget {
-  late final String name;
-  late final VoidCallback onClick;
+  late final UserFeedback feedback;
+  late final Function onClick;
 
-  FeedbackButton(this.name, this.onClick);
+  FeedbackButton(this.feedback, this.onClick);
 
   @override
   Widget build(BuildContext context) {
-    var test = MediaQuery.of(context).size.width > 360;
-
     return GestureDetector(
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: SizedBox(
           child: SvgPicture.asset(
-            'assets/svg/feedback-modal/' + name + '.svg',
+            'assets/svg/feedback-modal/' + feedback.toString() + '.svg',
           ),
         ),
       ),
-      onTap: onClick,
+      onTap: () {
+        onClick(feedback);
+      },
     );
   }
 }

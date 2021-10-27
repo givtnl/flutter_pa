@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **createFeedback**
-> MultipartFile createFeedback(userId, createUserFeedbackRequest)
+> createFeedback(userId, createUserFeedbackRequest)
 
 Give feedback
 
@@ -28,8 +28,7 @@ final userId = userId_example; // String |
 final createUserFeedbackRequest = CreateUserFeedbackRequest(); // CreateUserFeedbackRequest | 
 
 try {
-    final result = api_instance.createFeedback(userId, createUserFeedbackRequest);
-    print(result);
+    api_instance.createFeedback(userId, createUserFeedbackRequest);
 } catch (e) {
     print('Exception when calling FeedbackApi->createFeedback: $e\n');
 }
@@ -44,7 +43,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MultipartFile**](MultipartFile.md)
+void (empty response body)
 
 ### Authorization
 
@@ -53,7 +52,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/octet-stream
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
