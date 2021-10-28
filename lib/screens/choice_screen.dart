@@ -7,7 +7,6 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/widgets/background_patterns/pattern1.dart';
-import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/questionnaire_body_widget.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
