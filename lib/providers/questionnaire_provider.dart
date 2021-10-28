@@ -71,9 +71,6 @@ class QuestionnaireProvider with ChangeNotifier {
     if (screenNumber != 0) _setPreviousScreenDone();
     this._currentSelectedCategories.clear();
     this._currentSelectedStatementAnswer = 2;
-    MixpanelManager.mixpanel.track("STATEMENT_LOAD", properties: {
-      "STATEMENT_ID": getCurrentQuestion?.id ?? "unknown"
-    });
     notifyListeners();
   }
 
@@ -165,9 +162,6 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   Future<void> saveQuestion(String user) async {
-    MixpanelManager.mixpanel.track("STATEMENT_ANSWER", properties: {
-      "STATEMENT_ID": getCurrentQuestion?.id ?? "unknown"
-    });
     if (getCurrentQuestion!.type == QuestionType.number0) {
       await this
           .answerApi

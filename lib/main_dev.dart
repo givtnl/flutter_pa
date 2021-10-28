@@ -4,10 +4,10 @@ import 'analytics/mixpanel_manager.dart';
 import 'flavors_config.dart';
 import 'main.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MixpanelManager.mixpanel.setUrl(URL_QA + '/tracking');
-  MixpanelManager.mixpanel.flushEvents();
+  await MixpanelManager.mixpanel.flushEvents();
   ErrorWidget.builder = (FlutterErrorDetails details) => ErrorScreen();
   FlavorConfig(flavor: Flavor.DEV, values: FlavorValues(baseUrl: URL_QA));
   runApp(MyApp());

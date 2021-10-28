@@ -20,7 +20,6 @@ class CategoryCard extends StatefulWidget {
 }
 
 class _CategoryCardState extends State<CategoryCard> {
-
   var sizeBigEnough = true;
 
   @override
@@ -81,10 +80,12 @@ class _CategoryCardState extends State<CategoryCard> {
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 50),
       child: GestureDetector(
         onTap: () {
-          setState(() {
+          setState(() async {
             this.widget.selected = !this.widget.selected;
             provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
-            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {"CATEGORY_ID": "${this.widget.categoryId}"});
+            await MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
+              "CATEGORY_ID": "${this.widget.categoryId}"
+            });
           });
         },
         child: MouseRegion(
@@ -113,52 +114,54 @@ class _CategoryCardState extends State<CategoryCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  sizeBigEnough ? Container(
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Icon(
-                        icon,
-                        size: 30,
-                        color: Theme.of(context).primaryColor,
-                        semanticLabel: this.widget.iconText,
-                      ),
-                    ),
-                  ) : SizedBox.shrink(),
-                  sizeBigEnough ?
-                  Container(
-                    width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: AutoSizeText(
-                        widget.categoryText,
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 15,
-                        ),
-                        maxLines: 2,
-                      ),
-                    ),
-                  ) : Container(
-                      width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: Center(
-                          child: AutoSizeText(
-                            widget.categoryText,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
+                  sizeBigEnough
+                      ? Container(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Icon(
+                              icon,
+                              size: 30,
                               color: Theme.of(context).primaryColor,
-                              fontSize: 15,
+                              semanticLabel: this.widget.iconText,
                             ),
-                            maxLines: 2,
                           ),
-                        ),
-                      )
-                  ),
+                        )
+                      : SizedBox.shrink(),
+                  sizeBigEnough
+                      ? Container(
+                          width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: AutoSizeText(
+                              widget.categoryText,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 15,
+                              ),
+                              maxLines: 2,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Center(
+                              child: AutoSizeText(
+                                widget.categoryText,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 15,
+                                ),
+                                maxLines: 2,
+                              ),
+                            ),
+                          )),
                 ],
               ),
             ),

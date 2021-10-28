@@ -68,8 +68,14 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       child: MainButton(
                         label: S.of(context).nextButton,
                         tapped: () async {
+                          await MixpanelManager.mixpanel.track("STATEMENT_ANSWER", properties: {
+                            "STATEMENT_ID": questionnaireProvider.getCurrentQuestion?.id ?? "unknown"
+                          });
                           await questionnaireProvider.saveQuestion(userProvider.userName);
                           questionnaireProvider.prepareNextScreen();
+                          await MixpanelManager.mixpanel.track("STATEMENT_LOAD", properties: {
+                            "STATEMENT_ID": questionnaireProvider.getCurrentQuestion?.id ?? "unknown"
+                          });
 
                           if (questionnaireProvider.isCompleted) {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);

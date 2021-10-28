@@ -29,14 +29,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void dispose() {
-    MixpanelManager.mixpanel.flushEvents();
+  void dispose() async {
+    await MixpanelManager.mixpanel.flushEvents();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
 
     ApiClient apiClient = ApiClient(basePath: FlavorConfig.instance.values.baseUrl);
 
@@ -63,7 +65,9 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate
           ],
-          supportedLocales: [Locale('nl', '')],
+          supportedLocales: [
+            Locale('nl', '')
+          ],
           theme: LightTheme.theme,
           initialRoute: '/',
           routes: {
@@ -82,6 +86,5 @@ class CustomPageRoute extends PageRouteBuilder {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 500);
 
-  CustomPageRoute({pageBuilder, transitionsBuilder})
-      : super(pageBuilder: pageBuilder, transitionsBuilder: transitionsBuilder);
+  CustomPageRoute({pageBuilder, transitionsBuilder}) : super(pageBuilder: pageBuilder, transitionsBuilder: transitionsBuilder);
 }

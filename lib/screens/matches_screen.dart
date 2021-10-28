@@ -99,15 +99,15 @@ class _MatchesScreen extends State<MatchesScreen> {
                 ),
                 showFeedbackModal
                     ? FeedbackWidget(() {
-                        setState(() {
+                        setState(() async {
                           showFeedbackModal = false;
-                          MixpanelManager.mixpanel.track("FEEDBACK_DISMISSED");
+                          await MixpanelManager.mixpanel.track("FEEDBACK_DISMISSED");
                         });
                       }, (feedback) {
-                        setState(() {
+                        setState(() async {
                           this.feedback = feedback;
                           Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback, userProvider.userName);
-                          MixpanelManager.mixpanel.track("FEEDBACK_GIVEN");
+                          await MixpanelManager.mixpanel.track("FEEDBACK_GIVEN");
                           showFeedbackModal = false;
                           showFeedbackEmailModal = true;
                         });
@@ -115,15 +115,15 @@ class _MatchesScreen extends State<MatchesScreen> {
                     : Container(),
                 showFeedbackEmailModal
                     ? FeedbackEmailWidget((email) {
-                        setState(() {
+                        setState(() async {
                           Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback!, userProvider.userName, email: email);
-                          MixpanelManager.mixpanel.track("FEEDBACK_EMAIL_GIVEN");
+                          await MixpanelManager.mixpanel.track("FEEDBACK_EMAIL_GIVEN");
                           showFeedbackEmailModal = false;
                         });
                       }, () {
-                        setState(() {
+                        setState(() async {
                           showFeedbackEmailModal = false;
-                          MixpanelManager.mixpanel.track("FEEDBACK_EMAIL_DISMISSED");
+                          await MixpanelManager.mixpanel.track("FEEDBACK_EMAIL_DISMISSED");
                         });
                       })
                     : Container()

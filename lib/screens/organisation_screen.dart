@@ -51,7 +51,7 @@ class OrganisationScreen extends StatelessWidget {
 
     final Widget fab = FloatingActionButton.large(
       onPressed: () async {
-        MixpanelManager.mixpanel.track("CLICKED", properties: {
+        await MixpanelManager.mixpanel.track("CLICKED", properties: {
           "BUTTON_NAME": "SUPPORT_ORGANISATION"
         });
         var url = currentOrganisation.metaTags["donationUrl"]!;
@@ -264,7 +264,7 @@ class OrganisationScreen extends StatelessWidget {
                                   child: MainButton(
                                     label: S.of(context).organisationDetailScreen_giveButton,
                                     tapped: () async {
-                                      MixpanelManager.mixpanel.track("CLICKED", properties: {
+                                      await MixpanelManager.mixpanel.track("CLICKED", properties: {
                                         "BUTTON_NAME": "SUPPORT_ORGANISATION"
                                       });
                                       var url = currentOrganisation.metaTags["donationUrl"]!;
@@ -313,8 +313,7 @@ class OrganisationScreen extends StatelessWidget {
 }
 
 Color getColorForIndicator(int idx, BuildContext context) {
-  int number = idx;
-  switch (number % 3) {
+  switch (idx % 3) {
     case 0:
       return Theme.of(context).accentColor;
     case 1:

@@ -68,8 +68,8 @@ class _StatementContainerState extends State<StatementContainer> {
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  onTap: () {
-                    MixpanelManager.mixpanel.track("CLICKED", properties: {
+                  onTap: () async {
+                    await MixpanelManager.mixpanel.track("CLICKED", properties: {
                       "BUTTON_NAME": "SKIP"
                     });
                     provider.skipCurrentQuestion();
@@ -102,8 +102,8 @@ class _StatementContainerState extends State<StatementContainer> {
                       provider.setCurrentStatementValue(value);
                     });
                   },
-                  onChangeEnd: (value) {
-                    MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {
+                  onChangeEnd: (value) async {
+                    await MixpanelManager.mixpanel.track("SLIDER_CHANGED", properties: {
                       "STATEMENT_ID": "${provider.getCurrentQuestion!.id}",
                       "VALUE": "${value.toStringAsFixed(0)}"
                     });
