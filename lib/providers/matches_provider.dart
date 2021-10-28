@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:openapi/api.dart';
 
 class MatchesProvider with ChangeNotifier {
@@ -12,10 +13,7 @@ class MatchesProvider with ChangeNotifier {
 
   String nextPageToken = "";
 
-  late UserOrganisationMatchListModel selectedOrganisationMatch = UserOrganisationMatchListModel(
-      score: 90,
-      organisation: OrganisationDetailModel()
-  );
+  late UserOrganisationMatchListModel selectedOrganisationMatch = UserOrganisationMatchListModel(score: 90, organisation: OrganisationDetailModel());
 
   MatchesProvider.withDependencies(ApiClient apiClient) {
     this.matchesApi = MatchesApi(apiClient);
@@ -34,6 +32,7 @@ class MatchesProvider with ChangeNotifier {
     organisationMatches = response.result;
     nextPageToken = response.nextPageToken;
     organisationMatches.sort((a, b) => b.score.toInt() - a.score.toInt());
+    MixpanelManager.mixpanel.flushEvents();
     notifyListeners();
   }
 
@@ -43,9 +42,8 @@ class MatchesProvider with ChangeNotifier {
     currentOrganisationTags = (await this._organisationTagsApi.getOrganisationTags(model.organisation.id)).results;
   }
 
-  int getOrganisationTagScore(String tag){
+  int getOrganisationTagScore(String tag) {
     var organisationTags = currentOrganisationTags.where((element) => element.tag == tag);
     return organisationTags.isNotEmpty ? organisationTags.first.score : 0;
   }
-
 }

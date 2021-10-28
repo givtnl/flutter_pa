@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/models/UserFeedback.dart';
 import 'package:flutter_app/providers/feedback_provider.dart';
@@ -44,9 +45,7 @@ class _MatchesScreen extends State<MatchesScreen> {
       child: TrackedScreen(
         screenName: 'MatchesScreen',
         child: Scaffold(
-          backgroundColor: Theme
-              .of(context)
-              .backgroundColor,
+          backgroundColor: Theme.of(context).backgroundColor,
           body: SafeArea(
             child: Stack(
               children: [
@@ -55,13 +54,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: kIsWeb && MediaQuery
-                          .of(context)
-                          .size
-                          .width > 700 ? 700 : MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: kIsWeb && MediaQuery.of(context).size.width > 700 ? 700 : MediaQuery.of(context).size.width,
                       child: Container(
                         alignment: kIsWeb ? Alignment.center : null,
                         child: SingleChildScrollView(
@@ -71,42 +64,29 @@ class _MatchesScreen extends State<MatchesScreen> {
                                 width: double.infinity,
                                 padding: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 10),
                                 child: Text(
-                                  S
-                                      .of(context)
-                                      .matchesScreen_yourPersonalSuggestions,
-                                  style: Theme
-                                      .of(context)
-                                      .textTheme
-                                      .headline1!
-                                      .copyWith(fontSize: 24),
+                                  S.of(context).matchesScreen_yourPersonalSuggestions,
+                                  style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 50.0),
                                 child: Text(
-                                  S
-                                      .of(context)
-                                      .matchesScreen_subtitleText,
-                                  style: Theme
-                                      .of(context)
-                                      .textTheme
-                                      .bodyText2!
-                                      .copyWith(fontSize: 14),
+                                  S.of(context).matchesScreen_subtitleText,
+                                  style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                                 child: Column(
                                     children: matches
-                                        .map((e) =>
-                                        Column(
-                                          children: [
-                                            MatchWidget(e),
-                                            SizedBox(
-                                              height: 10,
-                                            )
-                                          ],
-                                        ))
+                                        .map((e) => Column(
+                                              children: [
+                                                MatchWidget(e),
+                                                SizedBox(
+                                                  height: 10,
+                                                )
+                                              ],
+                                            ))
                                         .take(3)
                                         .toList()),
                               ),
@@ -119,29 +99,33 @@ class _MatchesScreen extends State<MatchesScreen> {
                 ),
                 showFeedbackModal
                     ? FeedbackWidget(() {
-                  setState(() {
-                    showFeedbackModal = false;
-                  });
-                }, (feedback) {
-                  setState(() {
-                    this.feedback = feedback;
-                    Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback, userProvider.userName);
-                    showFeedbackModal = false;
-                    showFeedbackEmailModal = true;
-                  });
-                })
+                        setState(() {
+                          showFeedbackModal = false;
+                          MixpanelManager.mixpanel.track("FEEDBACK_DISMISSED");
+                        });
+                      }, (feedback) {
+                        setState(() {
+                          this.feedback = feedback;
+                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback, userProvider.userName);
+                          MixpanelManager.mixpanel.track("FEEDBACK_GIVEN");
+                          showFeedbackModal = false;
+                          showFeedbackEmailModal = true;
+                        });
+                      })
                     : Container(),
                 showFeedbackEmailModal
                     ? FeedbackEmailWidget((email) {
-                  setState(() {
-                    Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback!, userProvider.userName, email: email);
-                    showFeedbackEmailModal = false;
-                  });
-                }, () {
-                  setState(() {
-                    showFeedbackEmailModal = false;
-                  });
-                })
+                        setState(() {
+                          Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback!, userProvider.userName, email: email);
+                          MixpanelManager.mixpanel.track("FEEDBACK_EMAIL_GIVEN");
+                          showFeedbackEmailModal = false;
+                        });
+                      }, () {
+                        setState(() {
+                          showFeedbackEmailModal = false;
+                          MixpanelManager.mixpanel.track("FEEDBACK_EMAIL_DISMISSED");
+                        });
+                      })
                     : Container()
               ],
             ),
@@ -168,8 +152,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                 initialLoad = false;
                 Future.delayed(
                   const Duration(seconds: 3),
-                      () =>
-                  {
+                  () => {
                     setState(() {
                       showFeedbackModal = true;
                     })
@@ -178,9 +161,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                 return buildWidget(context);
               case ConnectionState.active:
               case ConnectionState.waiting:
-                return SpinnerContainer(S
-                    .of(context)
-                    .calculatingMatches);
+                return SpinnerContainer(S.of(context).calculatingMatches);
               case ConnectionState.none:
                 print("none");
                 return Container();

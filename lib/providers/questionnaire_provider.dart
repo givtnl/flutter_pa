@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:openapi/api.dart';
 
 enum ChoiceScreenType { statement, category }
@@ -34,19 +35,27 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   List<QuestionListModel> get questions {
-    return [..._questions];
+    return [
+      ..._questions
+    ];
   }
 
   List<QuestionListModel> get skippedQuestions {
-    return [..._skippedQuestions];
+    return [
+      ..._skippedQuestions
+    ];
   }
 
   List<QuestionListModel> get completedQuestions {
-    return [..._completedQuestions];
+    return [
+      ..._completedQuestions
+    ];
   }
 
   List<CreateAnswerDetailRequest> get currentSelectedCategories {
-    return [..._currentSelectedCategories];
+    return [
+      ..._currentSelectedCategories
+    ];
   }
 
   double get currentSelectedStatementAnswer {
@@ -62,6 +71,9 @@ class QuestionnaireProvider with ChangeNotifier {
     if (screenNumber != 0) _setPreviousScreenDone();
     this._currentSelectedCategories.clear();
     this._currentSelectedStatementAnswer = 2;
+    MixpanelManager.mixpanel.track("STATEMENT_LOAD", properties: {
+      "STATEMENT_ID": getCurrentQuestion?.id ?? "unknown"
+    });
     notifyListeners();
   }
 
@@ -76,8 +88,6 @@ class QuestionnaireProvider with ChangeNotifier {
     }
     return Future.value(onFirstQuestion);
   }
-
-
 
   void _setPreviousScreenDone() {
     if (questions.isNotEmpty) {
@@ -99,7 +109,7 @@ class QuestionnaireProvider with ChangeNotifier {
   }
 
   QuestionListModel? get getCurrentQuestion {
-    return questions.length-1 >= screenNumber ? questions[screenNumber] : null;
+    return questions.length - 1 >= screenNumber ? questions[screenNumber] : null;
   }
 
   String get getCurrentQuestionTranslation {
@@ -131,7 +141,7 @@ class QuestionnaireProvider with ChangeNotifier {
 
   double get currentProgress {
     var progress = completedQuestions.length / questions.length;
-    progress = progress == 0 ? 100/(questions.length * 2) : progress * 100;
+    progress = progress == 0 ? 100 / (questions.length * 2) : progress * 100;
     return progress;
   }
 
@@ -149,32 +159,32 @@ class QuestionnaireProvider with ChangeNotifier {
 
   void skipCurrentQuestion() {
     _skippedQuestions.add(getCurrentQuestion!);
-    if (_screenNumber == questions.length -1) {
+    if (_screenNumber == questions.length - 1) {
       _setPreviousScreenDone();
     }
   }
 
   Future<void> saveQuestion(String user) async {
+    MixpanelManager.mixpanel.track("STATEMENT_ANSWER", properties: {
+      "STATEMENT_ID": getCurrentQuestion?.id ?? "unknown"
+    });
     if (getCurrentQuestion!.type == QuestionType.number0) {
       await this
           .answerApi
           .createAnswer(
               getCurrentQuestion!.id,
-              CreateAnswerRequest(
-                  questionId: getCurrentQuestion!.id,
-                  userId: user,
-                  answers: [CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: this.currentSelectedStatementAnswer / 4)]))
+              CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: user, answers: [
+                CreateAnswerDetailRequest(tag: this.getCurrentQuestion!.statementOptions.tagScores.keys.first, score: this.currentSelectedStatementAnswer / 4)
+              ]))
           .catchError((error) => Future(error));
     } else {
-      await answerApi
-          .createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: user, answers: currentSelectedCategories))
-          .then((value) => null);
+      await answerApi.createAnswer(getCurrentQuestion!.id, CreateAnswerRequest(questionId: getCurrentQuestion!.id, userId: user, answers: currentSelectedCategories)).then((value) => null);
     }
   }
 
   void toggleCategoryAnswer(bool selected, int selectedCategoryIndex) {
     QuestionListModel? question = getCurrentQuestion;
-    if (question != null && question.type == QuestionType.number1 && getCurrentQuestion!.categoryOptions!.length >= selectedCategoryIndex && selectedCategoryIndex >=0) {
+    if (question != null && question.type == QuestionType.number1 && getCurrentQuestion!.categoryOptions!.length >= selectedCategoryIndex && selectedCategoryIndex >= 0) {
       var toToggleCategory = getCurrentQuestion!.categoryOptions!.elementAt(selectedCategoryIndex);
       toToggleCategory.tagScores.forEach((key, value) {
         CreateAnswerDetailRequest createAnswerDetailRequest = CreateAnswerDetailRequest(tag: key, score: 1);

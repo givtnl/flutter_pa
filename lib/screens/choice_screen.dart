@@ -20,7 +20,6 @@ class ChoiceScreen extends StatefulWidget {
 }
 
 class _ChoiceScreenState extends State<ChoiceScreen> {
-
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
@@ -47,19 +46,17 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       height: 15,
                       child: Stack(
                         children: [
-                          Consumer<QuestionnaireProvider>(
-                            builder: (_, a, ctx) {
-                              return FractionallySizedBox(
-                                heightFactor: 1,
-                                widthFactor: questionnaireProvider.currentProgress / 100,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).buttonColor,
-                                  ),
+                          Consumer<QuestionnaireProvider>(builder: (_, a, ctx) {
+                            return FractionallySizedBox(
+                              heightFactor: 1,
+                              widthFactor: questionnaireProvider.currentProgress / 100,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).buttonColor,
                                 ),
-                              );
-                            }
-                          ),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -72,8 +69,6 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       child: MainButton(
                         label: S.of(context).nextButton,
                         tapped: () async {
-                          MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
-
                           await questionnaireProvider.saveQuestion(userProvider.userName);
                           questionnaireProvider.prepareNextScreen();
 
