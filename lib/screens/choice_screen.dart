@@ -10,6 +10,7 @@ import 'package:flutter_app/widgets/background_patterns/pattern1.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/questionnaire_body_widget.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class ChoiceScreen extends StatefulWidget {
@@ -23,6 +24,9 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    var size = MediaQuery.of(context).size;
+    var portrait = size.height > size.width;
 
     return TrackedScreen(
       screenName: 'ChoiceScreen',
@@ -57,6 +61,13 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                             );
                           }),
                         ],
+                      ),
+                    ),
+                    portrait ? Container() : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
+                      child: SvgPicture.asset(
+                        'assets/svg/givt-logo.svg',
+                        height: 30,
                       ),
                     ),
                     Expanded(
