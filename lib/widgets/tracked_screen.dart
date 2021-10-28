@@ -13,8 +13,8 @@ class TrackedScreen extends StatefulWidget {
 
 class _TrackedScreenState extends State<TrackedScreen> {
   @override
-  Future<void> initState() async {
-    await MixpanelManager.mixpanel.track("LOADED", properties: {
+  void initState() {
+    MixpanelManager.mixpanel.track("LOADED", properties: {
       "SCREEN_NAME": widget.screenName
     });
     super.initState();
