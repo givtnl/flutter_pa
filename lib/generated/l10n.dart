@@ -450,10 +450,10 @@ class S {
     );
   }
 
-  /// `Vul je emailadres in en we contacteren je voor een gesprekje.`
+  /// `Vul je e-mailadres in en we contacteren je voor een gesprekje.`
   String get feedbackEmailWidget_subTitle {
     return Intl.message(
-      'Vul je emailadres in en we contacteren je voor een gesprekje.',
+      'Vul je e-mailadres in en we contacteren je voor een gesprekje.',
       name: 'feedbackEmailWidget_subTitle',
       desc: '',
       args: [],
@@ -500,10 +500,10 @@ class S {
     );
   }
 
-  /// `Please enter a valid e-mail address`
+  /// `Please enter a valid email address`
   String get feedbackEmailWidget_nonValidEmail {
     return Intl.message(
-      'Please enter a valid e-mail address',
+      'Please enter a valid email address',
       name: 'feedbackEmailWidget_nonValidEmail',
       desc: '',
       args: [],
