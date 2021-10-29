@@ -80,10 +80,10 @@ class _CategoryCardState extends State<CategoryCard> {
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 50),
       child: GestureDetector(
         onTap: () {
-          setState(() async {
+          setState(() {
             this.widget.selected = !this.widget.selected;
             provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
-            await MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
+            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
               "CATEGORY_ID": "${this.widget.categoryId}"
             });
           });
