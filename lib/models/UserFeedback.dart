@@ -1,7 +1,7 @@
 enum UserFeedback {
-  VeryHappy,
-  Happy,
-  Neutral,
+  VerySad,
   Sad,
-  VerySad
+  Neutral,
+  Happy,
+  VeryHappy
 }

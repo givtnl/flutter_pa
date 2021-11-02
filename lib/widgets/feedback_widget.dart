@@ -17,7 +17,7 @@ class FeedbackWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     isBiggerThan360 = MediaQuery.of(context).size.width > 360;
 
-    List<FeedbackButton> buttons = UserFeedback.values.reversed.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
+    List<FeedbackButton> buttons = UserFeedback.values.map((opinion) => FeedbackButton(opinion, giveFeedback)).toList();
 
     return Stack(
       children: [
