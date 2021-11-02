@@ -21,12 +21,14 @@ class CategoryCard extends StatefulWidget {
 
 class _CategoryCardState extends State<CategoryCard> {
   var sizeBigEnough = true;
+  var portraitMode = true;
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionnaireProvider>(context);
 
     sizeBigEnough = MediaQuery.of(context).size.height > 500;
+    portraitMode = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
 
     IconData icon;
     switch (this.widget.iconText) {
@@ -111,7 +113,7 @@ class _CategoryCardState extends State<CategoryCard> {
             child: Padding(
               padding: sizeBigEnough ? EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15) : EdgeInsets.all(0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: sizeBigEnough ? MainAxisAlignment.start : MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   sizeBigEnough
@@ -129,7 +131,6 @@ class _CategoryCardState extends State<CategoryCard> {
                       : SizedBox.shrink(),
                   sizeBigEnough
                       ? Container(
-                          width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: AutoSizeText(
@@ -140,7 +141,7 @@ class _CategoryCardState extends State<CategoryCard> {
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15,
                               ),
-                              maxLines: 2,
+                              maxLines: portraitMode ? 2 : 1,
                             ),
                           ),
                         )
