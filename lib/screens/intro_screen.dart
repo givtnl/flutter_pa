@@ -133,6 +133,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         height: 45,
                         webWidth: 350.0,
                       ),
+                      SizedBox(
+                        height: kIsWeb && MediaQuery.of(context).size.height > 1000 ? MediaQuery.of(context).size.height * .2 : 0,
+                      ),
                     ],
                   ),
                 ),
