@@ -8,16 +8,19 @@ class OrganisationTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0),
-        border: Border.all(width: 1, color: Theme.of(context).accentColor),
-        borderRadius: BorderRadius.circular(25),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      child: Text(
-        text.toLowerCase(),
-        style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 12),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0),
+          border: Border.all(width: 1, color: Theme.of(context).accentColor),
+          borderRadius: BorderRadius.circular(25),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+        child: Text(
+          text.toLowerCase(),
+          style: TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 12),
+        ),
       ),
     );
   }
