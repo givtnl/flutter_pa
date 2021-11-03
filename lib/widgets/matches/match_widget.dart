@@ -4,7 +4,6 @@ import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/organisation_screen.dart';
-import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:openapi/api.dart';
 import 'package:provider/provider.dart';
@@ -48,20 +47,27 @@ class MatchWidget extends StatelessWidget {
                             top: 10.0,
                             bottom: 15,
                           ),
-                          child: Text(
-                            match.organisation.mission, // TODO: Change to organisationDescription
-                            style: Theme.of(context).textTheme.bodyText2,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              match.organisation.mission, // TODO: Change to organisationDescription
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
                           ),
                         )
                       ],
                     ),
                   ),
                 ),
-                MainButton(label: S.of(context).matchesScreen_findOutMore, tapped: () async {
-                  var userName = Provider.of<UserProvider>(context, listen: false).userName;
-                  await provider.selectOrganisationMatch(match, userName);
-                  Navigator.of(context).pushNamed(OrganisationScreen.routeName);
-                }, height: 35, fontSize: 14),
+                MainButton(
+                    label: S.of(context).matchesScreen_findOutMore,
+                    tapped: () async {
+                      var userName = Provider.of<UserProvider>(context, listen: false).userName;
+                      await provider.selectOrganisationMatch(match, userName);
+                      Navigator.of(context).pushNamed(OrganisationScreen.routeName);
+                    },
+                    height: 35,
+                    fontSize: 14),
               ],
             ),
           ),

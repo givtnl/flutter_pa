@@ -22,10 +22,11 @@ class MatchesScreen extends StatefulWidget {
 }
 
 class _MatchesScreen extends State<MatchesScreen> {
-  var showFeedbackModal = false;
-  var initialLoad = true;
+  bool initialLoad = true;
+  bool portrait = false;
 
-  var showFeedbackEmailModal = false;
+  bool showFeedbackModal = false;
+  bool showFeedbackEmailModal = false;
 
   UserFeedback? feedback;
 
@@ -68,11 +69,14 @@ class _MatchesScreen extends State<MatchesScreen> {
                                   style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                                child: Text(
-                                  S.of(context).matchesScreen_subtitleText,
-                                  style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
+                              Container(
+                                width: double.infinity,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                                  child: Text(
+                                    S.of(context).matchesScreen_subtitleText,
+                                    style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
+                                  ),
                                 ),
                               ),
                               Padding(
@@ -139,6 +143,7 @@ class _MatchesScreen extends State<MatchesScreen> {
   Widget build(BuildContext context) {
     final MatchesProvider provider = Provider.of<MatchesProvider>(context, listen: false);
     final UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+    portrait = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
 
     if (initialLoad) {
       return new FutureBuilder(

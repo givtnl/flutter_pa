@@ -15,7 +15,7 @@ class StatementContainer extends StatefulWidget {
 
 class _StatementContainerState extends State<StatementContainer> {
   bool sizeBigEnough = true;
-  var portrait = false;
+  bool portrait = false;
 
   @override
   Widget build(BuildContext context) {
