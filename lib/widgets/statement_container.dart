@@ -15,6 +15,7 @@ class StatementContainer extends StatefulWidget {
 
 class _StatementContainerState extends State<StatementContainer> {
   bool sizeBigEnough = true;
+  var portrait = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class _StatementContainerState extends State<StatementContainer> {
     var provider = Provider.of<QuestionnaireProvider>(context);
 
     sizeBigEnough = MediaQuery.of(context).size.height > 500;
+    portrait = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 45.5),
@@ -40,6 +42,7 @@ class _StatementContainerState extends State<StatementContainer> {
             child: AutoSizeText(
               provider.getCurrentQuestionTranslation,
               style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: sizeBigEnough ? 26 : 16),
+              textAlign: portrait ? TextAlign.start : TextAlign.center,
               maxLines: 4,
               wrapWords: true,
               minFontSize: 3,
