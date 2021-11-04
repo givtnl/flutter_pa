@@ -52,6 +52,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wat vind je van de Givt Wizard?"),
         "fetchingQuestions":
             MessageLookupByLibrary.simpleMessage("We halen de vragen op!"),
+        "giveWithGivt_buttonText":
+            MessageLookupByLibrary.simpleMessage("Geef met Givt"),
+        "giveWithGivt_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!"),
+        "giveWithGivt_title": MessageLookupByLibrary.simpleMessage(
+            "Deze organisatie is aangesloten bij Givt"),
+        "giveWithoutGivt_buttonText":
+            MessageLookupByLibrary.simpleMessage("naar de website"),
+        "giveWithoutGivt_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt."),
+        "giveWithoutGivt_title": MessageLookupByLibrary.simpleMessage(
+            "Deze organisatie is nog niet aangesloten bij Givt"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("naar de Givt Wizard"),
         "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(

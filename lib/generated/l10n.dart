@@ -500,11 +500,71 @@ class S {
     );
   }
 
-  /// `Please enter a valid email address`
+  /// `Please enter a valid e-mail address`
   String get feedbackEmailWidget_nonValidEmail {
     return Intl.message(
-      'Please enter a valid email address',
+      'Please enter a valid e-mail address',
       name: 'feedbackEmailWidget_nonValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deze organisatie is aangesloten bij Givt`
+  String get giveWithGivt_title {
+    return Intl.message(
+      'Deze organisatie is aangesloten bij Givt',
+      name: 'giveWithGivt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!`
+  String get giveWithGivt_subTitle {
+    return Intl.message(
+      'Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!',
+      name: 'giveWithGivt_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Geef met Givt`
+  String get giveWithGivt_buttonText {
+    return Intl.message(
+      'Geef met Givt',
+      name: 'giveWithGivt_buttonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deze organisatie is nog niet aangesloten bij Givt`
+  String get giveWithoutGivt_title {
+    return Intl.message(
+      'Deze organisatie is nog niet aangesloten bij Givt',
+      name: 'giveWithoutGivt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt.`
+  String get giveWithoutGivt_subTitle {
+    return Intl.message(
+      'Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt.',
+      name: 'giveWithoutGivt_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `naar de website`
+  String get giveWithoutGivt_buttonText {
+    return Intl.message(
+      'naar de website',
+      name: 'giveWithoutGivt_buttonText',
       desc: '',
       args: [],
     );

@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ik wil helpen!"),
         "feedbackEmailWidget_nonValidEmail":
             MessageLookupByLibrary.simpleMessage(
-                "Please enter a valid email address"),
+                "Please enter a valid e-mail address"),
         "feedbackEmailWidget_subTitle": MessageLookupByLibrary.simpleMessage(
             "Vul je e-mailadres in en we contacteren je voor een gesprekje."),
         "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(
@@ -52,6 +52,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wat vind je van de Givt Wizard?"),
         "fetchingQuestions": MessageLookupByLibrary.simpleMessage(
             "We\'re fetching the questions!"),
+        "giveWithGivt_buttonText":
+            MessageLookupByLibrary.simpleMessage("Geef met Givt"),
+        "giveWithGivt_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!"),
+        "giveWithGivt_title": MessageLookupByLibrary.simpleMessage(
+            "Deze organisatie is aangesloten bij Givt"),
+        "giveWithoutGivt_buttonText":
+            MessageLookupByLibrary.simpleMessage("naar de website"),
+        "giveWithoutGivt_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt."),
+        "giveWithoutGivt_title": MessageLookupByLibrary.simpleMessage(
+            "Deze organisatie is nog niet aangesloten bij Givt"),
         "introButton":
             MessageLookupByLibrary.simpleMessage("to the Givt Wizard"),
         "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(

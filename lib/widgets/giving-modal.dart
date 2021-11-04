@@ -72,8 +72,8 @@ class GivingModal extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 20, bottom: 15.0),
                             child: Text(
                               viaGivt
-                                  ? "Deze organisatie is aangesloten bij Givt"
-                                  : "Deze organisatie is nog niet aangesloten bij Givt",
+                                  ? S.of(context).giveWithGivt_title
+                                  : S.of(context).giveWithoutGivt_title,
                               style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontWeight: FontWeight.w700,
@@ -86,8 +86,8 @@ class GivingModal extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             child: Text(
                               viaGivt
-                                  ? "Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!"
-                                  : "Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt.",
+                                  ? S.of(context).giveWithGivt_subTitle
+                                  : S.of(context).giveWithoutGivt_subTitle,
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w500,
@@ -99,7 +99,7 @@ class GivingModal extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
                             child: AccentRoundedButton(
-                                viaGivt ? "Geef met Givt" : "naar de website",
+                                viaGivt ? S.of(context).giveWithGivt_buttonText : S.of(context).giveWithoutGivt_buttonText,
                                 () async {
                               if (await canLaunch(url))
                                 await launch(url);
