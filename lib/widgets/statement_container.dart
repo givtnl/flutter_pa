@@ -14,7 +14,8 @@ class StatementContainer extends StatefulWidget {
 }
 
 class _StatementContainerState extends State<StatementContainer> {
-  bool sizeBigEnough = true;
+  bool heightBigEnough = true;
+  bool widthBigEnough = true;
   bool portrait = false;
 
   @override
@@ -30,7 +31,8 @@ class _StatementContainerState extends State<StatementContainer> {
     // words should be on split lines according to design.
     var provider = Provider.of<QuestionnaireProvider>(context);
 
-    sizeBigEnough = MediaQuery.of(context).size.height > 500;
+    heightBigEnough = MediaQuery.of(context).size.height > 600;
+    widthBigEnough = MediaQuery.of(context).size.width > 325;
     portrait = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
 
     return Padding(
@@ -41,9 +43,9 @@ class _StatementContainerState extends State<StatementContainer> {
             padding: const EdgeInsets.symmetric(horizontal: 4.5),
             child: AutoSizeText(
               provider.getCurrentQuestionTranslation,
-              style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: sizeBigEnough ? 26 : 16),
+              style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: heightBigEnough && widthBigEnough ? 26 : 16),
               textAlign: portrait ? TextAlign.start : TextAlign.center,
-              maxLines: 4,
+              maxLines: 5,
               wrapWords: true,
               minFontSize: 3,
             ),
