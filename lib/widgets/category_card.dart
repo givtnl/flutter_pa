@@ -20,15 +20,18 @@ class CategoryCard extends StatefulWidget {
 }
 
 class _CategoryCardState extends State<CategoryCard> {
-  var sizeBigEnough = true;
+  var heightBigEnough = true;
+  var widthBigEnough = true;
   var portraitMode = true;
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<QuestionnaireProvider>(context);
 
-    sizeBigEnough = MediaQuery.of(context).size.height > 500;
-    portraitMode = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
+    heightBigEnough = MediaQuery.of(context).size.height > 500;
+    widthBigEnough = MediaQuery.of(context).size.width > 350;
+    portraitMode =
+        MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
 
     IconData icon;
     switch (this.widget.iconText) {
@@ -84,22 +87,24 @@ class _CategoryCardState extends State<CategoryCard> {
         onTap: () {
           setState(() {
             this.widget.selected = !this.widget.selected;
-            provider.toggleCategoryAnswer(this.widget.selected, this.widget.index);
-            MixpanelManager.mixpanel.track("CATEGORY_SELECTED", properties: {
-              "CATEGORY_ID": "${this.widget.categoryId}"
-            });
+            provider.toggleCategoryAnswer(
+                this.widget.selected, this.widget.index);
+            MixpanelManager.mixpanel.track("CATEGORY_SELECTED",
+                properties: {"CATEGORY_ID": "${this.widget.categoryId}"});
           });
         },
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Container(
-            height: sizeBigEnough ? 60 : 40,
+            height: heightBigEnough ? 60 : 40,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
               border: Border.all(
                 width: 1,
-                color: this.widget.selected ? Theme.of(context).primaryColor : Colors.white,
+                color: this.widget.selected
+                    ? Theme.of(context).primaryColor
+                    : Colors.white,
               ),
               boxShadow: this.widget.selected
                   ? [
@@ -111,12 +116,17 @@ class _CategoryCardState extends State<CategoryCard> {
                   : [],
             ),
             child: Padding(
-              padding: sizeBigEnough ? EdgeInsets.symmetric(vertical: 5) + EdgeInsets.only(left: 15) : EdgeInsets.all(0),
+              padding: heightBigEnough
+                  ? EdgeInsets.symmetric(vertical: 5) +
+                      EdgeInsets.only(left: 15)
+                  : EdgeInsets.all(0),
               child: Row(
-                mainAxisAlignment: sizeBigEnough ? MainAxisAlignment.start : MainAxisAlignment.center,
+                mainAxisAlignment: heightBigEnough
+                    ? MainAxisAlignment.start
+                    : MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  sizeBigEnough
+                  heightBigEnough && widthBigEnough
                       ? Container(
                           child: Align(
                             alignment: Alignment.center,
@@ -129,8 +139,9 @@ class _CategoryCardState extends State<CategoryCard> {
                           ),
                         )
                       : SizedBox.shrink(),
-                  sizeBigEnough
+                  heightBigEnough && widthBigEnough
                       ? Container(
+                          width: MediaQuery.of(context).size.width * .6,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: AutoSizeText(
@@ -141,26 +152,25 @@ class _CategoryCardState extends State<CategoryCard> {
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15,
                               ),
-                              maxLines: portraitMode ? 2 : 1,
+                              maxLines: 2,
                             ),
                           ),
                         )
                       : Container(
-                          width: kIsWeb && MediaQuery.of(context).size.width > 500 ? 300 : MediaQuery.of(context).size.width * .54,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Center(
-                              child: AutoSizeText(
-                                widget.categoryText,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 15,
-                                ),
-                                maxLines: 2,
+                          width: kIsWeb && MediaQuery.of(context).size.width > 500
+                                  ? 300
+                                  : MediaQuery.of(context).size.width * .54,
+                          child: Center(
+                            child: AutoSizeText(
+                              widget.categoryText,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 15,
                               ),
+                              maxLines: 2,
                             ),
                           )),
                 ],
