@@ -60,7 +60,6 @@ class OrganisationScreenState extends State<OrganisationScreen> {
       onPressed: () async {
         await MixpanelManager.mixpanel.track("CLICKED",
             properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-        var url = currentOrganisation.metaTags["donationUrl"]!;
         setState(() {
           showGivingModal = true;
         });
@@ -334,16 +333,9 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                           .track("CLICKED", properties: {
                                         "BUTTON_NAME": "SUPPORT_ORGANISATION"
                                       });
-                                      var url = currentOrganisation
-                                          .metaTags["donationUrl"]!;
-                                      if (kIsWeb) {
-                                        js.context.callMethod('open', [url]);
-                                      } else {
-                                        if (await canLaunch(url))
-                                          await launch(url);
-                                        else
-                                          throw "Could not launch $url";
-                                      }
+                                      setState(() {
+                                        showGivingModal = true;
+                                      });
                                     },
                                     fontSize: 16,
                                     height: 45,
