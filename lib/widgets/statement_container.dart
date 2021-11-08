@@ -45,7 +45,7 @@ class _StatementContainerState extends State<StatementContainer> {
               provider.getCurrentQuestionTranslation,
               style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: heightBigEnough && widthBigEnough ? 26 : 16),
               textAlign: portrait ? TextAlign.start : TextAlign.center,
-              maxLines: 5,
+              maxLines: 6,
               wrapWords: true,
               minFontSize: 3,
             ),

@@ -138,6 +138,9 @@ class QuestionnaireProvider with ChangeNotifier {
 
   double get currentProgress {
     var progress = completedQuestions.length / questions.length;
+    if (progress.isNaN) {
+      progress = 0;
+    }
     progress = progress == 0 ? 100 / (questions.length * 2) : progress * 100;
     return progress;
   }
