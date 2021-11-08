@@ -52,7 +52,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                           Consumer<QuestionnaireProvider>(builder: (_, a, ctx) {
                             return FractionallySizedBox(
                               heightFactor: 1,
-                              widthFactor: questionnaireProvider.currentProgress / 100,
+                              widthFactor: questionnaireProvider.currentProgress / 100 == double.infinity ? 0 : questionnaireProvider.currentProgress / 100,
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).buttonColor,
