@@ -24,7 +24,7 @@ class IntroScreen extends StatefulWidget {
 
 class _IntroScreenState extends State<IntroScreen> {
   var showPrivacyStatement = false;
-  var initialLoad = false;
+  var initialLoad = true;
 
   @override
   Widget build(BuildContext context) {
