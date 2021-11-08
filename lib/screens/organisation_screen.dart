@@ -40,6 +40,7 @@ class OrganisationScreen extends StatefulWidget {
 
 class OrganisationScreenState extends State<OrganisationScreen> {
   bool showGivingModal = false;
+  bool visitWebsitePressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,9 @@ class OrganisationScreenState extends State<OrganisationScreen> {
           showGivingModal = true;
         });
       },
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme
+          .of(context)
+          .primaryColor,
       child: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(
@@ -75,8 +78,15 @@ class OrganisationScreenState extends State<OrganisationScreen> {
             height: 5,
           ),
           Text(
-            S.of(context).organisationDetailScreen_giveButton.toUpperCase(),
-            style: Theme.of(context).textTheme.button!.copyWith(fontSize: 14),
+            S
+                .of(context)
+                .organisationDetailScreen_giveButton
+                .toUpperCase(),
+            style: Theme
+                .of(context)
+                .textTheme
+                .button!
+                .copyWith(fontSize: 14),
           ),
         ]),
       ),
@@ -85,7 +95,9 @@ class OrganisationScreenState extends State<OrganisationScreen> {
     return TrackedScreen(
       screenName: 'OrganisationScreen',
       child: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme
+            .of(context)
+            .backgroundColor,
         body: SafeArea(
           child: Stack(children: [
             BackgroundWidget(),
@@ -94,7 +106,10 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                 padding: const EdgeInsets.only(bottom: 50),
                 child: Center(
                   child: Container(
-                    width: kIsWeb && MediaQuery.of(context).size.width > 700
+                    width: kIsWeb && MediaQuery
+                        .of(context)
+                        .size
+                        .width > 700
                         ? 700
                         : double.infinity,
                     child: Column(
@@ -109,7 +124,7 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                             },
                             iconSize: 15,
                             splashRadius:
-                                .1, // put this on 25 because default (35) overlaps the app bar
+                            .1, // put this on 25 because default (35) overlaps the app bar
                           ),
                         ),
                         SizedBox(
@@ -128,7 +143,8 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                     alignment: Alignment.topLeft,
                                     child: AutoSizeText(
                                         currentOrganisation.name,
-                                        style: Theme.of(context)
+                                        style: Theme
+                                            .of(context)
                                             .textTheme
                                             .headline1!
                                             .copyWith(fontSize: 24)),
@@ -160,14 +176,18 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                 height: 30,
                               ),
                               OrganisationExtra(
-                                S.of(context).organisationDetailScreen_mission,
+                                S
+                                    .of(context)
+                                    .organisationDetailScreen_mission,
                                 currentOrganisation.mission,
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               OrganisationExtra(
-                                S.of(context).organisationDetailScreen_vision,
+                                S
+                                    .of(context)
+                                    .organisationDetailScreen_vision,
                                 currentOrganisation.vision,
                               ),
                               SizedBox(
@@ -179,16 +199,22 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                     S
                                         .of(context)
                                         .organisationDetailScreen_visitWebsite,
-                                    () async {
-                                  if (await canLaunch(
-                                      currentOrganisation.websiteUrl)) {
-                                    await launch(
-                                        currentOrganisation.websiteUrl);
-                                  } else {
-                                    Navigator.of(context)
-                                        .pushNamed(ErrorScreen.routeName);
-                                  }
-                                }, Theme.of(context).buttonColor, true),
+                                        () async {
+                                      if (!visitWebsitePressed) {
+                                        visitWebsitePressed = true;
+                                        if (await canLaunch(
+                                            currentOrganisation.websiteUrl)) {
+                                          await launch(
+                                              currentOrganisation.websiteUrl);
+                                        } else {
+                                          Navigator.of(context).pushNamed(
+                                              ErrorScreen.routeName);
+                                        }
+                                        setVisitWebsitePressedFalseAfterTwoSeconds();
+                                      }
+                                    }, Theme
+                                    .of(context)
+                                    .buttonColor, true),
                               ),
                               SizedBox(
                                 height: 40,
@@ -203,7 +229,10 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                           .of(context)
                                           .organisationDetailScreen_youMatchTitle,
                                       style:
-                                          Theme.of(context).textTheme.headline2,
+                                      Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2,
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -213,7 +242,10 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                           .of(context)
                                           .organisationDetailScreen_youMatchSubTitle,
                                       style:
-                                          Theme.of(context).textTheme.subtitle1,
+                                      Theme
+                                          .of(context)
+                                          .textTheme
+                                          .subtitle1,
                                     ),
                                   ],
                                 ),
@@ -227,7 +259,7 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                   itemBuilder: (ctx, idx) {
                                     return Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           currentTags
@@ -235,7 +267,8 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                               .tag
                                               .toUpperCase(),
                                           textAlign: TextAlign.left,
-                                          style: Theme.of(context)
+                                          style: Theme
+                                              .of(context)
                                               .textTheme
                                               .bodyText2,
                                         ),
@@ -248,29 +281,30 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                             Icon(
                                               Givt.user_icon,
                                               size: 20,
-                                              color: Theme.of(context)
+                                              color: Theme
+                                                  .of(context)
                                                   .primaryColor,
                                               semanticLabel:
-                                                  "Jouw score op tag " +
-                                                      currentOrganisationTags[
-                                                              idx]
-                                                          .tag,
+                                              "Jouw score op tag " +
+                                                  currentOrganisationTags[
+                                                  idx]
+                                                      .tag,
                                             ),
                                             SizedBox(width: 10),
                                             CustomLinearProgressIndicator(
                                               height: 20,
                                               borderRadius: 20,
                                               value: currentTags
-                                                      .elementAt(idx)
-                                                      .score
-                                                      .toDouble() /
+                                                  .elementAt(idx)
+                                                  .score
+                                                  .toDouble() /
                                                   100,
                                               color: getColorForIndicator(
                                                   idx, context),
                                               backgroundColor:
-                                                  getColorForIndicator(
-                                                          idx, context)
-                                                      .withOpacity(0.15),
+                                              getColorForIndicator(
+                                                  idx, context)
+                                                  .withOpacity(0.15),
                                             ),
                                           ],
                                         ),
@@ -281,31 +315,32 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                             Icon(
                                               Givt.org_icon,
                                               size: 20,
-                                              color: Theme.of(context)
+                                              color: Theme
+                                                  .of(context)
                                                   .primaryColor,
                                               semanticLabel:
-                                                  "Score organisatie " +
-                                                      currentOrganisationTags[
-                                                              idx]
-                                                          .tag,
+                                              "Score organisatie " +
+                                                  currentOrganisationTags[
+                                                  idx]
+                                                      .tag,
                                             ),
                                             SizedBox(width: 10),
                                             CustomLinearProgressIndicator(
                                               height: 20,
                                               borderRadius: 20,
                                               value: provider
-                                                      .getOrganisationTagScore(
-                                                          currentOrganisationTags[
-                                                                  idx]
-                                                              .tag)
-                                                      .toDouble() /
+                                                  .getOrganisationTagScore(
+                                                  currentOrganisationTags[
+                                                  idx]
+                                                      .tag)
+                                                  .toDouble() /
                                                   100,
                                               color: getColorForIndicator(
                                                   idx, context),
                                               backgroundColor:
-                                                  getColorForIndicator(
-                                                          idx, context)
-                                                      .withOpacity(0.15),
+                                              getColorForIndicator(
+                                                  idx, context)
+                                                  .withOpacity(0.15),
                                             ),
                                           ],
                                         )
@@ -320,8 +355,11 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                   },
                                   itemCount: currentTags.length),
                               if (currentOrganisation.metaTags
-                                      .containsKey("donationUrl") &&
-                                  MediaQuery.of(context).size.height >= 900)
+                                  .containsKey("donationUrl") &&
+                                  MediaQuery
+                                      .of(context)
+                                      .size
+                                      .height >= 900)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 30.0),
                                   child: MainButton(
@@ -352,43 +390,60 @@ class OrganisationScreenState extends State<OrganisationScreen> {
             ),
             showGivingModal
                 ? GivingModal(() {
-                    setState(() {
-                      showGivingModal = false;
-                    });
-                  }, currentOrganisation.metaTags["donationUrl"]!)
+              setState(() {
+                showGivingModal = false;
+              });
+            }, currentOrganisation.metaTags["donationUrl"]!)
                 : Container()
           ]),
         ),
         floatingActionButton:
-            (currentOrganisation.metaTags.containsKey("donationUrl") &&
-                    MediaQuery.of(context).size.height < 900 &&
-                    !showGivingModal)
-                ? Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      height: 65,
-                      width: 65,
-                      child: FittedBox(
-                        child: fab,
-                      ),
-                    ),
-                  )
-                : null,
+        (currentOrganisation.metaTags.containsKey("donationUrl") &&
+            MediaQuery
+                .of(context)
+                .size
+                .height < 900 &&
+            !showGivingModal)
+            ? Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Container(
+            height: 65,
+            width: 65,
+            child: FittedBox(
+              child: fab,
+            ),
+          ),
+        )
+            : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
+  }
+
+  void setVisitWebsitePressedFalseAfterTwoSeconds() {
+    Future.delayed(Duration(seconds: 2), () {
+      visitWebsitePressed = false;
+    });
   }
 }
 
 Color getColorForIndicator(int idx, BuildContext context) {
   switch (idx % 3) {
     case 0:
-      return Theme.of(context).accentColor;
+      return Theme
+          .of(context)
+          .accentColor;
     case 1:
-      return Theme.of(context).primaryColor;
+      return Theme
+          .of(context)
+          .primaryColor;
     case 2:
-      return Theme.of(context).buttonColor;
+      return Theme
+          .of(context)
+          .buttonColor;
     default:
-      return Theme.of(context).primaryColor;
+      return Theme
+          .of(context)
+          .primaryColor;
   }
 }
