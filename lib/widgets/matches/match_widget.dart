@@ -50,7 +50,7 @@ class MatchWidget extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              match.organisation.mission, // TODO: Change to organisationDescription
+                              match.organisation.description,
                               style: Theme.of(context).textTheme.headline6,
                             ),
                           ),
