@@ -152,7 +152,7 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
     );
     var futureBuilder = new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 1), () => {questionnaireProvider.loadQuestions()}),
+        future: Future.delayed(const Duration(seconds: 2), () => {questionnaireProvider.loadQuestions()}),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
