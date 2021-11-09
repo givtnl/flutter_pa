@@ -56,23 +56,39 @@ class PrivacyStatementWidget extends StatelessWidget {
                                   RichText(
                                     text: TextSpan(
                                       children: [
-                                        TextSpan(text: S.of(context).privacyPolicy_Pt1, style: TextStyle(color: Theme.of(context).primaryColor)),
+                                        TextSpan(
+                                            text: S.of(context).privacyPolicy_Pt1,
+                                            style: TextStyle(
+                                              fontFamily: "Montserrat",
+                                              color: Theme.of(context).primaryColor,
+                                              fontSize: 13,
+                                            )),
                                         TextSpan(
                                             text: S.of(context).privacyPolicy_Pt2_website,
                                             style: TextStyle(
+                                              fontFamily: "Montserrat",
                                               decoration: TextDecoration.underline,
                                               color: Theme.of(context).primaryColor,
+                                              fontSize: 13,
                                             ),
                                             recognizer: new TapGestureRecognizer()
                                               ..onTap = () {
                                                 launch('https://www.givtapp.net');
                                               }),
-                                        TextSpan(text: " ${S.of(context).privacyPolicy_Pt3}", style: TextStyle(color: Theme.of(context).primaryColor)),
+                                        TextSpan(
+                                            text: " ${S.of(context).privacyPolicy_Pt3}",
+                                            style: TextStyle(
+                                              fontFamily: "Montserrat",
+                                              color: Theme.of(context).primaryColor,
+                                              fontSize: 13,
+                                            )),
                                         TextSpan(
                                             text: S.of(context).privacyPolicy_Pt4_email,
                                             style: TextStyle(
+                                              fontFamily: "Montserrat",
                                               decoration: TextDecoration.underline,
                                               color: Theme.of(context).primaryColor,
+                                              fontSize: 13,
                                             ),
                                             recognizer: new TapGestureRecognizer()
                                               ..onTap = () {
