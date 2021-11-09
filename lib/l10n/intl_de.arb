@@ -50,5 +50,21 @@
     "giveWithGivt_buttonText": "Geef met Givt",
     "giveWithoutGivt_title": "Deze organisatie is nog niet aangesloten bij Givt",
     "giveWithoutGivt_subTitle": "Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt.",
-    "giveWithoutGivt_buttonText": "naar de website"
+    "giveWithoutGivt_buttonText": "naar de website",
+    "tag_certificationMark": "CBF Erkenning",
+    "tag_taxRelief": "ANBI",
+    "tag_national": "Nationaal",
+    "tag_religiousIdentity": "Religieuze identiteit",
+    "tag_international": "Internationaal",
+    "tag_scale": "Grootte",
+    "tag_directness": "Directheid",
+    "tag_financialAdoption": "Financiële adoptie",
+    "tag_animals": "Dieren",
+    "tag_health": "Gezondheid",
+    "tag_internationalAidAndHumanRights": "Internationale hulp en mensenrechten",
+    "tag_artAndCulture": "Kunst en cultuur",
+    "tag_natureAndEnvironment": "Natuur en milieu",
+    "tag_educationAndScience": "Onderwijs en wetenschap",
+    "tag_religionAndPhilosophy": "Religie en levensbeschouwing",
+    "tag_wellBeing": "Welzijn"
 }
