@@ -75,6 +75,12 @@ class LightTheme {
               fontSize: 12,
               color: blueColor,
             ),
+          headline6: TextStyle(
+            fontFamily: _fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: blueColor,
+          ),
         ),
         sliderTheme: SliderThemeData(
           trackHeight: 1,
