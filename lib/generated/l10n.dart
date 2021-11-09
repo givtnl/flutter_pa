@@ -569,6 +569,166 @@ class S {
       args: [],
     );
   }
+
+  /// `CBF Erkenning`
+  String get tag_certificationMark {
+    return Intl.message(
+      'CBF Erkenning',
+      name: 'tag_certificationMark',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ANBI`
+  String get tag_taxRelief {
+    return Intl.message(
+      'ANBI',
+      name: 'tag_taxRelief',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationaal`
+  String get tag_national {
+    return Intl.message(
+      'Nationaal',
+      name: 'tag_national',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religieuze identiteit`
+  String get tag_religiousIdentity {
+    return Intl.message(
+      'Religieuze identiteit',
+      name: 'tag_religiousIdentity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internationaal`
+  String get tag_international {
+    return Intl.message(
+      'Internationaal',
+      name: 'tag_international',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grootte`
+  String get tag_scale {
+    return Intl.message(
+      'Grootte',
+      name: 'tag_scale',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Directheid`
+  String get tag_directness {
+    return Intl.message(
+      'Directheid',
+      name: 'tag_directness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Financiële adoptie`
+  String get tag_financialAdoption {
+    return Intl.message(
+      'Financiële adoptie',
+      name: 'tag_financialAdoption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dieren`
+  String get tag_animals {
+    return Intl.message(
+      'Dieren',
+      name: 'tag_animals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gezondheid`
+  String get tag_health {
+    return Intl.message(
+      'Gezondheid',
+      name: 'tag_health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internationale hulp en mensenrechten`
+  String get tag_internationalAidAndHumanRights {
+    return Intl.message(
+      'Internationale hulp en mensenrechten',
+      name: 'tag_internationalAidAndHumanRights',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kunst en cultuur`
+  String get tag_artAndCulture {
+    return Intl.message(
+      'Kunst en cultuur',
+      name: 'tag_artAndCulture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Natuur en milieu`
+  String get tag_natureAndEnvironment {
+    return Intl.message(
+      'Natuur en milieu',
+      name: 'tag_natureAndEnvironment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Onderwijs en wetenschap`
+  String get tag_educationAndScience {
+    return Intl.message(
+      'Onderwijs en wetenschap',
+      name: 'tag_educationAndScience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religie en levensbeschouwing`
+  String get tag_religionAndPhilosophy {
+    return Intl.message(
+      'Religie en levensbeschouwing',
+      name: 'tag_religionAndPhilosophy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welzijn`
+  String get tag_wellBeing {
+    return Intl.message(
+      'Welzijn',
+      name: 'tag_wellBeing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

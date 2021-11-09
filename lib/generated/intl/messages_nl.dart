@@ -118,6 +118,32 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("natuur en milieu"),
         "sectors_religionAndPhilosophy": MessageLookupByLibrary.simpleMessage(
             "religie en levensbeschouwing"),
-        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("welzijn")
+        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("welzijn"),
+        "tag_animals": MessageLookupByLibrary.simpleMessage("Dieren"),
+        "tag_artAndCulture":
+            MessageLookupByLibrary.simpleMessage("Kunst en cultuur"),
+        "tag_certificationMark":
+            MessageLookupByLibrary.simpleMessage("CBF Erkenning"),
+        "tag_directness": MessageLookupByLibrary.simpleMessage("Directheid"),
+        "tag_educationAndScience":
+            MessageLookupByLibrary.simpleMessage("Onderwijs en wetenschap"),
+        "tag_financialAdoption":
+            MessageLookupByLibrary.simpleMessage("Financiële adoptie"),
+        "tag_health": MessageLookupByLibrary.simpleMessage("Gezondheid"),
+        "tag_international":
+            MessageLookupByLibrary.simpleMessage("Internationaal"),
+        "tag_internationalAidAndHumanRights":
+            MessageLookupByLibrary.simpleMessage(
+                "Internationale hulp en mensenrechten"),
+        "tag_national": MessageLookupByLibrary.simpleMessage("Nationaal"),
+        "tag_natureAndEnvironment":
+            MessageLookupByLibrary.simpleMessage("Natuur en milieu"),
+        "tag_religionAndPhilosophy": MessageLookupByLibrary.simpleMessage(
+            "Religie en levensbeschouwing"),
+        "tag_religiousIdentity":
+            MessageLookupByLibrary.simpleMessage("Religieuze identiteit"),
+        "tag_scale": MessageLookupByLibrary.simpleMessage("Grootte"),
+        "tag_taxRelief": MessageLookupByLibrary.simpleMessage("ANBI"),
+        "tag_wellBeing": MessageLookupByLibrary.simpleMessage("Welzijn")
       };
 }
