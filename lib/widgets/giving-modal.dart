@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/analytics/mixpanel_manager.dart';
 import 'package:flutter_app/generated/l10n.dart';
 import 'package:flutter_app/widgets/accent_rounded_button.dart';
 import 'package:flutter_app/widgets/main_button.dart';
@@ -31,10 +32,8 @@ class GivingModal extends StatelessWidget {
         ),
         Center(
           child: SizedBox(
-            width:
-                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
-            height:
-                isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
+            width: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
+            height: isBiggerThan360 ? 310 : MediaQuery.of(context).size.width - 60,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -64,50 +63,43 @@ class GivingModal extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20, bottom: 15.0),
-                            child: Text(
-                              viaGivt
-                                  ? S.of(context).giveWithGivt_title
-                                  : S.of(context).giveWithoutGivt_title,
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 22,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20, bottom: 15.0),
+                        child: Text(
+                          viaGivt ? S.of(context).giveWithGivt_title : S.of(context).giveWithoutGivt_title,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 22,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Text(
-                              viaGivt
-                                  ? S.of(context).giveWithGivt_subTitle
-                                  : S.of(context).giveWithoutGivt_subTitle,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Text(
+                          viaGivt ? S.of(context).giveWithGivt_subTitle : S.of(context).giveWithoutGivt_subTitle,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: AccentRoundedButton(
-                                viaGivt ? S.of(context).giveWithGivt_buttonText : S.of(context).giveWithoutGivt_buttonText,
-                                () async {
-                              if (await canLaunch(url))
-                                await launch(url);
-                              else
-                                throw "Could not launch $url";
-                            }, Theme.of(context).buttonColor, true),
-                          ),
-                        ]),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child:
+                            AccentRoundedButton(viaGivt ? S.of(context).giveWithGivt_buttonText : S.of(context).giveWithoutGivt_buttonText, () async {
+                          MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "GIVING_MODAL_BUTTON"});
+                          if (await canLaunch(url))
+                            await launch(url);
+                          else
+                            throw "Could not launch $url";
+                        }, Theme.of(context).buttonColor, true),
+                      ),
+                    ]),
                   ),
                 ]),
               ),
