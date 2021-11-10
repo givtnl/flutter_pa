@@ -111,7 +111,7 @@ class _MatchesScreen extends State<MatchesScreen> {
                         setState(() {
                           this.feedback = feedback;
                           Provider.of<FeedbackProvider>(context, listen: false).sendFeedback(feedback, userProvider.userName);
-                          MixpanelManager.mixpanel.track("FEEDBACK_GIVEN");
+                          MixpanelManager.mixpanel.track("FEEDBACK_GIVEN", properties: {"BUTTON_NAME": feedback.toString()});
                           showFeedbackModal = false;
                           showFeedbackEmailModal = true;
                         });
