@@ -14,6 +14,7 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class IntroScreen extends StatefulWidget {
   static const String routeName = '/intro';
@@ -112,10 +113,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       MainButton(
                         label: S.of(context).introButton,
                         tapped: () {
-                          final DateTime now = DateTime.now();
-                          final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
-                          final String formatted = formatter.format(now);
-                          userProvider.userName = formatted;
+                          userProvider.userName = Uuid().v4();
                           if (kDebugMode) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("DEBUG MODE : ${userProvider.userName}"),
