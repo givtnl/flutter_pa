@@ -60,6 +60,10 @@ extension TagName on S {
         return this.tag_religionAndPhilosophy;
       case "Well-being":
         return this.tag_wellBeing;
+      case "Reach":
+        return this.tag_reach;
+      case "Investing":
+        return this.tag_investing;
     }
   }
 }

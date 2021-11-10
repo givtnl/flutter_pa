@@ -729,6 +729,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Bereik`
+  String get tag_reach {
+    return Intl.message(
+      'Bereik',
+      name: 'tag_reach',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Investeren`
+  String get tag_investing {
+    return Intl.message(
+      'Investeren',
+      name: 'tag_investing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

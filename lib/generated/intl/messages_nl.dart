@@ -135,9 +135,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "tag_internationalAidAndHumanRights":
             MessageLookupByLibrary.simpleMessage(
                 "Internationale hulp en mensenrechten"),
+        "tag_investing": MessageLookupByLibrary.simpleMessage("Investeren"),
         "tag_national": MessageLookupByLibrary.simpleMessage("Nationaal"),
         "tag_natureAndEnvironment":
             MessageLookupByLibrary.simpleMessage("Natuur en milieu"),
+        "tag_reach": MessageLookupByLibrary.simpleMessage("Bereik"),
         "tag_religionAndPhilosophy": MessageLookupByLibrary.simpleMessage(
             "Religie en levensbeschouwing"),
         "tag_religiousIdentity":
