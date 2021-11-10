@@ -83,7 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Jouw persoonlijke voorstellen"),
         "nextButton": MessageLookupByLibrary.simpleMessage("volgende"),
         "organisationDetailScreen_giveButton":
-            MessageLookupByLibrary.simpleMessage("Ik wil graag geven!"),
+            MessageLookupByLibrary.simpleMessage("geven"),
         "organisationDetailScreen_mission":
             MessageLookupByLibrary.simpleMessage("Missie"),
         "organisationDetailScreen_vision":
