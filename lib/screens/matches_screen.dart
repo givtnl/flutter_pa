@@ -156,7 +156,7 @@ class _MatchesScreen extends State<MatchesScreen> {
               case ConnectionState.done:
                 initialLoad = false;
                 Future.delayed(
-                  const Duration(seconds: 5),
+                  const Duration(seconds: 30),
                   () => {
                     setState(() {
                       showFeedbackModal = true;
