@@ -9,7 +9,6 @@ import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/accent_rounded_button.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/custom_linear_progress_indicator.dart';
-import 'package:flutter_app/widgets/feedback_widget.dart';
 import 'package:flutter_app/widgets/giving-modal.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/match_percentage_circle.dart';
@@ -19,7 +18,6 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:universal_html/js.dart' as js;
 
 import '../extensions/intl_extension.dart';
 import '../givt_icons.dart';
@@ -121,8 +119,7 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                   flex: 2,
                                   child: Align(
                                     alignment: Alignment.topLeft,
-                                    child:
-                                        AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
+                                    child: AutoSizeText(currentOrganisation.name, style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24)),
                                   ),
                                 ),
                                 MatchPercentageCircle(currentMatch.score.round()),
@@ -206,11 +203,14 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder: (ctx, idx) {
+                                    final currentUserTag = currentTags.elementAt(idx);
+                                    final currentOrganisationTag = currentOrganisationTags.firstWhere((element) => element.tag == currentUserTag.tag);
+
                                     return Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          itlProvider.getTagName(currentTags.elementAt(idx).tag).toUpperCase(),
+                                          itlProvider.getTagName(currentUserTag.tag).toUpperCase(),
                                           textAlign: TextAlign.left,
                                           style: Theme.of(context).textTheme.bodyText2,
                                         ),
@@ -224,13 +224,13 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                               Givt.user_icon,
                                               size: 20,
                                               color: Theme.of(context).primaryColor,
-                                              semanticLabel: "Jouw score op tag " + currentOrganisationTags[idx].tag,
+                                              semanticLabel: "Jouw score op tag " + currentOrganisationTag.tag,
                                             ),
                                             SizedBox(width: 10),
                                             CustomLinearProgressIndicator(
                                               height: 20,
                                               borderRadius: 20,
-                                              value: currentTags.elementAt(idx).score.toDouble() / 100,
+                                              value: currentUserTag.score.toDouble() / 100,
                                               color: getColorForIndicator(idx, context),
                                               backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
                                             ),
@@ -244,13 +244,13 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                                               Givt.org_icon,
                                               size: 20,
                                               color: Theme.of(context).primaryColor,
-                                              semanticLabel: "Score organisatie " + currentOrganisationTags[idx].tag,
+                                              semanticLabel: "Score organisatie " + currentOrganisationTag.tag,
                                             ),
                                             SizedBox(width: 10),
                                             CustomLinearProgressIndicator(
                                               height: 20,
                                               borderRadius: 20,
-                                              value: provider.getOrganisationTagScore(currentOrganisationTags[idx].tag).toDouble() / 100,
+                                              value: provider.getOrganisationTagScore(currentOrganisationTag.tag).toDouble() / 100,
                                               color: getColorForIndicator(idx, context),
                                               backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
                                             ),
@@ -298,19 +298,18 @@ class OrganisationScreenState extends State<OrganisationScreen> {
                 : Container()
           ]),
         ),
-        floatingActionButton:
-            (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 900 && !showGivingModal)
-                ? Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      height: 65,
-                      width: 65,
-                      child: FittedBox(
-                        child: fab,
-                      ),
-                    ),
-                  )
-                : null,
+        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 900 && !showGivingModal)
+            ? Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                  height: 65,
+                  width: 65,
+                  child: FittedBox(
+                    child: fab,
+                  ),
+                ),
+              )
+            : null,
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
