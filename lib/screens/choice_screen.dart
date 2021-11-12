@@ -63,13 +63,15 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                         ],
                       ),
                     ),
-                    portrait ? Container() : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
-                      child: SvgPicture.asset(
-                        'assets/svg/givt-logo.svg',
-                        height: 30,
-                      ),
-                    ),
+                    portrait
+                        ? Container()
+                        : Padding(
+                            padding: const EdgeInsets.only(bottom: 20.0, left: 50.0, right: 50.0, top: 80.0),
+                            child: SvgPicture.asset(
+                              'assets/svg/givt-logo.svg',
+                              height: 30,
+                            ),
+                          ),
                     Expanded(
                       child: Container(),
                     ),
