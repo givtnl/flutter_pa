@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/l10n.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_app/widgets/privacy_statement_widget.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -149,24 +152,30 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
       ),
     );
-    var futureBuilder = new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2), () => {questionnaireProvider.loadQuestions()}),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            print(snapshot.error);
-          }
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              initialLoad = false;
-              return screen;
-            case ConnectionState.active:
-            case ConnectionState.waiting:
-              return SpinnerContainer(S.of(context).fetchingQuestions);
-            case ConnectionState.none:
-              return ErrorScreen();
-              break;
-          }
-        });
+    var futureBuilder =
+        new FutureBuilder(
+            future: Future(
+                () async => {
+                      await questionnaireProvider.loadQuestions(),
+                      await Future.delayed(const Duration(seconds: 2))
+                    }).timeout(const Duration(seconds: 3)).catchError((error) => {
+                  if (!(error is TimeoutException)) throw error
+                }),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                print(snapshot.error);
+              }
+              switch (snapshot.connectionState) {
+                case ConnectionState.done:
+                  initialLoad = false;
+                  return screen;
+                case ConnectionState.active:
+                case ConnectionState.waiting:
+                  return SpinnerContainer(S.of(context).fetchingQuestions);
+                case ConnectionState.none:
+                  return ErrorScreen();
+              }
+            });
     return initialLoad ? futureBuilder : screen;
   }
 }
