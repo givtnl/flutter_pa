@@ -75,6 +75,12 @@ class LightTheme {
               fontSize: 12,
               color: blueColor,
             ),
+          headline6: TextStyle(
+            fontFamily: _fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: blueColor,
+          ),
         ),
         sliderTheme: SliderThemeData(
           trackHeight: 1,
@@ -102,6 +108,8 @@ class LightTheme {
       );
 
   static Color get blueColor => Color.fromRGBO(36, 75, 129, 1);
+  
+  static Color get mediumBlueColor => Color.fromRGBO(117, 140, 171, 1);
 
   static Color get purpleColor => Color.fromRGBO(124, 96, 143, 1);
 

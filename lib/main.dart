@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/generated/l10n.dart';
+import 'package:flutter_app/providers/feedback_provider.dart';
 import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
@@ -28,14 +29,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void dispose() {
-    MixpanelManager.mixpanel.flushEvents();
+  void dispose() async {
+    await MixpanelManager.mixpanel.flushEvents();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
 
     ApiClient apiClient = ApiClient(basePath: FlavorConfig.instance.values.baseUrl);
 
@@ -50,6 +53,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => MatchesProvider.withDependencies(apiClient),
         ),
+        ChangeNotifierProvider(
+          create: (_) => FeedbackProvider.withDependencies(apiClient),
+        ),
       ],
       child: MaterialApp(
           title: "Givt Wizard",
@@ -59,7 +65,9 @@ class _MyAppState extends State<MyApp> {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate
           ],
-          supportedLocales: [Locale('nl', '')],
+          supportedLocales: [
+            Locale('nl', '')
+          ],
           theme: LightTheme.theme,
           initialRoute: '/',
           routes: {
@@ -78,6 +86,5 @@ class CustomPageRoute extends PageRouteBuilder {
   @override
   Duration get transitionDuration => const Duration(milliseconds: 500);
 
-  CustomPageRoute({pageBuilder, transitionsBuilder})
-      : super(pageBuilder: pageBuilder, transitionsBuilder: transitionsBuilder);
+  CustomPageRoute({pageBuilder, transitionsBuilder}) : super(pageBuilder: pageBuilder, transitionsBuilder: transitionsBuilder);
 }

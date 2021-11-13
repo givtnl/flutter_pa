@@ -45,8 +45,7 @@ final questionId = questionId_example; // String |
 final createAnswerRequest = CreateAnswerRequest(); // CreateAnswerRequest | 
 
 try {
-    final result = api_instance.createAnswer(questionId, createAnswerRequest);
-    print(result);
+    api_instance.createAnswer(questionId, createAnswerRequest);
 } catch (e) {
     print('Exception when calling AnswersApi->createAnswer: $e\n');
 }
@@ -60,6 +59,7 @@ All URIs are relative to *https://poxv71al5m.execute-api.eu-west-3.amazonaws.com
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AnswersApi* | [**createAnswer**](doc//AnswersApi.md#createanswer) | **POST** /questions/{questionId}/answers | Answers a question
+*FeedbackApi* | [**createFeedback**](doc//FeedbackApi.md#createfeedback) | **POST** /users/{userId}/feedback | Give feedback
 *MatchesApi* | [**getMatchesList**](doc//MatchesApi.md#getmatcheslist) | **GET** /matches | Returns a list of matches
 *OrganisationMatchesApi* | [**getUserOrganisationTagMatchesList**](doc//OrganisationMatchesApi.md#getuserorganisationtagmatcheslist) | **GET** /organisations/{organisationId}/matches | Returns a list of matches for the combination between an user and an organisation
 *OrganisationTagsApi* | [**getOrganisationTags**](doc//OrganisationTagsApi.md#getorganisationtags) | **GET** /organisations/{organisationId}/tags | Retrieves tags from the given organisation
@@ -78,6 +78,7 @@ Class | Method | HTTP request | Description
  - [CreateQuestionRequest](doc//CreateQuestionRequest.md)
  - [CreateQuestionResponse](doc//CreateQuestionResponse.md)
  - [CreateQuestionStatementRequestOptions](doc//CreateQuestionStatementRequestOptions.md)
+ - [CreateUserFeedbackRequest](doc//CreateUserFeedbackRequest.md)
  - [GetOrganisationTagsResponse](doc//GetOrganisationTagsResponse.md)
  - [GetQuestionsListResponse](doc//GetQuestionsListResponse.md)
  - [GetUserOrganisationMatchesListResponse](doc//GetUserOrganisationMatchesListResponse.md)
@@ -88,6 +89,7 @@ Class | Method | HTTP request | Description
  - [QuestionListModel](doc//QuestionListModel.md)
  - [QuestionStatementModel](doc//QuestionStatementModel.md)
  - [QuestionType](doc//QuestionType.md)
+ - [UserFeedback](doc//UserFeedback.md)
  - [UserOrganisationMatchListModel](doc//UserOrganisationMatchListModel.md)
  - [UserOrganisationTagMatchListModel](doc//UserOrganisationTagMatchListModel.md)
 

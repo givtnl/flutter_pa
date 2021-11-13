@@ -5,42 +5,80 @@ import 'package:mockito/mockito.dart';
 import 'package:openapi/api.dart';
 import 'questionnaire_provider_test.mocks.dart';
 
-@GenerateMocks([QuestionsApi, AnswersApi])
+@GenerateMocks([
+  QuestionsApi,
+  AnswersApi
+])
 void main() {
   GetQuestionsListResponse questionListResponse = GetQuestionsListResponse(result: [
     QuestionListModel(id: "ea63b0bb-38bb-443a-9c75-dfd3cd65356f", type: QuestionType.number1, displayOrder: 4, translations: {
       "nl": "Welke van deze thema’s vind jij belangrijk?"
     }, categoryOptions: [
-      QuestionCategoryOptionModel(displayOrder: 1, translations: {"en": "animals", "nl": "dieren"}, tagScores: {"Animals": 100}),
-      QuestionCategoryOptionModel(displayOrder: 2, translations: {"en": "health", "nl": "gezondheid"}, tagScores: {"Health": 100}),
-      QuestionCategoryOptionModel(
-          displayOrder: 3, translations: {"en": "international aid and human rights", "nl": "internationale hulp en mensenrechten"}, tagScores: {"International aid and human rights": 100}),
-      QuestionCategoryOptionModel(displayOrder: 4, translations: {"en": "art en culture", "nl": "kunst en cultuur"}, tagScores: {"Art and culture": 100}),
+      QuestionCategoryOptionModel(displayOrder: 1, translations: {
+        "en": "animals",
+        "nl": "dieren"
+      }, tagScores: {
+        "Animals": 100
+      }),
+      QuestionCategoryOptionModel(displayOrder: 2, translations: {
+        "en": "health",
+        "nl": "gezondheid"
+      }, tagScores: {
+        "Health": 100
+      }),
+      QuestionCategoryOptionModel(displayOrder: 3, translations: {
+        "en": "international aid and human rights",
+        "nl": "internationale hulp en mensenrechten"
+      }, tagScores: {
+        "International aid and human rights": 100
+      }),
+      QuestionCategoryOptionModel(displayOrder: 4, translations: {
+        "en": "art en culture",
+        "nl": "kunst en cultuur"
+      }, tagScores: {
+        "Art and culture": 100
+      }),
     ]),
     QuestionListModel(
         id: "38390a35-6ce2-4778-bf73-be39dbfb323a",
         type: QuestionType.number0,
         displayOrder: 2,
-        translations: {"nl": "Voordat ik geef, controleer ik of mijn donatie belastingaftrekbaar is."},
-        statementOptions: QuestionStatementModel(tagScores: {"Tax relief": 100})),
+        translations: {
+          "nl": "Voordat ik geef, controleer ik of mijn donatie belastingaftrekbaar is."
+        },
+        statementOptions: QuestionStatementModel(tagScores: {
+          "Tax relief": 100
+        })),
     QuestionListModel(
         id: "b8e58fbe-a5a9-4685-9256-29a402b01139",
         type: QuestionType.number0,
         displayOrder: 1,
-        translations: {"nl": "Ik wil geven aan doelen die een effect hebben in mijn directe omgeving."},
-        statementOptions: QuestionStatementModel(tagScores: {"Tax relief": 100})),
+        translations: {
+          "nl": "Ik wil geven aan doelen die een effect hebben in mijn directe omgeving."
+        },
+        statementOptions: QuestionStatementModel(tagScores: {
+          "Tax relief": 100
+        })),
     QuestionListModel(
         id: "d2ed67d8-5679-4ab5-b945-1d94e1289a85",
         type: QuestionType.number0,
         displayOrder: 3,
-        translations: {"nl": "Een goed doel met keurmerk geeft mij meer vertrouwen in een juiste besteding van mijn donatie."},
-        statementOptions: QuestionStatementModel(tagScores: {"Certification mark": 100})),
+        translations: {
+          "nl": "Een goed doel met keurmerk geeft mij meer vertrouwen in een juiste besteding van mijn donatie."
+        },
+        statementOptions: QuestionStatementModel(tagScores: {
+          "Certification mark": 100
+        })),
     QuestionListModel(
         id: "190063d2-a68d-4cff-a0fe-5dce7cbc869f",
         type: QuestionType.number0,
         displayOrder: 5,
-        translations: {"nl": "Voordat ik geef, controleer ik of mijn donatie belastingaftrekbaar is."},
-        statementOptions: QuestionStatementModel(tagScores: {"Tax relief": 100})),
+        translations: {
+          "nl": "Voordat ik geef, controleer ik of mijn donatie belastingaftrekbaar is."
+        },
+        statementOptions: QuestionStatementModel(tagScores: {
+          "Tax relief": 100
+        })),
   ]);
 
   group('QuestionnaireProvider tests', () {
@@ -48,7 +86,7 @@ void main() {
     final answersApi = MockAnswersApi();
 
     when(questionsApi.getQuestionsList()).thenAnswer((_) => Future.value(questionListResponse));
-    when(answersApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a",any)).thenAnswer((_) => Future.value(CreateQuestionResponse(id: "38390a35-6ce2-4778-bf73-be39dbfb323a")));
+    when(answersApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a", any)).thenAnswer((_) => Future.value(CreateQuestionResponse(id: "38390a35-6ce2-4778-bf73-be39dbfb323a")));
 
     test('Ensure Questions Are Assigned When Executing Http Call', () async {
       var provider = QuestionnaireProvider.withMockDependencies(questionsApi, answersApi);
@@ -195,7 +233,7 @@ void main() {
       provider.prepareNextScreen();
       provider.setCurrentStatementValue(3);
       provider.saveQuestion("Michiel");
-      verify(provider.answerApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a",any)).called(1);
+      verify(provider.answerApi.createAnswer("38390a35-6ce2-4778-bf73-be39dbfb323a", any)).called(1);
     });
   });
 }

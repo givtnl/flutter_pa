@@ -5,19 +5,33 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/choice_screen.dart';
 import 'package:flutter_app/screens/error_screen.dart';
+import 'package:flutter_app/themes/light/theme.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
+import 'package:flutter_app/widgets/privacy_statement_widget.dart';
 import 'package:flutter_app/widgets/spinner_container.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
   static const String routeName = '/intro';
 
   @override
+  State<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
+  var showPrivacyStatement = false;
+  var initialLoad = true;
+
+  @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var portrait = size.height > size.width;
+
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
     var screen = TrackedScreen(
@@ -29,10 +43,13 @@ class IntroScreen extends StatelessWidget {
             children: [
               BackgroundWidget(),
               Align(
-                alignment: Alignment.topLeft,
+                alignment: portrait ? Alignment.topLeft : Alignment.topCenter,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
-                  child: SvgPicture.asset('assets/svg/givt-logo.svg', height: 30,),
+                  child: SvgPicture.asset(
+                    'assets/svg/givt-logo.svg',
+                    height: 30,
+                  ),
                 ),
               ),
               Center(
@@ -40,7 +57,7 @@ class IntroScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: portrait ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                     children: [
                       Text(
                         S.of(context).introTitle,
@@ -61,45 +78,86 @@ class IntroScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(50.0),
-                  child: MainButton(
-                    label: S.of(context).introButton,
-                    tapped: () {
-                      final DateTime now = DateTime.now();
-                      final DateFormat formatter = DateFormat("yyyy-MM-dd hh:mm");
-                      final String formatted = formatter.format(now);
-                      userProvider.userName = formatted;
-                      if (kDebugMode) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("DEBUG MODE : ${userProvider.userName}"),
-                          duration: Duration(seconds: 2),
-                        ));
-                        print(userProvider.userName);
-                      }
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => ChoiceScreen(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        width: double.infinity,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showPrivacyStatement = true;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            alignment: Alignment.center,
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Text(
+                                S.of(context).introPrivacyPolicyLink,
+                                style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10,
+                                  decoration: TextDecoration.underline,
+                                  color: LightTheme.mediumBlueColor,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
                         ),
-                      );
-                    },
-                    fontSize: 16,
-                    height: 45,
-                    webWidth: 600.0,
+                      ),
+                      MainButton(
+                        label: S.of(context).introButton,
+                        tapped: () {
+                          userProvider.userName = Uuid().v4();
+                          if (kDebugMode) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("DEBUG MODE : ${userProvider.userName}"),
+                              duration: Duration(seconds: 2),
+                            ));
+                            print(userProvider.userName);
+                          }
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation, secondaryAnimation) => ChoiceScreen(),
+                            ),
+                          );
+                        },
+                        fontSize: 16,
+                        height: 45,
+                        webWidth: 350.0,
+                      ),
+                      SizedBox(
+                        height: kIsWeb && MediaQuery.of(context).size.height > 1000 ? MediaQuery.of(context).size.height * .2 : 0,
+                      ),
+                    ],
                   ),
                 ),
               ),
+              if (showPrivacyStatement)
+                PrivacyStatementWidget(() {
+                  setState(() {
+                    showPrivacyStatement = false;
+                  });
+                })
             ],
           ),
         ),
       ),
     );
-    return new FutureBuilder(
-        future: Future.delayed(const Duration(seconds: 2), () => questionnaireProvider.loadQuestions()),
+    var futureBuilder = new FutureBuilder(
+        future: Future.delayed(const Duration(seconds: 2), () => {questionnaireProvider.loadQuestions()}),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print(snapshot.error);
           }
           switch (snapshot.connectionState) {
             case ConnectionState.done:
+              initialLoad = false;
               return screen;
             case ConnectionState.active:
             case ConnectionState.waiting:
@@ -109,5 +167,6 @@ class IntroScreen extends StatelessWidget {
               break;
           }
         });
+    return initialLoad ? futureBuilder : screen;
   }
 }

@@ -14,8 +14,12 @@ class QuestionnaireBody extends StatefulWidget {
 }
 
 class _QuestionnaireBodyState extends State<QuestionnaireBody> {
+
+  var portrait = false;
+
   @override
   Widget build(BuildContext context) {
+    portrait = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(
         context);
     Widget body = Container();
@@ -27,7 +31,7 @@ class _QuestionnaireBodyState extends State<QuestionnaireBody> {
     }
 
     return SizedBox(
-      width: kIsWeb ? 700 : double.infinity,
+      width: kIsWeb && !portrait ? 550 : double.infinity,
       child: body
     );
   }

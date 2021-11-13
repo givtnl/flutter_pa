@@ -9,6 +9,7 @@ import 'package:flutter_app/providers/matches_provider.dart';
 import 'package:flutter_app/widgets/accent_rounded_button.dart';
 import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/custom_linear_progress_indicator.dart';
+import 'package:flutter_app/widgets/giving-modal.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/match_percentage_circle.dart';
 import 'package:flutter_app/widgets/organisation_extra_description.dart';
@@ -17,7 +18,6 @@ import 'package:flutter_app/widgets/tracked_screen.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:universal_html/js.dart' as js;
 
 import '../extensions/intl_extension.dart';
 import '../givt_icons.dart';
@@ -30,21 +30,23 @@ class MatchingTag {
   MatchingTag(this.score, this.name);
 }
 
-class OrganisationScreen extends StatelessWidget {
+class OrganisationScreen extends StatefulWidget {
   static const routeName = '/organisation-detail';
 
-  OrganisationScreen();
+  OrganisationScreenState createState() => OrganisationScreenState();
+}
+
+class OrganisationScreenState extends State<OrganisationScreen> {
+  bool showGivingModal = false;
+  bool visitWebsitePressed = false;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Localize terms here on this screen
-
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
     var currentTags = provider.currentMatchingTags;
     var currentOrganisationTags = provider.currentOrganisationTags;
-
     var itlProvider = S.of(context);
 
     final Widget backArrow = SvgPicture.asset('assets/svg/back-arrow.svg');
@@ -53,12 +55,10 @@ class OrganisationScreen extends StatelessWidget {
 
     final Widget fab = FloatingActionButton.large(
       onPressed: () async {
-        MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-        var url = currentOrganisation.metaTags["donationUrl"]!;
-        if (await canLaunch(url))
-          await launch(url);
-        else
-          throw "Could not launch $url";
+        await MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
+        setState(() {
+          showGivingModal = true;
+        });
       },
       backgroundColor: Theme.of(context).primaryColor,
       child: Center(
@@ -163,10 +163,14 @@ class OrganisationScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: AccentRoundedButton(S.of(context).organisationDetailScreen_visitWebsite, () async {
-                                  if (await canLaunch(currentOrganisation.websiteUrl)) {
-                                    await launch(currentOrganisation.websiteUrl);
-                                  } else {
-                                    Navigator.of(context).pushNamed(ErrorScreen.routeName);
+                                  if (!visitWebsitePressed) {
+                                    visitWebsitePressed = true;
+                                    if (await canLaunch(currentOrganisation.websiteUrl)) {
+                                      await launch(currentOrganisation.websiteUrl);
+                                    } else {
+                                      Navigator.of(context).pushNamed(ErrorScreen.routeName);
+                                    }
+                                    setVisitWebsitePressedFalseAfterTwoSeconds();
                                   }
                                 }, Theme.of(context).buttonColor, true),
                               ),
@@ -199,11 +203,14 @@ class OrganisationScreen extends StatelessWidget {
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder: (ctx, idx) {
+                                    final currentUserTag = currentTags.elementAt(idx);
+                                    final currentOrganisationTag = currentOrganisationTags.firstWhere((element) => element.tag == currentUserTag.tag);
+
                                     return Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          currentTags.elementAt(idx).tag.toUpperCase(),
+                                          itlProvider.getTagName(currentUserTag.tag).toUpperCase(),
                                           textAlign: TextAlign.left,
                                           style: Theme.of(context).textTheme.bodyText2,
                                         ),
@@ -217,13 +224,13 @@ class OrganisationScreen extends StatelessWidget {
                                               Givt.user_icon,
                                               size: 20,
                                               color: Theme.of(context).primaryColor,
-                                              semanticLabel: "Jouw score op tag " + currentOrganisationTags[idx].tag,
+                                              semanticLabel: "Jouw score op tag " + currentOrganisationTag.tag,
                                             ),
                                             SizedBox(width: 10),
                                             CustomLinearProgressIndicator(
                                               height: 20,
                                               borderRadius: 20,
-                                              value: currentTags.elementAt(idx).score.toDouble() / 100,
+                                              value: currentUserTag.score.toDouble() / 100,
                                               color: getColorForIndicator(idx, context),
                                               backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
                                             ),
@@ -237,13 +244,13 @@ class OrganisationScreen extends StatelessWidget {
                                               Givt.org_icon,
                                               size: 20,
                                               color: Theme.of(context).primaryColor,
-                                              semanticLabel: "Score organisatie " + currentOrganisationTags[idx].tag,
+                                              semanticLabel: "Score organisatie " + currentOrganisationTag.tag,
                                             ),
                                             SizedBox(width: 10),
                                             CustomLinearProgressIndicator(
                                               height: 20,
                                               borderRadius: 20,
-                                              value: provider.getOrganisationTagScore(currentOrganisationTags[idx].tag).toDouble() / 100,
+                                              value: provider.getOrganisationTagScore(currentOrganisationTag.tag).toDouble() / 100,
                                               color: getColorForIndicator(idx, context),
                                               backgroundColor: getColorForIndicator(idx, context).withOpacity(0.15),
                                             ),
@@ -264,16 +271,10 @@ class OrganisationScreen extends StatelessWidget {
                                   child: MainButton(
                                     label: S.of(context).organisationDetailScreen_giveButton,
                                     tapped: () async {
-                                      MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
-                                      var url = currentOrganisation.metaTags["donationUrl"]!;
-                                      if (kIsWeb) {
-                                        js.context.callMethod('open', [url]);
-                                      } else {
-                                        if (await canLaunch(url))
-                                          await launch(url);
-                                        else
-                                          throw "Could not launch $url";
-                                      }
+                                      await MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "SUPPORT_ORGANISATION"});
+                                      setState(() {
+                                        showGivingModal = true;
+                                      });
                                     },
                                     fontSize: 16,
                                     height: 45,
@@ -288,9 +289,16 @@ class OrganisationScreen extends StatelessWidget {
                 ),
               ),
             ),
+            showGivingModal
+                ? GivingModal(() {
+                    setState(() {
+                      showGivingModal = false;
+                    });
+                  }, currentOrganisation.metaTags["donationUrl"]!)
+                : Container()
           ]),
         ),
-        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 900)
+        floatingActionButton: (currentOrganisation.metaTags.containsKey("donationUrl") && MediaQuery.of(context).size.height < 900 && !showGivingModal)
             ? Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
@@ -306,11 +314,16 @@ class OrganisationScreen extends StatelessWidget {
       ),
     );
   }
+
+  void setVisitWebsitePressedFalseAfterTwoSeconds() {
+    Future.delayed(Duration(seconds: 2), () {
+      visitWebsitePressed = false;
+    });
+  }
 }
 
 Color getColorForIndicator(int idx, BuildContext context) {
-  int number = idx;
-  switch (number) {
+  switch (idx % 3) {
     case 0:
       return Theme.of(context).accentColor;
     case 1:

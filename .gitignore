@@ -50,3 +50,5 @@ pubspec.lock
 
 # Test data
 /json/*
+
+**/Podfile.lock

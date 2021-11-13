@@ -7,10 +7,10 @@ import 'package:flutter_app/providers/questionnaire_provider.dart';
 import 'package:flutter_app/providers/user_provider.dart';
 import 'package:flutter_app/screens/matches_screen.dart';
 import 'package:flutter_app/widgets/background_patterns/pattern1.dart';
-import 'package:flutter_app/widgets/background_widget.dart';
 import 'package:flutter_app/widgets/main_button.dart';
 import 'package:flutter_app/widgets/questionnaire_body_widget.dart';
 import 'package:flutter_app/widgets/tracked_screen.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class ChoiceScreen extends StatefulWidget {
@@ -20,11 +20,13 @@ class ChoiceScreen extends StatefulWidget {
 }
 
 class _ChoiceScreenState extends State<ChoiceScreen> {
-
   @override
   Widget build(BuildContext context) {
     var questionnaireProvider = Provider.of<QuestionnaireProvider>(context, listen: false);
     var userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    var size = MediaQuery.of(context).size;
+    var portrait = size.height > size.width;
 
     return TrackedScreen(
       screenName: 'ChoiceScreen',
@@ -47,20 +49,25 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                       height: 15,
                       child: Stack(
                         children: [
-                          Consumer<QuestionnaireProvider>(
-                            builder: (_, a, ctx) {
-                              return FractionallySizedBox(
-                                heightFactor: 1,
-                                widthFactor: questionnaireProvider.currentProgress / 100,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).buttonColor,
-                                  ),
+                          Consumer<QuestionnaireProvider>(builder: (_, a, ctx) {
+                            return FractionallySizedBox(
+                              heightFactor: 1,
+                              widthFactor: questionnaireProvider.currentProgress / 100 == double.infinity ? 0 : questionnaireProvider.currentProgress / 100,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).buttonColor,
                                 ),
-                              );
-                            }
-                          ),
+                              ),
+                            );
+                          }),
                         ],
+                      ),
+                    ),
+                    portrait ? Container() : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
+                      child: SvgPicture.asset(
+                        'assets/svg/givt-logo.svg',
+                        height: 30,
                       ),
                     ),
                     Expanded(
@@ -68,14 +75,18 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     ),
                     QuestionnaireBody(),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height > 600 ? 50 : MediaQuery.of(context).size.height * .02),
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: MediaQuery.of(context).size.height > 580 ? 50 : MediaQuery.of(context).size.height * .02),
                       child: MainButton(
                         label: S.of(context).nextButton,
                         tapped: () async {
-                          MixpanelManager.mixpanel.track("CLICKED", properties: {"BUTTON_NAME": "NEXT"});
-
+                          await MixpanelManager.mixpanel.track("STATEMENT_ANSWER", properties: {
+                            "STATEMENT_ID": questionnaireProvider.getCurrentQuestion?.id ?? "unknown"
+                          });
                           await questionnaireProvider.saveQuestion(userProvider.userName);
                           questionnaireProvider.prepareNextScreen();
+                          await MixpanelManager.mixpanel.track("STATEMENT_LOAD", properties: {
+                            "STATEMENT_ID": questionnaireProvider.getCurrentQuestion?.id ?? "unknown"
+                          });
 
                           if (questionnaireProvider.isCompleted) {
                             Navigator.of(context).pushNamed(MatchesScreen.routeName);
@@ -83,11 +94,11 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                         },
                         height: 45,
                         fontSize: 16,
-                        webWidth: 600.0,
+                        webWidth: 275.0,
                       ),
                     ),
                     SizedBox(
-                      height: kIsWeb && MediaQuery.of(context).size.height > 950 ? MediaQuery.of(context).size.height * .2 : 0,
+                      height: kIsWeb && MediaQuery.of(context).size.height > 1000 ? MediaQuery.of(context).size.height * .2 : 0,
                     ),
                   ],
                 ),

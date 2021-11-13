@@ -20,7 +20,7 @@ void main() {
     //
     // Registers an answer for a given question for a particular user
     //
-    //Future<CreateQuestionResponse> createAnswer(String questionId, CreateAnswerRequest createAnswerRequest) async
+    //Future createAnswer(String questionId, CreateAnswerRequest createAnswerRequest) async
     test('test createAnswer', () async {
       // TODO
     });

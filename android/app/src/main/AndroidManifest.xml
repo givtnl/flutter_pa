@@ -13,7 +13,7 @@
     </queries>
 
    <application
-        android:label="Keuzewijzer"
+        android:label="Givt Wizard"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

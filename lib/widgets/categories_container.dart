@@ -7,17 +7,24 @@ import 'package:provider/provider.dart';
 import 'category_card.dart';
 
 class CategoriesContainer extends StatelessWidget {
+  bool sizeBigEnough = true;
+  bool portrait = false;
+
   Widget categoryContainer(cards, context) {
+
+    sizeBigEnough = MediaQuery.of(context).size.height > 500;
+    portrait = MediaQuery.of(context).size.height > MediaQuery.of(context).size.width;
+
     return Container(
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 24),
+          padding: portrait ? const EdgeInsets.symmetric(horizontal: 50.0, vertical: 24) : EdgeInsets.symmetric(vertical: 50),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: portrait ? CrossAxisAlignment.start : CrossAxisAlignment.center,
             children: [
               AutoSizeText(
                 S.of(context).categoryScreenTitleQuestion,
-                style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24),
+                style: Theme.of(context).textTheme.headline1!.copyWith(fontSize: sizeBigEnough ? 24 : 18),
               ),
               SizedBox(height: 15,),
               AutoSizeText(S.of(context).categoryScreenSubtitle,

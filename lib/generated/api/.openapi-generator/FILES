@@ -12,6 +12,8 @@ doc/CreateQuestionCategoryRequestOptions.md
 doc/CreateQuestionRequest.md
 doc/CreateQuestionResponse.md
 doc/CreateQuestionStatementRequestOptions.md
+doc/CreateUserFeedbackRequest.md
+doc/FeedbackApi.md
 doc/GetOrganisationTagsResponse.md
 doc/GetQuestionsListResponse.md
 doc/GetUserOrganisationMatchesListResponse.md
@@ -27,11 +29,13 @@ doc/QuestionListModel.md
 doc/QuestionStatementModel.md
 doc/QuestionType.md
 doc/QuestionsApi.md
+doc/UserFeedback.md
 doc/UserOrganisationMatchListModel.md
 doc/UserOrganisationTagMatchListModel.md
 git_push.sh
 lib/api.dart
 lib/api/answers_api.dart
+lib/api/feedback_api.dart
 lib/api/matches_api.dart
 lib/api/organisation_matches_api.dart
 lib/api/organisation_tags_api.dart
@@ -53,6 +57,7 @@ lib/model/create_question_category_request_options.dart
 lib/model/create_question_request.dart
 lib/model/create_question_response.dart
 lib/model/create_question_statement_request_options.dart
+lib/model/create_user_feedback_request.dart
 lib/model/get_organisation_tags_response.dart
 lib/model/get_questions_list_response.dart
 lib/model/get_user_organisation_matches_list_response.dart
@@ -63,6 +68,7 @@ lib/model/question_category_option_model.dart
 lib/model/question_list_model.dart
 lib/model/question_statement_model.dart
 lib/model/question_type.dart
+lib/model/user_feedback.dart
 lib/model/user_organisation_match_list_model.dart
 lib/model/user_organisation_tag_match_list_model.dart
 pubspec.yaml
@@ -75,6 +81,8 @@ test/create_question_category_request_options_test.dart
 test/create_question_request_test.dart
 test/create_question_response_test.dart
 test/create_question_statement_request_options_test.dart
+test/create_user_feedback_request_test.dart
+test/feedback_api_test.dart
 test/get_organisation_tags_response_test.dart
 test/get_questions_list_response_test.dart
 test/get_user_organisation_matches_list_response_test.dart
@@ -90,5 +98,6 @@ test/question_list_model_test.dart
 test/question_statement_model_test.dart
 test/question_type_test.dart
 test/questions_api_test.dart
+test/user_feedback_test.dart
 test/user_organisation_match_list_model_test.dart
 test/user_organisation_tag_match_list_model_test.dart

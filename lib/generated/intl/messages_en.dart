@@ -21,8 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "app_mainTitle":
-            MessageLookupByLibrary.simpleMessage("Selection Guide"),
+        "app_mainTitle": MessageLookupByLibrary.simpleMessage("Givt Wizard"),
         "calculatingMatches": MessageLookupByLibrary.simpleMessage(
             "We\'re calculating your matches!"),
         "categoryScreenSubtitle": MessageLookupByLibrary.simpleMessage(
@@ -38,14 +37,41 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("totally agree"),
         "choiceScreen_totallyDisagree":
             MessageLookupByLibrary.simpleMessage("totally disagree"),
+        "feedbackEmailWidget_mainButton":
+            MessageLookupByLibrary.simpleMessage("Ik wil helpen!"),
+        "feedbackEmailWidget_nonValidEmail":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a valid e-mail address"),
+        "feedbackEmailWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Vul je e-mailadres in en we contacteren je voor een gesprekje."),
+        "feedbackEmailWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Jouw feedback geeft ons richting"),
+        "feedbackWidget_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Hoe zou je je ervaring met de Givt Wizard beoordelen?"),
+        "feedbackWidget_title": MessageLookupByLibrary.simpleMessage(
+            "Wat vind je van de Givt Wizard?"),
         "fetchingQuestions": MessageLookupByLibrary.simpleMessage(
             "We\'re fetching the questions!"),
+        "giveWithGivt_buttonText":
+            MessageLookupByLibrary.simpleMessage("Geef met Givt"),
+        "giveWithGivt_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!"),
+        "giveWithGivt_title": MessageLookupByLibrary.simpleMessage(
+            "Deze organisatie is aangesloten bij Givt"),
+        "giveWithoutGivt_buttonText":
+            MessageLookupByLibrary.simpleMessage("naar de website"),
+        "giveWithoutGivt_subTitle": MessageLookupByLibrary.simpleMessage(
+            "Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt."),
+        "giveWithoutGivt_title": MessageLookupByLibrary.simpleMessage(
+            "Deze organisatie is nog niet aangesloten bij Givt"),
         "introButton":
-            MessageLookupByLibrary.simpleMessage("to the selection guide"),
+            MessageLookupByLibrary.simpleMessage("to the Givt Wizard"),
+        "introPrivacyPolicyLink": MessageLookupByLibrary.simpleMessage(
+            "No worries, we don\'t need any personal information!"),
         "introText": MessageLookupByLibrary.simpleMessage(
-            "Find out which charities match your values, standards and identity."),
-        "introTitle": MessageLookupByLibrary.simpleMessage(
-            "Welcome to the selection guide!"),
+            "Discover in just 2 minutes with which goals you feel the most connected."),
+        "introTitle":
+            MessageLookupByLibrary.simpleMessage("Welcome to the Givt Wizard!"),
         "loadingTitle": MessageLookupByLibrary.simpleMessage("Please wait..."),
         "matchCircle_match": MessageLookupByLibrary.simpleMessage("match"),
         "matchesScreen_findOutMore":
@@ -67,6 +93,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This matters to you both:"),
         "organisationDetailScreen_youMatchTitle":
             MessageLookupByLibrary.simpleMessage("You match!"),
+        "privacyPolicyTitle":
+            MessageLookupByLibrary.simpleMessage("Privacy policy"),
+        "privacyPolicy_Pt1": MessageLookupByLibrary.simpleMessage(
+            "We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt\'s service.\n\nDo you want to know more about what this service entails? Visit our website: "),
+        "privacyPolicy_Pt2_website":
+            MessageLookupByLibrary.simpleMessage("www.givt.co.uk"),
+        "privacyPolicy_Pt3":
+            MessageLookupByLibrary.simpleMessage("or send us an email at "),
+        "privacyPolicy_Pt4_email":
+            MessageLookupByLibrary.simpleMessage("info@givtapp.net"),
         "sectors_animals": MessageLookupByLibrary.simpleMessage("animals"),
         "sectors_artAndCulture":
             MessageLookupByLibrary.simpleMessage("art and culture"),
@@ -80,6 +116,34 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("nature and environment"),
         "sectors_religionAndPhilosophy":
             MessageLookupByLibrary.simpleMessage("religion and philosophy"),
-        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("well-being")
+        "sectors_wellBeing": MessageLookupByLibrary.simpleMessage("well-being"),
+        "tag_animals": MessageLookupByLibrary.simpleMessage("Dieren"),
+        "tag_artAndCulture":
+            MessageLookupByLibrary.simpleMessage("Kunst en cultuur"),
+        "tag_certificationMark":
+            MessageLookupByLibrary.simpleMessage("CBF Erkenning"),
+        "tag_directness": MessageLookupByLibrary.simpleMessage("Directheid"),
+        "tag_educationAndScience":
+            MessageLookupByLibrary.simpleMessage("Onderwijs en wetenschap"),
+        "tag_financialAdoption":
+            MessageLookupByLibrary.simpleMessage("Financiële adoptie"),
+        "tag_health": MessageLookupByLibrary.simpleMessage("Gezondheid"),
+        "tag_international":
+            MessageLookupByLibrary.simpleMessage("Internationaal"),
+        "tag_internationalAidAndHumanRights":
+            MessageLookupByLibrary.simpleMessage(
+                "Internationale hulp en mensenrechten"),
+        "tag_investing": MessageLookupByLibrary.simpleMessage("Investeren"),
+        "tag_national": MessageLookupByLibrary.simpleMessage("Nationaal"),
+        "tag_natureAndEnvironment":
+            MessageLookupByLibrary.simpleMessage("Natuur en milieu"),
+        "tag_reach": MessageLookupByLibrary.simpleMessage("Bereik"),
+        "tag_religionAndPhilosophy": MessageLookupByLibrary.simpleMessage(
+            "Religie en levensbeschouwing"),
+        "tag_religiousIdentity":
+            MessageLookupByLibrary.simpleMessage("Religieuze identiteit"),
+        "tag_scale": MessageLookupByLibrary.simpleMessage("Grootte"),
+        "tag_taxRelief": MessageLookupByLibrary.simpleMessage("ANBI"),
+        "tag_wellBeing": MessageLookupByLibrary.simpleMessage("Welzijn")
       };
 }

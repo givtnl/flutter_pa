@@ -22,7 +22,7 @@ class MixpanelManager {
     Future.delayed(Duration(seconds: 60), _timedFlushEvents);
   }
 
-  _timedFlushEvents() async {
+  Future<void> _timedFlushEvents() async {
     await flushEvents();
     Future.delayed(Duration(seconds: 60), _timedFlushEvents);
   }
@@ -31,7 +31,7 @@ class MixpanelManager {
     this._url = url;
   }
 
-  flushEvents() async {
+  Future<void> flushEvents() async {
     var events = await _store.allEvents;
     if (events.length <= 0) {
       print("no events found for exporting");
@@ -39,7 +39,7 @@ class MixpanelManager {
     }
     try {
       await _exportEvents(events.map((e) {
-        var props = new Map<String,dynamic>();
+        var props = new Map<String, dynamic>();
         if (e.properties != null && e.properties != "null") {
           props = jsonDecode(e.properties!) as Map<String, dynamic>;
         }
@@ -52,7 +52,7 @@ class MixpanelManager {
     }
   }
 
-  _getIdentity() async {
+  Future<String> _getIdentity() async {
     if (_identity == null) {
       var prefs = await SharedPreferences.getInstance();
       var mixpanelIdentity = prefs.getString("mixpanel_identity");
@@ -67,7 +67,7 @@ class MixpanelManager {
       return _identity!;
   }
 
-  _exportEvents(List<Event> events) async {
+  Future<void> _exportEvents(List<Event> events) async {
     var json = jsonEncode(events);
     try {
       var response = await http.post(Uri.parse(_url), body: json);
@@ -79,7 +79,7 @@ class MixpanelManager {
     }
   }
 
-  void track(String event, {Map<String, String>? properties}) async {
+  Future<void> track(String event, {Map<String, String>? properties}) async {
     await _store.insertEvent(event, await _getIdentity(), DateTime.now(), properties: properties);
   }
 }

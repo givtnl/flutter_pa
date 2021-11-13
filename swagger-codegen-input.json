@@ -44,15 +44,47 @@
           "x-position": 2
         },
         "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateQuestionResponse"
-                }
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/{userId}/feedback": {
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "summary": "Give feedback",
+        "description": "Registers feedback and the email from a specific user linked to an userid.",
+        "operationId": "CreateFeedback",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserFeedbackRequest"
               }
             }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "204": {
+            "description": ""
           }
         }
       }
@@ -287,15 +319,6 @@
   },
   "components": {
     "schemas": {
-      "CreateQuestionResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          }
-        }
-      },
       "CreateAnswerRequest": {
         "type": "object",
         "additionalProperties": false,
@@ -326,6 +349,41 @@
             "format": "decimal"
           }
         }
+      },
+      "CreateUserFeedbackRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "userFeedback": {
+            "$ref": "#/components/schemas/UserFeedback"
+          }
+        }
+      },
+      "UserFeedback": {
+        "type": "integer",
+        "description": "0 = VerySad\n1 = Sad\n2 = Neutral\n3 = Happy\n4 = VeryHappy",
+        "x-enumNames": [
+          "VerySad",
+          "Sad",
+          "Neutral",
+          "Happy",
+          "VeryHappy"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
       },
       "GetUserOrganisationMatchesListResponse": {
         "type": "object",
@@ -628,6 +686,15 @@
               "type": "integer",
               "format": "int32"
             }
+          }
+        }
+      },
+      "CreateQuestionResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
           }
         }
       },

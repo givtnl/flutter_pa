@@ -50,20 +50,20 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Find out which charities match your values, standards and identity.`
+  /// `Discover in just 2 minutes with which goals you feel the most connected.`
   String get introText {
     return Intl.message(
-      'Find out which charities match your values, standards and identity.',
+      'Discover in just 2 minutes with which goals you feel the most connected.',
       name: 'introText',
       desc: '',
       args: [],
     );
   }
 
-  /// `to the selection guide`
+  /// `to the Givt Wizard`
   String get introButton {
     return Intl.message(
-      'to the selection guide',
+      'to the Givt Wizard',
       name: 'introButton',
       desc: '',
       args: [],
@@ -220,10 +220,10 @@ class S {
     );
   }
 
-  /// `Welcome to the selection guide!`
+  /// `Welcome to the Givt Wizard!`
   String get introTitle {
     return Intl.message(
-      'Welcome to the selection guide!',
+      'Welcome to the Givt Wizard!',
       name: 'introTitle',
       desc: '',
       args: [],
@@ -380,11 +380,371 @@ class S {
     );
   }
 
-  /// `Selection Guide`
+  /// `Givt Wizard`
   String get app_mainTitle {
     return Intl.message(
-      'Selection Guide',
+      'Givt Wizard',
       name: 'app_mainTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No worries, we don't need any personal information!`
+  String get introPrivacyPolicyLink {
+    return Intl.message(
+      'No worries, we don\'t need any personal information!',
+      name: 'introPrivacyPolicyLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy policy`
+  String get privacyPolicyTitle {
+    return Intl.message(
+      'Privacy policy',
+      name: 'privacyPolicyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt's service.\n\nDo you want to know more about what this service entails? Visit our website: `
+  String get privacyPolicy_Pt1 {
+    return Intl.message(
+      'We do not use cookies on the device you use to go through the Givt Wizard. We also do not collect personal data from IP addresses.\n\nThe choices you make are sent to the server without personal identification and we also export which buttons you press. In this way we learn more about how the Givt Wizard is used. And all of that is completely anonymous.\n\nAt the end of the Givt Wizard you will get a result that you can only ask again later if you leave your email address. Which you are not obliged to.\n\nIf you leave an e-mail address, there is a chance that you will receive an e-mail from us asking us to help us improve Givt\'s service.\n\nDo you want to know more about what this service entails? Visit our website: ',
+      name: 'privacyPolicy_Pt1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wat vind je van de Givt Wizard?`
+  String get feedbackWidget_title {
+    return Intl.message(
+      'Wat vind je van de Givt Wizard?',
+      name: 'feedbackWidget_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hoe zou je je ervaring met de Givt Wizard beoordelen?`
+  String get feedbackWidget_subTitle {
+    return Intl.message(
+      'Hoe zou je je ervaring met de Givt Wizard beoordelen?',
+      name: 'feedbackWidget_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jouw feedback geeft ons richting`
+  String get feedbackEmailWidget_title {
+    return Intl.message(
+      'Jouw feedback geeft ons richting',
+      name: 'feedbackEmailWidget_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vul je e-mailadres in en we contacteren je voor een gesprekje.`
+  String get feedbackEmailWidget_subTitle {
+    return Intl.message(
+      'Vul je e-mailadres in en we contacteren je voor een gesprekje.',
+      name: 'feedbackEmailWidget_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ik wil helpen!`
+  String get feedbackEmailWidget_mainButton {
+    return Intl.message(
+      'Ik wil helpen!',
+      name: 'feedbackEmailWidget_mainButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `www.givt.co.uk`
+  String get privacyPolicy_Pt2_website {
+    return Intl.message(
+      'www.givt.co.uk',
+      name: 'privacyPolicy_Pt2_website',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or send us an email at `
+  String get privacyPolicy_Pt3 {
+    return Intl.message(
+      'or send us an email at ',
+      name: 'privacyPolicy_Pt3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `info@givtapp.net`
+  String get privacyPolicy_Pt4_email {
+    return Intl.message(
+      'info@givtapp.net',
+      name: 'privacyPolicy_Pt4_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid e-mail address`
+  String get feedbackEmailWidget_nonValidEmail {
+    return Intl.message(
+      'Please enter a valid e-mail address',
+      name: 'feedbackEmailWidget_nonValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deze organisatie is aangesloten bij Givt`
+  String get giveWithGivt_title {
+    return Intl.message(
+      'Deze organisatie is aangesloten bij Givt',
+      name: 'giveWithGivt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!`
+  String get giveWithGivt_subTitle {
+    return Intl.message(
+      'Je geniet dus van alle voordelen van geven met Givt: je bent anoniem, geven is 100% veilig en het kan altijd en overal!',
+      name: 'giveWithGivt_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Geef met Givt`
+  String get giveWithGivt_buttonText {
+    return Intl.message(
+      'Geef met Givt',
+      name: 'giveWithGivt_buttonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deze organisatie is nog niet aangesloten bij Givt`
+  String get giveWithoutGivt_title {
+    return Intl.message(
+      'Deze organisatie is nog niet aangesloten bij Givt',
+      name: 'giveWithoutGivt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt.`
+  String get giveWithoutGivt_subTitle {
+    return Intl.message(
+      'Je kunt wel geven via de kanalen die de organisatie zelf ter beschikking stelt.',
+      name: 'giveWithoutGivt_subTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `naar de website`
+  String get giveWithoutGivt_buttonText {
+    return Intl.message(
+      'naar de website',
+      name: 'giveWithoutGivt_buttonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CBF Erkenning`
+  String get tag_certificationMark {
+    return Intl.message(
+      'CBF Erkenning',
+      name: 'tag_certificationMark',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ANBI`
+  String get tag_taxRelief {
+    return Intl.message(
+      'ANBI',
+      name: 'tag_taxRelief',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationaal`
+  String get tag_national {
+    return Intl.message(
+      'Nationaal',
+      name: 'tag_national',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religieuze identiteit`
+  String get tag_religiousIdentity {
+    return Intl.message(
+      'Religieuze identiteit',
+      name: 'tag_religiousIdentity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internationaal`
+  String get tag_international {
+    return Intl.message(
+      'Internationaal',
+      name: 'tag_international',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grootte`
+  String get tag_scale {
+    return Intl.message(
+      'Grootte',
+      name: 'tag_scale',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Directheid`
+  String get tag_directness {
+    return Intl.message(
+      'Directheid',
+      name: 'tag_directness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Financiële adoptie`
+  String get tag_financialAdoption {
+    return Intl.message(
+      'Financiële adoptie',
+      name: 'tag_financialAdoption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dieren`
+  String get tag_animals {
+    return Intl.message(
+      'Dieren',
+      name: 'tag_animals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gezondheid`
+  String get tag_health {
+    return Intl.message(
+      'Gezondheid',
+      name: 'tag_health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internationale hulp en mensenrechten`
+  String get tag_internationalAidAndHumanRights {
+    return Intl.message(
+      'Internationale hulp en mensenrechten',
+      name: 'tag_internationalAidAndHumanRights',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kunst en cultuur`
+  String get tag_artAndCulture {
+    return Intl.message(
+      'Kunst en cultuur',
+      name: 'tag_artAndCulture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Natuur en milieu`
+  String get tag_natureAndEnvironment {
+    return Intl.message(
+      'Natuur en milieu',
+      name: 'tag_natureAndEnvironment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Onderwijs en wetenschap`
+  String get tag_educationAndScience {
+    return Intl.message(
+      'Onderwijs en wetenschap',
+      name: 'tag_educationAndScience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Religie en levensbeschouwing`
+  String get tag_religionAndPhilosophy {
+    return Intl.message(
+      'Religie en levensbeschouwing',
+      name: 'tag_religionAndPhilosophy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welzijn`
+  String get tag_wellBeing {
+    return Intl.message(
+      'Welzijn',
+      name: 'tag_wellBeing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bereik`
+  String get tag_reach {
+    return Intl.message(
+      'Bereik',
+      name: 'tag_reach',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Investeren`
+  String get tag_investing {
+    return Intl.message(
+      'Investeren',
+      name: 'tag_investing',
       desc: '',
       args: [],
     );
