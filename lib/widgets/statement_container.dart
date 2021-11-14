@@ -64,7 +64,7 @@ class _StatementContainerState extends State<StatementContainer> {
                     .textTheme
                     .headline3!
                     .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
-                maxLines: 3,
+                maxLines: 4,
                 minFontSize: 5,
                 textAlign: portrait ? TextAlign.start : TextAlign.center,
               ),
