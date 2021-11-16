@@ -45,8 +45,9 @@ class OrganisationScreenState extends State<OrganisationScreen> {
     var provider = Provider.of<MatchesProvider>(context);
     var currentMatch = provider.selectedOrganisationMatch;
     var currentOrganisation = provider.selectedOrganisationMatch.organisation;
-    var currentTags = provider.currentMatchingTags;
-    var currentOrganisationTags = provider.currentOrganisationTags;
+    //filter out the tags where user or organisation scores are zero, bc we do not want to show them
+    var currentTags = provider.currentMatchingTags.where((element) => element.score > 0).toList();
+    var currentOrganisationTags = provider.currentOrganisationTags.where((element) => element.score > 0).toList();
     var itlProvider = S.of(context);
 
     final Widget backArrow = SvgPicture.asset('assets/svg/back-arrow.svg');
